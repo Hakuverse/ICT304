@@ -11,9 +11,9 @@ Repository for ICT304 (AI System Design) at Murdoch University — covering both
 | Jackie | [@s123-bit]) |
 
 
-## What SARAH does
+## What is Project SARAH?
 
-SARAH predicts whether a student is at Low or High Risk of academic difficulty using attendance, study habits, and behavioural signals available before final grades exist, and recommends an intervention targeted at each student's weakest contributing factor.
+Project SARAH (Student Academic Risk Assistance Hub) is an early-intervention system that identifies students at risk of falling behind before their grades reflect it. Rather than reacting after a poor result or a failed unit, SARAH uses signals available from day one — attendance, study habits, and demographic/behavioural factors — to classify each student as Low or High Risk, then recommends a specific intervention tied to that student's single weakest contributing factor, rather than issuing a generic warning. It supports both a single-student lookup and a whole-class batch upload, so a teacher or academic advisor can screen an entire roster at once rather than entering students one at a time.
 
 ## Repository structure
 
