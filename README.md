@@ -63,7 +63,9 @@ When starting the project stage, leave out virtual environments, caches and temp
 
 - Milestones: see the [Milestones tab](../../milestones)
 - Board: [SARAH Sprint Board](../../projects)
-- Sprint 3 tasks: [assignment/docs/sprint3-planning.md](assignment/docs/sprint3-planning.md)
+- [Sprint 1: Getting Started](assignment/docs/sprint1-planning.md)
+- [Sprint 2: Requirements and Data Exploration](assignment/docs/sprint2-planning.md)
+- [Sprint 3: System Design](assignment/docs/sprint3-planning.md)
 
 ## Setup / how to run
 

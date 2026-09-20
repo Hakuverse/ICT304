@@ -16,3 +16,5 @@
 - [ ] [Check what is needed for 3 October](https://github.com/Hakuverse/ICT304/issues/28)
 
 Choose one person for each task. When it is ready, ask a teammate to check it and add the file or report link to the issue.
+
+[Sprint 1](sprint1-planning.md) | [Sprint 2](sprint2-planning.md)
