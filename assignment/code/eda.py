@@ -4,8 +4,8 @@ SARAH — Exploratory Data Analysis
 Covers Sprint 2: Correlation check, EDA visualisations, and outlier
 decision/documentation.
 
-Run with:  python eda.py   (from inside project/code, with venv active)
-Outputs: project/docs/eda_findings.md and project/docs/figures/*.png
+Run with:  python assignment/code/eda.py   (from the repository root)
+Outputs: assignment/docs/eda_findings.md and assignment/docs/figures/*.png
 """
 
 from pathlib import Path
@@ -18,9 +18,9 @@ import pandas as pd
 
 from data_processing import engineer_features, load_raw_uci
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]  # project/code -> project/
-DATA_DIR = PROJECT_ROOT / "data"
-DOCS_DIR = PROJECT_ROOT / "docs"
+ASSIGNMENT_ROOT = Path(__file__).resolve().parents[1]  # assignment/code -> assignment/
+DATA_DIR = ASSIGNMENT_ROOT / "data"
+DOCS_DIR = ASSIGNMENT_ROOT / "docs"
 FIG_DIR = DOCS_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -96,7 +96,7 @@ def write_findings_md(corr_raw, corr_feat, outlier_summary, n_rows):
 
     lines = [
         "# SARAH — EDA Findings\n",
-        f"Generated from `eda.py` against the dataset in `project/data` ({n_rows} rows).\n",
+        f"Generated from `eda.py` against the dataset in `assignment/data` ({n_rows} rows).\n",
         "## 1. Correlation check\n",
         f"G1 vs G3 correlation: {g1_g3}. G2 vs G3 correlation: {g2_g3}.\n",
         "This is why G3 is excluded as a model feature and used only to build the risk "
@@ -123,7 +123,7 @@ def write_findings_md(corr_raw, corr_feat, outlier_summary, n_rows):
         "feature dropped.\n"
     )
 
-    with open(DOCS_DIR / "eda_findings.md", "w") as f:
+    with open(DOCS_DIR / "eda_findings.md", "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
 

@@ -73,7 +73,7 @@ def build_training_dataset(data_dir: Path) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    project_root = Path(__file__).resolve().parents[1]  # project/code -> project/
-    dataset = build_training_dataset(project_root / "data")
+    assignment_root = Path(__file__).resolve().parents[1]  # assignment/code -> assignment/
+    dataset = build_training_dataset(assignment_root / "data")
     print(f"Built {len(dataset)} rows")
     print(dataset["risk_label"].value_counts(normalize=True).round(3))
