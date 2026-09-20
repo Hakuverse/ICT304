@@ -1,24 +1,18 @@
-# Sprint 3 planning
+# Sprint 3: System Design
 
-Sprint: 22-29 September 2026. Assignment deadline: 3 October 2026.
+**Dates:** 22-29 September 2026
 
-Two modes are approved. Tuesday meetings take place after class: tutor/stakeholder review first, then team planning with Benjamin, Anna and Jackie.
+**Goal:** Explain how SARAH will work, add the two approved modes, and prepare for the assignment due on 3 October.
 
-- [Meeting template](sprint3-meeting-template.md)
-- [Repository review and detailed backlog](sprint3-repo-review-and-issue-drafts.md)
-- [Live Sprint 3 milestone](https://github.com/Hakuverse/ICT304/milestone/3)
+## Tasks
 
-## Live issues
+- [ ] [Draw the system diagram](https://github.com/Hakuverse/ICT304/issues/17)
+- [ ] [Explain how we will test the models](https://github.com/Hakuverse/ICT304/issues/18)
+- [ ] [Explain the class-weight comparison](https://github.com/Hakuverse/ICT304/issues/19)
+- [ ] [Add the NASA references](https://github.com/Hakuverse/ICT304/issues/20)
+- [ ] [Write the System Design section](https://github.com/Hakuverse/ICT304/issues/21)
+- [ ] [Add the two modes and check they work](https://github.com/Hakuverse/ICT304/issues/26)
+- [ ] [Write a simple testing plan](https://github.com/Hakuverse/ICT304/issues/27)
+- [ ] [Check what is needed for 3 October](https://github.com/Hakuverse/ICT304/issues/28)
 
-| Issue | Work |
-|---|---|
-| [#17](https://github.com/Hakuverse/ICT304/issues/17) | Architecture diagram and interface contracts |
-| [#18](https://github.com/Hakuverse/ICT304/issues/18) | Validation and preprocessing protocol |
-| [#19](https://github.com/Hakuverse/ICT304/issues/19) | Class-weight comparison plan |
-| [#20](https://github.com/Hakuverse/ICT304/issues/20) | NASA chapter citations |
-| [#21](https://github.com/Hakuverse/ICT304/issues/21) | System Design and documentation consistency |
-| [#26](https://github.com/Hakuverse/ICT304/issues/26) | Mode implementation and tests |
-| [#27](https://github.com/Hakuverse/ICT304/issues/27) | Requirement-to-test matrix |
-| [#28](https://github.com/Hakuverse/ICT304/issues/28) | Assignment readiness and prototype handoff |
-
-The issues contain delivery criteria, not completed work. Assign owners and reviewers at planning and confirm capacity before committing to all eight. The review records the repository state on 20 September 2026; use live issues for subsequent progress.
+Choose one person for each task. When it is ready, ask a teammate to check it and add the file or report link to the issue.
