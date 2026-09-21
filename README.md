@@ -66,6 +66,7 @@ When starting the project stage, leave out virtual environments, caches and temp
 - [Sprint 1: Getting Started](assignment/docs/sprint1-planning.md)
 - [Sprint 2: Requirements and Data Exploration](assignment/docs/sprint2-planning.md)
 - [Sprint 3: System Design](assignment/docs/sprint3-planning.md)
+- [Sprint 4: Prototype and Assignment Submission](assignment/docs/sprint4-planning.md)
 
 ## Setup / how to run
 
