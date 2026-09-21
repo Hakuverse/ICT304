@@ -1,6 +1,7 @@
 import csv
+from pathlib import Path
 
-file_path = "../data/student-mat.csv"
+file_path = Path(__file__).resolve().parents[1] / "data" / "student-mat.csv"
 
 with open(file_path, newline="", encoding="utf-8") as file:
     students = list(csv.DictReader(file, delimiter=";"))

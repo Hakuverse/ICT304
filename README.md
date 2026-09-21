@@ -21,11 +21,13 @@ Project SARAH (Student Academic Risk Assistance Hub) is an early-intervention sy
 ICT304/
 ├── ai-prompt-log/         # Running log of AI-tool prompts, snapshotted into each report's appendix
 │   └── log.md
-├── assignment/            # — system design doc + prototype subsystem
+├── assignment/            # Current work: design report + AI prototype, due 3 October
 │   ├── report/
 │   ├── code/
-│   └── data/
-├── project/               # — full system, report, user guide, demo video
+│   ├── data/
+│   └── docs/              # EDA findings, figures, feature selection and sprint tasks
+├── project/               # Next stage: continue here after assignment submission
+│   ├── README.md
 │   ├── report/
 │   ├── code/
 │   ├── data/
@@ -37,6 +39,15 @@ ICT304/
 ├── .gitignore
 └── README.md
 ```
+
+## Where to work
+
+- **Before the assignment submission:** put SARAH code, data, report and supporting documents in `assignment/`.
+- **After submitting the assignment on 3 October:** keep the submitted `assignment/` folder unchanged. Copy the code, required data and useful documents into `project/`, then continue development there for the final project due on 7 November.
+- **Tutorials:** keep weekly exercises in `tutorials/`; they are separate from the assessed SARAH system.
+- **AI prompt log:** keep using the shared `ai-prompt-log/log.md`. Each submission has its own prompt appendix in its `report/` folder.
+
+When starting the project stage, leave out virtual environments, caches and temporary files. Check the copied scripts and instructions before continuing. Work in one assessment folder at a time.
 
 
 ## Tools in use
@@ -52,9 +63,25 @@ ICT304/
 
 - Milestones: see the [Milestones tab](../../milestones)
 - Board: [SARAH Sprint Board](../../projects)
-- Sprint plan: see `[scrum-lite template file location]`
+- [Sprint 1: Getting Started](assignment/docs/sprint1-planning.md)
+- [Sprint 2: Requirements and Data Exploration](assignment/docs/sprint2-planning.md)
+- [Sprint 3: System Design](assignment/docs/sprint3-planning.md)
 
 ## Setup / how to run
+
+From the repository root, with Python installed:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r assignment/code/requirements.txt
+.venv\Scripts\python.exe assignment/code/verify_dataset.py
+.venv\Scripts\python.exe assignment/code/data_processing.py
+.venv\Scripts\python.exe assignment/code/eda.py
+```
+
+On macOS/Linux, use `python3` to create the environment and `.venv/bin/python` in place of `.venv\Scripts\python.exe`.
+
+The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run the current data preparation and analysis; model training is still a separate sprint task.
 
 
 ## Contribution workflow

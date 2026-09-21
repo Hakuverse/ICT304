@@ -1,6 +1,6 @@
-# SARAH — EDA Findings
+# SARAH â€” EDA Findings
 
-Generated from `eda.py` against the dataset in `project/data` (395 rows).
+Generated from `eda.py` against the dataset in `assignment/data` (395 rows).
 
 ## 1. Correlation check
 
@@ -19,13 +19,13 @@ Correlation of each engineered feature with risk (1 = High Risk):
 
 | Feature | Bounds | Flagged | Decision |
 |---|---|---|---|
-| attendance_pct | [33.25, 140.05] | 15 | Kept — see reasoning below |
-| study_hours | [-1.5, 6.5] | 92 | Kept — see reasoning below |
-| previous_score | [8.75, 98.75] | 0 | Kept — see reasoning below |
-| failures | [0.0, 0.0] | 83 | Kept — see reasoning below |
+| attendance_pct | [33.25, 140.05] | 15 | Kept â€” see reasoning below |
+| study_hours | [-1.5, 6.5] | 92 | Kept â€” see reasoning below |
+| previous_score | [8.75, 98.75] | 0 | Kept â€” see reasoning below |
+| failures | [0.0, 0.0] | 83 | Kept â€” see reasoning below |
 
 **Decision: no rows or values were removed.** Unusual attendance/study/score values are exactly the signal an early-warning system needs to catch, not noise to clean away. IQR bounds are especially unreliable for `study_hours` and `failures`, which only take a few discrete values.
 
 ## 3. Final feature list
 
-`attendance_pct`, `study_hours`, `previous_score`, `failures` — confirmed, no feature dropped.
+`attendance_pct`, `study_hours`, `previous_score`, `failures` â€” confirmed, no feature dropped.
