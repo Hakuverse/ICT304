@@ -17,4 +17,4 @@
 
 Choose one person for each task. When it is ready, ask a teammate to check it and add the file or report link to the issue.
 
-[Sprint 1](sprint1-planning.md) | [Sprint 2](sprint2-planning.md)
+[Sprint 1](sprint1-planning.md) | [Sprint 2](sprint2-planning.md) | [Sprint 4](sprint4-planning.md)
