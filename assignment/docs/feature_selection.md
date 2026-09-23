@@ -21,15 +21,29 @@ A candidate feature was kept only if it satisfied **both**:
 
 ## Final selected features
 
+The two approved modes use these exact model inputs, in this order:
+
+| Mode | Model inputs |
+|---|---|
+| `early_warning` | `attendance_pct`, `study_hours`, `failures` |
+| `confirmatory` | `attendance_pct`, `study_hours`, `failures`, `previous_score` |
+
+No demographics or family-background fields are included. `previous_score` is the
+average of G1 and G2, rescaled to 0-100, so both grades are needed for that calculation.
+Neither mode needs G3 to prepare a prediction input. The attendance value is a capped
+absence-based estimate, not a measured attendance percentage. Study hours are estimates
+from categories; 12 hours for the open-ended top category is an assumption.
+
 | Feature | Source column(s) | Correlation with risk | Why kept |
 |---|---|---|---|
-| `attendance_pct` | `absences` | -0.08 to -0.11 (weak alone) | Explicitly promised in the problem statement; combines usefully with other features in the Decision Tree even though its solo correlation is weak |
-| `study_hours` | `studytime` | -0.08 to -0.10 (weak alone) | Same as above |
-| `previous_score` | `G1`, `G2` | -0.67 to -0.72 (strong) | Strongest individual predictor found |
-| `failures` | `failures` | +0.34 to +0.37 (moderate) | Second-strongest predictor; directly reflects prior academic difficulty |
+| `attendance_pct` | `absences` | -0.08 (weak alone) | Relevant to the intended teacher workflow; usefulness alongside other inputs still needs model testing |
+| `study_hours` | `studytime` | -0.08 (weak alone) | Relevant to study support; usefulness still needs model testing |
+| `previous_score` | `G1`, `G2` | -0.72 (strong) | Strongest individual relationship found; Confirmatory only |
+| `failures` | `failures` | +0.34 (moderate) | Reflects prior academic difficulty |
 
-`G3` is excluded from features entirely (see `eda_findings.md` — G1/G2 correlate 0.8-0.9
-with it, so using it as an input would leak the label).
+These rounded values come from the Math-only [EDA findings](eda_findings.md).
+`G3` is excluded because it defines the target (`G3 < 10`), not simply because it is
+correlated with other grades. `risk`, `risk_label` and `course` are also excluded from X.
 
 ## Explicitly rejected candidates and why
 
@@ -45,5 +59,13 @@ with it, so using it as an input would leak the label).
 
 ## Conclusion
 
-Final feature list is unchanged from `eda_findings.md`: `attendance_pct`, `study_hours`,
-`previous_score`, `failures`. No further columns from the raw dataset are added.
+Use three inputs for Early-Warning and add `previous_score` for Confirmatory.
+Math-only loading is fixed: adding `student-por.csv` does not change the training data.
+The dataset does not establish when every input was measured, so grade-free inputs alone
+do not prove that this prototype works on day one of a term.
+
+## Using the code
+
+See [the mode guide](mode-guide.md) for run commands and examples. Training code can use
+`build_training_xy(data_dir, mode)` to get inputs and labels separately. The existing
+`engineer_features()` function remains available for the four-feature EDA charts.
