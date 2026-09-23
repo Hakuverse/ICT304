@@ -28,8 +28,11 @@ The two approved modes use these exact model inputs, in this order:
 | `early_warning` | `attendance_pct`, `study_hours`, `failures` |
 | `confirmatory` | `attendance_pct`, `study_hours`, `failures`, `previous_score` |
 
-No demographics or family-background fields are included. `previous_score` is the
-average of G1 and G2, rescaled to 0-100, so both grades are needed for that calculation.
+No demographics or family-background fields are included. Confirmatory requires G1;
+G2 is optional. `previous_score` is G1 alone when G2 is blank/absent, or the average
+of G1 and G2 when both are supplied, rescaled to 0-100. Each setup is trained and
+evaluated separately, and students are routed to the matching model. An invalid
+supplied G2 is reported as an error. Input grades use the UCI 0-20 scale.
 Neither mode needs G3 to prepare a prediction input. The attendance value is a capped
 absence-based estimate, not a measured attendance percentage. Study hours are estimates
 from categories; 12 hours for the open-ended top category is an assumption.
@@ -42,6 +45,8 @@ from categories; 12 hours for the open-ended top category is an assumption.
 | `failures` | `failures` | +0.34 (moderate) | Reflects prior academic difficulty |
 
 These rounded values come from the Math-only [EDA findings](eda_findings.md).
+The previous-score correlation above is for the G1/G2 average; it must not be
+presented as a measured correlation for the new G1-only setup.
 `G3` is excluded because it defines the target (`G3 < 10`), not simply because it is
 correlated with other grades. `risk`, `risk_label` and `course` are also excluded from X.
 
@@ -67,5 +72,7 @@ do not prove that this prototype works on day one of a term.
 ## Using the code
 
 See [the mode guide](mode-guide.md) for run commands and examples. Training code can use
-`build_training_xy(data_dir, mode)` to get inputs and labels separately. The existing
+`build_training_xy(data_dir, mode, grade_setup="g1")` or `grade_setup="g1_g2"`
+to get inputs and labels separately. Use `validate_students()` for row-level form/CSV
+checks, including the team's 0-40 study-hours rule. The existing
 `engineer_features()` function remains available for the four-feature EDA charts.

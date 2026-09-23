@@ -13,7 +13,9 @@ Repository for ICT304 (AI System Design) at Murdoch University — covering both
 
 ## What is Project SARAH?
 
-Project SARAH (Student Academic Risk Assistance Hub) is an early-intervention system that identifies students at risk of falling behind before their grades reflect it. Rather than reacting after a poor result or a failed unit, SARAH uses signals available from day one — attendance, study habits, and demographic/behavioural factors — to classify each student as Low or High Risk, then recommends a specific intervention tied to that student's single weakest contributing factor, rather than issuing a generic warning. It supports both a single-student lookup and a whole-class batch upload, so a teacher or academic advisor can screen an entire roster at once rather than entering students one at a time.
+Project SARAH (Student Academic Risk Assistance Hub) is a prototype for estimating academic risk. Early-Warning Mode uses an attendance estimate, estimated study hours and past failures without assessment grades. Confirmatory Mode requires G1 and can also use G2, with separate models for G1 alone and the G1/G2 average. Neither mode uses demographic or family-background inputs. The current dataset lets us compare predictions against final outcomes, but does not establish day-one or week-specific accuracy.
+
+The code can process a class list, skip invalid students with an explanation and send valid students to the matching model. A tutor-facing dashboard and intervention recommendations are planned work. See [Using the two modes](assignment/docs/mode-guide.md) for examples and dataset limitations.
 
 ## Repository structure
 
@@ -82,7 +84,15 @@ python -m venv .venv
 
 On macOS/Linux, use `python3` to create the environment and `.venv/bin/python` in place of `.venv\Scripts\python.exe`.
 
-The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run the current data preparation and analysis; model training is still a separate sprint task.
+The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run data preparation and analysis.
+
+To compare Logistic Regression and Decision Tree for Early-Warning, G1-only and G1+G2:
+
+```powershell
+.venv\Scripts\python.exe assignment/code/train_models.py
+```
+
+This prints development cross-validation results for each setup. It does not prove early-term performance or automatically select a final model.
 
 To check both input modes:
 

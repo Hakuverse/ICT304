@@ -8,7 +8,7 @@ import pandas as pd
 
 from data_processing import (
     build_training_dataset, build_training_xy, engineer_features, engineer_inputs,
-    load_raw_uci, prepare_model_inputs,
+    load_raw_uci, prepare_model_inputs, validate_students,
 )
 
 
@@ -77,7 +77,7 @@ class TestModes(unittest.TestCase):
         cases = [self.raw.drop(columns="absences"), self.raw.assign(studytime=0),
                  self.raw.assign(absences=-1), self.raw.assign(failures=0.5),
                  self.raw.assign(G1=21), self.raw.assign(studytime="not a number"),
-                 self.raw.assign(G2=None), self.raw.assign(absences=float("inf"))]
+                 self.raw.assign(G2="bad"), self.raw.assign(absences=float("inf"))]
         for raw in cases:
             with self.subTest(columns=list(raw.columns)):
                 with self.assertRaises(ValueError):
@@ -85,7 +85,7 @@ class TestModes(unittest.TestCase):
 
     def test_invalid_engineered_inputs_raise(self):
         valid = engineer_inputs(self.raw)
-        for name, value in [("attendance_pct", 150), ("study_hours", -1),
+        for name, value in [("attendance_pct", 150), ("study_hours", -1), ("study_hours", 41),
                             ("failures", 4), ("previous_score", None),
                             ("study_hours", "bad"), ("previous_score", 101)]:
             with self.subTest(field=name, value=value):
@@ -126,6 +126,63 @@ class TestModes(unittest.TestCase):
             self.assertEqual(int(y.sum()), 130)
             self.assertEqual(int((y == 0).sum()), 265)
             self.assertFalse(X.isna().any().any())
+
+    def test_confirmatory_g1_required_g2_optional(self):
+        expected = [90, 50, 25, 10]
+        for raw in (self.raw.drop(columns="G2"), self.raw.assign(G2=None), self.raw.assign(G2=" ")):
+            self.assertEqual(engineer_inputs(raw)["previous_score"].tolist(), expected)
+        mixed = self.raw.assign(G2=[16, None, 0, ""])
+        self.assertEqual(engineer_inputs(mixed)["previous_score"].tolist(), [85, 50, 12.5, 10])
+        with self.assertRaisesRegex(ValueError, "G1"):
+            engineer_inputs(self.raw.drop(columns="G1"))
+
+    def test_validate_students_catches_missing_and_invalid_rows(self):
+        students = pd.DataFrame({"attendance_pct": [80, 150, 70, 60, 90],
+                                 "study_hours": [40, 5, 999, None, 0], "failures": [0] * 5})
+        # Duplicate index labels must not mix up students or errors.
+        students.index = [5] * 5
+        batch = validate_students(students, "early_warning")
+        self.assertEqual(batch.groups["early_warning"].index.tolist(), [1, 5])
+        self.assertEqual(batch.errors["row_number"].tolist(), [2, 3, 4])
+        self.assertIn("study_hours", batch.errors.iloc[1]["reason"])
+        self.assertEqual(batch.message, "2 valid students; 3 skipped.")
+
+    def test_batch_routes_grades_and_rejects_invalid_supplied_g2(self):
+        rows = pd.DataFrame({"attendance_pct": [80] * 9, "study_hours": [5] * 9,
+                             "failures": [0] * 9, "G1": [10] * 8 + [None],
+                             "G2": [None, "", 0, 20, "bad", -1, 21, float("inf"), 12]})
+        batch = validate_students(rows)
+        self.assertEqual(batch.groups["g1"].index.tolist(), [1, 2])
+        self.assertEqual(batch.groups["g1_g2"]["previous_score"].tolist(), [25, 75])
+        self.assertEqual(batch.errors["row_number"].tolist(), [5, 6, 7, 8, 9])
+        self.assertEqual(validate_students(rows.drop(columns="G2")).groups["g1"].shape, (8, 4))
+        with self.assertRaisesRegex(ValueError, "G1"):
+            validate_students(rows.drop(columns="G1").assign(previous_score=50))
+
+    def test_batch_structure_errors_and_all_invalid(self):
+        for rows in (self.raw.drop(columns="studytime"), self.raw.iloc[:0],
+                     pd.concat([self.raw, self.raw[["G1"]]], axis=1)):
+            with self.assertRaises(ValueError):
+                validate_students(rows, raw_uci=True)
+        batch = validate_students(self.raw.assign(G1=21), raw_uci=True)
+        self.assertEqual(batch.message, "No valid students to process.")
+        self.assertEqual(len(batch.errors), 4)
+        self.assertTrue(all(frame.empty for frame in batch.groups.values()))
+
+    def test_separate_training_setups(self):
+        data_dir = Path(__file__).resolve().parents[1] / "data"
+        raw = load_raw_uci(data_dir)
+        g1, y1 = build_training_xy(data_dir, grade_setup="g1")
+        both, y2 = build_training_xy(data_dir, grade_setup="g1_g2")
+        pd.testing.assert_series_equal(g1["previous_score"], (raw.G1 * 5).astype(float), check_names=False)
+        pd.testing.assert_series_equal(both["previous_score"], ((raw.G1 + raw.G2) * 2.5), check_names=False)
+        pd.testing.assert_series_equal(y1, y2)
+        with self.assertRaisesRegex(ValueError, "grade_setup"):
+            build_training_xy(data_dir, grade_setup="invalid")
+        with tempfile.TemporaryDirectory() as folder:
+            self.raw.assign(G2=None).to_csv(Path(folder) / "student-mat.csv", sep=";", index=False)
+            with self.assertRaises(ValueError):
+                build_training_xy(Path(folder), grade_setup="g1_g2")
 
 
 if __name__ == "__main__":
