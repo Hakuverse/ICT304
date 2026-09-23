@@ -27,28 +27,28 @@ learning anything about what actually makes a student at-risk — which is exact
 in this project is reported on Precision/Recall/F1 for the High Risk class, never on accuracy
 alone.
 
-## 2. Two modes, not one — why this comparison has eight combinations, not two
+## 2. Two modes, four features total — why this comparison has eight combinations, not two
 
 SARAH runs in two modes, because the data actually available about a student changes over the
-term:
+term. Its feature list is deliberately narrow — just four columns total, team decision (see
+`docs/feature_selection.md`): no demographic, family-background, or lifestyle data, even though
+the raw dataset has it available.
 
-- **Early-Warning Mode** (primary): attendance, study hours, past failures, and
-  demographic/behavioural signals (family support, parental education, lifestyle). No grades at
-  all — this is everything SARAH can know on day one of term, before any assessment exists.
+- **Early-Warning Mode** (primary): `attendance_pct`, `study_hours`, `failures` — everything
+  SARAH can know on day one of term, before any assessment exists.
 - **Confirmatory Mode** (secondary): Early-Warning features **+** `previous_score` (the average
   of the first two assessment periods), once at least one grade exists.
 
 Both modes are trained and compared with **both** AI techniques (Logistic Regression, Decision
 Tree) and **both** `class_weight` settings (`None`, `"balanced"`) — **2 modes × 2 techniques × 2
 settings = 8 combinations**, each evaluated the same way (Section 4). This directly answers the
-issue's "both modes" requirement, and lets the team see whether `class_weight="balanced"` matters
-differently depending on which features are available.
+issue's "both modes" requirement.
 
 ## 3. What `class_weight="balanced"` actually does
 
 ```python
 LogisticRegression(class_weight="balanced", random_state=42, max_iter=1000)
-DecisionTreeClassifier(max_depth=4, class_weight="balanced", random_state=42)
+DecisionTreeClassifier(class_weight="balanced", random_state=42)
 ```
 
 scikit-learn's `class_weight="balanced"` re-weights the training loss so mistakes on the
@@ -62,58 +62,57 @@ approach for an imbalance at this level (not extreme).
 ## 4. Method: stratified 5-fold cross-validation, not a single train/test split
 
 With only 395 students (130 High Risk), a single 80/20 train/test split would leave roughly 26
-High Risk students in the test set — too few for a stable precision/recall estimate; one or two
-different predictions would swing the reported numbers noticeably. Instead, every combination
-below is evaluated with **stratified 5-fold cross-validation** (`StratifiedKFold`, shuffled,
-`random_state=42`): the dataset is split into 5 folds preserving the 32.9%/67.1% class ratio in
-each fold, the model is trained on 4 folds and tested on the 5th, five times, and the metrics
-below are the **mean across all 5 folds**. This uses every student for both training and testing
-(across different folds) and gives a far more stable estimate than one split.
+High Risk students in the test set — too few for a stable precision/recall estimate. Instead,
+every combination below is evaluated with **stratified 5-fold cross-validation**
+(`StratifiedKFold`, shuffled, `random_state=42`): the dataset is split into 5 folds preserving the
+32.9%/67.1% class ratio in each fold, the model is trained on 4 folds and tested on the 5th, five
+times, and the metrics below are the **mean across all 5 folds**.
 
-The Decision Tree's depth is fixed at **`max_depth=4`** for all eight combinations (chosen once,
-via 5-fold CV recall on Early-Warning mode with `class_weight="balanced"`, trying depths 2, 3, 4,
-5, 6, and unlimited — depth 4 gave the best recall, 0.546), so the technique comparison is fair
-(same tree complexity in every row).
+Unlike an earlier draft of this note, the Decision Tree's depth is **not** fixed here — its
+`max_depth` was checked via 5-fold CV recall on Early-Warning mode (depths 2, 3, 4, 5, 6,
+unlimited): with a small, narrow feature set (only 3-4 columns), an unrestricted tree
+(`max_depth=None`, recall 0.492) slightly outperformed every capped depth (0.446–0.477), so no
+depth cap is applied — the tree is left to grow as needed.
 
 ## 5. Results: all eight combinations
 
 | Mode | Technique | class_weight | Accuracy | Precision (High Risk) | Recall (High Risk) | F1 (High Risk) |
 |---|---|---|---|---|---|---|
-| Early-Warning | Logistic Regression | `None` | 0.706 | 0.593 | 0.346 | 0.436 |
-| Early-Warning | Logistic Regression | `balanced` | 0.681 | 0.512 | **0.554** | **0.530** ← selected |
-| Early-Warning | Decision Tree (depth=4) | `None` | 0.673 | 0.513 | 0.362 | 0.420 |
-| Early-Warning | Decision Tree (depth=4) | `balanced` | 0.678 | 0.513 | 0.546 | 0.528 |
-| Confirmatory | Logistic Regression | `None` | 0.868 | 0.815 | 0.777 | 0.794 |
-| Confirmatory | Logistic Regression | `balanced` | 0.868 | 0.757 | **0.885** | **0.815** ← selected |
-| Confirmatory | Decision Tree (depth=4) | `None` | 0.851 | 0.779 | 0.762 | 0.769 |
-| Confirmatory | Decision Tree (depth=4) | `balanced` | 0.856 | 0.744 | 0.869 | 0.798 |
+| Early-Warning | Logistic Regression | `None` | 0.716 | 0.694 | 0.254 | 0.368 |
+| Early-Warning | Logistic Regression | `balanced` | 0.716 | 0.622 | 0.408 | 0.485 |
+| Early-Warning | Decision Tree | `None` | 0.681 | 0.533 | 0.315 | 0.393 |
+| Early-Warning | Decision Tree | `balanced` | 0.552 | 0.371 | **0.492** | 0.419 ← selected |
+| Confirmatory | Logistic Regression | `None` | 0.876 | 0.833 | 0.777 | 0.802 |
+| Confirmatory | Logistic Regression | `balanced` | 0.873 | 0.757 | **0.908** | **0.825** ← selected |
+| Confirmatory | Decision Tree | `None` | 0.851 | 0.787 | 0.754 | 0.768 |
+| Confirmatory | Decision Tree | `balanced` | 0.848 | 0.762 | 0.785 | 0.772 |
 
-*(5-fold stratified cross-validation means. Full precision to 3 d.p. and the depth-selection
-trial table are in `reports/evaluation_report.md`, regenerated every time `python
-src/train_models.py` runs — these are real measured numbers, not illustrative ones.)*
+*(5-fold stratified cross-validation means. Full precision to 3 d.p. is in
+`reports/evaluation_report.md`, regenerated every time `python src/train_models.py` runs — these
+are real measured numbers, not illustrative ones.)*
 
 ## 6. What the class-weight comparison shows
 
 In **every one of the four mode/technique pairs**, `class_weight="balanced"` increases recall on
-the High Risk class, usually substantially (e.g. Early-Warning Logistic Regression: 0.346 →
-0.554), at a moderate cost to accuracy and precision. This is the expected, textbook effect of
-class weighting: it trades some overall correctness for catching more of the minority class,
-which is exactly the trade SARAH wants — a missed at-risk student (false negative) is a worse
-outcome for an early-warning system than a false alarm that costs a tutor a few minutes checking
-a student who turns out to be fine. **`class_weight="balanced"` is used in SARAH's selected model
-for both modes** on this basis.
+the High Risk class, at a cost to precision and (for the Decision Tree in Early-Warning mode)
+accuracy too. This is the expected, textbook effect of class weighting: it trades some overall
+correctness for catching more of the minority class, which is the trade SARAH wants — a missed
+at-risk student (false negative) is a worse outcome for an early-warning system than a false
+alarm that costs a tutor a few minutes checking a student who turns out to be fine.
 
-The comparison also shows the effect is **not identical across modes**: the accuracy/recall
-trade-off is steeper in Early-Warning mode (accuracy drops from 0.706 to 0.681, a real but modest
-cost, for a recall gain of +0.208) than in Confirmatory mode (accuracy is unchanged at 0.868, for
-a recall gain of +0.108). With less predictive signal available (Early-Warning mode has no
-grades), pushing the model harder toward the minority class costs relatively more overall
-correctness — a useful, honestly-reported nuance rather than a clean "balanced is free" story.
+**Worth reporting honestly rather than glossing over:** the selected Early-Warning combination
+(Decision Tree, balanced) has real weaknesses — accuracy of 0.552 and precision of only 0.371,
+meaning most of its High Risk flags are false alarms. This is the direct, measured consequence of
+the team's decision to keep Early-Warning mode to just three weak-individually features
+(`attendance_pct` and `study_hours` each correlate only -0.08 with risk; only `failures` at +0.34
+carries real signal — see `reports/eda_findings.md`). It is reported as-is, not smoothed over,
+because it is the honest cost of the narrow, four-feature design and directly supports the
+accuracy-vs-earliness discussion below.
 
 ## 7. Selected combination per mode
 
-- **Early-Warning Mode:** Logistic Regression, `class_weight="balanced"` — recall 0.554, F1 0.530.
-- **Confirmatory Mode:** Logistic Regression, `class_weight="balanced"` — recall 0.885, F1 0.815.
+- **Early-Warning Mode:** Decision Tree, `class_weight="balanced"` — recall 0.492, F1 0.419.
+- **Confirmatory Mode:** Logistic Regression, `class_weight="balanced"` — recall 0.908, F1 0.825.
 
 Selection criterion throughout this project: highest recall on the High Risk class (tie-broken by
 F1), for the reason in Section 6.
@@ -121,17 +120,16 @@ F1), for the reason in Section 6.
 ## 8. The accuracy-vs-earliness tradeoff this reveals
 
 Comparing the two selected rows directly is the core critical-analysis point of this project:
-**Early-Warning recall (0.554) is meaningfully lower than Confirmatory recall (0.885)** — a gap
-of over 33 percentage points. This is not a modelling shortfall to fix; it is the real,
-irreducible cost of predicting risk *before* any grade exists, using only attendance, study
-habits, and demographic/behavioural signal instead of the single strongest predictor available
-(`previous_score`, correlation -0.72 with risk — see `reports/eda_findings.md`). SARAH makes this
-tradeoff explicit rather than hiding it: **Early-Warning Mode is the system's primary, default
-mode**, because catching risk *earlier* — even less accurately — is the entire point of an
-early-warning system; a highly accurate prediction that only arrives once grades already exist is
-not early anymore. Confirmatory Mode stays available for a more accurate second look once grades
-come in, and the two modes together let a tutor see both how early a flag came and how much to
-trust it.
+**Early-Warning recall (0.492) is far lower than Confirmatory recall (0.908)** — a gap of over 40
+percentage points. This is not a modelling shortfall to fix; it is the real, irreducible cost of
+predicting risk *before* any grade exists, using only attendance, study habits, and past failures
+instead of the single strongest predictor available (`previous_score`, correlation -0.72 with
+risk). SARAH makes this tradeoff explicit rather than hiding it: **Early-Warning Mode is the
+system's primary, default mode**, because catching risk *earlier* — even less accurately — is the
+entire point of an early-warning system; a highly accurate prediction that only arrives once
+grades already exist is not early anymore. Confirmatory Mode stays available for a more accurate
+second look once grades come in, and the two modes together let a tutor see both how early a flag
+came and how much to trust it.
 
 ## 9. Where this shows up in the report
 
@@ -140,3 +138,4 @@ class-imbalance handling) and Section 6 (AI technique comparison / justification
 choice, including the two-mode accuracy-vs-earliness discussion). Use the Section 5 table
 directly; full numbers and confusion matrices regenerate at `reports/evaluation_report.md` and
 `reports/figures/confusion_*.png` every time `python src/train_models.py` runs.
+
