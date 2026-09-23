@@ -1,8 +1,6 @@
 # Appendix - AI Prompts (Assignment, Sprint 1-4)
 
-The [shared prompt log](../../ai-prompt-log/log.md) includes the 23 September request
-for help with #26, #27 and #28. The assistance covered code preparation, tests and
-report planning. Team review is still required.
+
 
 Before submission, include all assignment-related prompts and each member's actual
 use of AI tools. This draft appendix is not yet a complete record.
