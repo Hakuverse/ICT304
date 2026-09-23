@@ -24,8 +24,7 @@ SARAH never contacts a student or takes any action itself; the tutor always make
 Tutor selects mode: Early-Warning (no grades) or Confirmatory (grades available)
         │
         ▼
-Student data (attendance, study hours, past failures, [assessment score if Confirmatory],
-demographic/behavioural factors)
+Student data (attendance, study hours, past failures, [assessment score if Confirmatory])
         │
         ▼
 Data processing — cleaning, scaling, feature engineering (mode-specific schema)
@@ -52,18 +51,18 @@ report rather than retyping the diagram as an image.
 | | Early-Warning Mode | Confirmatory Mode |
 |---|---|---|
 | **When a tutor uses it** | Any time — day one of term, no grades needed | Once at least one assessment/grade exists |
-| **Inputs (core, tutor-facing)** | Attendance %, study hours/week, past failures | Same, **plus** recent average assessment score % |
-| **Inputs (demographic/behavioural, defaulted if unknown)** | Family support, parental education, motivation, lifestyle factors — see `docs/feature_selection.md` | Same |
-| **Output** | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest actionable factor among attendance, study hours, or past failures | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest actionable factor among attendance, study hours, or recent assessment score |
-| **Accuracy (High-Risk recall, 5-fold CV)** | 0.554 | 0.885 |
+| **Inputs** | Attendance %, study hours/week, past failures (3 fields) | Same, **plus** recent average assessment score % (4 fields) |
+| **Output** | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or past failures | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or recent assessment score |
+| **Accuracy (High-Risk recall, 5-fold CV)** | 0.492 | 0.908 |
+
+SARAH's feature list is deliberately this narrow — team decision, see `docs/feature_selection.md`
+— no demographic, family-background, or lifestyle columns, even though the raw UCI dataset has
+them available.
 
 ### 5.1.2 Entering data: one student, or a whole class
 
-- **Individual entry:** the tutor fills in a form (dashboard sliders / CLI flags) for one student.
-  The core fields are required; the demographic/behavioural fields default to a typical-student
-  value if the tutor doesn't know or enter them (see `DEFAULT_EXTRAS` in `src/predict.py` /
-  `app/dashboard.py`) — SARAH always produces a prediction, it just falls back to a neutral
-  assumption for anything not supplied.
+- **Individual entry:** the tutor fills in a form (dashboard sliders / CLI flags) for one
+  student, providing all fields required for the selected mode.
 - **Bulk entry (CSV upload):** the tutor uploads a spreadsheet of a whole class. SARAH first
   checks the CSV has every required **column** for the selected mode — if a column is missing
   entirely, it stops and tells the tutor which column(s), rather than guessing.
@@ -96,24 +95,21 @@ to identify at least one non-AI sub-system alongside the AI one.
 
 | Sub-system | Type | Role | Where it lives |
 |---|---|---|---|
-| Risk Prediction Model | **AI** | Two trained classifiers, one per mode (Logistic Regression compared against a Decision Tree for each), that take that mode's processed features and predict Low Risk or High Risk with a confidence score | `src/train_models.py`, `models/` |
-| Recommendation / Intervention Engine | Non-AI (rule-based) | For any student predicted High Risk, computes how far each **actionable** feature (mode-dependent — never a demographic/behavioural one) sits from the training-set average (z-score) and identifies the weakest factor, then returns a targeted recommendation text | `src/recommend.py` |
+| Risk Prediction Model | **AI** | Two trained classifiers, one per mode (Logistic Regression compared against a Decision Tree for each), that take that mode's processed features (3 for Early-Warning, 4 for Confirmatory) and predict Low Risk or High Risk with a confidence score | `src/train_models.py`, `models/` |
+| Recommendation / Intervention Engine | Non-AI (rule-based) | For any student predicted High Risk, computes how far each feature sits from the training-set average (z-score) and identifies the weakest factor, then returns a targeted recommendation text | `src/recommend.py` |
 | Batch Roster Processor + Dashboard | Non-AI | Accepts either a single-student form entry or a CSV upload of a whole class roster, runs every student through the selected mode's pipeline, and displays a sorted risk table (whole class) or a single detailed result (one student), with a sidebar toggle to switch mode | `app/dashboard.py`, `src/predict.py` |
 
 **Why the Recommendation Engine is non-AI, deliberately:** the brief asks for at least one
 non-AI sub-system, and a rule-based weakest-factor lookup is the right tool for this job anyway —
 it needs to be transparent and easy for a tutor to trust ("this student is flagged mainly because
-of attendance"), not a second black-box model. Keeping it rule-based also means it can enforce a
-hard rule the AI model itself cannot: never citing a demographic/behavioural factor as the
-"reason" shown to a tutor, even though the AI model uses those factors to predict risk (see
-`docs/feature_selection.md`, "Revisiting the demographic-feature decision").
+of attendance"), not a second black-box model. It also stays cheap to run and re-run, with no
+separate training step of its own, and never contradicts itself between runs.
 
 ## 5.3 How the sub-systems connect (data contract)
 
 - **Dashboard → Data processing:** raw fields for the selected mode (attendance, study hours,
-  failures, and — Confirmatory Mode only — recent assessment score; plus the demographic/
-  behavioural block, defaulted to typical-student values if not supplied) are validated and
-  converted into the exact feature columns that mode's model expects (`EARLY_WARNING_FEATURES` /
+  failures, and — Confirmatory Mode only — recent assessment score) are validated and converted
+  into the exact feature columns that mode's model expects (`EARLY_WARNING_FEATURES` /
   `CONFIRMATORY_FEATURES` in `src/data_processing.py`).
 - **Data processing → Risk Prediction Model:** the processed features are passed straight into
   `model.predict()` / `model.predict_proba()`; Logistic Regression additionally scales them first
@@ -122,7 +118,7 @@ hard rule the AI model itself cannot: never citing a demographic/behavioural fac
   feature values, the predicted label, and the active mode, and only runs its weakest-factor
   analysis when the label is High Risk (a Low Risk student gets a "no urgent intervention"
   message, not a forced recommendation — see `test_low_risk_gives_no_intervention_message` in the
-  test suite) — restricted to that mode's actionable feature subset only.
+  test suite).
 - **Recommendation Engine → Dashboard:** returns a small structured result (predicted label,
   confidence, weakest actionable factor, recommendation text) that the dashboard renders per
   student, and aggregates into the sorted class-wide table for the bulk-upload path.
@@ -132,36 +128,38 @@ hard rule the AI model itself cannot: never citing a demographic/behavioural fac
 Both models, for both modes, are compared using **stratified 5-fold cross-validation** on the
 full dataset (`random_state=42`) — not a single train/test split, since with only 395 students
 (130 High Risk) a single 80/20 split would leave too few High Risk examples in the test set for a
-stable estimate. The Decision Tree's `max_depth` is fixed at 4 across all comparisons (chosen once
-via 5-fold CV recall on Early-Warning mode, `class_weight="balanced"`, among depths 2, 3, 4, 5, 6,
-unlimited). Every combination of mode × technique × `class_weight` (8 total) is compared; full
-table and reasoning in `docs/CLASS_IMBALANCE_NOTE.md`. Selected combination per mode (5-fold CV
-means):
+stable estimate. The Decision Tree's `max_depth` was checked via 5-fold CV recall on Early-Warning
+mode (depths 2, 3, 4, 5, 6, unlimited); with only 3-4 features, an unrestricted tree performed
+best, so no depth cap is applied. Every combination of mode × technique × `class_weight` (8 total)
+is compared; full table and reasoning in `docs/CLASS_IMBALANCE_NOTE.md`. Selected combination per
+mode (5-fold CV means):
 
 | Mode | Model | Accuracy | Precision (High Risk) | Recall (High Risk) | F1 (High Risk) |
 |---|---|---|---|---|---|
-| Early-Warning | Logistic Regression, class_weight=balanced | 0.681 | 0.512 | 0.554 | 0.530 |
-| Confirmatory | Logistic Regression, class_weight=balanced | 0.868 | 0.757 | 0.885 | 0.815 |
+| Early-Warning | Decision Tree, class_weight=balanced | 0.552 | 0.371 | 0.492 | 0.419 |
+| Confirmatory | Logistic Regression, class_weight=balanced | 0.873 | 0.757 | 0.908 | 0.825 |
 
-**Logistic Regression (class_weight="balanced") is selected as the dashboard's default model for
-both modes**, because it has the higher recall on the High Risk class in each mode — in an
-early-warning system, a missed at-risk student (false negative) is a worse outcome than a false
-alarm (false positive), so recall on the minority class is the deciding metric rather than raw
-accuracy. The Decision Tree stays fully available (comparison table) so the two can be discussed
-during the demo. Full numbers, depth-selection trials, and confusion matrices regenerate
+**Selected per mode on highest recall on the High Risk class** — in an early-warning system, a
+missed at-risk student (false negative) is a worse outcome than a false alarm (false positive), so
+recall on the minority class is the deciding metric rather than raw accuracy. Note Early-Warning
+mode's numbers are honestly weak (0.552 accuracy, 0.371 precision) — a direct, reported
+consequence of the team's decision to keep the feature list to just three individually-weak
+columns (`docs/feature_selection.md`); this is discussed openly in Section 5.5 rather than
+smoothed over. Full numbers, depth-selection trials, and confusion matrices regenerate
 automatically at `reports/evaluation_report.md` and `reports/figures/confusion_*.png` every time
 `python src/train_models.py` runs.
 
 ## 5.5 The accuracy-vs-earliness tradeoff
 
-Early-Warning Mode's recall (0.554) is meaningfully lower than Confirmatory Mode's (0.885) — a
-direct, honestly-reported consequence of predicting risk before any grade exists, using only
-attendance, study habits, past failures, and demographic/behavioural signal instead of the far
-stronger `previous_score` predictor (correlation -0.72 with risk). SARAH treats this as the core
-design tradeoff, not a flaw to hide: Early-Warning Mode is the system's **primary, default mode**
-because catching risk earlier — even less accurately — is the entire point of an early-warning
-system, while Confirmatory Mode stays available as a more accurate second look once grades exist.
-Full discussion: `docs/CLASS_IMBALANCE_NOTE.md` §8.
+Early-Warning Mode's recall (0.492) is far lower than Confirmatory Mode's (0.908) — a direct,
+honestly-reported consequence of predicting risk before any grade exists, using only attendance,
+study habits, and past failures instead of the far stronger `previous_score` predictor
+(correlation -0.72 with risk, versus -0.08 for attendance and study hours individually — see
+`reports/eda_findings.md`). SARAH treats this as the core design tradeoff, not a flaw to hide:
+Early-Warning Mode is the system's **primary, default mode** because catching risk earlier — even
+less accurately — is the entire point of an early-warning system, while Confirmatory Mode stays
+available as a more accurate second look once grades exist. Full discussion:
+`docs/CLASS_IMBALANCE_NOTE.md` §8.
 
 ## 5.6 What this replaces in the report template
 
@@ -172,3 +170,4 @@ which this document links to. **Note:** issue #21's checklist also references "t
 plan from #18" — that is a separate, not-yet-completed sprint item (how the team decided to test
 the models, as opposed to the test *results* in `docs/TEST_PLAN.md`); this document does not
 cover it, since it wasn't part of what #21/#27 asked to be fixed here.
+
