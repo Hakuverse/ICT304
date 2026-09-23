@@ -84,6 +84,15 @@ On macOS/Linux, use `python3` to create the environment and `.venv/bin/python` i
 
 The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run the current data preparation and analysis; model training is still a separate sprint task.
 
+To check both input modes:
+
+```powershell
+.venv\Scripts\python.exe -m unittest discover -s assignment/code -v
+```
+
+See [Using the two modes](assignment/docs/mode-guide.md) for examples. The testing plan
+and assignment preparation checklist are in [the report draft](assignment/report/Document).
+
 
 ## Contribution workflow
 

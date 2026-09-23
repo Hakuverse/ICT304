@@ -1,1 +1,196 @@
-ICT304 Assignment Report 
+# ICT304 Assignment Report
+
+This is a working outline for the assignment due on 3 October. Paste the sections
+already written by the team into the matching spaces; do not replace them with these
+prompts. The test-plan draft is included below. Model results must come from the actual
+prototype runs. Keep notes and unchecked items out of the final submitted prose.
+
+## Cover page
+
+**Title:** SARAH - Student Academic Risk Assistance Hub
+
+**Unit:** ICT304 AI System Design
+
+**Team:** Benjamin, Anna and Jackie
+
+**Student IDs / tutor / submission date:** [Add details]
+
+## 1. Introduction and problem
+
+[Add your existing introduction. Explain the problem, who needs help, how teachers
+currently identify students needing support and what SARAH aims to improve.]
+
+## 2. System engineering process
+
+[Add the team's explanation of the phases, what is covered in the assignment and
+what will be completed in the final project. Describe the weekly tutor reviews.
+Use the checked NASA references from Anna's #20 work; agree one phase mapping.]
+
+## 3. Requirements and proposed solution
+
+[State the teacher/advisor's needs and turn them into clear requirements. Cover
+one-student entry, class CSV upload, risk output and a useful recommendation.
+Explain what is new or useful about the proposed workflow. Cite relevant background
+sources, and distinguish the planned full system from the assignment prototype.]
+
+## 4. Dataset and input preparation
+
+[Describe the UCI Math dataset, its source, 395 students, class counts, the G3 < 10
+label rule and the two input modes. Include the EDA findings, absence/study estimates,
+feature-selection reasons and limitations. Explain that G3 and labels are excluded
+from the model inputs. Use the feature document and mode guide for the current code.]
+
+## 5. System design and workflow
+
+[Insert Jackie's diagram (#17) and Anna's system design (#21) after review. Explain
+the three subsystems, their inputs/outputs and how the teacher uses them. Make sure
+the diagram and prose agree with the three-/four-input mode lists.]
+
+## 6. AI techniques investigated
+
+[Explain Logistic Regression and Decision Tree in your own words, why both are
+suitable to investigate and their strengths/limitations. Describe the class-weight
+comparison from #19. Do not claim a winning model until the results can be reproduced.]
+
+## 7. Prototype and initial results
+
+[Describe the AI subsystem that actually runs, how to run it, the settings used and
+what the output means. Add screenshots or sample output and the comparison table
+from the training runs. Report accuracy, High-Risk precision, recall and F1 for each
+mode/model/weight setting, plus a confusion matrix for the chosen option.]
+
+[Explain the model choice, errors, earlier-warning versus prior-score tradeoff and
+limitations. Link to submitted code and results; keep unbuilt features clearly marked
+as planned. The current #26 work prepares inputs, not a trained AI prototype.]
+
+## 8. Evaluation method and test plan
+
+[Insert Jackie's evaluation method from #18 after review. Explain the shared folds,
+training-only preprocessing and why the metrics matter. Then review the test plan below.]
+
+SARAH needs checks for its data preparation, prediction models, recommendations and
+student input screens. The table below is our plan. A planned test is not a passed
+test: results should be recorded when each part has been built and checked.
+
+Benjamin owns this plan under #27. The suggested testers below still need to agree
+their roles. Anna or Jackie should also review the completed work.
+
+| ID | Part being tested | Input or example | Expected result | Who will test it | Current position |
+|---|---|---|---|---|---|
+| T01 | Data preparation | Math CSV, even with a Portuguese CSV beside it | Use 395 Math records only; 130 High Risk and 265 Low Risk | Benjamin | Automated check included with #26 |
+| T02 | Early-Warning inputs | Attendance estimate, study hours and failures; no grades | Return exactly the three approved inputs | Benjamin | Automated check included with #26 |
+| T03 | Confirmatory inputs | Same inputs plus previous score; no G3 | Return exactly four inputs | Benjamin | Automated check included with #26 |
+| T04 | Training labels | Final grades of 9 and 10 | 9 is High Risk; 10 is Low Risk | Benjamin | Automated check included with #26 |
+| T05 | Keeping answers out of inputs | Change G3 but leave other values the same | Labels may change; model inputs do not. Exclude G3, risk, risk_label and course from X | Benjamin | Automated check included with #26 |
+| T06 | Data checks | Absences of 0, 15, 30 and 75; each studytime category | Attendance estimate is 100, 50, 0 and 0; hours are 1.5, 3.5, 7.5 and 12 | Benjamin | Automated check included with #26 |
+| T07 | Missing or invalid input | Missing study hours, text instead of a number, attendance of 150, unknown mode | Stop and explain the input error rather than guessing a value | Benjamin; interface tester to confirm later | Helper check included; screen behavior planned |
+| T08 | Model comparison | Logistic Regression and Decision Tree, both modes, both weight settings | Use the same five groups of students and report accuracy, High-Risk precision, recall and F1 | Prototype owner to confirm | Sprint 4; follow #18 and #19 |
+| T09 | Recommendation rules | A High Risk example with one clearly weak factor; another with tied factors | Give the recommendation defined by the agreed rules; use a repeatable tie rule | Benjamin proposed; team to confirm | Planned after recommendation rules are agreed |
+| T10 | Single-student screen | One valid example in each mode | Show a risk result and the appropriate recommendation without asking for G3 | Benjamin proposed; team to confirm | Planned for project stage |
+| T11 | CSV upload | Same student entered through the form and a one-row CSV | Both paths give the same result; the CSV result keeps the right student ID | Benjamin proposed; team to confirm | Planned for project stage |
+| T12 | CSV errors | Empty CSV, missing required column, blank cell and invalid value | Explain the error and do not score invalid data. Agree whole-file rejection or row-level errors before building upload | Benjamin proposed; team to confirm | Planned; file-upload behavior not built |
+| T13 | Whole system | A small class list with valid and invalid examples, in both modes | Valid data reaches the model and recommendation engine; results match the right students and errors are clear | All three members proposed | Planned after integration |
+
+For T13, compare the complete path with the same model and recommendation rules run
+separately. Record passed/failed checks and any errors. Do not call this pass rate
+model accuracy: predictive performance is measured separately in T08 against known
+final outcomes. If the later labelled sample is about 50 students, state whether they
+were used in training; it is not automatically an independent performance test.
+
+For every test run, keep the date, person testing, command or steps, actual result and
+evidence link. The input tests can be run from the repository root:
+
+```powershell
+.venv\Scripts\python.exe -m unittest discover -s assignment/code -v
+```
+
+## 9. Remaining project plan
+
+[Summarise Sprint 4 and the later work: recommendation rules, interface, integration,
+testing, user guide and demo. Add a small table with task, owner and target date.]
+
+## 10. Teamwork and tools
+
+[Explain how the team uses GitHub for issues, version control and code review, and
+Teams/WhatsApp for collaboration and communication. Add real examples or screenshots
+and describe each person's contribution.]
+
+## 11. Conclusion
+
+[Briefly state what the assignment has achieved, what the prototype results show
+and what remains for the final project.]
+
+## References
+
+[Add the dataset, NASA handbook, background research and software/code sources using
+the required referencing style. Check each reference against the text.]
+
+## Appendices and accompanying files
+
+- AI-use declaration and actual prompts used: [prompt appendix](appendix-ai-prompts.md).
+- Extra results, screenshots and test-run evidence: [add once available].
+- Code, dataset, package list and run instructions: include with the submission.
+- Group Declaration Sheet: complete and sign the supplied form.
+
+---
+
+## Working checklist: assignment preparation (not report prose)
+
+This section supports #28. The assignment is due on 3 October 2026 and needs the
+design report plus at least one working AI subsystem prototype with initial results.
+The full dashboard and recommendation engine belong to the later project stage.
+
+### Report sections and responsibilities
+
+| Report section or item | Current owner or decision needed | What is still needed |
+|---|---|---|
+| Title, problem and requirements | Benjamin proposed; confirm with team | Bring together the approved SARAH scope and earlier subsystem explanation |
+| System engineering phases and references | Anna, based on #20 | Review her PR #37 and agree one phase mapping for the whole report |
+| Architecture diagram | Jackie, based on #17 | Review PR #41 and check exact mode inputs |
+| System design and teacher workflow | Anna, based on #21 | Review PR #39 and align its feature list and implementation claims with the code |
+| Model evaluation method | Jackie, based on #18 | Review PR #40; use the same student groups in each comparison |
+| Class weights and comparison plan | Anna, based on #19 | Review PR #38; link reproducible code before treating its numbers as final results |
+| Input preparation and tests | Benjamin, #26 | Teammate review and run on another machine |
+| Whole-system test plan | Benjamin, #27 | Review the table above and confirm testers |
+| AI techniques, prototype code, results and limitations | Team to choose a prototype lead | Agree ownership of #30-#33; keep both techniques in the investigation |
+| Remaining project plan and tool-use evidence | Benjamin proposed; confirm with team | Link sprint plans and examples of GitHub, Teams and communication use |
+| Final report editing and reference check | Team to choose | Combine the sections and check against the brief; #34 |
+| Group Declaration and upload | Benjamin, confirmed by #3 and the checked item in #28 | Collect contributions/signatures and check the submitted package; #35 |
+
+Names based on existing issue assignments do not assign new work to anyone. New
+responsibilities marked proposed or to choose need a team decision.
+
+### Prototype and submission dates
+
+- [ ] Choose the prototype lead and the person checking their run: ____ / ____.
+- [ ] Agree a first working model run. Suggested target: 28 September; confirm: ____.
+- [ ] Finish the model comparison and report by 1 October where possible.
+- [ ] Have another member run the submission files by 2 October.
+- [ ] Confirm the exact LMS cutoff, upload on time on 3 October and check the files.
+
+### What to include and check
+
+- [ ] Complete report: requirements, design, testing plan, technique comparison and initial results.
+- [ ] Code, Math dataset, package list and all files needed to repeat the prototype run.
+- [ ] Setup/run instructions tried by another teammate. The README currently covers
+  data preparation; add the actual training command when the prototype exists.
+- [ ] Sources cited and checked, including the dataset and NASA handbook.
+- [ ] Evidence of project management, version control, collaboration and communication.
+- [ ] Each member's contribution recorded; Group Declaration completed and signed.
+- [ ] Required AI-use declaration and prompt appendix prepared from the shared log.
+- [ ] Submission package checked against pages 1, 3 and 4 of the assignment brief.
+- [ ] Uploaded files checked and a submission receipt/backup kept.
+
+The shared prompt log and report appendix exist but are not a completed record of all
+past work. Each member needs to add their actual use. Benjamin can organise the form;
+the other members still need to provide their own contribution details and signatures.
+
+### Setup check
+
+Use the commands in the root README to install the packages, check the data and run
+data preparation. Then run the input tests above. The [mode guide](../docs/mode-guide.md)
+explains which function the later training code should use. Record the teammate's
+name, date, Python version and outcome here: ____.
+
+Do not mark #28 complete until the team has agreed the remaining owners/dates and a
+teammate has checked the instructions. Actual final submission is tracked by #35.
