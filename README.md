@@ -56,7 +56,7 @@ When starting the project stage, leave out virtual environments, caches and temp
 
 | Purpose | Tool |
 |---|---|
-| Project Management | GitHub Issues + Milestones + [Project board link] |
+| Project Management | GitHub Issues + [Milestones](../../milestones) + [SARAH Sprint Board](../../projects) |
 | Version Control | GitHub |
 | Collaboration (code) | GitHub (branches + Pull Requests) |
 | Communication | Microsoft Teams, WhatsApp (quick/informal) |
@@ -84,9 +84,8 @@ python -m venv .venv
 
 On macOS/Linux, use `python3` to create the environment and `.venv/bin/python` in place of `.venv\Scripts\python.exe`.
 
-For Jackie or the tutor on **macOS**, open Terminal in the repository folder and run
-these commands with Python 3.11 or newer. To review this PR before merging, first
-check out `feature/csv-fixes-issue-followup` in GitHub Desktop.
+For **macOS**, open Terminal in the repository folder and run
+these commands with Python 3.11 or newer. 
 
 ```bash
 python3 --version
