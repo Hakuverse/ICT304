@@ -53,7 +53,7 @@ report rather than retyping the diagram as an image.
 | **When a tutor uses it** | Any time — day one of term, no grades needed | Once at least one assessment/grade exists |
 | **Inputs** | Attendance %, study hours/week, past failures (3 fields) | Same, **plus** recent average assessment score % (4 fields) |
 | **Output** | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or past failures | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or recent assessment score |
-| **Accuracy (High-Risk recall, 5-fold CV)** | 0.492 | 0.908 |
+| **Accuracy (High-Risk recall, 5-fold CV)** | 0.492 | 0.9 |
 
 SARAH's feature list is deliberately this narrow — team decision, see `docs/feature_selection.md`
 — no demographic, family-background, or lifestyle columns, even though the raw UCI dataset has
@@ -85,7 +85,7 @@ sensor. `study_hours` is derived from a **4-category bucket** (`studytime` — "
 "5-10", ">10 hrs/week") converted to each bucket's midpoint (1.5 / 3.5 / 7.5 / 12.0) — it is a
 reasonable estimate representing a self-reported range, not an exact hours-per-week figure. SARAH
 and its documentation should describe both as estimates throughout (report, README, dashboard
-labels), never as precise measurements — see `src/data_processing.py`'s module docstring for the
+labels), never as precise measurements — see `assignment/code/data_processing.py`'s module docstring for the
 full derivation of each.
 
 ## 5.2 Sub-systems
@@ -95,9 +95,9 @@ to identify at least one non-AI sub-system alongside the AI one.
 
 | Sub-system | Type | Role | Where it lives |
 |---|---|---|---|
-| Risk Prediction Model | **AI** | Two trained classifiers, one per mode (Logistic Regression compared against a Decision Tree for each), that take that mode's processed features (3 for Early-Warning, 4 for Confirmatory) and predict Low Risk or High Risk with a confidence score | `src/train_models.py`, `models/` |
-| Recommendation / Intervention Engine | Non-AI (rule-based) | For any student predicted High Risk, computes how far each feature sits from the training-set average (z-score) and identifies the weakest factor, then returns a targeted recommendation text | `src/recommend.py` |
-| Batch Roster Processor + Dashboard | Non-AI | Accepts either a single-student form entry or a CSV upload of a whole class roster, runs every student through the selected mode's pipeline, and displays a sorted risk table (whole class) or a single detailed result (one student), with a sidebar toggle to switch mode | `app/dashboard.py`, `src/predict.py` |
+| Risk Prediction Model | **AI** | Two trained classifiers, one per mode (Logistic Regression compared against a Decision Tree for each), that take that mode's processed features (3 for Early-Warning, 4 for Confirmatory) and predict Low Risk or High Risk with a confidence score | `assignment/code/train_models.py`, `assignment/models/` |
+| Recommendation / Intervention Engine | Non-AI (rule-based) | For any student predicted High Risk, computes how far each feature sits from the training-set average (z-score) and identifies the weakest factor, then returns a targeted recommendation text | `assignment/code/recommend.py` |
+| Batch Roster Processor + Dashboard | Non-AI | Accepts either a single-student form entry or a CSV upload of a whole class roster, runs every student through the selected mode's pipeline, and displays a sorted risk table (whole class) or a single detailed result (one student), with a sidebar toggle to switch mode | `assignment/app/dashboard.py`, `assignment/code/predict.py` |
 
 **Why the Recommendation Engine is non-AI, deliberately:** the brief asks for at least one
 non-AI sub-system, and a rule-based weakest-factor lookup is the right tool for this job anyway —
@@ -110,7 +110,7 @@ separate training step of its own, and never contradicts itself between runs.
 - **Dashboard → Data processing:** raw fields for the selected mode (attendance, study hours,
   failures, and — Confirmatory Mode only — recent assessment score) are validated and converted
   into the exact feature columns that mode's model expects (`EARLY_WARNING_FEATURES` /
-  `CONFIRMATORY_FEATURES` in `src/data_processing.py`).
+  `CONFIRMATORY_FEATURES` in `assignment/code/data_processing.py`).
 - **Data processing → Risk Prediction Model:** the processed features are passed straight into
   `model.predict()` / `model.predict_proba()`; Logistic Regression additionally scales them first
   (`StandardScaler` inside its pipeline), the Decision Tree does not need scaling.
@@ -137,7 +137,7 @@ mode (5-fold CV means):
 | Mode | Model | Accuracy | Precision (High Risk) | Recall (High Risk) | F1 (High Risk) |
 |---|---|---|---|---|---|
 | Early-Warning | Decision Tree, class_weight=balanced | 0.552 | 0.371 | 0.492 | 0.419 |
-| Confirmatory | Logistic Regression, class_weight=balanced | 0.873 | 0.757 | 0.908 | 0.825 |
+| Confirmatory | Logistic Regression, class_weight=balanced | 0.871 | 0.756 | 0.9 | 0.821 |
 
 **Selected per mode on highest recall on the High Risk class** — in an early-warning system, a
 missed at-risk student (false negative) is a worse outcome than a false alarm (false positive), so
@@ -146,16 +146,16 @@ mode's numbers are honestly weak (0.552 accuracy, 0.371 precision) — a direct,
 consequence of the team's decision to keep the feature list to just three individually-weak
 columns (`docs/feature_selection.md`); this is discussed openly in Section 5.5 rather than
 smoothed over. Full numbers, depth-selection trials, and confusion matrices regenerate
-automatically at `reports/evaluation_report.md` and `reports/figures/confusion_*.png` every time
-`python src/train_models.py` runs.
+automatically at `docs/evaluation_report.md` and `docs/figures/confusion_*.png` every time
+`python assignment/code/train_models.py` runs.
 
 ## 5.5 The accuracy-vs-earliness tradeoff
 
-Early-Warning Mode's recall (0.492) is far lower than Confirmatory Mode's (0.908) — a direct,
+Early-Warning Mode's recall (0.492) is far lower than Confirmatory Mode's (0.9) — a direct,
 honestly-reported consequence of predicting risk before any grade exists, using only attendance,
 study habits, and past failures instead of the far stronger `previous_score` predictor
 (correlation -0.72 with risk, versus -0.08 for attendance and study hours individually — see
-`reports/eda_findings.md`). SARAH treats this as the core design tradeoff, not a flaw to hide:
+`docs/eda_findings.md`). SARAH treats this as the core design tradeoff, not a flaw to hide:
 Early-Warning Mode is the system's **primary, default mode** because catching risk earlier — even
 less accurately — is the entire point of an early-warning system, while Confirmatory Mode stays
 available as a more accurate second look once grades exist. Full discussion:
