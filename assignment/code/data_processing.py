@@ -9,13 +9,22 @@ Feature engineering decisions:
                     100% attendance, >=30 absences = 0%).
   study_hours       From `studytime` (1-4 ordinal bucket), converted to a
                     numeric hours/week estimate (including an assumed top bucket).
-  previous_score    Average of G1 and G2 (first/second period grades),
-                    rescaled from 0-20 to 0-100%. G3 is deliberately
-                    excluded here -- it becomes the label instead, so using
-                    it as a feature would leak the answer into the model.
+  previous_score    Confirmatory mode has two grade setups (see GRADE_SETUPS
+                    below): "g1_g2" averages G1 and G2 (first/second period
+                    grades), "g1" uses G1 alone. Both are rescaled from 0-20
+                    to 0-100%. G3 is deliberately excluded here -- it becomes
+                    the label instead, so using it as a feature would leak
+                    the answer into the model.
   failures          Raw count of past class failures (0-3).
   risk (target)     1 = High Risk if G3 < PASS_MARK (10/20, the standard
                     pass mark), else 0 = Low Risk.
+
+Why two grade setups, trained separately: a tutor may only have G1 (partway
+through term) or both G1 and G2 (later). Feeding a G1-only value into a model
+that only ever saw G1+G2 averages during training means the model is being
+asked to extrapolate to a pattern it never learned from. Training a separate
+model on each grade setup keeps the training distribution honest for both
+real-world cases.
 """
 
 from pathlib import Path
@@ -31,6 +40,7 @@ FEATURE_COLUMNS = ["attendance_pct", "study_hours", "previous_score", "failures"
 EARLY_WARNING_FEATURES = ["attendance_pct", "study_hours", "failures"]
 CONFIRMATORY_FEATURES = EARLY_WARNING_FEATURES + ["previous_score"]
 VALID_MODES = ("early_warning", "confirmatory")
+GRADE_SETUPS = ("g1", "g1_g2")  # Confirmatory mode only
 TARGET_COLUMN = "risk"
 
 
@@ -76,12 +86,18 @@ def _check_range(values: pd.Series, minimum: float, maximum=None, *, whole=False
         raise ValueError(f"{values.name} must be {limit}{suffix}")
 
 
-def engineer_inputs(df: pd.DataFrame, mode: str = "confirmatory") -> pd.DataFrame:
-    """Convert raw UCI fields into X, without reading final grades or labels."""
+def engineer_inputs(df: pd.DataFrame, mode: str = "confirmatory", grade_setup: str = "g1_g2") -> pd.DataFrame:
+    """Convert raw UCI fields into X, without reading final grades or labels.
+
+    grade_setup only matters for mode="confirmatory": "g1_g2" (default) uses
+    the average of G1 and G2; "g1" uses G1 alone. Ignored for early_warning.
+    """
+    if mode == "confirmatory" and grade_setup not in GRADE_SETUPS:
+        raise ValueError(f"grade_setup must be one of {GRADE_SETUPS}, got {grade_setup!r}")
     columns = get_feature_columns(mode)
     required = ["absences", "studytime", "failures"]
     if mode == "confirmatory":
-        required += ["G1", "G2"]
+        required += ["G1", "G2"] if grade_setup == "g1_g2" else ["G1"]
     raw = _numeric_columns(df, required)
     _check_range(raw["absences"], 0, whole=True)
     _check_range(raw["studytime"], 1, 4, whole=True)
@@ -92,9 +108,13 @@ def engineer_inputs(df: pd.DataFrame, mode: str = "confirmatory") -> pd.DataFram
     out["study_hours"] = raw["studytime"].map(STUDYTIME_HOURS_MAP)
     out["failures"] = raw["failures"].clip(upper=3)
     if mode == "confirmatory":
-        for name in ["G1", "G2"]:
-            _check_range(raw[name], 0, 20)
-        out["previous_score"] = (raw["G1"] + raw["G2"]) / 2 / 20 * 100
+        if grade_setup == "g1_g2":
+            for name in ["G1", "G2"]:
+                _check_range(raw[name], 0, 20)
+            out["previous_score"] = (raw["G1"] + raw["G2"]) / 2 / 20 * 100
+        else:  # "g1"
+            _check_range(raw["G1"], 0, 20)
+            out["previous_score"] = raw["G1"] / 20 * 100
     return out[columns].round(1)
 
 
@@ -103,6 +123,8 @@ def prepare_model_inputs(df: pd.DataFrame, mode: str = "confirmatory") -> pd.Dat
 
     This does not predict risk. A later trained model will consume the result.
     Attendance must use the same absence-based estimate as the training data.
+    Works the same for both Confirmatory grade setups: by this point
+    previous_score is already a single 0-100 number (see previous_score_from_grades).
     """
     out = _numeric_columns(df, get_feature_columns(mode))
     _check_range(out["attendance_pct"], 0, 100)
@@ -131,35 +153,36 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def build_training_dataset(data_dir: Path, mode: str = "confirmatory") -> pd.DataFrame:
+def build_training_dataset(data_dir: Path, mode: str = "confirmatory", grade_setup: str = "g1_g2") -> pd.DataFrame:
     """Return mode-specific features followed by risk and risk_label.
 
     Prefer build_training_xy() when passing data to a model, to keep labels separate.
     """
     get_feature_columns(mode)
     raw = load_raw_uci(data_dir)
-    out = engineer_inputs(raw, mode)
+    out = engineer_inputs(raw, mode, grade_setup)
     out[TARGET_COLUMN] = _risk_target(raw)
     out["risk_label"] = out[TARGET_COLUMN].map({1: "High Risk", 0: "Low Risk"})
     return out
 
 
-def build_training_xy(data_dir: Path, mode: str = "confirmatory"):
+def build_training_xy(data_dir: Path, mode: str = "confirmatory", grade_setup: str = "g1_g2"):
     """Return (X, y): approved inputs and the separate training target."""
-    dataset = build_training_dataset(data_dir, mode)
+    dataset = build_training_dataset(data_dir, mode, grade_setup)
     return dataset[get_feature_columns(mode)].copy(), dataset[TARGET_COLUMN].copy()
 
 
 def previous_score_from_grades(g1: float, g2: float = None) -> float:
     """Team rule (Confirmatory mode, live tutor input): G1 is required, G2 is
     optional. With both grades, previous_score is their average -- matching
-    how the model was trained on UCI's G1/G2. With G1 alone, previous_score
-    is G1 by itself, rescaled the same way. This covers the two real-world
-    points a tutor can be at: only the first assessment period is in yet, or
-    both are.
+    how the "g1_g2" model was trained. With G1 alone, previous_score is G1 by
+    itself, rescaled the same way -- matching how the "g1" model was trained.
+    This covers the two real-world points a tutor can be at: only the first
+    assessment period is in yet, or both are. Which trained model gets used
+    is decided by the caller based on whether g2 was given (see predict.py).
 
     Both grades are out of 20 and the result is rescaled to 0-100%, matching
-    engineer_inputs()'s previous_score calculation exactly.
+    engineer_inputs()'s previous_score calculation exactly for each grade_setup.
     """
     if g1 is None:
         raise ValueError("previous_score needs at least G1")
@@ -175,6 +198,9 @@ def previous_score_from_grades(g1: float, g2: float = None) -> float:
 if __name__ == "__main__":
     assignment_root = Path(__file__).resolve().parents[1]  # assignment/code -> assignment/
     for mode in VALID_MODES:
-        X, y = build_training_xy(assignment_root / "data", mode)
-        print(f"{mode}: {len(X)} rows; inputs = {list(X.columns)}")
-        print(f"High Risk: {int(y.sum())}; Low Risk: {int((y == 0).sum())}")
+        setups = GRADE_SETUPS if mode == "confirmatory" else ("g1_g2",)  # placeholder, ignored
+        for grade_setup in setups:
+            X, y = build_training_xy(assignment_root / "data", mode, grade_setup)
+            label = f"{mode} ({grade_setup})" if mode == "confirmatory" else mode
+            print(f"{label}: {len(X)} rows; inputs = {list(X.columns)}")
+            print(f"High Risk: {int(y.sum())}; Low Risk: {int((y == 0).sum())}")
