@@ -50,10 +50,17 @@ report rather than retyping the diagram as an image.
 
 | | Early-Warning Mode | Confirmatory Mode |
 |---|---|---|
-| **When a tutor uses it** | Any time — day one of term, no grades needed | Once at least one assessment/grade exists |
+| **When a tutor uses it** | Any time — no assessment grades needed | Once at least one assessment/grade exists |
 | **Inputs** | Attendance %, study hours/week, past failures (3 fields) | Same, **plus** recent average assessment score % (4 fields) |
 | **Output** | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or past failures | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or recent assessment score |
 | **Accuracy (High-Risk recall, 5-fold CV)** | 0.492 | 0.9 |
+
+**On the "day one" framing:** Early-Warning Mode working without assessment grades is real and
+tested. What the current evaluation does *not* establish is accuracy at a specific point in the
+term (day one, week three, etc.) — the dataset provides an absence count and a study-time
+category, not week-by-week records, so there is no way to test performance tied to a particular
+week. The claim is that Early-Warning Mode works before grades exist, not that its accuracy has
+been measured "on day one" specifically.
 
 SARAH's feature list is deliberately this narrow — team decision, see `docs/feature_selection.md`
 — no demographic, family-background, or lifestyle columns, even though the raw UCI dataset has
@@ -68,12 +75,12 @@ them available.
   entirely, it stops and tells the tutor which column(s), rather than guessing.
 - **Missing or invalid data within a CSV** (a blank cell, a typo, or a value outside a sane range
   — e.g. `attendance_pct = 150`, or text where a number is expected) is handled per **row**, not
-  per file: `data_processing.validate_students()` checks every row against
-  `FEATURE_VALID_RANGES`, and any row that fails is **skipped and reported**, not silently scored
-  or allowed to crash the whole batch. The tutor sees exactly which student(s) were skipped and
-  why (e.g. "attendance_pct is missing", "study_hours=999.0 is outside the valid range [0, 40]"),
-  and the rest of the class is still scored normally. This is covered by an automated test
-  (`test_validate_students_catches_missing_and_invalid_rows`).
+  per file: `predict.predict_roster()` validates each row (via `data_processing.prepare_model_inputs()`'s
+  range checks), and any row that fails is **skipped and reported**, not silently scored or
+  allowed to crash the whole batch. The tutor sees exactly which student(s) were skipped and why
+  (e.g. "attendance_pct is missing", "study_hours must be 0 to 40"), and the rest of the class is
+  still scored normally. **Not yet covered by an automated test** — currently checked manually
+  with a sample CSV; adding a proper test is tracked separately.
 
 ### 5.1.3 Attendance and study hours are estimates, not measurements
 
@@ -99,6 +106,11 @@ to identify at least one non-AI sub-system alongside the AI one.
 | Recommendation / Intervention Engine | Non-AI (rule-based) | For any student predicted High Risk, computes how far each feature sits from the training-set average (z-score) and identifies the weakest factor, then returns a targeted recommendation text | `assignment/code/recommend.py` |
 | Batch Roster Processor + Dashboard | Non-AI | Accepts either a single-student form entry or a CSV upload of a whole class roster, runs every student through the selected mode's pipeline, and displays a sorted risk table (whole class) or a single detailed result (one student), with a sidebar toggle to switch mode | `assignment/app/dashboard.py`, `assignment/code/predict.py` |
 
+**Implementation status:** as of this PR, only the Risk Prediction Model and the CSV/roster
+prediction path (`predict.py`) are built and tested. The Recommendation Engine (`recommend.py`)
+and the Dashboard (`dashboard.py`) are designed but not yet implemented — the paths listed above
+are their planned locations, not evidence they currently exist.
+
 **Why the Recommendation Engine is non-AI, deliberately:** the brief asks for at least one
 non-AI sub-system, and a rule-based weakest-factor lookup is the right tool for this job anyway —
 it needs to be transparent and easy for a tutor to trust ("this student is flagged mainly because
@@ -112,8 +124,10 @@ separate training step of its own, and never contradicts itself between runs.
   into the exact feature columns that mode's model expects (`EARLY_WARNING_FEATURES` /
   `CONFIRMATORY_FEATURES` in `assignment/code/data_processing.py`).
 - **Data processing → Risk Prediction Model:** the processed features are passed straight into
-  `model.predict()` / `model.predict_proba()`; Logistic Regression additionally scales them first
-  (`StandardScaler` inside its pipeline), the Decision Tree does not need scaling.
+  `model.predict()` / `model.predict_proba()` for both techniques. **Note:** the current
+  implementation does not apply feature scaling (e.g. `StandardScaler`) before Logistic
+  Regression — a known simplification, not yet accounting for scale differences between features
+  like `attendance_pct` (0–100) and `failures` (0–3).
 - **Risk Prediction Model → Recommendation Engine:** the engine receives the *raw* (unscaled)
   feature values, the predicted label, and the active mode, and only runs its weakest-factor
   analysis when the label is High Risk (a Low Risk student gets a "no urgent intervention"
