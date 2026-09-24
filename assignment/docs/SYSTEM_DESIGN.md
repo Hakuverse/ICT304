@@ -28,13 +28,13 @@ SARAH never contacts a student or takes any action itself; the tutor always make
 Tutor selects mode: Early-Warning (no grades) or Confirmatory (grades available)
         │
         ▼
-Student data (attendance, study hours, past failures, [[G1, and G2 if available, if Confirmatory]])
+Student data (attendance, study hours, past failures, [G1, and G2 if available, if Confirmatory])
         │
         ▼
 Data processing — cleaning, scaling, feature engineering (setup-specific schema)
         │
         ▼
-AI Prediction Model — Logistic Regression / Decision Tree (one trained model per setup:Early-Warning, Confirmatory G1-only, Confirmatory G1+G2)
+AI Prediction Model — Logistic Regression / Decision Tree (one trained model per setup: Early-Warning, Confirmatory G1-only, Confirmatory G1+G2)
         │
         ▼
 Risk Classification: LOW RISK or HIGH RISK
