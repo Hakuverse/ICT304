@@ -1,0 +1,18 @@
+{
+  "attendance_pct": {
+    "mean": 81.569,
+    "std": 21.528
+  },
+  "study_hours": {
+    "mean": 4.097,
+    "std": 2.811
+  },
+  "failures": {
+    "mean": 0.335,
+    "std": 0.753
+  },
+  "previous_score": {
+    "mean": 54.035,
+    "std": 17.154
+  }
+}
