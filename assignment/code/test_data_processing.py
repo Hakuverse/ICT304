@@ -7,8 +7,8 @@ from pathlib import Path
 import pandas as pd
 
 from data_processing import (
-    build_training_dataset, build_training_xy, engineer_features, engineer_inputs,
-    load_raw_uci, prepare_model_inputs,
+    GRADE_SETUPS, build_training_dataset, build_training_xy, engineer_features, engineer_inputs,
+    load_raw_uci, prepare_model_inputs, previous_score_from_grades,
 )
 
 
@@ -126,6 +126,54 @@ class TestModes(unittest.TestCase):
             self.assertEqual(int(y.sum()), 130)
             self.assertEqual(int((y == 0).sum()), 265)
             self.assertFalse(X.isna().any().any())
+
+    # --- Confirmatory grade setups: G1-only vs G1+G2 are separate, not interchangeable ---
+
+    def test_grade_setup_g1_only_needs_no_g2(self):
+        result = engineer_inputs(self.raw.drop(columns=["G2", "G3"]), "confirmatory", grade_setup="g1")
+        self.assertEqual(list(result.columns), self.confirmatory)
+        # previous_score = G1 / 20 * 100, matching previous_score_from_grades(g1, None)
+        self.assertEqual(result["previous_score"].tolist(), [90, 50, 25, 10])
+
+    def test_grade_setup_g1_g2_default_matches_previous_behaviour(self):
+        default = engineer_inputs(self.raw.drop(columns="G3"), "confirmatory")
+        explicit = engineer_inputs(self.raw.drop(columns="G3"), "confirmatory", grade_setup="g1_g2")
+        pd.testing.assert_frame_equal(default, explicit)
+        self.assertEqual(explicit["previous_score"].tolist(), [85, 50, 27.5, 5])
+
+    def test_invalid_grade_setup_rejected(self):
+        with self.assertRaisesRegex(ValueError, "grade_setup must be"):
+            engineer_inputs(self.raw, "confirmatory", grade_setup="not-a-setup")
+
+    def test_grade_setup_ignored_for_early_warning(self):
+        # early_warning never touches G1/G2, so an invalid grade_setup should not matter
+        result = engineer_inputs(self.raw.drop(columns=["G1", "G2", "G3"]), "early_warning",
+                                 grade_setup="not-a-setup")
+        self.assertEqual(list(result.columns), self.early)
+
+    def test_build_training_xy_grade_setup_param(self):
+        data_dir = Path(__file__).resolve().parents[1] / "data"
+        X_g1, y_g1 = build_training_xy(data_dir, "confirmatory", "g1")
+        X_g1g2, y_g1g2 = build_training_xy(data_dir, "confirmatory", "g1_g2")
+        # Same students, same labels, same non-grade columns -- only previous_score differs
+        pd.testing.assert_series_equal(y_g1, y_g1g2)
+        for col in ["attendance_pct", "study_hours", "failures"]:
+            pd.testing.assert_series_equal(X_g1[col], X_g1g2[col])
+        self.assertFalse(X_g1["previous_score"].equals(X_g1g2["previous_score"]))
+
+    def test_previous_score_from_grades_matches_engineer_inputs_for_both_setups(self):
+        # The live-input formula (used by predict.py) must match the training-time formula
+        # (used by train_models.py) for each grade setup, or the model sees a different
+        # distribution at prediction time than it was trained on.
+        g1_only = engineer_inputs(self.raw.drop(columns=["G2", "G3"]), "confirmatory", "g1")
+        for g1, expected in zip(self.raw["G1"], g1_only["previous_score"]):
+            self.assertEqual(previous_score_from_grades(float(g1)), expected)
+        both = engineer_inputs(self.raw.drop(columns="G3"), "confirmatory", "g1_g2")
+        for g1, g2, expected in zip(self.raw["G1"], self.raw["G2"], both["previous_score"]):
+            self.assertEqual(previous_score_from_grades(float(g1), float(g2)), expected)
+
+    def test_grade_setups_constant_has_both_values(self):
+        self.assertEqual(set(GRADE_SETUPS), {"g1", "g1_g2"})
 
 
 if __name__ == "__main__":
