@@ -15,6 +15,20 @@ Run these from the repository root (see the README for creating `.venv`):
 Use `python` instead of the `.venv` path if your environment already has the packages.
 The saved models use scikit-learn 1.8.0, which is pinned in the requirements.
 
+**macOS:** from Terminal in the repository root, with Python 3.11 or newer:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r assignment/code/requirements.txt
+.venv/bin/python -m unittest discover -s assignment/code -v
+.venv/bin/python assignment/code/predict.py --mode confirmatory --csv assignment/data/sample_roster.csv
+```
+
+If `.venv` is already set up, start at the install command. No activation is needed.
+Expect `OK` from the tests (currently 38) and predictions for A/B with C/D skipped.
+For all examples below, replace `.venv\Scripts\python.exe` with `.venv/bin/python`
+on macOS. This also applies to the training command.
+
 ## Predict one student
 
 ```powershell

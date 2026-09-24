@@ -84,6 +84,23 @@ python -m venv .venv
 
 On macOS/Linux, use `python3` to create the environment and `.venv/bin/python` in place of `.venv\Scripts\python.exe`.
 
+For Jackie or the tutor on **macOS**, open Terminal in the repository folder and run
+these commands with Python 3.11 or newer. To review this PR before merging, first
+check out `feature/csv-fixes-issue-followup` in GitHub Desktop.
+
+```bash
+python3 --version
+python3 -m venv .venv
+.venv/bin/python -m pip install -r assignment/code/requirements.txt
+.venv/bin/python -m unittest discover -s assignment/code -v
+.venv/bin/python assignment/code/predict.py --mode confirmatory --csv assignment/data/sample_roster.csv
+```
+
+No environment activation is needed. The test command should finish with `OK`
+(currently 38 tests). The sample should predict A and B and skip C and D with reasons.
+The commands have been checked against the project paths; a teammate still needs
+to run them on macOS and record the result.
+
 The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run data preparation and analysis. Training and prediction are now available:
 
 ```powershell

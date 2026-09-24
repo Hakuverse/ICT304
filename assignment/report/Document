@@ -105,6 +105,16 @@ evidence link. The input tests can be run from the repository root:
 .venv\Scripts\python.exe -m unittest discover -s assignment/code -v
 ```
 
+On macOS, after the setup in the README:
+
+```bash
+.venv/bin/python -m unittest discover -s assignment/code -v
+.venv/bin/python assignment/code/predict.py --mode confirmatory --csv assignment/data/sample_roster.csv
+```
+
+Record the macOS tester's name, date and result; instructions being available does
+not mean the teammate check has already been completed.
+
 ## 9. Remaining project plan
 
 [Summarise Sprint 4 and the later work: recommendation rules, interface, integration,
