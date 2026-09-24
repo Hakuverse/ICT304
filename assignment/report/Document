@@ -57,11 +57,12 @@ comparison from #19. Do not claim a winning model until the results can be repro
 [Describe the AI subsystem that actually runs, how to run it, the settings used and
 what the output means. Add screenshots or sample output and the comparison table
 from the training runs. Report accuracy, High-Risk precision, recall and F1 for each
-mode/model/weight setting, plus a confusion matrix for the chosen option.]
+setup/model/weight setting (12 combinations), plus a confusion matrix for each chosen setup.]
 
 [Explain the model choice, errors, earlier-warning versus prior-score tradeoff and
 limitations. Link to submitted code and results; keep unbuilt features clearly marked
-as planned. The current #26 work prepares inputs, not a trained AI prototype.]
+as planned. PR #48 added training and prediction for Early-Warning, G1-only and G1+G2.
+Use [the evaluation report](../docs/evaluation_report.md) for the measured results.]
 
 ## 8. Evaluation method and test plan
 
@@ -79,16 +80,16 @@ their roles. Anna or Jackie should also review the completed work.
 |---|---|---|---|---|---|
 | T01 | Data preparation | Math CSV, even with a Portuguese CSV beside it | Use 395 Math records only; 130 High Risk and 265 Low Risk | Benjamin | Automated check included with #26 |
 | T02 | Early-Warning inputs | Attendance estimate, study hours and failures; no grades | Return exactly the three approved inputs | Benjamin | Automated check included with #26 |
-| T03 | Confirmatory inputs | Same inputs plus previous score; no G3 | Return exactly four inputs | Benjamin | Automated check included with #26 |
+| T03 | Confirmatory inputs | G1 only, G1+G2, missing G1 and invalid supplied G2; no G3 | Use the matching separate model; report invalid grades | Benjamin | Automated preparation and prediction tests included |
 | T04 | Training labels | Final grades of 9 and 10 | 9 is High Risk; 10 is Low Risk | Benjamin | Automated check included with #26 |
 | T05 | Keeping answers out of inputs | Change G3 but leave other values the same | Labels may change; model inputs do not. Exclude G3, risk, risk_label and course from X | Benjamin | Automated check included with #26 |
 | T06 | Data checks | Absences of 0, 15, 30 and 75; each studytime category | Attendance estimate is 100, 50, 0 and 0; hours are 1.5, 3.5, 7.5 and 12 | Benjamin | Automated check included with #26 |
-| T07 | Missing or invalid input | Missing study hours, text instead of a number, attendance of 150, unknown mode | Stop and explain the input error rather than guessing a value | Benjamin; interface tester to confirm later | Helper check included; screen behavior planned |
-| T08 | Model comparison | Logistic Regression and Decision Tree, both modes, both weight settings | Use the same five groups of students and report accuracy, High-Risk precision, recall and F1 | Prototype owner to confirm | Sprint 4; follow #18 and #19 |
+| T07 | Missing or invalid input | Blank/text input, attendance of 150; hours of 0, 40 and 41; unknown mode | Accept hours 0-40; skip invalid rows with reasons; reject unknown mode | Benjamin; interface tester to confirm later | Automated checks included; screen behaviour planned |
+| T08 | Model comparison | Three setups, two techniques and two weight settings | Reserve the same 79 test students first; select using five folds on 316 development students; report final test metrics separately | Anna implemented in #48; team review | Training and results merged; see evaluation_report.md |
 | T09 | Recommendation rules | A High Risk example with one clearly weak factor; another with tied factors | Give the recommendation defined by the agreed rules; use a repeatable tie rule | Benjamin proposed; team to confirm | Planned after recommendation rules are agreed |
 | T10 | Single-student screen | One valid example in each mode | Show a risk result and the appropriate recommendation without asking for G3 | Benjamin proposed; team to confirm | Planned for project stage |
 | T11 | CSV upload | Same student entered through the form and a one-row CSV | Both paths give the same result; the CSV result keeps the right student ID | Benjamin proposed; team to confirm | Planned for project stage |
-| T12 | CSV errors | Empty CSV, missing required column, blank cell and invalid value | Explain the error and do not score invalid data. Agree whole-file rejection or row-level errors before building upload | Benjamin proposed; team to confirm | Planned; file-upload behavior not built |
+| T12 | CSV errors | Empty/header-only file, missing required column, blank cells, invalid G2 text and all-invalid class | Reject invalid file structure once; skip invalid rows; show no-valid-students message when needed | Benjamin | Automated CSV checks included; upload screen planned |
 | T13 | Whole system | A small class list with valid and invalid examples, in both modes | Valid data reaches the model and recommendation engine; results match the right students and errors are clear | All three members proposed | Planned after integration |
 
 For T13, compare the complete path with the same model and recommendation rules run
@@ -145,14 +146,14 @@ The full dashboard and recommendation engine belong to the later project stage.
 | Report section or item | Current owner or decision needed | What is still needed |
 |---|---|---|
 | Title, problem and requirements | Benjamin proposed; confirm with team | Bring together the approved SARAH scope and earlier subsystem explanation |
-| System engineering phases and references | Anna, based on #20 | Review her PR #37 and agree one phase mapping for the whole report |
+| System engineering phases and references | Anna, based on #20 | PR #37 merged; bring reviewed content and citations into the report |
 | Architecture diagram | Jackie, based on #17 | Review PR #41 and check exact mode inputs |
-| System design and teacher workflow | Anna, based on #21 | Review PR #39 and align its feature list and implementation claims with the code |
-| Model evaluation method | Jackie, based on #18 | Review PR #40; use the same student groups in each comparison |
-| Class weights and comparison plan | Anna, based on #19 | Review PR #38; link reproducible code before treating its numbers as final results |
+| System design and teacher workflow | Anna, based on #21 | PR #44 merged; use SYSTEM_DESIGN.md and keep planned features clearly marked |
+| Model evaluation method | Jackie, based on #18 | PR #40 merged; align the earlier plan with the reserved 79 test students and 316 development students used in #48 |
+| Class weights and comparison plan | Anna, based on #19 | PR #46 merged; use all 12 comparisons and distinguish development from final test results |
 | Input preparation and tests | Benjamin, #26 | Teammate review and run on another machine |
 | Whole-system test plan | Benjamin, #27 | Review the table above and confirm testers |
-| AI techniques, prototype code, results and limitations | Team to choose a prototype lead | Agree ownership of #30-#33; keep both techniques in the investigation |
+| AI techniques, prototype code, results and limitations | Anna supplied the prototype in #48; confirm report writer and checker | Bring the measured results into the report; keep both techniques in the investigation |
 | Remaining project plan and tool-use evidence | Benjamin proposed; confirm with team | Link sprint plans and examples of GitHub, Teams and communication use |
 | Final report editing and reference check | Team to choose | Combine the sections and check against the brief; #34 |
 | Group Declaration and upload | Benjamin, confirmed by #3 and the checked item in #28 | Collect contributions/signatures and check the submitted package; #35 |
@@ -162,8 +163,9 @@ responsibilities marked proposed or to choose need a team decision.
 
 ### Prototype and submission dates
 
-- [ ] Choose the prototype lead and the person checking their run: ____ / ____.
-- [ ] Agree a first working model run. Suggested target: 28 September; confirm: ____.
+- [ ] Confirm who will finish the prototype/report and who will check the run: ____ / ____. Anna supplied the current prototype in #48.
+- [x] A working model run and initial results are available from merged PR #48.
+- [ ] Have a teammate repeat the run and record the result: ____.
 - [ ] Finish the model comparison and report by 1 October where possible.
 - [ ] Have another member run the submission files by 2 October.
 - [ ] Confirm the exact LMS cutoff, upload on time on 3 October and check the files.
@@ -172,8 +174,8 @@ responsibilities marked proposed or to choose need a team decision.
 
 - [ ] Complete report: requirements, design, testing plan, technique comparison and initial results.
 - [ ] Code, Math dataset, package list and all files needed to repeat the prototype run.
-- [ ] Setup/run instructions tried by another teammate. The README currently covers
-  data preparation; add the actual training command when the prototype exists.
+- [ ] Setup/run instructions tried by another teammate. The README now covers
+  data preparation, training, single-student prediction and the sample CSV.
 - [ ] Sources cited and checked, including the dataset and NASA handbook.
 - [ ] Evidence of project management, version control, collaboration and communication.
 - [ ] Each member's contribution recorded; Group Declaration completed and signed.
@@ -185,11 +187,20 @@ The shared prompt log and report appendix exist but are not a completed record o
 past work. Each member needs to add their actual use. Benjamin can organise the form;
 the other members still need to provide their own contribution details and signatures.
 
+### Work already merged
+
+PR #42 added the original #26 input checks, #27 test-plan table and #28 report outline.
+PR #47 was closed in favour of Anna's #48; this did not remove #42's work. PR #48
+added the three trained setups and initial results; #44 and #46 added their design
+and comparison notes. This follow-up updates the remaining CSV handling and instructions.
+Team decisions, report assembly and signatures still need the team; they are not
+marked complete just because code has merged.
+
 ### Setup check
 
 Use the commands in the root README to install the packages, check the data and run
-data preparation. Then run the input tests above. The [mode guide](../docs/mode-guide.md)
-explains which function the later training code should use. Record the teammate's
+data preparation, training and prediction. Run the full tests above and try the sample
+CSV in [the mode guide](../docs/mode-guide.md). Record the teammate's
 name, date, Python version and outcome here: ____.
 
 Do not mark #28 complete until the team has agreed the remaining owners/dates and a

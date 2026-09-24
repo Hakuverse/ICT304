@@ -34,8 +34,8 @@ G1+G2 averaged), giving three setups in total. Its feature list is deliberately 
 four columns total, team decision (see `docs/feature_selection.md`): no demographic,
 family-background, or lifestyle data, even though the raw dataset has it available.
 
-- **Early-Warning Mode** (primary): `attendance_pct`, `study_hours`, `failures` — everything
-  SARAH can know before any assessment exists. (The dataset provides absence counts and a
+- **Early-Warning Mode** (primary): `attendance_pct`, `study_hours`, `failures` — the inputs used
+  without assessment grades. (The dataset provides absence counts and a
   study-time category, not week-by-week records, so this does not establish accuracy at a
   specific point in the term, such as "day one.")
 - **Confirmatory Mode — G1 only**: Early-Warning features **+** `previous_score` derived from G1
@@ -169,9 +169,9 @@ report: `docs/evaluation_report.md`.
 
 Comparing the held-out test rows directly is the core critical-analysis point of this project:
 **Early-Warning recall (0.423) is far lower than Confirmatory recall (0.769 with G1 only, 0.885
-with G1+G2)** — a gap of 30 to 45 percentage points depending on setup. This is a limitation
-observed in our current experiments, not a proven irreducible one: predicting risk before any
-grade exists, using only attendance, study habits, and past failures instead of the single
+with G1+G2)** — gaps of 34.6 and 46.2 percentage points respectively. This is a limitation
+observed in our current experiments, not a proven irreducible one: predicting risk without
+assessment grades, using only attendance, study habits, and past failures instead of the single
 strongest predictor available (`previous_score`, correlation -0.72 with risk), is expected to
 perform worse given the narrower feature set — but these results do not prove that better
 Early-Warning performance is impossible with more data or additional features. SARAH makes this

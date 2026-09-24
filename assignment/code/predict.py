@@ -34,6 +34,7 @@ Run with (from the repository root):
 """
 
 import argparse
+import math
 from pathlib import Path
 
 import joblib
@@ -70,12 +71,13 @@ def _parse_g2(value) -> float:
         return None
     if isinstance(value, str) and not value.strip():
         return None
-    if isinstance(value, float) and pd.isna(value):
-        return None
     try:
-        return float(value)
+        grade = float(value)
     except (TypeError, ValueError):
         raise ValueError(f"G2={value!r} is not a valid number")
+    if not math.isfinite(grade) or not 0 <= grade <= 20:
+        raise ValueError("G2 must be a finite number from 0 to 20")
+    return grade
 
 
 def predict_one(attendance_pct, study_hours, failures, mode="early_warning", g1=None, g2=None):
@@ -97,8 +99,9 @@ def predict_one(attendance_pct, study_hours, failures, mode="early_warning", g1=
 def predict_roster(csv_path: Path, mode: str = "early_warning"):
     """Predict risk for a whole class from a CSV.
 
-    A row with a missing/invalid value (bad range, non-numeric, missing
-    required column, or an unusable supplied G2) is SKIPPED -- with a
+    Missing required columns or an empty file stop the whole file.
+    A row with a missing/invalid value (bad range, non-numeric,
+    or an unusable supplied G2) is SKIPPED -- with a
     printed reason -- rather than stopping the whole file; every other,
     valid row is still predicted. Confirmatory-mode rows are routed to
     the G1-only or G1+G2 model depending on whether a valid G2 was given.
@@ -111,23 +114,42 @@ def predict_roster(csv_path: Path, mode: str = "early_warning"):
     """
     if mode not in VALID_MODES:
         raise ValueError(f"mode must be one of {VALID_MODES}, got {mode!r}")
-    raw = pd.read_csv(csv_path)
+    try:
+        # Preserve supplied text such as NA/null/nan so it cannot become absent G2.
+        raw = pd.read_csv(csv_path, dtype=str, keep_default_na=False)
+    except pd.errors.EmptyDataError:
+        raise ValueError("The CSV contains no students.") from None
+    if raw.empty:
+        raise ValueError("The CSV contains no students.")
+    required = ["attendance_pct", "study_hours", "failures"]
+    if mode == "confirmatory":
+        required.append("G1")
+    missing = [name for name in required if name not in raw.columns]
+    if missing:
+        raise ValueError(f"Missing required columns: {', '.join(missing)}")
     models = {}  # grade_setup -> loaded model, loaded lazily and cached
     results, skipped = [], []
 
     for i, row in raw.iterrows():
-        student_id = row["student_id"] if "student_id" in raw.columns and pd.notna(row.get("student_id")) else i
+        student_id = row.get("student_id", "").strip() or f"row {i + 1}"
         try:
             fields = {
                 "attendance_pct": row["attendance_pct"],
                 "study_hours": row["study_hours"],
                 "failures": row["failures"],
             }
+            for name, value in fields.items():
+                if not value.strip():
+                    raise ValueError(f"{name} is required")
             grade_setup = None
             if mode == "confirmatory":
                 g1 = row.get("G1")
-                if pd.isna(g1):
+                if not g1.strip():
                     raise ValueError("Confirmatory mode needs at least G1")
+                try:
+                    g1 = float(g1)
+                except ValueError:
+                    raise ValueError("G1 must be a number from 0 to 20") from None
                 g2 = _parse_g2(row.get("G2") if "G2" in raw.columns else None)
                 grade_setup = "g1_g2" if g2 is not None else "g1"
                 fields["previous_score"] = previous_score_from_grades(float(g1), g2)
@@ -147,7 +169,10 @@ def predict_roster(csv_path: Path, mode: str = "early_warning"):
         except (ValueError, KeyError, TypeError) as exc:
             skipped.append({"student_id": student_id, "reason": str(exc)})
 
-    return pd.DataFrame(results), skipped
+    columns = ["student_id", "risk_label", "probability_high_risk"]
+    if mode == "confirmatory":
+        columns.append("grade_setup")
+    return pd.DataFrame(results, columns=columns), skipped
 
 
 def main():
@@ -163,15 +188,20 @@ def main():
     args = parser.parse_args()
 
     if args.csv:
-        results, skipped = predict_roster(args.csv, args.mode)
+        try:
+            results, skipped = predict_roster(args.csv, args.mode)
+        except (ValueError, OSError) as exc:
+            parser.error(str(exc))
+        if results.empty:
+            print("No valid students to process.")
         if args.out:
             args.out.parent.mkdir(parents=True, exist_ok=True)
             results.to_csv(args.out, index=False)
             print(f"Saved {len(results)} prediction(s) to {args.out}")
-        else:
+        elif not results.empty:
             print(results.to_string(index=False))
         if skipped:
-            print(f"\nSkipped {len(skipped)} row(s) (rest of the class was still processed):")
+            print(f"\nSkipped {len(skipped)} row(s); processed {len(results)} valid student(s):")
             for s in skipped:
                 print(f"  student_id={s['student_id']}: {s['reason']}")
         return

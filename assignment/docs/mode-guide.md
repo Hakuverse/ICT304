@@ -1,85 +1,90 @@
 # Using the two modes
 
-This covers issue #26. The code prepares inputs for a model; it does not train a model
-or predict a student's risk yet.
+The command-line prototype now trains models and predicts risk. The tutor dashboard
+and recommendations are still planned work.
 
-## Run it
+## Set up and check
 
-From the repository root, use the environment described in the README:
+Run these from the repository root (see the README for creating `.venv`):
 
 ```powershell
-.venv\Scripts\python.exe assignment/code/data_processing.py
+.venv\Scripts\python.exe -m pip install -r assignment/code/requirements.txt
 .venv\Scripts\python.exe -m unittest discover -s assignment/code -v
 ```
 
-The first command prints 395 students for each mode: 130 High Risk and 265 Low Risk.
-The second runs the small checks in `test_data_processing.py`. If Python already has
-the required packages, `python` can replace `.venv\Scripts\python.exe`.
+Use `python` instead of the `.venv` path if your environment already has the packages.
+The saved models use scikit-learn 1.8.0, which is pinned in the requirements.
 
-## For training later
+## Predict one student
 
-From a script saved in `assignment/code/`:
-
-```python
-from pathlib import Path
-from data_processing import build_training_xy
-
-data_dir = Path(__file__).resolve().parents[1] / "data"
-X, y = build_training_xy(data_dir, mode="early_warning")
-# X: attendance_pct, study_hours, failures
-# y: 1 for High Risk, 0 for Low Risk
-
-X, y = build_training_xy(data_dir, mode="confirmatory")
-# X also includes previous_score, calculated from G1 and G2.
+```powershell
+.venv\Scripts\python.exe assignment/code/predict.py --attendance 60 --study-hours 4 --failures 1
+.venv\Scripts\python.exe assignment/code/predict.py --mode confirmatory --attendance 60 --study-hours 4 --failures 1 --g1 12
+.venv\Scripts\python.exe assignment/code/predict.py --mode confirmatory --attendance 60 --study-hours 4 --failures 1 --g1 12 --g2 14
 ```
 
-The code reads `student-mat.csv` only. It never adds another course automatically.
-Pass X to the later model, not the complete labelled dataset. G3 is used only to make y.
+| Mode / grades supplied | Model used | Previous score inside the model |
+|---|---|---|
+| Early-Warning | Early-Warning | Not used |
+| Confirmatory, G1 only | G1-only | G1 multiplied by 5 |
+| Confirmatory, G1 and G2 | G1+G2 | Their average multiplied by 5 |
 
-## For a form or CSV later
+Enter G1 and G2 on the **0-20 scale**, not as percentages. G1 is required for
+Confirmatory; G2 may be absent or blank. Each setup has its own trained model.
+Neither prediction mode needs G3. Output includes a risk label and the model's
+estimated probability of High Risk; it is not a guarantee about the student.
 
-If the input already contains the prepared fields, use `prepare_model_inputs()`:
+## Predict a class list
 
-```python
-import pandas as pd
-from data_processing import prepare_model_inputs
-
-students = pd.DataFrame({
-    "attendance_pct": [50.0],  # Our absence estimate: 15 absences -> 50.
-    "study_hours": [3.5],
-    "failures": [1],
-})
-X = prepare_model_inputs(students, mode="early_warning")
-
-students["previous_score"] = [60.0]
-X = prepare_model_inputs(students, mode="confirmatory")
+```powershell
+.venv\Scripts\python.exe assignment/code/predict.py --mode confirmatory --csv assignment/data/sample_roster.csv
 ```
 
-Neither call needs a final grade. Early-Warning does not need any prior grade.
-The function returns only the chosen input columns and keeps the original row index.
-Extra columns such as student IDs and labels are not passed to the model; keep IDs
-separately when displaying the results.
+The included sample is invented for software checks, not accuracy measurement.
+Students A and B are valid (G1-only and G1+G2); C has invalid attendance and D has
+invalid G2 text. The last two should be skipped with explanations.
+Add `--out assignment/reports/roster_predictions.csv` to save valid results.
 
-For raw UCI fields, `engineer_inputs(raw, mode)` makes the attendance/study estimates
-first. Early-Warning needs only `absences`, `studytime` and `failures`; Confirmatory
-also needs G1 and G2. `engineer_features(raw)` is the existing EDA helper and still
-requires G3 because it adds the labels for charts.
+- Required columns: `attendance_pct`, `study_hours`, `failures`; add `G1` for Confirmatory.
+- `student_id` and `G2` are optional. Without an ID, errors/results use a data-row number.
+- Attendance estimate: 0-100. Study hours: **0-40 inclusive**. Failures: whole numbers 0-3.
+- An absent/empty/space-only G2 uses the G1-only model. Zero is a valid G2.
+- Supplied G2 text such as `NA`, `N/A`, `null` or `nan`, infinity, or a number outside
+  0-20 is invalid. That student is skipped; G2 is not silently ignored.
+- Missing required columns stop the file with one message. Empty files and files
+  containing only headers show "The CSV contains no students."
+- Invalid rows are skipped with reasons while valid students continue. If every row
+  is invalid, the command shows "No valid students to process" and the reasons.
+- The 40-hour maximum is our input rule, not a maximum established by the dataset.
 
-## Input checks
+## Repeat training and evaluation
 
-- Missing fields, blank cells, non-numeric or infinite values raise a clear error.
-- Raw absences and failures must be non-negative whole numbers; absences are capped
-  at 30 for the estimate, and failures are capped at 3. Studytime must be 1, 2, 3 or 4.
-- Prepared attendance and previous score must be between 0 and 100. Prepared failures
-  must be a whole number from 0 to 3. Study hours must be non-negative.
-- An empty table or an unknown mode is rejected. Invalid rows are not silently filled in.
+```powershell
+.venv\Scripts\python.exe assignment/code/train_models.py
+```
 
-The helper currently rejects invalid input as a whole. A future dashboard can catch
-the error and ask the teacher to correct it. Per-row CSV skipping is not implemented.
-Actual attendance percentages from another system should not be treated as equivalent
-to our absence-based estimate without reviewing the data meaning first.
+This rewrites the three saved models, evaluation report and confusion figures.
+It compares 3 setups x 2 techniques x 2 class-weight settings = 12 combinations.
+The same 79 students are reserved first for testing. Selection uses five-fold
+cross-validation on the other 316 students. Read final performance from the reserved
+[test results](evaluation_report.md), not the development comparison scores.
 
-## Before closing #26
+For code using raw UCI data, `build_training_xy(data_dir, "confirmatory", "g1")`
+and `build_training_xy(data_dir, "confirmatory", "g1_g2")` return the matching inputs
+and separate labels. `engineer_inputs()` defaults to `g1_g2` for compatibility with
+EDA. `prepare_model_inputs()` validates already-prepared features as a whole;
+use `predict_roster()` for row skipping and automatic model routing.
 
-Ask Anna or Jackie to run the commands above on their machine and review the PR.
-These checks confirm input preparation; model accuracy is separate Sprint 4 work.
+## Early-Warning limitations
+
+Early-Warning predicts **without assessment grades**. The dataset does not establish
+accuracy on day one or in a particular week. Its absence count becomes a capped
+attendance proxy, not a measured attendance percentage; study hours are estimates
+from categories. Do not substitute actual attendance percentages without reviewing
+this mismatch. Testing at an early point needs records collected up to that point.
+
+## Teammate check for #26 and #28
+
+Anna or Jackie should install the requirements, run the tests, try the three single
+student commands and the sample roster. Record their name, date, Python version and
+outcome in the report checklist. The automated checks do not replace this team review.

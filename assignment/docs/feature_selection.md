@@ -28,8 +28,11 @@ The two approved modes use these exact model inputs, in this order:
 | `early_warning` | `attendance_pct`, `study_hours`, `failures` |
 | `confirmatory` | `attendance_pct`, `study_hours`, `failures`, `previous_score` |
 
-No demographics or family-background fields are included. `previous_score` is the
-average of G1 and G2, rescaled to 0-100, so both grades are needed for that calculation.
+No demographics or family-background fields are included. Confirmatory requires G1
+and accepts optional G2, both entered on the 0-20 scale. `previous_score` is G1 alone
+when G2 is absent/blank, or the G1/G2 average when both are supplied, rescaled to 0-100.
+The two setups have separately trained models; prediction chooses the matching model.
+Invalid supplied G2 is reported instead of being treated as absent.
 Neither mode needs G3 to prepare a prediction input. The attendance value is a capped
 absence-based estimate, not a measured attendance percentage. Study hours are estimates
 from categories; 12 hours for the open-ended top category is an assumption.
@@ -42,6 +45,8 @@ from categories; 12 hours for the open-ended top category is an assumption.
 | `failures` | `failures` | +0.34 (moderate) | Reflects prior academic difficulty |
 
 These rounded values come from the Math-only [EDA findings](eda_findings.md).
+The -0.72 previous-score correlation is for the G1/G2 average, not G1 alone.
+Model comparisons and reserved-test results are now in [the evaluation report](evaluation_report.md).
 `G3` is excluded because it defines the target (`G3 < 10`), not simply because it is
 correlated with other grades. `risk`, `risk_label` and `course` are also excluded from X.
 
@@ -67,5 +72,7 @@ do not prove that this prototype works on day one of a term.
 ## Using the code
 
 See [the mode guide](mode-guide.md) for run commands and examples. Training code can use
-`build_training_xy(data_dir, mode)` to get inputs and labels separately. The existing
+`build_training_xy(data_dir, mode, grade_setup="g1")` or `grade_setup="g1_g2"`
+to get inputs and labels separately. Study hours entered for prediction must be 0-40
+inclusive; this is our input rule, not a dataset-established maximum. The existing
 `engineer_features()` function remains available for the four-feature EDA charts.

@@ -13,7 +13,9 @@ Repository for ICT304 (AI System Design) at Murdoch University — covering both
 
 ## What is Project SARAH?
 
-Project SARAH (Student Academic Risk Assistance Hub) is an early-intervention system that identifies students at risk of falling behind before their grades reflect it. Rather than reacting after a poor result or a failed unit, SARAH uses signals available from day one — attendance, study habits, and demographic/behavioural factors — to classify each student as Low or High Risk, then recommends a specific intervention tied to that student's single weakest contributing factor, rather than issuing a generic warning. It supports both a single-student lookup and a whole-class batch upload, so a teacher or academic advisor can screen an entire roster at once rather than entering students one at a time.
+Project SARAH (Student Academic Risk Assistance Hub) is a prototype for estimating academic risk. Early-Warning uses an attendance estimate, estimated study hours and past failures without assessment grades. Confirmatory requires G1 and accepts optional G2, with separate models for G1 alone and the G1/G2 average. Neither mode uses demographic or family-background inputs. The dataset does not establish day-one or week-specific accuracy.
+
+The command-line prototype predicts for one student or a class CSV, skips invalid rows and reports why. A dashboard and intervention recommendations are planned for the project stage.
 
 ## Repository structure
 
@@ -70,7 +72,7 @@ When starting the project stage, leave out virtual environments, caches and temp
 
 ## Setup / how to run
 
-From the repository root, with Python installed:
+From the repository root, with Python 3.11 or newer installed:
 
 ```powershell
 python -m venv .venv
@@ -82,9 +84,19 @@ python -m venv .venv
 
 On macOS/Linux, use `python3` to create the environment and `.venv/bin/python` in place of `.venv\Scripts\python.exe`.
 
-The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run the current data preparation and analysis; model training is still a separate sprint task.
+The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run data preparation and analysis. Training and prediction are now available:
 
-To check both input modes:
+```powershell
+.venv\Scripts\python.exe assignment/code/train_models.py
+.venv\Scripts\python.exe assignment/code/predict.py --mode confirmatory --attendance 60 --study-hours 4 --failures 1 --g1 12
+.venv\Scripts\python.exe assignment/code/predict.py --mode confirmatory --csv assignment/data/sample_roster.csv
+```
+
+Training rewrites the model files, evaluation report and confusion figures. The sample
+roster is invented for checking the program; it is not evaluation data. G1/G2 use the
+0-20 scale. See the mode guide below for G1+G2 examples and all input rules.
+
+To check input preparation, model routing and CSV handling:
 
 ```powershell
 .venv\Scripts\python.exe -m unittest discover -s assignment/code -v
