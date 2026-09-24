@@ -83,12 +83,12 @@ depth cap is applied — the tree is left to grow as needed.
 | Early-Warning | Decision Tree | `None` | 0.681 | 0.533 | 0.315 | 0.393 |
 | Early-Warning | Decision Tree | `balanced` | 0.552 | 0.371 | **0.492** | 0.419 ← selected |
 | Confirmatory | Logistic Regression | `None` | 0.876 | 0.833 | 0.777 | 0.802 |
-| Confirmatory | Logistic Regression | `balanced` | 0.873 | 0.757 | **0.908** | **0.825** ← selected |
+| Confirmatory | Logistic Regression | `balanced` | 0.871 | 0.756 | **0.9** | **0.821** ← selected |
 | Confirmatory | Decision Tree | `None` | 0.851 | 0.787 | 0.754 | 0.768 |
 | Confirmatory | Decision Tree | `balanced` | 0.848 | 0.762 | 0.785 | 0.772 |
 
 *(5-fold stratified cross-validation means. Full precision to 3 d.p. is in
-`reports/evaluation_report.md`, regenerated every time `python src/train_models.py` runs — these
+`docs/evaluation_report.md`, regenerated every time `python assignment/code/train_models.py` runs — these
 are real measured numbers, not illustrative ones.)*
 
 ## 6. What the class-weight comparison shows
@@ -105,14 +105,14 @@ alarm that costs a tutor a few minutes checking a student who turns out to be fi
 meaning most of its High Risk flags are false alarms. This is the direct, measured consequence of
 the team's decision to keep Early-Warning mode to just three weak-individually features
 (`attendance_pct` and `study_hours` each correlate only -0.08 with risk; only `failures` at +0.34
-carries real signal — see `reports/eda_findings.md`). It is reported as-is, not smoothed over,
+carries real signal — see `docs/eda_findings.md`). It is reported as-is, not smoothed over,
 because it is the honest cost of the narrow, four-feature design and directly supports the
 accuracy-vs-earliness discussion below.
 
 ## 7. Selected combination per mode
 
 - **Early-Warning Mode:** Decision Tree, `class_weight="balanced"` — recall 0.492, F1 0.419.
-- **Confirmatory Mode:** Logistic Regression, `class_weight="balanced"` — recall 0.908, F1 0.825.
+- **Confirmatory Mode:** Logistic Regression, `class_weight="balanced"` — recall 0.9, F1 0.821.
 
 Selection criterion throughout this project: highest recall on the High Risk class (tie-broken by
 F1), for the reason in Section 6.
@@ -120,7 +120,7 @@ F1), for the reason in Section 6.
 ## 8. The accuracy-vs-earliness tradeoff this reveals
 
 Comparing the two selected rows directly is the core critical-analysis point of this project:
-**Early-Warning recall (0.492) is far lower than Confirmatory recall (0.908)** — a gap of over 40
+**Early-Warning recall (0.492) is far lower than Confirmatory recall (0.9)** — a gap of over 40
 percentage points. This is not a modelling shortfall to fix; it is the real, irreducible cost of
 predicting risk *before* any grade exists, using only attendance, study habits, and past failures
 instead of the single strongest predictor available (`previous_score`, correlation -0.72 with
@@ -136,6 +136,6 @@ came and how much to trust it.
 Maps to report Section 4 ("describe your pre-processing and justify it", including the
 class-imbalance handling) and Section 6 (AI technique comparison / justification of final model
 choice, including the two-mode accuracy-vs-earliness discussion). Use the Section 5 table
-directly; full numbers and confusion matrices regenerate at `reports/evaluation_report.md` and
-`reports/figures/confusion_*.png` every time `python src/train_models.py` runs.
+directly; full numbers and confusion matrices regenerate at `docs/evaluation_report.md` and
+`docs/figures/confusion_*.png` every time `python assignment/code/train_models.py` runs.
 
