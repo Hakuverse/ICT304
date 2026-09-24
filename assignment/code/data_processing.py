@@ -106,7 +106,7 @@ def prepare_model_inputs(df: pd.DataFrame, mode: str = "confirmatory") -> pd.Dat
     """
     out = _numeric_columns(df, get_feature_columns(mode))
     _check_range(out["attendance_pct"], 0, 100)
-    _check_range(out["study_hours"], 0)
+    _check_range(out["study_hours"], 0, 40)
     _check_range(out["failures"], 0, 3, whole=True)
     if mode == "confirmatory":
         _check_range(out["previous_score"], 0, 100)
@@ -148,6 +148,28 @@ def build_training_xy(data_dir: Path, mode: str = "confirmatory"):
     """Return (X, y): approved inputs and the separate training target."""
     dataset = build_training_dataset(data_dir, mode)
     return dataset[get_feature_columns(mode)].copy(), dataset[TARGET_COLUMN].copy()
+
+
+def previous_score_from_grades(g1: float, g2: float = None) -> float:
+    """Team rule (Confirmatory mode, live tutor input): G1 is required, G2 is
+    optional. With both grades, previous_score is their average -- matching
+    how the model was trained on UCI's G1/G2. With G1 alone, previous_score
+    is G1 by itself, rescaled the same way. This covers the two real-world
+    points a tutor can be at: only the first assessment period is in yet, or
+    both are.
+
+    Both grades are out of 20 and the result is rescaled to 0-100%, matching
+    engineer_inputs()'s previous_score calculation exactly.
+    """
+    if g1 is None:
+        raise ValueError("previous_score needs at least G1")
+    if not (0 <= g1 <= 20):
+        raise ValueError("G1 must be 0 to 20")
+    if g2 is None:
+        return round(g1 / 20 * 100, 1)
+    if not (0 <= g2 <= 20):
+        raise ValueError("G2 must be 0 to 20")
+    return round((g1 + g2) / 2 / 20 * 100, 1)
 
 
 if __name__ == "__main__":
