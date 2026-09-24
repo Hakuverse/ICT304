@@ -35,7 +35,9 @@ term. Its feature list is deliberately narrow — just four columns total, team 
 the raw dataset has it available.
 
 - **Early-Warning Mode** (primary): `attendance_pct`, `study_hours`, `failures` — everything
-  SARAH can know on day one of term, before any assessment exists.
+  SARAH can know before any assessment exists. (The dataset provides absence counts and a
+  study-time category, not week-by-week records, so this does not establish accuracy at a
+  specific point in the term, such as "day one.")
 - **Confirmatory Mode** (secondary): Early-Warning features **+** `previous_score` (the average
   of the first two assessment periods), once at least one grade exists.
 
@@ -86,11 +88,11 @@ students it was not trained or tuned on.
 
 | Mode | Technique | class_weight | Accuracy | Precision (High Risk) | Recall (High Risk) | F1 (High Risk) |
 |---|---|---|---|---|---|---|
-| Early-Warning | Logistic Regression | `None` | 0.716 | 0.694 | 0.254 | 0.368 |
-| Early-Warning | Logistic Regression | `balanced` | 0.716 | 0.622 | 0.408 | 0.485 |
+| Early-Warning | Logistic Regression | `None` | 0.716 | 0.704 | 0.246 | 0.361 |
+| Early-Warning | Logistic Regression | `balanced` | 0.711 | 0.611 | 0.408 | 0.48 |
 | Early-Warning | Decision Tree | `None` | 0.681 | 0.533 | 0.315 | 0.393 |
 | Early-Warning | Decision Tree | `balanced` | 0.552 | 0.371 | **0.492** | 0.419 ← selected |
-| Confirmatory | Logistic Regression | `None` | 0.876 | 0.833 | 0.777 | 0.802 |
+| Confirmatory | Logistic Regression | `None` | 0.876 | 0.825 | 0.792 | 0.806 |
 | Confirmatory | Logistic Regression | `balanced` | 0.871 | 0.756 | **0.9** | **0.821** ← selected |
 | Confirmatory | Decision Tree | `None` | 0.851 | 0.787 | 0.754 | 0.768 |
 | Confirmatory | Decision Tree | `balanced` | 0.848 | 0.762 | 0.785 | 0.772 |
