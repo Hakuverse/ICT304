@@ -128,11 +128,10 @@ separate training step of its own, and never contradicts itself between runs.
   implementation does not apply feature scaling (e.g. `StandardScaler`) before Logistic
   Regression — a known simplification, not yet accounting for scale differences between features
   like `attendance_pct` (0–100) and `failures` (0–3).
-- **Risk Prediction Model → Recommendation Engine:** the engine receives the *raw* (unscaled)
-  feature values, the predicted label, and the active mode, and only runs its weakest-factor
-  analysis when the label is High Risk (a Low Risk student gets a "no urgent intervention"
-  message, not a forced recommendation — see `test_low_risk_gives_no_intervention_message` in the
-  test suite).
+- **Risk Prediction Model → Recommendation Engine (planned):** the design is for the engine to
+  receive the *raw* (unscaled) feature values, the predicted label, and the active mode, running
+  its weakest-factor analysis only when the label is High Risk. Not yet implemented — see the
+  "Implementation status" note above.
 - **Recommendation Engine → Dashboard:** returns a small structured result (predicted label,
   confidence, weakest actionable factor, recommendation text) that the dashboard renders per
   student, and aggregates into the sorted class-wide table for the bulk-upload path.
