@@ -46,18 +46,20 @@ Rule-based Recommendation Engine — weakest ACTIONABLE-factor analysis
 Tutor Dashboard — display + human decision
 ```
 
-A rendered, colour-coded version of this diagram (with each stage labelled by which sub-system
-owns it) is in `docs/diagrams/system_flow.md` — screenshot the GitHub-rendered version for the
-report rather than retyping the diagram as an image.
+Jackie's architecture diagram is in [the figures folder](figures/SARAH_system_architecture.drawio.png).
+Check its labels against the current three model setups before putting it in the report.
 
 ### 5.1.1 Inputs and outputs, by setup
 
 | | Early-Warning Mode | Confirmatory Mode — G1 only | Confirmatory Mode — G1+G2 |
 |---|---|---|---|
 | **When a tutor uses it** | Any time — no assessment grades needed | Once the first assessment (G1) exists | Once both the first and second assessments (G1, G2) exist |
-| **Inputs** | Attendance %, study hours/week, past failures (3 fields) | Same, **plus** G1 score % (4 fields) | Same, **plus** the average of G1 and G2 scores % (4 fields) |
+| **Inputs** | Attendance estimate, study hours/week, past failures | Same, plus G1 entered on the 0-20 scale | Same, plus G1 and G2 each entered on the 0-20 scale |
 | **Output** | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or past failures | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or G1 score | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or G1+G2 average score |
 | **High-Risk recall (held-out test set)** | 0.423 | 0.769 | 0.885 |
+
+The code converts G1 or the G1/G2 average to a 0-100 `previous_score` internally.
+Tutors supply grades out of 20, not percentages.
 
 A student with only G1 is always scored by the G1-only model, never the G1+G2 model — each
 model only ever sees the kind of input it was actually trained on. A supplied G2 that isn't a
@@ -68,8 +70,8 @@ is never silently ignored and quietly downgraded to the G1-only model.
 tested. What the current evaluation does *not* establish is accuracy at a specific point in the
 term (day one, week three, etc.) — the dataset provides an absence count and a study-time
 category, not week-by-week records, so there is no way to test performance tied to a particular
-week. The claim is that Early-Warning Mode works before grades exist, not that its accuracy has
-been measured "on day one" specifically.
+week. The supported claim is that the model predicts without assessment grades; the data
+does not establish performance before the first assessment or in a particular week.
 
 SARAH's feature list is deliberately this narrow — team decision, see `docs/feature_selection.md`
 — no demographic, family-background, or lifestyle columns, even though the raw UCI dataset has
@@ -205,8 +207,8 @@ runs.
 ## 5.5 The accuracy-vs-earliness tradeoff
 
 Early-Warning Mode's held-out recall (0.423) is far lower than Confirmatory Mode's (0.769 with G1
-only, 0.885 with G1+G2) — a direct, honestly-reported consequence of predicting risk before any
-grade exists, using only attendance, study habits, and past failures instead of the far stronger
+only, 0.885 with G1+G2) — a direct, honestly-reported difference observed when predicting risk without
+assessment grades, using only attendance, study habits, and past failures instead of the far stronger
 `previous_score` predictor (correlation -0.72 with risk, versus -0.08 for attendance and study
 hours individually — see `docs/eda_findings.md`). SARAH treats this as the core design tradeoff,
 not a flaw to hide: Early-Warning Mode is the system's **primary, default mode** because catching
@@ -214,12 +216,9 @@ risk earlier — even less accurately — is the entire point of an early-warnin
 Confirmatory Mode (either setup) stays available as a more accurate second look once grades
 exist. Full discussion: `docs/CLASS_IMBALANCE_NOTE.md` §8.
 
-## 5.6 What this replaces in the report template
+## 5.6 Where to use this in the report
 
-This content replaces/fills report template Section 5 (`5.1 System flow`, `5.2 Sub-systems`) and
-supplies the numbers that Section 6's `[TEAM TODO]` was waiting on (the model comparison table,
-now per-setup). Section 5.3 (Test plan) is handled separately in `docs/TEST_PLAN.md` (issue #27),
-which this document links to. **Note:** issue #21's checklist also references "the evaluation
-plan from #18" — that is a separate, not-yet-completed sprint item (how the team decided to test
-the models, as opposed to the test *results* in `docs/TEST_PLAN.md`); this document does not
-cover it, since it wasn't part of what #21/#27 asked to be fixed here.
+Use this design in report Section 5, and the comparison results in Sections 6-7.
+Benjamin's test-plan table (#27) is in [report section 8](../report/Document).
+Jackie's earlier evaluation plan (#18) is in [Model Test plan](<Model Test plan>);
+use the implemented split described above when reporting the current results.

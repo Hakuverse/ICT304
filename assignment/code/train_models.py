@@ -273,18 +273,19 @@ def main():
 
     lines.append(
         "## Accuracy-vs-earliness tradeoff\n\n"
-        f"Early-Warning setup (no grades, available before any assessment exists): "
+        f"Early-Warning setup (without assessment grades): "
         f"development recall {best_per_setup['early_warning']['recall_high_risk']}. "
         f"Confirmatory (G1+G2) setup: development recall "
         f"{best_per_setup['confirmatory_g1_g2']['recall_high_risk']}. This is a limitation "
         "observed in our current experiments, not a proven irreducible limit: Early-Warning "
-        "mode predicts before any grade exists, using only attendance, study habits, and "
+        "mode predicts without assessment grades, using only attendance, study habits, and "
         "past failures, so weaker results here are expected given the narrower feature set "
         "-- but these results do not prove that better Early-Warning performance is "
         "impossible with more data or features. SARAH defaults to Early-Warning mode "
         "regardless, since catching risk earlier -- even less accurately -- is the point of "
         "an early-warning system; Confirmatory mode is available as a second look once "
-        "grades exist.\n"
+        "grades exist. This dataset has no week-by-week records, so these results do not "
+        "establish day-one or week-specific accuracy.\n"
     )
 
     with open(MODELS_DIR / "selected_mode.txt", "w", encoding="utf-8") as f:
