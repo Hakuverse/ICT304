@@ -6,9 +6,9 @@ Repository for ICT304 (AI System Design) at Murdoch University — covering both
 
 |Name | GitHub Handle |
 |---|---|
-| Benjamin | [@Hakuverse] |
-| Anna | [@lee-shi-min] |
-| Jackie | [@s123-bit]) |
+| Benjamin | [@Hakuverse](https://github.com/Hakuverse) |
+| Anna | [@lee-shi-min](https://github.com/lee-shi-min) |
+| Jackie | [@s123-bit](https://github.com/s123-bit) |
 
 
 ## What is Project SARAH?
@@ -56,15 +56,15 @@ When starting the project stage, leave out virtual environments, caches and temp
 
 | Purpose | Tool |
 |---|---|
-| Project Management | GitHub Issues + [Milestones](../../milestones) + [SARAH Sprint Board](../../projects) |
+| Project Management | GitHub Issues + [Milestones](https://github.com/Hakuverse/ICT304/milestones) + [SARAH Sprint Board](https://github.com/Hakuverse/ICT304/projects) |
 | Version Control | GitHub |
 | Collaboration (code) | GitHub (branches + Pull Requests) |
 | Communication | Microsoft Teams, WhatsApp (quick/informal) |
 
 ## Sprint tracking
 
-- Milestones: see the [Milestones tab](../../milestones)
-- Board: [SARAH Sprint Board](../../projects)
+- Milestones: see the [Milestones tab](https://github.com/Hakuverse/ICT304/milestones)
+- Board: [SARAH Sprint Board](https://github.com/Hakuverse/ICT304/projects)
 - [Sprint 1: Getting Started](assignment/docs/sprint1-planning.md)
 - [Sprint 2: Requirements and Data Exploration](assignment/docs/sprint2-planning.md)
 - [Sprint 3: System Design](assignment/docs/sprint3-planning.md)
@@ -119,8 +119,14 @@ To check input preparation, model routing and CSV handling:
 ```
 
 See [Using the two modes](assignment/docs/mode-guide.md) for examples. The testing plan
-and assignment preparation checklist are in [the report draft](assignment/report/Document).
+and assignment preparation checklist are in [the report draft](assignment/report/Document.md).
 
+
+## Assignment submission
+
+Include the completed Sprint 4 prototype, comparison and testing evidence in the assignment due on **3 October 2026**. Use the [Sprint 4 plan](assignment/docs/sprint4-planning.md) and [report checklist](assignment/report/Document.md). The report must keep planned dashboard and recommendation work separate from the working command-line prototype.
+
+See the [five-part model test plan](assignment/docs/model-test-plan.md), [current workflow](assignment/docs/system-workflow.md) and [Pre-Phase A to F mapping](assignment/docs/NASA_SE_HANDBOOK_CH3_CH4.md).
 
 ## Contribution workflow
 
@@ -136,6 +142,6 @@ All prompts used for this project are logged in `ai-prompt-log/log.md` as they'r
 
 ## References
 
-- [Dataset citation]
-- [NASA SE Handbook citation]
-- [Any other sources — see individual report References sections for the full list]
+- [UCI Student Performance dataset](https://doi.org/10.24432/C5TG7T)
+- [NASA Systems Engineering Handbook, 2016](https://www.nasa.gov/reference/systems-engineering-handbook/)
+- See the report References section for the other sources used.

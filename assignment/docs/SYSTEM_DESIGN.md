@@ -1,53 +1,14 @@
 # SARAH — System Design (Sprint backlog: write the System Design section)
 
-Ready to paste into report Section 5 ("System Overview: Subsystems, Workflow & Test Plan"). This
-expands the template's bare bones with content that's actually true of the built prototype —
-copy the prose in, adjust tone if you want it to sound less like a doc and more like your team's
-voice, but keep the facts as they are (they're pulled straight from the code and evaluation
-report).
+The assignment prototype contains data preparation, training and command-line predictions. The complete product will also include recommendations and a tutor dashboard.
 
 ## 5.1 System flow
 
-A tutor first chooses a **mode** — Early-Warning (no grades needed yet) or Confirmatory (at
-least one assessment score available) — then enters a student's information either one at a time
-(individual entry, via form fields) or as a whole class at once (bulk entry, by uploading a CSV
-roster). Confirmatory Mode itself has two cases, each served by its own separately trained
-model: a student with only a first assessment score (G1) is predicted by the G1-only model, and
-a student with both a first and second assessment score (G1+G2 average) is predicted by the
-G1+G2 model — the system routes automatically based on which grades are supplied (see 5.1.1).
-Both paths converge on the same pipeline: the raw input is cleaned, scaled, and converted
-into the feature set for the chosen setup (data processing); that setup's trained classifier
-predicts Low Risk or High Risk for each student (AI prediction); a rule-based engine looks at
-*why* that student is High Risk and picks the single weakest **actionable** factor
-(recommendation); and the dashboard displays the result — a sorted, colour-coded table for a
-whole roster, or a single result with an explanation for one student — for the tutor to act on.
-SARAH never contacts a student or takes any action itself; the tutor always makes the final call
-(see the README's "Human-in-the-loop by design" section).
+A tutor chooses Early-Warning or Confirmatory and supplies one student or a class CSV. The code validates the inputs, skips invalid student rows and chooses the matching saved model. Early-Warning uses no grades. Confirmatory needs G1 and uses either the G1-only model or the G1+G2 model, depending on whether a valid G2 is supplied.
 
-```
-Tutor selects mode: Early-Warning (no grades) or Confirmatory (grades available)
-        │
-        ▼
-Student data (attendance, study hours, past failures, [G1, and G2 if available, if Confirmatory])
-        │
-        ▼
-Data processing — cleaning, scaling, feature engineering (setup-specific schema)
-        │
-        ▼
-AI Prediction Model — Logistic Regression / Decision Tree (one trained model per setup: Early-Warning, Confirmatory G1-only, Confirmatory G1+G2)
-        │
-        ▼
-Risk Classification: LOW RISK or HIGH RISK
-        │
-        ▼
-Rule-based Recommendation Engine — weakest ACTIONABLE-factor analysis
-        │
-        ▼
-Tutor Dashboard — display + human decision
-```
+The current output is a risk label and an estimated High-Risk probability. Recommendations and the dashboard are planned for the project stage. The tutor decides what action to take.
 
-Jackie's architecture diagram is in [the figures folder](figures/SARAH_system_architecture.drawio.png).
-Check its labels against the current three model setups before putting it in the report.
+See the [current workflow diagram](system-workflow.md). [Jackie's original diagram](figures/SARAH_system_architecture.drawio.png) is retained as earlier design evidence; its labels are clarified in the current workflow.
 
 ### 5.1.1 Inputs and outputs, by setup
 
@@ -55,7 +16,7 @@ Check its labels against the current three model setups before putting it in the
 |---|---|---|---|
 | **When a tutor uses it** | Any time — no assessment grades needed | Once the first assessment (G1) exists | Once both the first and second assessments (G1, G2) exist |
 | **Inputs** | Attendance estimate, study hours/week, past failures | Same, plus G1 entered on the 0-20 scale | Same, plus G1 and G2 each entered on the 0-20 scale |
-| **Output** | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or past failures | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or G1 score | Low Risk / High Risk label, a confidence %, and (if High Risk) the weakest factor among attendance, study hours, or G1+G2 average score |
+| **Current output** | Risk label and estimated High-Risk probability | Same, with G1-only setup identified in CSV output | Same, with G1+G2 setup identified in CSV output |
 | **High-Risk recall (held-out test set)** | 0.423 | 0.769 | 0.885 |
 
 The code converts G1 or the G1/G2 average to a 0-100 `previous_score` internally.
@@ -79,9 +40,9 @@ them available.
 
 ### 5.1.2 Entering data: one student, or a whole class
 
-- **Individual entry:** the tutor fills in a form (dashboard sliders / CLI flags) for one
+- **Individual entry:** the tutor supplies command-line fields (a dashboard form is planned) for one
   student, providing all fields required for the selected mode.
-- **Bulk entry (CSV upload):** the tutor uploads a spreadsheet of a whole class. SARAH first
+- **Bulk entry (CSV file):** the tutor passes a class file using `--csv`; dashboard upload is planned. SARAH first
   checks the CSV has every required **column** for the selected mode — if a column is missing
   entirely, it stops and tells the tutor which column(s), rather than guessing.
 - **Missing or invalid data within a CSV** (a blank cell, a typo, or a value outside a sane range
@@ -105,7 +66,7 @@ Worth stating plainly, since it affects how confidently the report can talk abou
 **derived** from the UCI dataset's `absences` count (capped at 30, then rescaled), and in a real
 deployment would similarly be computed from whatever absence records exist, not read off a
 sensor. `study_hours` is derived from a **4-category bucket** (`studytime` — "<2 hrs", "2-5",
-"5-10", ">10 hrs/week") converted to each bucket's midpoint (1.5 / 3.5 / 7.5 / 12.0) — it is a
+"5-10", ">10 hrs/week") mapped to representative values (1.5 / 3.5 / 7.5 / 12.0; the top value is an assumption) — it is a
 reasonable estimate representing a self-reported range, not an exact hours-per-week figure. SARAH
 and its documentation should describe both as estimates throughout (report, README, dashboard
 labels), never as precise measurements — see `assignment/code/data_processing.py`'s module docstring for the
@@ -118,24 +79,20 @@ to identify at least one non-AI sub-system alongside the AI one.
 
 | Sub-system | Type | Role | Where it lives |
 |---|---|---|---|
-| Risk Prediction Model | **AI** | Three trained classifiers, one per setup (Early-Warning, Confirmatory G1-only, Confirmatory G1+G2) — Logistic Regression compared against a Decision Tree for each — that take that setup's processed features (3 for Early-Warning, 4 for both Confirmatory setups) and predict Low Risk or High Risk with a confidence score | `assignment/code/train_models.py`, `assignment/models/` |
-| Recommendation / Intervention Engine | Non-AI (rule-based) | For any student predicted High Risk, computes how far each feature sits from the training-set average (z-score) and identifies the weakest factor, then returns a targeted recommendation text | `assignment/code/recommend.py` |
-| Batch Roster Processor + Dashboard | Non-AI | Accepts either a single-student form entry or a CSV upload of a whole class roster, runs every student through the selected mode's pipeline, and displays a sorted risk table (whole class) or a single detailed result (one student), with a sidebar toggle to switch mode | `assignment/app/dashboard.py`, `assignment/code/predict.py` |
+| Risk Prediction Model | **AI** | Three trained classifiers, one per setup (Early-Warning, Confirmatory G1-only, Confirmatory G1+G2) — Logistic Regression compared against a Decision Tree for each — that take that setup's processed features (3 for Early-Warning, 4 for both Confirmatory setups) and predict Low Risk or High Risk with an estimated High-Risk probability | `assignment/code/train_models.py`, `assignment/models/` |
+| Recommendation / Intervention Engine | Non-AI (rule-based) | Planned: for a student predicted High Risk, compare how far each feature sits from the training-set average (z-score) and suggest support using agreed rules; thresholds and ties still need review | `assignment/code/recommend.py` |
+| Batch Roster Processor + Dashboard | Non-AI | Planned dashboard: accepts a single-student form entry or a CSV upload of a whole class roster, runs every student through the selected mode's pipeline, and displays a sorted risk table (whole class) or a single detailed result (one student), with a sidebar toggle to switch mode | `assignment/app/dashboard.py`, `assignment/code/predict.py` |
 
-**Implementation status:** as of this PR, only the Risk Prediction Model and the CSV/roster
+**Implementation status:** in the current prototype, only the Risk Prediction Model and the CSV/roster
 prediction path (`predict.py`) are built and tested. The Recommendation Engine (`recommend.py`)
 and the Dashboard (`dashboard.py`) are designed but not yet implemented — the paths listed above
 are their planned locations, not evidence they currently exist.
 
-**Why the Recommendation Engine is non-AI, deliberately:** the brief asks for at least one
-non-AI sub-system, and a rule-based weakest-factor lookup is the right tool for this job anyway —
-it needs to be transparent and easy for a tutor to trust ("this student is flagged mainly because
-of attendance"), not a second black-box model. It also stays cheap to run and re-run, with no
-separate training step of its own, and never contradicts itself between runs.
+**Why use rules for recommendations?** Simple rules can suggest a support action in words a tutor can check. These suggestions are separate from the classifier and do not explain the cause of its prediction. Agree thresholds, ties and actionable factors before implementation. The existing `feature_stats.json` contains only G1+G2 development statistics; do not apply it to every setup without review.
 
 ## 5.3 How the sub-systems connect (data contract)
 
-- **Dashboard → Data processing:** raw fields for the selected mode (attendance, study hours,
+- **Dashboard → Data processing (planned interface):** raw fields for the selected mode (attendance, study hours,
   failures, and — Confirmatory Mode only — G1, and G2 if available) are validated and converted
   into the exact feature columns that setup's model expects (`EARLY_WARNING_FEATURES` /
   `CONFIRMATORY_FEATURES` in `assignment/code/data_processing.py`).
@@ -153,8 +110,8 @@ separate training step of its own, and never contradicts itself between runs.
   receive the *raw* (unscaled) feature values, the predicted label, and the active mode, running
   its weakest-factor analysis only when the label is High Risk. Not yet implemented — see the
   "Implementation status" note above.
-- **Recommendation Engine → Dashboard:** returns a small structured result (predicted label,
-  confidence, weakest actionable factor, recommendation text) that the dashboard renders per
+- **Recommendation Engine → Dashboard (planned):** returns a small structured result (predicted label,
+  estimated probability, selected support factor, recommendation text) that the dashboard renders per
   student, and aggregates into the sorted class-wide table for the bulk-upload path.
 
 ## 5.4 Model selection (feeds into Section 6, AI Technique Comparison)
@@ -210,15 +167,11 @@ Early-Warning Mode's held-out recall (0.423) is far lower than Confirmatory Mode
 only, 0.885 with G1+G2) — a direct, honestly-reported difference observed when predicting risk without
 assessment grades, using only attendance, study habits, and past failures instead of the far stronger
 `previous_score` predictor (correlation -0.72 with risk, versus -0.08 for attendance and study
-hours individually — see `docs/eda_findings.md`). SARAH treats this as the core design tradeoff,
-not a flaw to hide: Early-Warning Mode is the system's **primary, default mode** because catching
-risk earlier — even less accurately — is the entire point of an early-warning system, while
-Confirmatory Mode (either setup) stays available as a more accurate second look once grades
-exist. Full discussion: `docs/CLASS_IMBALANCE_NOTE.md` §8.
+hours individually — see `docs/eda_findings.md`). Early-Warning remains the default no-grade mode. The results do not establish when in the term the inputs were available, and the model misses many High Risk students. Confirmatory provides a further check once grades are available. Discuss the false alarms and missed students with the tutor; do not treat the output as a decision by itself.
 
 ## 5.6 Where to use this in the report
 
 Use this design in report Section 5, and the comparison results in Sections 6-7.
-Benjamin's test-plan table (#27) is in [report section 8](../report/Document).
-Jackie's earlier evaluation plan (#18) is in [Model Test plan](<Model Test plan>);
+Benjamin's test-plan table (#27) is in [report section 8](../report/Document.md).
+Jackie's earlier evaluation plan (#18) is in [five-part model test plan](model-test-plan.md);
 use the implemented split described above when reporting the current results.

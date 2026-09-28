@@ -15,8 +15,8 @@ A supplied G2 that is invalid (out of range, or not a number) is an ERROR
 -- it is reported, not silently treated as "G2 absent". Only a genuinely
 missing/blank G2 routes to the G1-only model.
 
-study_hours is capped at 40 (a hard week has 168 hours; 40 is a generous
-ceiling for study time and rejects obvious data-entry mistakes like 999).
+study_hours must be between 0 and 40 inclusive. Values above 40 are
+rejected, not clipped. This is the agreed input rule, not a dataset limit.
 
 For a CSV of a whole class: a row with a missing or invalid value is
 SKIPPED, with the reason printed, while every valid row is still
@@ -30,7 +30,7 @@ Run with (from the repository root):
   python assignment/code/predict.py --mode confirmatory --attendance 62 \
       --study-hours 4 --failures 1 --g1 12 --g2 14
   python assignment/code/predict.py --csv assignment/data/sample_roster.csv \
-      --out assignment/reports/roster_predictions.csv
+      --out assignment/report/roster_predictions.csv
 """
 
 import argparse

@@ -140,12 +140,7 @@ tutor a few minutes checking a student who turns out to be fine.
 (Decision Tree depth=4, balanced) has real weaknesses on development data — accuracy of 0.617 and
 precision of only 0.422, meaning a large share of its High Risk flags are false alarms — and this
 weakness carries through to the held-out test set too (precision 0.44, recall 0.423 — see
-`docs/evaluation_report.md`). This is the direct, measured consequence of the team's decision to
-keep Early-Warning mode to just three weak-individually features (`attendance_pct` and
-`study_hours` each correlate only -0.08 with risk; only `failures` at +0.34 carries real signal —
-see `docs/eda_findings.md`). It is reported as-is, not smoothed over, because it is the honest
-cost of the narrow, four-feature design and directly supports the accuracy-vs-earliness
-discussion below.
+`docs/evaluation_report.md`). The feature set is limited: attendance and study hours each have weak individual correlations with risk, while failures has a stronger association. These results do not prove that feature selection alone caused the performance gap. More data and further investigation would be needed.
 
 ## 7. Selected combination per setup
 
@@ -174,13 +169,7 @@ observed in our current experiments, not a proven irreducible one: predicting ri
 assessment grades, using only attendance, study habits, and past failures instead of the single
 strongest predictor available (`previous_score`, correlation -0.72 with risk), is expected to
 perform worse given the narrower feature set — but these results do not prove that better
-Early-Warning performance is impossible with more data or additional features. SARAH makes this
-tradeoff explicit rather than hiding it: **Early-Warning Mode is the system's primary, default
-mode**, because catching risk *earlier* — even less accurately — is the entire point of an
-early-warning system; a highly accurate prediction that only arrives once grades already exist is
-not early anymore. Confirmatory Mode (either setup) stays available for a more accurate second
-look once grades come in, and the two modes together let a tutor see both how early a flag came
-and how much to trust it.
+Early-Warning performance is impossible with more data or additional features. Early-Warning remains the default no-grade mode. Confirmatory is available when grades exist. The dataset has no dated weekly snapshots, so this experiment does not establish day-one or week-specific accuracy. Model probabilities have not been checked for calibration and should not be treated as guarantees.
 
 ## 9. Where this shows up in the report
 

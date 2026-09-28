@@ -25,28 +25,21 @@ Each phase ends in a Key Decision Point where the project either proceeds, is re
 cancelled — the whole chapter is essentially "what work happens, in what order, before you're
 allowed to move to the next stage."
 
-**How this applies to SARAH:** our team's own project brief already maps itself onto this
-framework — the Assignment and the Final Project are, in effect, our own Pre-Phase A/Phase A and
-Phase B. Concretely:
+## SARAH phase mapping
 
-- **Pre-Phase A / Phase A (Concept Studies, Concept and Technology Development)** ≈ our project
-  proposal stage: pitching the SARAH idea, identifying the problem (students flagged too late),
-  and getting tutor approval before committing development time — the same "prove the concept is
-  worth funding/committing to before building it" logic NASA applies at Pre-Phase A (NASA, 2016,
-  §3.3, p. 21).
-- **Phase B (Preliminary Design and Technology Completion)** ≈ this Assignment: our data
-  pipeline, EDA, feature selection, and the working Logistic Regression / Decision Tree prototype
-  are exactly "preliminary design and technology completion" — proving the chosen approach works
-  before committing to the full build (NASA, 2016, §3.5, p. 25).
-- **Phase C/D (Final Design, Integration and Test)** ≈ our Final Project: turning the prototype
-  into the finished dashboard, testing it end-to-end, and delivering the demo video (NASA, 2016,
-  §3.6–§3.7, pp. 27–29).
+We adapt Pre-Phase A through Phase F to a student project. The assignment due on 3 October covers the early design work and a classifier prototype. Later phases describe the complete project due on 7 November; they are not claims of a live university deployment.
 
-We are a small student prototype, not a NASA spaceflight program, so we don't have formal Key
-Decision Point reviews or Phase E/F (operations, decommissioning) — those stages are outside this
-unit's scope. The value of citing Chapter 3 is structural: it's the justification for why our
-report is organised as "Assignment = early life-cycle phases, Final Project = later phases,"
-which is exactly the framing the project brief already uses.
+| Phase | Application to SARAH | Evidence / next output |
+|---|---|---|
+| Pre-Phase A: Concept studies | Identify the problem and intended users; discuss the idea with the tutor. | Problem statement and tutor feedback. |
+| Phase A: Concept and technology development | Explore the data, choose inputs and compare possible approaches. | Dataset checks, EDA and feature selection. |
+| Phase B: Preliminary design and technology completion | Define the two modes, system parts and tests; investigate the classifier prototype. | Requirements, diagram, model comparison and assignment report. |
+| Phase C: Final design and fabrication | Complete the dashboard and recommendation rules. | Working components and updated design. |
+| Phase D: Integration and testing | Connect the components and test the complete tutor workflow. | Integration tests, fixes and tutor feedback. |
+| Phase E: Operations and sustainment | Prepare deployment and maintenance plans, the user guide and a demo video. | Deployment/maintenance plan, user guide and demo video. |
+| Phase F: Closeout | Polish the work, rehearse the presentation and submit the documents and project files. | Final report, tested code, slides, signed declaration and submission backup. |
+
+The Phase E/F activities are our course-level adaptation. Weekly tutor reviews guide changes; we do not claim to follow NASA's formal approval process. Sprint 4 finishes the assignment prototype and report. A sprint number is not a NASA phase number.
 
 ## Chapter 4 — "System Design Processes" (pp. 43–76)
 
@@ -74,7 +67,7 @@ as section headings:
   student is High Risk or Low Risk." This is the §4.2 translation step — the vague stakeholder
   want ("identify at-risk students early") becomes a concrete, testable requirement (specific
   inputs, a binary classification output), which is what actually got built in
-  `src/data_processing.py` and `src/train_models.py`.
+  `assignment/code/data_processing.py` and `assignment/code/train_models.py`.
 
 Citing §4.1 and §4.2 by name and page also strengthens the report's methodology section: it shows
 the team didn't just build a classifier and call it "system engineering" — the actual
@@ -88,7 +81,7 @@ section numbers alone when referring to the phase/process in general:
 - "We follow the System Engineering Product Life Cycle described in the NASA Systems Engineering
   Handbook (NASA, 2016), specifically the Formulation phases — Pre-Phase A through Phase B
   (NASA, 2016, §3.3–§3.5, pp. 21–27) — for this Assignment, and the Implementation phases —
-  Phase C and D (NASA, 2016, §3.6–§3.7, pp. 27–29) — for the Final Project."
+  Phase C through F (NASA, 2016, §3.6–§3.9) — for the Final Project."
 - "Our Stakeholder Expectation and Technical Requirement sections follow the Stakeholder
   Expectations Definition Process and Technical Requirements Definition Process described in the
   NASA Systems Engineering Handbook (NASA, 2016, §4.1, p. 45; §4.2, p. 54)."
@@ -101,13 +94,5 @@ section numbers alone when referring to the phase/process in general:
 - [x] Add separate in-text citations and the full handbook reference, with section/page details
       (above). Page numbers verified against the handbook's own table of contents, not guessed.
 
-**File/report link for the issue's "Finished when" field:** `docs/NASA_SE_HANDBOOK_CH3_CH4.md`
+**File/report link for the issue's "Finished when" field:** `assignment/docs/NASA_SE_HANDBOOK_CH3_CH4.md`
 (this file) — once pushed, paste that path (or the GitHub blob URL) into the issue.
-
-## Where this replaces/upgrades existing report content
-
-`report_template/generate.js` Section 2 ("System Engineering Process Overview") currently cites
-the handbook only in general terms ("Chapter 3 of the NASA Systems Engineering Handbook," no
-section/page). Swap its intro paragraph and the "Evidence" column of the phase table for the
-section/page-cited versions above — the phase-mapping table in that file already lines up almost
-exactly with the Chapter 3/4 structure above, it just needs the specific citations added.

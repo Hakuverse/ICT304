@@ -243,11 +243,13 @@ def main():
             "f1_high_risk": round(f1_score(y_test, pred, pos_label=1, zero_division=0), 3),
         }
 
-        fig, ax = plt.subplots(figsize=(4, 4))
+        fig, ax = plt.subplots(figsize=(5, 4.5))
         ConfusionMatrixDisplay.from_estimator(
             model, X_test, y_test, display_labels=["Low Risk", "High Risk"], cmap="Blues", ax=ax
         )
-        ax.set_title(f"{name} — held-out test confusion matrix")
+        title = {"early_warning": "Early-Warning", "confirmatory_g1": "Confirmatory: G1",
+                 "confirmatory_g1_g2": "Confirmatory: G1 + G2"}[name]
+        ax.set_title(f"{title}\nReserved test students")
         fig.tight_layout()
         fig.savefig(FIG_DIR / f"confusion_{name}.png", dpi=150)
         plt.close(fig)
@@ -281,10 +283,10 @@ def main():
         "mode predicts without assessment grades, using only attendance, study habits, and "
         "past failures, so weaker results here are expected given the narrower feature set "
         "-- but these results do not prove that better Early-Warning performance is "
-        "impossible with more data or features. SARAH defaults to Early-Warning mode "
-        "regardless, since catching risk earlier -- even less accurately -- is the point of "
-        "an early-warning system; Confirmatory mode is available as a second look once "
-        "grades exist. This dataset has no week-by-week records, so these results do not "
+        "impossible with more data or features. Early-Warning is the default no-grade mode; "
+        "Confirmatory is available once grades exist. Review missed students and false "
+        "alarms alongside recall before considering practical use. "
+        "This dataset has no week-by-week records, so these results do not "
         "establish day-one or week-specific accuracy.\n"
     )
 
@@ -294,7 +296,8 @@ def main():
     with open(MODELS_DIR / "feature_stats.json", "w", encoding="utf-8") as f:
         json.dump(feature_stats, f, indent=2)
 
-    lines.append("## Feature statistics (Confirmatory G1+G2 development split, used for recommendation z-scores)\n")
+    lines.append("## Feature statistics (Confirmatory G1+G2 development split, for planned recommendation work)\n")
+    lines.append("These statistics describe this setup only. Recommendation code is not yet implemented; do not reuse them for every setup without review.\n")
     lines.append("```json")
     lines.append(json.dumps(feature_stats, indent=2))
     lines.append("```")

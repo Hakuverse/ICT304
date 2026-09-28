@@ -99,9 +99,9 @@ def write_findings_md(corr_raw, corr_feat, outlier_summary, n_rows):
         f"Generated from `eda.py` against the dataset in `assignment/data` ({n_rows} rows).\n",
         "## 1. Correlation check\n",
         f"G1 vs G3 correlation: {g1_g3}. G2 vs G3 correlation: {g2_g3}.\n",
-        "This is why G3 is excluded as a model feature and used only to build the risk "
-        "label: including something this strongly tied to G3 would leak the answer into "
-        "the model.\n",
+        "G3 is excluded because it directly defines the risk label (G3 < 10). "
+        "G1 and G2 are allowed in Confirmatory mode; their correlation with G3 "
+        "is not itself leakage.\n",
         "Correlation of each engineered feature with risk (1 = High Risk):\n",
     ]
     for feat, val in risk_corr.items():

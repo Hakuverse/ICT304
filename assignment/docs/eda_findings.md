@@ -6,7 +6,7 @@ Generated from `eda.py` against the dataset in `assignment/data` (395 rows).
 
 G1 vs G3 correlation: 0.8. G2 vs G3 correlation: 0.9.
 
-This is why G3 is excluded as a model feature and used only to build the risk label: including something this strongly tied to G3 would leak the answer into the model.
+G3 is excluded because it directly defines the risk label (G3 < 10). G1 and G2 are allowed in Confirmatory mode; their correlation with G3 is not itself leakage.
 
 Correlation of each engineered feature with risk (1 = High Risk):
 
