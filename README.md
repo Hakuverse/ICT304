@@ -6,9 +6,9 @@ Repository for ICT304 (AI System Design) at Murdoch University — covering both
 
 |Name | GitHub Handle |
 |---|---|
-| Benjamin (Guo Bing Jie) | [@Hakuverse](https://github.com/Hakuverse) |
-| Anna (Lee Shi Min) | [@lee-shi-min](https://github.com/lee-shi-min) |
-| Jackie (Cheng Zi Sen) | [@s123-bit](https://github.com/s123-bit) |
+| Benjamin | [@Hakuverse](https://github.com/Hakuverse) |
+| Anna | [@lee-shi-min](https://github.com/lee-shi-min) |
+| Jackie | [@s123-bit](https://github.com/s123-bit) |
 
 
 ## What is Project SARAH?

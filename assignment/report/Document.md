@@ -13,8 +13,6 @@ prototype runs. Keep notes and unchecked items out of the final submitted prose.
 
 **Team:** Benjamin, Anna and Jackie
 
-**Students:** Lee Shi Min (35702683), Guo Bing Jie (36043683), Cheng Zi Sen (36065903)
-
 **Tutor:** George Ng. **Submission date:** [record actual submission].
 
 ## 1. Introduction and problem
