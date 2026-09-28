@@ -13,7 +13,9 @@ prototype runs. Keep notes and unchecked items out of the final submitted prose.
 
 **Team:** Benjamin, Anna and Jackie
 
-**Student IDs / tutor / submission date:** [Add details]
+**Students:** Lee Shi Min (35702683), Guo Bing Jie (36043683), Cheng Zi Sen (36065903)
+
+**Tutor:** George Ng. **Submission date:** [record actual submission].
 
 ## 1. Introduction and problem
 
@@ -24,7 +26,7 @@ currently identify students needing support and what SARAH aims to improve.]
 
 [Add the team's explanation of the phases, what is covered in the assignment and
 what will be completed in the final project. Describe the weekly tutor reviews.
-Use the checked NASA references from Anna's #20 work; agree one phase mapping.]
+Use the [Pre-Phase A to F mapping](../docs/NASA_SE_HANDBOOK_CH3_CH4.md). Phase E covers deployment/maintenance plans, user guide and demo video; Phase F covers closeout, polish, rehearsal and final submission. Mark later project work as planned.]
 
 ## 3. Requirements and proposed solution
 
@@ -66,8 +68,7 @@ Use [the evaluation report](../docs/evaluation_report.md) for the measured resul
 
 ## 8. Evaluation method and test plan
 
-[Insert Jackie's evaluation method from #18 after review. Explain the shared folds,
-training-only preprocessing and why the metrics matter. Then review the test plan below.]
+[Include all five parts and the summary of the [model test plan](../docs/model-test-plan.md). It uses 316 development students for five-fold validation and 79 reserved students for final testing. Then include the system test plan below.]
 
 SARAH needs checks for its data preparation, prediction models, recommendations and
 student input screens. The table below is our plan. A planned test is not a passed
@@ -114,6 +115,23 @@ On macOS, after the setup in the README:
 
 Record the macOS tester's name, date and result; instructions being available does
 not mean the teammate check has already been completed.
+
+### Sprint 4 evidence to include before submission
+
+The [28 September prototype checks](../docs/test-results.md) record the current Windows results. Add the team's final submission-folder and macOS evidence alongside them.
+
+Keep the existing introduction, feature discussion, diagram and five-part model test plan. Add the completed Sprint 4 work to the report before 3 October:
+
+| Report part | Evidence to include |
+|---|---|
+| Prototype | Submitted code, data, saved models, package versions and run commands. |
+| Technique comparison | All 12 development comparisons from [evaluation_report.md](../docs/evaluation_report.md), with the selection rule and settings. |
+| Final results | Separate 79-student test results and confusion matrices for all three selected setups. |
+| Discussion | Recall, false alarms, missed students, the no-grade limitation and lack of proven week-specific performance. |
+| Software checks | Actual test command/output, tester, date and operating system; sample CSV screenshot. |
+| Submission | Tool-use evidence, references, agreed contributions and completed required forms/appendices. |
+
+The issue #28 checklist records that a teammate run and report assembly have been checked. Copy the actual name/date/output and final report location into this evidence section; a checked issue alone is not the test record. Repeat the run if the submitted code changes.
 
 ## 9. Remaining project plan
 
@@ -202,7 +220,7 @@ the other members still need to provide their own contribution details and signa
 PR #42 added the original #26 input checks, #27 test-plan table and #28 report outline.
 PR #47 was closed in favour of Anna's #48; this did not remove #42's work. PR #48
 added the three trained setups and initial results; #44 and #46 added their design
-and comparison notes. This follow-up updates the remaining CSV handling and instructions.
+and comparison notes. PR #49 merged the remaining CSV handling and instruction updates. Issues #26 and #27 are closed.
 Team decisions, report assembly and signatures still need the team; they are not
 marked complete just because code has merged.
 

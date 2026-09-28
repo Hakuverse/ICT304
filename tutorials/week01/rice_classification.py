@@ -14,7 +14,7 @@ https://doi.org/10.18201/ijisae.2019355381
 Data: https://archive.ics.uci.edu/ml/datasets/Rice+%28Cammeo+and+Osmancik%29
 
 How to run:
-    1. Install Python 3.9+ and the packages listed in requirements.txt
+    1. Install Python 3.11+ and the packages listed in requirements.txt
        (pip install -r requirements.txt)
     2. Put Rice_Cammeo_Osmancik.arff in the same folder as this script
     3. Run:  python rice_classification.py
@@ -29,6 +29,7 @@ from scipy.io import arff
 
 from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
@@ -128,7 +129,7 @@ for name, model in models.items():
     auc = roc_auc_score(y_test, y_proba) if y_proba is not None else np.nan
 
     # 5-fold cross-validation on the training set (more robust accuracy estimate)
-    cv_scores = cross_val_score(model, X_train_scaled, y_train, cv=skf, scoring="accuracy")
+    cv_scores = cross_val_score(make_pipeline(StandardScaler(), model), X_train, y_train, cv=skf, scoring="accuracy")
 
     results.append({
         "Model": name,

@@ -32,7 +32,7 @@ The two modes have been approved:
 | Early-Warning | Attendance estimate, study-hours estimate and past failures |
 | Confirmatory | The same three inputs, plus the previous assessment score |
 
-The previous score is currently calculated from G1 and G2, so both grades need to be available for that calculation. Personal and family-background details are outside our chosen input list.
+At this stage, the previous score used G1 and G2 together. In Sprint 3 we changed the rule: G1 is required and G2 is optional, with a separate model for each setup. See the [current mode guide](mode-guide.md). Personal and family-background details are outside our chosen input list.
 
 The three main parts are the risk prediction model, the recommendation engine and the class-upload/dashboard part. The idea is to help a teacher see who needs attention and what support could be offered.
 
@@ -43,8 +43,10 @@ The three main parts are the risk prediction model, the recommendation engine an
 - [Data exploration code](../code/eda.py)
 - [Findings](eda_findings.md), [feature selection notes](feature_selection.md) and [charts](figures/)
 
-## Follow-up in Sprint 3
+## Follow-up recorded at the end of Sprint 2
 
 The decisions are ahead of some of the code and documents. We still need to add and test the two modes in [#26](https://github.com/Hakuverse/ICT304/issues/26), then update the feature notes to match. The current distribution charts combine both risk groups; the separate High/Low Risk comparison requested in #15 still needs checking. We also need the system diagram and a simple testing plan.
 
 [Sprint 1](sprint1-planning.md) | [Sprint 3](sprint3-planning.md)
+
+Update, 28 September: issues #26 and #27 are now closed and the prototype is in main. The distribution chart still combines the risk groups; check the requested separate-group analysis when finishing the report.

@@ -57,7 +57,7 @@ estimated probability of High Risk; it is not a guarantee about the student.
 The included sample is invented for software checks, not accuracy measurement.
 Students A and B are valid (G1-only and G1+G2); C has invalid attendance and D has
 invalid G2 text. The last two should be skipped with explanations.
-Add `--out assignment/reports/roster_predictions.csv` to save valid results.
+Add `--out assignment/report/roster_predictions.csv` to save valid results.
 
 - Required columns: `attendance_pct`, `study_hours`, `failures`; add `G1` for Confirmatory.
 - `student_id` and `G2` are optional. Without an ID, errors/results use a data-row number.
