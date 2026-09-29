@@ -64,6 +64,13 @@ limitations. Link to submitted code and results; keep unbuilt features clearly m
 as planned. PR #48 added training and prediction for Early-Warning, G1-only and G1+G2.
 Use [the evaluation report](../docs/evaluation_report.md) for the measured results.]
 
+Issue #33 handoff: use the [comparison discussion](../docs/issue33_report.md)
+for model choices, final errors, the feature-importance chart and limitations.
+Its images reuse `assignment/docs/figures/`. See the
+[verification and submission notes](../docs/issue33-verification.md) for the
+recorded environment and remaining peer checks. This file is still the working
+outline; the team must identify and check the completed submission report.
+
 ## 8. Evaluation method and test plan
 
 [Include all five parts and the summary of the [model test plan](../docs/model-test-plan.md). It uses 316 development students for five-fold validation and 79 reserved students for final testing. Then include the system test plan below.]

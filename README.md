@@ -96,7 +96,7 @@ python3 -m venv .venv
 ```
 
 No environment activation is needed. The test command should finish with `OK`
-(currently 38 tests). The sample should predict A and B and skip C and D with reasons.
+(currently 41 tests). The sample should predict A and B and skip C and D with reasons.
 The commands have been checked against the project paths; a teammate still needs
 to run them on macOS and record the result.
 
@@ -120,6 +120,32 @@ To check input preparation, model routing and CSV handling:
 
 See [Using the two modes](assignment/docs/mode-guide.md) for examples. The testing plan
 and assignment preparation checklist are in [the report draft](assignment/report/Document.md).
+
+### Issue #33 comparison and figures
+
+Read the [model comparison discussion](assignment/docs/issue33_report.md) for the
+report sections on model choices, errors, feature importance and limitations.
+The script checks the saved models against the recorded results; it does not retrain.
+
+To refresh its generated report, CSV tables, run record and feature-importance chart:
+
+```powershell
+.venv\Scripts\python.exe assignment/code/issue33_comparison.py --overwrite
+```
+
+On macOS:
+
+```bash
+.venv/bin/python assignment/code/issue33_comparison.py --overwrite
+```
+
+The report and tables stay in `assignment/docs/`, and the feature-importance chart
+stays in `assignment/docs/figures/`. The existing confusion matrices are reused.
+`--overwrite` replaces only the script's generated outputs, so save any manual
+report edits elsewhere first. Without this option, existing outputs are protected.
+Use the versions in `assignment/code/requirements.txt` for the submission check.
+See [the run evidence](assignment/docs/issue33-verification.md) for the version history
+and remaining submission checks.
 
 
 ## Assignment submission

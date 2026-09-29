@@ -51,17 +51,17 @@ Always predicting Low Risk gives accuracy 0.671, precision 0.000, recall 0.000 a
 
 G1-only finds 20 High-Risk students, misses 6 and produces 8 false alarms. G1 plus G2 finds 23, misses 3 and produces 5 false alarms. Grades improve performance in this experiment, but waiting for them reduces how early the result can be available.
 
-![Early-Warning confusion matrix](../figures/confusion_early_warning.png)
+![Early-Warning confusion matrix](figures/confusion_early_warning.png)
 
-![Confirmatory: G1 confusion matrix](../figures/confusion_confirmatory_g1.png)
+![Confirmatory: G1 confusion matrix](figures/confusion_confirmatory_g1.png)
 
-![Confirmatory: G1 + G2 confusion matrix](../figures/confusion_confirmatory_g1_g2.png)
+![Confirmatory: G1 + G2 confusion matrix](figures/confusion_confirmatory_g1_g2.png)
 
 Rows in these matrices are actual classes; columns are predicted classes. False negatives are missed High-Risk students, and false positives are false alarms.
 
 ## Feature-importance chart and explanation
 
-![Early-Warning feature importance](early_warning_feature_importance.png)
+![Early-Warning feature importance](figures/early_warning_feature_importance.png)
 
 | Input | Relative importance |
 | --- | --- |
@@ -87,7 +87,7 @@ The chart does not show whether an input increases or decreases risk, prove caus
 
 ## Handoff to Issue #34
 
-Use the comparison, selected-model explanation, final results, four figures and limitations above in the prototype/results/discussion sections. Keep development and reserved-test results separate. The CSV files provide the underlying tables. This section supplements the existing diagram and five-part model test plan; it does not replace them.
+Use the comparison, selected-model explanation, final results, four figures and limitations above in the prototype/results/discussion sections. Keep development and reserved-test results separate. The CSV files provide the underlying tables. The confusion matrices are reused from figures/; only the feature-importance chart is generated here. This section supplements the existing diagram and five-part model test plan; it does not replace them.
 
 - [ ] Jackie reviews the generated text and charts against the source report.
 - [ ] Another teammate reviews the comparison before Issue #33 is closed.
