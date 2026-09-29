@@ -3,11 +3,12 @@ r"""Generate SARAH Issue #33 evidence without retraining or replacing models.
   Windows: .venv\Scripts\python.exe assignment/code/issue33_comparison.py
   macOS:   .venv/bin/python assignment/code/issue33_comparison.py
 
-Outputs: assignment/docs/issue33/ (Markdown report, CSV tables and PNG figures).
+Outputs: report, CSV tables and run_details.txt in assignment/docs/;
+the new feature-importance chart in assignment/docs/figures/.
+Reuses existing confusion matrices without rewriting or copying them.
 Uses the existing requirements.txt. Only load the team's trusted joblib files.
 Use --repo PATH when running this script from outside the repository.
-Use --output PATH to choose a new output folder. Existing output folders are
-rejected so that previous evidence is not accidentally replaced.
+Use --overwrite to refresh only this script's outputs after reviewing any edits.
 """
 
 import argparse
@@ -49,7 +50,8 @@ def metrics(y, pred):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path)
-    parser.add_argument("--output", type=Path)
+    parser.add_argument("--overwrite", action="store_true",
+                        help="Replace the generated Issue #33 report, tables, chart and run record.")
     args = parser.parse_args()
     candidates = [Path.cwd(), *Path(__file__).resolve().parents]
     repo = args.repo.resolve() if args.repo else next(
@@ -57,9 +59,19 @@ def main():
     if repo is None:
         parser.error("Cannot find ICT304. Run from its root or supply --repo PATH.")
     root = repo / "assignment"
-    output = (args.output or root / "docs/issue33").resolve()
-    if output.exists():
-        parser.error("Output folder already exists. Use --output with a new folder name.")
+    output = root / "docs"
+    figures = output / "figures"
+    generated = [output / name for name in (
+        "issue33_report.md", "development_comparison.csv", "final_test_results.csv",
+        "feature_importance.csv", "run_details.txt")]
+    generated.append(figures / "early_warning_feature_importance.png")
+    if not args.overwrite and any(path.exists() for path in generated):
+        parser.error("Issue #33 outputs already exist. Review them, then add --overwrite to refresh them.")
+    confusion_figures = [figures / f"confusion_{name}.png" for name in SETUPS]
+    missing = [path.name for path in confusion_figures if not path.is_file()]
+    if missing:
+        parser.error("Missing existing confusion matrices: " + ", ".join(missing) +
+                     ". Restore these from the reviewed repository before running this script.")
     report_path = root / "docs/evaluation_report.md"
     report = report_path.read_text(encoding="utf-8")
     spec = importlib.util.spec_from_file_location("sarah_issue33_data", root / "code/data_processing.py")
@@ -91,7 +103,7 @@ def main():
     dev_idx, test_idx = train_test_split(y.index, test_size=0.2, stratify=y, random_state=42)
     finals, selections, models = [], [], {}
     fingerprints = [report_path, root / "data/student-mat.csv", root / "code/data_processing.py",
-                    root / "code/train_models.py"]
+                    root / "code/train_models.py", *confusion_figures]
     for name, (_, _, label) in SETUPS.items():
         X, target = full[name]
         if not target.equals(y):
@@ -145,7 +157,7 @@ def main():
     if finals != expected_finals or actual_scores != dict(zip(expected_keys, expected_scores)):
         raise ValueError("Results have changed. Review the discussion before using this version of the script.")
 
-    output.mkdir(parents=True)
+    output.mkdir(parents=True, exist_ok=True)
     dev.to_csv(output / "development_comparison.csv", index=False)
     headers = ["Setup", *METRICS, "Correct Low", "False alarms", "Missed High", "Found High"]
     pd.DataFrame(finals, columns=headers).to_csv(output / "final_test_results.csv", index=False)
@@ -162,7 +174,7 @@ def main():
     ax.set_xlabel("Share of the tree's weighted impurity reduction")
     ax.set_title("Early-Warning Decision Tree\nRelative input importance in the fitted model")
     fig.tight_layout()
-    fig.savefig(output / "early_warning_feature_importance.png", dpi=160)
+    fig.savefig(figures / "early_warning_feature_importance.png", dpi=160)
     plt.close(fig)
 
     baseline = metrics(y.loc[test_idx], np.zeros(len(test_idx), dtype=int))
@@ -208,12 +220,12 @@ def main():
         "but waiting for them reduces how early the result can be available.", ""]
 
     for name in SETUPS:
-        text += [f"![{SETUPS[name][2]} confusion matrix](../figures/confusion_{name}.png)", ""]
+        text += [f"![{SETUPS[name][2]} confusion matrix](figures/confusion_{name}.png)", ""]
 
     text += ["Rows in these matrices are actual classes; columns are predicted classes. "
              "False negatives are missed High-Risk students, and false positives are false alarms.", "",
              "## Feature-importance chart and explanation", "",
-             "![Early-Warning feature importance](early_warning_feature_importance.png)", "",
+             "![Early-Warning feature importance](figures/early_warning_feature_importance.png)", "",
              table(["Input", "Relative importance"], [[labels[k], f"{v:.1%}"] for k, v in importance.items()]), "",
              f"The largest importance belongs to {labels[importance.index[0]].lower()} "
              f"({importance.iloc[0]:.1%}). This means it contributed the largest share of weighted "
@@ -247,7 +259,8 @@ def main():
              "## Handoff to Issue #34", "",
              "Use the comparison, selected-model explanation, final results, four figures and limitations above "
              "in the prototype/results/discussion sections. Keep development and reserved-test results separate. "
-             "The CSV files provide the underlying tables. This section supplements the existing diagram and "
+             "The CSV files provide the underlying tables. The confusion matrices are reused from figures/; "
+             "only the feature-importance chart is generated here. This section supplements the existing diagram and "
              "five-part model test plan; it does not replace them.", "",
              "- [ ] Jackie reviews the generated text and charts against the source report.",
              "- [ ] Another teammate reviews the comparison before Issue #33 is closed.",
@@ -267,7 +280,7 @@ def main():
         f"pandas: {pd.__version__}; numpy: {np.__version__}; joblib: {joblib.__version__}",
         "Checks: 12 development rows; saved-model type/features/classes; matching reserved-test metrics.",
         "Development scores are read from the existing report, not recomputed.",
-        "No source report, training code, model or prompt log was changed.",
+        "No source evaluation report, training code, model, confusion matrix or prompt log was changed.",
         "",
         "Input SHA-256:",
     ]
@@ -282,7 +295,8 @@ def main():
         "\n".join(provenance) + "\n", encoding="utf-8")
 
     print(f"Created Issue #33 handoff in: {output}")
-    print("Open issue33_report.md and the PNG figures. Teammate review is still required.")
+    print("Open issue33_report.md. The new chart is in docs/figures/; existing confusion matrices are reused.")
+    print("Teammate review is still required.")
     print("Feature importance:")
     print(importance.to_string())
 

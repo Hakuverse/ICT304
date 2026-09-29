@@ -25,7 +25,7 @@ python3 -m venv .venv
 ```
 
 If `.venv` is already set up, start at the install command. No activation is needed.
-Expect `OK` from the tests (currently 38) and predictions for A/B with C/D skipped.
+Expect `OK` from the tests (currently 41) and predictions for A/B with C/D skipped.
 For all examples below, replace `.venv\Scripts\python.exe` with `.venv/bin/python`
 on macOS. This also applies to the training command.
 
