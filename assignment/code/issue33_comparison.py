@@ -1,4 +1,4 @@
-"""Generate SARAH Issue #33 evidence without retraining or replacing models.
+r"""Generate SARAH Issue #33 evidence without retraining or replacing models.
 
   Windows: .venv\Scripts\python.exe assignment/code/issue33_comparison.py
   macOS:   .venv/bin/python assignment/code/issue33_comparison.py
@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 import sklearn
 from sklearn.metrics import (accuracy_score, precision_score, recall_score,
-                             f1_score, confusion_matrix, ConfusionMatrixDisplay)
+                             f1_score, confusion_matrix)
 from sklearn.model_selection import train_test_split
 
 SETUPS = {
@@ -41,12 +41,10 @@ def table(headers, rows):
                       "| " + " | ".join(["---"] * len(headers)) + " |"] +
                      ["| " + " | ".join(map(str, row)) + " |" for row in rows])
 
-
 def metrics(y, pred):
     return [round(float(fn(y, pred, **({} if fn is accuracy_score else
                   {"pos_label": 1, "zero_division": 0}))), 3)
             for fn in (accuracy_score, precision_score, recall_score, f1_score)]
-
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -91,7 +89,7 @@ def main():
     if len(y) != 395 or int(y.sum()) != 130:
         raise ValueError("Dataset differs from the documented 395-student experiment.")
     dev_idx, test_idx = train_test_split(y.index, test_size=0.2, stratify=y, random_state=42)
-    finals, selections, models, matrices = [], [], {}, {}
+    finals, selections, models = [], [], {}
     fingerprints = [report_path, root / "data/student-mat.csv", root / "code/data_processing.py",
                     root / "code/train_models.py"]
     for name, (_, _, label) in SETUPS.items():
@@ -111,6 +109,7 @@ def main():
             raise ValueError("Expected the selected depth-4 tree.")
         pred = model.predict(X.loc[test_idx])
         scores = metrics(target.loc[test_idx], pred)
+
         # Reject stale artifacts rather than silently generating inconsistent prose.
         final_line = next((line for line in report.splitlines()
                            if line.startswith(f"- **{name}**") and "accuracy " in line), "")
@@ -118,11 +117,12 @@ def main():
         match = re.search(r"accuracy ([\d.]+), precision ([\d.]+), recall ([\d.]+), F1 ([\d.]+)", final_line)
         if not match or scores != [float(v) for v in match.groups()]:
             raise ValueError(f"{name}: saved-model test results do not match evaluation_report.md.")
+
         matrix = confusion_matrix(target.loc[test_idx], pred, labels=[0, 1])
         tn, fp, fn, tp = map(int, matrix.ravel())
         finals.append([label, *scores, tn, fp, fn, tp])
         selections.append([label, choice.Technique, choice.Weight, choice.Recall, choice.F1])
-        models[name], matrices[name] = model, matrix
+        models[name] = model
         fingerprints.append(model_path)
 
     # The discussion below describes this specific reviewed experiment. Stop if
@@ -144,17 +144,11 @@ def main():
     actual_scores = {tuple(row[:3]): tuple(row[3:]) for row in rows}
     if finals != expected_finals or actual_scores != dict(zip(expected_keys, expected_scores)):
         raise ValueError("Results have changed. Review the discussion before using this version of the script.")
+
     output.mkdir(parents=True)
     dev.to_csv(output / "development_comparison.csv", index=False)
     headers = ["Setup", *METRICS, "Correct Low", "False alarms", "Missed High", "Found High"]
     pd.DataFrame(finals, columns=headers).to_csv(output / "final_test_results.csv", index=False)
-    for name, matrix in matrices.items():
-        fig, ax = plt.subplots(figsize=(6, 5))
-        ConfusionMatrixDisplay(matrix, display_labels=["Low Risk", "High Risk"]).plot(ax=ax, cmap="Blues", colorbar=False)
-        ax.set_title(f"{SETUPS[name][2]}\nSame 79 reserved test students")
-        fig.tight_layout()
-        fig.savefig(output / f"confusion_{name}.png", dpi=160)
-        plt.close(fig)
 
     tree = models["early_warning"]
     importance = pd.Series(tree.feature_importances_, index=tree.feature_names_in_).sort_values(ascending=False)
@@ -212,8 +206,10 @@ def main():
         "G1-only finds 20 High-Risk students, misses 6 and produces 8 false alarms. G1 plus G2 finds "
         "23, misses 3 and produces 5 false alarms. Grades improve performance in this experiment, "
         "but waiting for them reduces how early the result can be available.", ""]
+
     for name in SETUPS:
-        text += [f"![{SETUPS[name][2]} confusion matrix](confusion_{name}.png)", ""]
+        text += [f"![{SETUPS[name][2]} confusion matrix](../figures/confusion_{name}.png)", ""]
+
     text += ["Rows in these matrices are actual classes; columns are predicted classes. "
              "False negatives are missed High-Risk students, and false positives are false alarms.", "",
              "## Feature-importance chart and explanation", "",
@@ -262,20 +258,33 @@ def main():
              "- UCI Student Performance dataset: https://doi.org/10.24432/C5TG7T",
              "- Scikit-learn tree importance example and cautions: https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html",
              "- Scikit-learn coefficient interpretation: https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html", ""]
+
     (output / "issue33_report.md").write_text("\n".join(text), encoding="utf-8")
-    provenance = [f"Generated UTC: {datetime.now(timezone.utc).isoformat()}",
-                  f"Python: {platform.python_version()}; scikit-learn: {sklearn.__version__}; "
-                  f"pandas: {pd.__version__}; numpy: {np.__version__}; joblib: {joblib.__version__}",
-                  "Checks: 12 development rows; saved-model type/features/classes; matching reserved-test metrics.",
-                  "Development scores are read from the existing report, not recomputed.",
-                  "No source report, training code, model or prompt log was changed.", "", "Input SHA-256:"]
-    provenance += [f"{p.relative_to(repo).as_posix()}: {hashlib.sha256(p.read_bytes()).hexdigest()}" for p in fingerprints]
-    (output / "run_details.txt").write_text("\n".join(provenance) + "\n", encoding="utf-8")
+
+    provenance = [
+        f"Generated UTC: {datetime.now(timezone.utc).isoformat()}",
+        f"Python: {platform.python_version()}; scikit-learn: {sklearn.__version__}; "
+        f"pandas: {pd.__version__}; numpy: {np.__version__}; joblib: {joblib.__version__}",
+        "Checks: 12 development rows; saved-model type/features/classes; matching reserved-test metrics.",
+        "Development scores are read from the existing report, not recomputed.",
+        "No source report, training code, model or prompt log was changed.",
+        "",
+        "Input SHA-256:",
+    ]
+
+    provenance += [
+        f"{p.relative_to(repo).as_posix()}: "
+        f"{hashlib.sha256(p.read_bytes()).hexdigest()}"
+        for p in fingerprints
+    ]
+
+    (output / "run_details.txt").write_text(
+        "\n".join(provenance) + "\n", encoding="utf-8")
+
     print(f"Created Issue #33 handoff in: {output}")
     print("Open issue33_report.md and the PNG figures. Teammate review is still required.")
     print("Feature importance:")
     print(importance.to_string())
-
 
 if __name__ == "__main__":
     main()
