@@ -51,11 +51,11 @@ Always predicting Low Risk gives accuracy 0.671, precision 0.000, recall 0.000 a
 
 G1-only finds 20 High-Risk students, misses 6 and produces 8 false alarms. G1 plus G2 finds 23, misses 3 and produces 5 false alarms. Grades improve performance in this experiment, but waiting for them reduces how early the result can be available.
 
-![Early-Warning confusion matrix](confusion_early_warning.png)
+![Early-Warning confusion matrix](../figures/confusion_early_warning.png)
 
-![Confirmatory: G1 confusion matrix](confusion_confirmatory_g1.png)
+![Confirmatory: G1 confusion matrix](../figures/confusion_confirmatory_g1.png)
 
-![Confirmatory: G1 + G2 confusion matrix](confusion_confirmatory_g1_g2.png)
+![Confirmatory: G1 + G2 confusion matrix](../figures/confusion_confirmatory_g1_g2.png)
 
 Rows in these matrices are actual classes; columns are predicted classes. False negatives are missed High-Risk students, and false positives are false alarms.
 
