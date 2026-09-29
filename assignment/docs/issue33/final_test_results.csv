@@ -1,0 +1,4 @@
+Setup,Accuracy,Precision,Recall,F1,Correct Low,False alarms,Missed High,Found High
+Early-Warning,0.633,0.44,0.423,0.431,39,14,15,11
+Confirmatory: G1,0.823,0.714,0.769,0.741,45,8,6,20
+Confirmatory: G1 + G2,0.899,0.821,0.885,0.852,48,5,3,23

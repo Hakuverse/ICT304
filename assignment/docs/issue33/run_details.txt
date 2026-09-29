@@ -1,0 +1,14 @@
+Generated UTC: 2026-09-29T07:13:36.133267+00:00
+Python: 3.14.0; scikit-learn: 1.9.1; pandas: 3.0.6; numpy: 2.5.3; joblib: 1.6.0
+Checks: 12 development rows; saved-model type/features/classes; matching reserved-test metrics.
+Development scores are read from the existing report, not recomputed.
+No source report, training code, model or prompt log was changed.
+
+Input SHA-256:
+assignment/docs/evaluation_report.md: ab11851ff8a24e9e7bf40c2d34369926056d77d454818aaa1669e3adfc1b78a2
+assignment/data/student-mat.csv: e47f9ee225e1ee6e69b7564e6dac7123e80b8486677fe111f351964cef5dec80
+assignment/code/data_processing.py: bf2af690705028658f648d7e3c843bed69f51300ad0ed702c228caef091f3b47
+assignment/code/train_models.py: c31cd51ee748836076b13d3b3dbceccc7bc703d9c6196603dda50ace7a2980e7
+assignment/models/early_warning_model.joblib: 08f04c1d85c678d6dae5b1794c73e2a002874d110892110acf444d862af5a07c
+assignment/models/confirmatory_g1_model.joblib: e970bae667f10db51acdb7d3fd52d8858cc95fd01b90f1f500f8c49ba9303775
+assignment/models/confirmatory_g1_g2_model.joblib: 68090de592d5de13f80b34a45c5f70802ce03ca021fd2cc1a4d9dfee0c0b89b5
