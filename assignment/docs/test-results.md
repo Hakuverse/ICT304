@@ -1,5 +1,8 @@
 # Prototype checks: 28 September 2026
 
+> Historical development record. Tasks and results below describe the position at the time.
+> See the [submission verification summary](submission-verification.md) for the later report checks.
+
 Environment: Windows, Python 3.12.10, scikit-learn 1.8.0, pandas 3.0.6, NumPy 2.5.3 and Matplotlib 3.11.2.
 
 | Check | Result |

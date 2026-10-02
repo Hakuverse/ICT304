@@ -1,9 +1,8 @@
 # SARAH — Class Imbalance & Class-Weight Comparison (Issue #19)
 
-This note answers the sprint backlog item directly: it documents SARAH's class imbalance, and
-compares `class_weight=None` against `class_weight="balanced"` across **all twelve combinations**
-of setup × technique × class-weight setting. It's ready to paste into the report's pre-processing
-/ methodology section, and anyone on the team can use it to defend the decision in a viva or demo.
+This document describes SARAH's class imbalance and compares `class_weight=None`
+against `class_weight="balanced"` across all twelve combinations of input setup,
+technique and class-weight setting.
 
 ## 1. The dataset and the imbalance
 

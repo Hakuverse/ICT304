@@ -39,8 +39,8 @@ from categories; 12 hours for the open-ended top category is an assumption.
 
 | Feature | Source column(s) | Correlation with risk | Why kept |
 |---|---|---|---|
-| `attendance_pct` | `absences` | -0.08 (weak alone) | Relevant to the intended teacher workflow; usefulness alongside other inputs still needs model testing |
-| `study_hours` | `studytime` | -0.08 (weak alone) | Relevant to study support; usefulness still needs model testing |
+| `attendance_pct` | `absences` | -0.08 (weak alone) | Relevant to the intended teacher workflow; Included in the completed model comparison; its separate benefit was not measured by removing it |
+| `study_hours` | `studytime` | -0.08 (weak alone) | Relevant to study support; Included in the completed model comparison; its separate benefit was not measured by removing it |
 | `previous_score` | `G1`, `G2` | -0.72 (strong) | Strongest individual relationship found; Confirmatory only |
 | `failures` | `failures` | +0.34 (moderate) | Reflects prior academic difficulty |
 

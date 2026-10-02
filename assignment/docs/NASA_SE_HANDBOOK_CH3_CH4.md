@@ -1,12 +1,11 @@
-# NASA SE Handbook Ch3,4 — how it applies to SARAH (Sprint backlog: ICT304 #20)
+# NASA SE Handbook Chapters 3 and 4 — application to SARAH
 
-Covers the issue's checklist: read Ch.3 and Ch.4 of the NASA Systems Engineering Handbook,
-explain how each applies to SARAH, and add proper in-text citations + full reference with
-section/page detail. Source: the official PDF at
-https://www.nasa.gov/wp-content/uploads/2018/09/nasa_systems_engineering_handbook_0.pdf
-(NASA/SP-2016-6105 Rev2).
+This document connects the project life cycle and system design processes to
+SARAH. References use the handbook's printed page numbers. Source: the official
+NASA/SP-2016-6105 Rev2 PDF at
+https://www.nasa.gov/wp-content/uploads/2018/09/nasa_systems_engineering_handbook_0.pdf.
 
-## Full reference (APA 7th — use exactly this in the report's References section)
+## Full reference
 
 National Aeronautics and Space Administration. (2016). *NASA systems engineering handbook*
 (NASA/SP-2016-6105 Rev2). NASA. https://www.nasa.gov/wp-content/uploads/2018/09/nasa_systems_engineering_handbook_0.pdf
@@ -69,30 +68,9 @@ as section headings:
   inputs, a binary classification output), which is what actually got built in
   `assignment/code/data_processing.py` and `assignment/code/train_models.py`.
 
-Citing §4.1 and §4.2 by name and page also strengthens the report's methodology section: it shows
-the team didn't just build a classifier and call it "system engineering" — the actual
-requirements-gathering step (stakeholder → requirement) followed the process the unit teaches.
+## Relationship to the assignment
 
-## In-text citation examples (ready to paste into the report)
-
-Use these forms — page numbers for anything closely paraphrasing a specific process description,
-section numbers alone when referring to the phase/process in general:
-
-- "We follow the System Engineering Product Life Cycle described in the NASA Systems Engineering
-  Handbook (NASA, 2016), specifically the Formulation phases — Pre-Phase A through Phase B
-  (NASA, 2016, §3.3–§3.5, pp. 21–27) — for this Assignment, and the Implementation phases —
-  Phase C through F (NASA, 2016, §3.6–§3.9) — for the Final Project."
-- "Our Stakeholder Expectation and Technical Requirement sections follow the Stakeholder
-  Expectations Definition Process and Technical Requirements Definition Process described in the
-  NASA Systems Engineering Handbook (NASA, 2016, §4.1, p. 45; §4.2, p. 54)."
-
-## Checklist status (issue #20)
-
-- [x] Read Chapter 3 for the system engineering life-cycle phases.
-- [x] Read Chapter 4 for stakeholder expectations and technical requirements.
-- [x] Write a short explanation of how each applies to SARAH (above).
-- [x] Add separate in-text citations and the full handbook reference, with section/page details
-      (above). Page numbers verified against the handbook's own table of contents, not guessed.
-
-**File/report link for the issue's "Finished when" field:** `assignment/docs/NASA_SE_HANDBOOK_CH3_CH4.md`
-(this file) — once pushed, paste that path (or the GitHub blob URL) into the issue.
+The stakeholder expectations and technical requirements in the report apply the
+Chapter 4 processes to SARAH. The phase mapping above describes the course-level
+adaptation, with prototype work in the assignment and later integration in the
+project stage. The final report contains the corresponding in-text citations.

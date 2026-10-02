@@ -1,5 +1,8 @@
 # Sprint 1: Getting Started
 
+> Historical development record. Tasks and results below describe the position at the time.
+> See the [submission verification summary](submission-verification.md) for the later report checks.
+
 **Milestone due:** 15 September 2026
 
 **Goal:** Get SARAH approved, prepare the dataset and set up the team folders.
