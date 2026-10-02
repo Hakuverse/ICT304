@@ -27,7 +27,7 @@ We chose the UCI Student Performance Math dataset as our starting point. A final
 
 - [Math dataset](../data/student-mat.csv)
 - [Dataset checking script](../code/verify_dataset.py)
-- [Shared AI prompt log](../../ai-prompt-log/log.md) (currently blank)
+- [Shared AI prompt log](../../ai-prompt-log/log.md)
 - [Assignment prompt appendix](../report/appendix-ai-prompts.md)
 
 These links use the current folder layout. Setting up the log and assigning the declaration form owner did not mean the final log or signed form was finished.
