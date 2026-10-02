@@ -21,6 +21,8 @@ The command-line prototype predicts for one student or a class CSV, skips invali
 
 ```
 ICT304/
+├── ai-prompt-log/         # Shared prompt-log file (currently blank)
+│   └── log.md
 ├── assignment/            # Current work: design report + AI prototype, due 3 October
 │   ├── report/            # File guide and appendix; full report submitted separately
 │   ├── code/
@@ -45,6 +47,7 @@ ICT304/
 - **Before the assignment submission:** put SARAH code, data, report and supporting documents in `assignment/`.
 - **After submitting the assignment on 3 October:** keep the submitted `assignment/` folder unchanged. Copy the code, required data and useful documents into `project/`, then continue development there for the final project due on 7 November.
 - **Tutorials:** keep weekly exercises in `tutorials/`; they are separate from the assessed SARAH system.
+- **Shared prompt log:** [ai-prompt-log/log.md](ai-prompt-log/log.md) is retained as a blank file for the team to maintain.
 - **Submission records:** the report, signed declaration and actual prompt records are maintained for LMS submission. The repository appendix is a placeholder; it does not establish that those records are complete.
 
 When starting the project stage, leave out virtual environments, caches and temporary files. Check the copied scripts and instructions before continuing. Work in one assessment folder at a time.
@@ -188,8 +191,8 @@ See the [five-part model test plan](assignment/docs/model-test-plan.md), [curren
 The assignment brief requires disclosure of actual AI-tool use and the prompts in
 the submitted report. The [assignment appendix](assignment/report/appendix-ai-prompts.md)
 is a placeholder and has not been completed by this documentation update. The
-previously referenced shared path `ai-prompt-log/log.md` is not present in this
-checkout. The actual records are maintained separately for submission.
+[shared prompt log](ai-prompt-log/log.md) is present and currently blank. The team
+maintains the actual records for submission; the blank file is not a completed log.
 
 ## References
 

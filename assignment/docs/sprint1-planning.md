@@ -27,7 +27,7 @@ We chose the UCI Student Performance Math dataset as our starting point. A final
 
 - [Math dataset](../data/student-mat.csv)
 - [Dataset checking script](../code/verify_dataset.py)
-- The originally planned shared log path, `ai-prompt-log/log.md`, is not present in this checkout.
+- [Shared AI prompt log](../../ai-prompt-log/log.md) (currently blank)
 - [Assignment prompt appendix](../report/appendix-ai-prompts.md)
 
 These links use the current folder layout. Setting up the log and assigning the declaration form owner did not mean the final log or signed form was finished.

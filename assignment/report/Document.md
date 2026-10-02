@@ -56,7 +56,8 @@ tracks final checking and submission.
 The LMS submission comprises the completed report, required declarations and
 appendices, and the files needed to run the prototype. The repository's
 [prompt appendix](appendix-ai-prompts.md) is currently a placeholder, not a
-completed record. The required actual prompt record belongs in the submitted
+completed record. The [shared prompt log](../../ai-prompt-log/log.md) is also
+present and currently blank. The required actual prompt record belongs in the submitted
 report; a repository link alone does not replace it.
 
 Historical sprint plans and dated test notes remain as development evidence.

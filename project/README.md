@@ -26,7 +26,7 @@ features work. New results, user testing and demonstration evidence belong to
 this stage and will need their own records.
 
 The [project prompt appendix](report/appendix-ai-prompts.md) remains a placeholder.
-The earlier shared prompt-log path is not present in this checkout. Actual
+The [shared prompt log](../ai-prompt-log/log.md) is present and currently blank. Actual
 required declarations and prompt records are maintained by the team for each
 submission. The assignment report and signed declaration are submitted separately
 and are not reproduced in this public repository with personal details.
