@@ -42,4 +42,4 @@ early intervention.
 
 ## Results and system checks
 
-See [the recorded comparison](evaluation_report.md) for development and final test results. The separate [system test plan](../report/Document.md#8-evaluation-method-and-test-plan) checks input rules, CSV processing and the planned dashboard and recommendations. A passed software test is not a model-accuracy result.
+See [the recorded comparison](evaluation_report.md) for development and final test results. The separate [system checks](submission-verification.md#system-checks-used-in-the-report) checks input rules, CSV processing and the planned dashboard and recommendations. A passed software test is not a model-accuracy result.

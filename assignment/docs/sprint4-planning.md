@@ -1,5 +1,8 @@
 # Sprint 4: Prototype and Assignment Submission
 
+> Historical development record. Tasks and results below describe the position at the time.
+> See the [submission verification summary](submission-verification.md) for the later report checks.
+
 **Dates:** 29 September-3 October 2026
 
 **Goal:** Check the prototype, finish the model comparison and report, and submit the assignment by 3 October.
@@ -57,7 +60,7 @@ After submission, keep the submitted `assignment/` version unchanged and continu
 - [Model results](evaluation_report.md) and [class-weight comparison](CLASS_IMBALANCE_NOTE.md)
 - [Five-part model test plan](model-test-plan.md)
 - [Current workflow](system-workflow.md) and [system design](SYSTEM_DESIGN.md)
-- [Report outline and submission checklist](../report/Document.md)
+- [Assignment files and report guide](../report/Document.md)
 - [Life-cycle phases](NASA_SE_HANDBOOK_CH3_CH4.md)
 
 [Milestone 4](https://github.com/Hakuverse/ICT304/milestone/4) | [Sprint 1](sprint1-planning.md) | [Sprint 2](sprint2-planning.md) | [Sprint 3](sprint3-planning.md)

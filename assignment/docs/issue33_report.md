@@ -85,13 +85,9 @@ The chart does not show whether an input increases or decreases risk, prove caus
 - Predicted probabilities have not been checked for calibration, and subgroup fairness has not been established. Results should support human review, not automatic decisions about students.
 - The working prototype is command-line classification. Dashboard and recommendation work remains planned.
 
-## Handoff to Issue #34
+## Output files
 
-Use the comparison, selected-model explanation, final results, four figures and limitations above in the prototype/results/discussion sections. Keep development and reserved-test results separate. The CSV files provide the underlying tables. The confusion matrices are reused from figures/; only the feature-importance chart is generated here. This section supplements the existing diagram and five-part model test plan; it does not replace them.
-
-- [ ] Jackie reviews the generated text and charts against the source report.
-- [ ] Another teammate reviews the comparison before Issue #33 is closed.
-- [ ] The Issue #34 owner integrates the material, figure numbers and references into the report.
+The CSV files contain the development comparisons, reserved-test results and feature importances. The report reuses the three existing confusion matrices in figures/; only the feature-importance chart is generated here. Development results and reserved-test results describe different stages of the same experiment.
 
 ## Sources
 

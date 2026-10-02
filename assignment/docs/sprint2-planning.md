@@ -1,5 +1,8 @@
 # Sprint 2: Requirements and Data Exploration
 
+> Historical development record. Tasks and results below describe the position at the time.
+> See the [submission verification summary](submission-verification.md) for the later report checks.
+
 **Dates:** 15-22 September 2026
 
 **Goal:** Understand the data, choose suitable inputs and explain the main parts of SARAH.

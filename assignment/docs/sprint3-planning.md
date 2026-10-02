@@ -1,5 +1,8 @@
 # Sprint 3: System Design
 
+> Historical development record. Tasks and results below describe the position at the time.
+> See the [submission verification summary](submission-verification.md) for the later report checks.
+
 **Dates:** 22-29 September 2026
 
 **Goal:** Explain how SARAH will work, add the two approved modes, and prepare for the assignment due on 3 October.

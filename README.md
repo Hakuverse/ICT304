@@ -21,16 +21,14 @@ The command-line prototype predicts for one student or a class CSV, skips invali
 
 ```
 ICT304/
-├── ai-prompt-log/         # Running log of AI-tool prompts, snapshotted into each report's appendix
-│   └── log.md
 ├── assignment/            # Current work: design report + AI prototype, due 3 October
-│   ├── report/
+│   ├── report/            # File guide and appendix; full report submitted separately
 │   ├── code/
 │   ├── data/
 │   └── docs/              # EDA findings, figures, feature selection and sprint tasks
 ├── project/               # Next stage: continue here after assignment submission
 │   ├── README.md
-│   ├── report/
+│   ├── report/            # Project-stage appendix placeholder
 │   ├── code/
 │   ├── data/
 │   ├── docs/
@@ -47,7 +45,7 @@ ICT304/
 - **Before the assignment submission:** put SARAH code, data, report and supporting documents in `assignment/`.
 - **After submitting the assignment on 3 October:** keep the submitted `assignment/` folder unchanged. Copy the code, required data and useful documents into `project/`, then continue development there for the final project due on 7 November.
 - **Tutorials:** keep weekly exercises in `tutorials/`; they are separate from the assessed SARAH system.
-- **AI prompt log:** keep using the shared `ai-prompt-log/log.md`. Each submission has its own prompt appendix in its `report/` folder.
+- **Submission records:** the report, signed declaration and actual prompt records are maintained for LMS submission. The repository appendix is a placeholder; it does not establish that those records are complete.
 
 When starting the project stage, leave out virtual environments, caches and temporary files. Check the copied scripts and instructions before continuing. Work in one assessment folder at a time.
 
@@ -71,6 +69,15 @@ When starting the project stage, leave out virtual environments, caches and temp
 - [Sprint 4: Prototype and Assignment Submission](assignment/docs/sprint4-planning.md)
 
 ## Setup / how to run
+
+Download and extract the submitted ZIP, or check out the agreed Git commit.
+The repository root is the folder containing `README.md` and `assignment/`.
+Use the submitted version for reproduction; a later download of `main` may differ.
+
+On macOS, open Terminal, type `cd` followed by a space, drag that folder from
+Finder into Terminal and press Enter. Run `pwd` and `ls` to check the location.
+The commands work in both zsh and Bash; no shell switch is needed. On Windows,
+open PowerShell in the same folder.
 
 From the repository root, with Python 3.11 or newer installed:
 
@@ -97,8 +104,9 @@ python3 -m venv .venv
 
 No environment activation is needed. The test command should finish with `OK`
 (currently 41 tests). The sample should predict A and B and skip C and D with reasons.
-The commands have been checked against the project paths; a teammate still needs
-to run them on macOS and record the result.
+The team's report records Jackie's successful macOS run on 1 October at commit
+`0fff0f8`. See the [verification summary](assignment/docs/submission-verification.md)
+for the environment, results and evidence scope.
 
 The verification script should show 395 students: 130 High Risk and 265 Low Risk. EDA writes its findings and figures to `assignment/docs/`. These commands run data preparation and analysis. Training and prediction are now available:
 
@@ -118,8 +126,9 @@ To check input preparation, model routing and CSV handling:
 .venv\Scripts\python.exe -m unittest discover -s assignment/code -v
 ```
 
-See [Using the two modes](assignment/docs/mode-guide.md) for examples. The testing plan
-and assignment preparation checklist are in [the report draft](assignment/report/Document.md).
+See [Using the two modes](assignment/docs/mode-guide.md) for examples, the
+[system checks](assignment/docs/submission-verification.md) for T1-T12, and the
+[assignment file guide](assignment/report/Document.md) for the separately maintained report.
 
 ### Issue #33 comparison and figures
 
@@ -145,12 +154,24 @@ stays in `assignment/docs/figures/`. The existing confusion matrices are reused.
 report edits elsewhere first. Without this option, existing outputs are protected.
 Use the versions in `assignment/code/requirements.txt` for the submission check.
 See [the run evidence](assignment/docs/issue33-verification.md) for the version history
-and remaining submission checks.
+and the [later verification summary](assignment/docs/submission-verification.md).
 
 
 ## Assignment submission
 
-Include the completed Sprint 4 prototype, comparison and testing evidence in the assignment due on **3 October 2026**. Use the [Sprint 4 plan](assignment/docs/sprint4-planning.md) and [report checklist](assignment/report/Document.md). The report must keep planned dashboard and recommendation work separate from the working command-line prototype.
+The assignment is due on **3 October 2026**. The completed report and signed Group
+Declaration are maintained separately for LMS submission. This public repository
+contains the prototype and supporting documents; [Document.md](assignment/report/Document.md)
+is a file guide, not the full report. It does not include the private report's
+student identifiers or signatures.
+
+The report records tests against commit `0fff0f8`. Record the exact packaged commit
+if later changes are included; historical test records retain their original
+versions. The [Sprint 4 plan](assignment/docs/sprint4-planning.md) remains a dated
+development record. Submission completion is tracked in [issue #35](https://github.com/Hakuverse/ICT304/issues/35).
+
+Dashboard and recommendation work remains planned. After submission, preserve the
+submitted assignment snapshot and follow the [project transition guide](project/README.md).
 
 See the [five-part model test plan](assignment/docs/model-test-plan.md), [current workflow](assignment/docs/system-workflow.md) and [Pre-Phase A to F mapping](assignment/docs/NASA_SE_HANDBOOK_CH3_CH4.md).
 
@@ -164,7 +185,11 @@ See the [five-part model test plan](assignment/docs/model-test-plan.md), [curren
 
 ## AI tool usage
 
-All prompts used for this project are logged in `ai-prompt-log/log.md` as they're used, and summarised in each submission's report appendix, per the unit's generative-AI declaration requirement.
+The assignment brief requires disclosure of actual AI-tool use and the prompts in
+the submitted report. The [assignment appendix](assignment/report/appendix-ai-prompts.md)
+is a placeholder and has not been completed by this documentation update. The
+previously referenced shared path `ai-prompt-log/log.md` is not present in this
+checkout. The actual records are maintained separately for submission.
 
 ## References
 

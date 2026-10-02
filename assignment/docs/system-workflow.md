@@ -1,6 +1,6 @@
 # SARAH system workflow
 
-This is the current workflow. Keep [Jackie's original diagram](figures/SARAH_system_architecture.drawio.png) as the earlier design. Its Confirmatory label needs to be read as **G1 required, G2 optional**. The current code uses the three separately trained models shown below.
+This is the current workflow, also shown in the [updated architecture diagram](figures/SARAH_System_Architecture_Diagram_Final%20Version.png). [Jackie's original diagram](figures/SARAH_system_architecture.drawio.png) is historical design evidence. Confirmatory requires G1 and accepts optional G2. The current code uses the three separately trained models shown below.
 
 ```mermaid
 flowchart TD

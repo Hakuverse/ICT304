@@ -1,240 +1,67 @@
-# ICT304 Assignment Report
+# SARAH assignment files and report guide
 
-This is a working outline for the assignment due on 3 October. Paste the sections
-already written by the team into the matching spaces; do not replace them with these
-prompts. The test-plan draft is included below. Model results must come from the actual
-prototype runs. Keep notes and unchecked items out of the final submitted prose.
+The assignment report is maintained separately for LMS submission. This public
+repository contains the prototype, supporting analysis and development records;
+this page is a guide to those files, not the full assessment report. The report
+and signed Group Declaration contain personal details and are not copied here.
 
-## Cover page
+## Assignment scope
 
-**Title:** SARAH - Student Academic Risk Assistance Hub
+SARAH predicts academic risk for one student or a class CSV. Early-Warning uses
+attendance estimates, estimated study hours and past failures without grades.
+Confirmatory requires G1 and accepts optional G2, using separate G1-only and
+G1+G2 models. Invalid student rows are skipped with reasons. Dashboard and
+recommendation features remain planned for the project stage.
 
-**Unit:** ICT304 AI System Design
+The Math dataset contains 395 students: 130 High Risk and 265 Low Risk. G3 below
+10 defines High Risk; G3 is never a prediction input. Model selection uses five
+folds on 316 development students, with 79 students reserved for final testing.
+There are twelve comparisons across three setups, two techniques and two
+class-weight settings. The dataset does not establish day-one accuracy or
+performance with university students.
 
-**Team:** Benjamin, Anna and Jackie
+## Report sections and supporting files
 
-**Tutor:** George Ng. **Submission date:** [record actual submission].
+The section numbers below follow the team's assignment report.
 
-## 1. Introduction and problem
-
-[Add your existing introduction. Explain the problem, who needs help, how teachers
-currently identify students needing support and what SARAH aims to improve.]
-
-## 2. System engineering process
-
-[Add the team's explanation of the phases, what is covered in the assignment and
-what will be completed in the final project. Describe the weekly tutor reviews.
-Use the [Pre-Phase A to F mapping](../docs/NASA_SE_HANDBOOK_CH3_CH4.md). Phase E covers deployment/maintenance plans, user guide and demo video; Phase F covers closeout, polish, rehearsal and final submission. Mark later project work as planned.]
-
-## 3. Requirements and proposed solution
-
-[State the teacher/advisor's needs and turn them into clear requirements. Cover
-one-student entry, class CSV upload, risk output and a useful recommendation.
-Explain what is new or useful about the proposed workflow. Cite relevant background
-sources, and distinguish the planned full system from the assignment prototype.]
-
-## 4. Dataset and input preparation
-
-[Describe the UCI Math dataset, its source, 395 students, class counts, the G3 < 10
-label rule and the two input modes. Include the EDA findings, absence/study estimates,
-feature-selection reasons and limitations. Explain that G3 and labels are excluded
-from the model inputs. Use the feature document and mode guide for the current code.]
-
-## 5. System design and workflow
-
-[Insert Jackie's diagram (#17) and Anna's system design (#21) after review. Explain
-the three subsystems, their inputs/outputs and how the teacher uses them. Make sure
-the diagram and prose agree with the three-/four-input mode lists.]
-
-## 6. AI techniques investigated
-
-[Explain Logistic Regression and Decision Tree in your own words, why both are
-suitable to investigate and their strengths/limitations. Describe the class-weight
-comparison from #19. Do not claim a winning model until the results can be reproduced.]
-
-## 7. Prototype and initial results
-
-[Describe the AI subsystem that actually runs, how to run it, the settings used and
-what the output means. Add screenshots or sample output and the comparison table
-from the training runs. Report accuracy, High-Risk precision, recall and F1 for each
-setup/model/weight setting (12 combinations), plus a confusion matrix for each chosen setup.]
-
-[Explain the model choice, errors, earlier-warning versus prior-score tradeoff and
-limitations. Link to submitted code and results; keep unbuilt features clearly marked
-as planned. PR #48 added training and prediction for Early-Warning, G1-only and G1+G2.
-Use [the evaluation report](../docs/evaluation_report.md) for the measured results.]
-
-Issue #33 handoff: use the [comparison discussion](../docs/issue33_report.md)
-for model choices, final errors, the feature-importance chart and limitations.
-Its images reuse `assignment/docs/figures/`. See the
-[verification and submission notes](../docs/issue33-verification.md) for the
-recorded environment and remaining peer checks. This file is still the working
-outline; the team must identify and check the completed submission report.
-
-## 8. Evaluation method and test plan
-
-[Include all five parts and the summary of the [model test plan](../docs/model-test-plan.md). It uses 316 development students for five-fold validation and 79 reserved students for final testing. Then include the system test plan below.]
-
-SARAH needs checks for its data preparation, prediction models, recommendations and
-student input screens. The table below is our plan. A planned test is not a passed
-test: results should be recorded when each part has been built and checked.
-
-Benjamin owns this plan under #27. The suggested testers below still need to agree
-their roles. Anna or Jackie should also review the completed work.
-
-| ID | Part being tested | Input or example | Expected result | Who will test it | Current position |
-|---|---|---|---|---|---|
-| T01 | Data preparation | Math CSV, even with a Portuguese CSV beside it | Use 395 Math records only; 130 High Risk and 265 Low Risk | Benjamin | Automated check included with #26 |
-| T02 | Early-Warning inputs | Attendance estimate, study hours and failures; no grades | Return exactly the three approved inputs | Benjamin | Automated check included with #26 |
-| T03 | Confirmatory inputs | G1 only, G1+G2, missing G1 and invalid supplied G2; no G3 | Use the matching separate model; report invalid grades | Benjamin | Automated preparation and prediction tests included |
-| T04 | Training labels | Final grades of 9 and 10 | 9 is High Risk; 10 is Low Risk | Benjamin | Automated check included with #26 |
-| T05 | Keeping answers out of inputs | Change G3 but leave other values the same | Labels may change; model inputs do not. Exclude G3, risk, risk_label and course from X | Benjamin | Automated check included with #26 |
-| T06 | Data checks | Absences of 0, 15, 30 and 75; each studytime category | Attendance estimate is 100, 50, 0 and 0; hours are 1.5, 3.5, 7.5 and 12 | Benjamin | Automated check included with #26 |
-| T07 | Missing or invalid input | Blank/text input, attendance of 150; hours of 0, 40 and 41; unknown mode | Accept hours 0-40; skip invalid rows with reasons; reject unknown mode | Benjamin; interface tester to confirm later | Automated checks included; screen behaviour planned |
-| T08 | Model comparison | Three setups, two techniques and two weight settings | Reserve the same 79 test students first; select using five folds on 316 development students; report final test metrics separately | Anna implemented in #48; team review | Training and results merged; see evaluation_report.md |
-| T09 | Recommendation rules | A High Risk example with one clearly weak factor; another with tied factors | Give the recommendation defined by the agreed rules; use a repeatable tie rule | Benjamin proposed; team to confirm | Planned after recommendation rules are agreed |
-| T10 | Single-student screen | One valid example in each mode | Show a risk result and the appropriate recommendation without asking for G3 | Benjamin proposed; team to confirm | Planned for project stage |
-| T11 | CSV upload | Same student entered through the form and a one-row CSV | Both paths give the same result; the CSV result keeps the right student ID | Benjamin proposed; team to confirm | Planned for project stage |
-| T12 | CSV errors | Empty/header-only file, missing required column, blank cells, invalid G2 text and all-invalid class | Reject invalid file structure once; skip invalid rows; show no-valid-students message when needed | Benjamin | Automated CSV checks included; upload screen planned |
-| T13 | Whole system | A small class list with valid and invalid examples, in both modes | Valid data reaches the model and recommendation engine; results match the right students and errors are clear | All three members proposed | Planned after integration |
-
-For T13, compare the complete path with the same model and recommendation rules run
-separately. Record passed/failed checks and any errors. Do not call this pass rate
-model accuracy: predictive performance is measured separately in T08 against known
-final outcomes. If the later labelled sample is about 50 students, state whether they
-were used in training; it is not automatically an independent performance test.
-
-For every test run, keep the date, person testing, command or steps, actual result and
-evidence link. The input tests can be run from the repository root:
-
-```powershell
-.venv\Scripts\python.exe -m unittest discover -s assignment/code -v
-```
-
-On macOS, after the setup in the README:
-
-```bash
-.venv/bin/python -m unittest discover -s assignment/code -v
-.venv/bin/python assignment/code/predict.py --mode confirmatory --csv assignment/data/sample_roster.csv
-```
-
-Record the macOS tester's name, date and result; instructions being available does
-not mean the teammate check has already been completed.
-
-### Sprint 4 evidence to include before submission
-
-The [28 September prototype checks](../docs/test-results.md) record the current Windows results. Add the team's final submission-folder and macOS evidence alongside them.
-
-Keep the existing introduction, feature discussion, diagram and five-part model test plan. Add the completed Sprint 4 work to the report before 3 October:
-
-| Report part | Evidence to include |
+| Report section | Repository material |
 |---|---|
-| Prototype | Submitted code, data, saved models, package versions and run commands. |
-| Technique comparison | All 12 development comparisons from [evaluation_report.md](../docs/evaluation_report.md), with the selection rule and settings. |
-| Final results | Separate 79-student test results and confusion matrices for all three selected setups. |
-| Discussion | Recall, false alarms, missed students, the no-grade limitation and lack of proven week-specific performance. |
-| Software checks | Actual test command/output, tester, date and operating system; sample CSV screenshot. |
-| Submission | Tool-use evidence, references, agreed contributions and completed required forms/appendices. |
+| 1-2: Scope and requirements | [Mode guide](../docs/mode-guide.md) and [system design](../docs/SYSTEM_DESIGN.md) |
+| 3: Systems engineering | [Pre-Phase A to F and NASA Chapter 4](../docs/NASA_SE_HANDBOOK_CH3_CH4.md) |
+| 4: Dataset and preparation | [EDA findings](../docs/eda_findings.md) and [feature selection](../docs/feature_selection.md) |
+| 5: Design and workflow | [Current architecture diagram](../docs/figures/SARAH_System_Architecture_Diagram_Final%20Version.png) and [workflow](../docs/system-workflow.md) |
+| 6: Techniques and evaluation | [Five-part model test plan](../docs/model-test-plan.md) and [class weights](../docs/CLASS_IMBALANCE_NOTE.md) |
+| 7: Model comparison | [Twelve development comparisons and feature importance](../docs/issue33_report.md) |
+| 8: Initial results and discussion | [Evaluation report](../docs/evaluation_report.md), [figures](../docs/figures/) and [final results CSV](../docs/final_test_results.csv) |
+| 9: System tests and evidence | [Verification summary and T1-T12 mapping](../docs/submission-verification.md) |
+| 10: User guide | [Setup and run commands](../../README.md#setup--how-to-run) and [mode examples](../docs/mode-guide.md) |
+| 11: Development and teamwork | [Sprint 4 record](../docs/sprint4-planning.md) and [project transition](../../project/README.md) |
+| 12: Sources and repository evidence | Source references in the linked analysis documents and [repository history](https://github.com/Hakuverse/ICT304/commits/main/) |
 
-The issue #28 checklist records that a teammate run and report assembly have been checked. Copy the actual name/date/output and final report location into this evidence section; a checked issue alone is not the test record. Repeat the run if the submitted code changes.
+## Versions and evidence
 
-## 9. Remaining project plan
+The report records Jackie's macOS checks against commit `0fff0f8` on 1 October
+2026. Later documentation changes do not change the commit he tested. The
+[verification summary](../docs/submission-verification.md) distinguishes the
+reported teammate run from the earlier Windows checks and later maintenance.
 
-[Summarise Sprint 4 and the later work: recommendation rules, interface, integration,
-testing, user guide and demo. Add a small table with task, owner and target date.]
+The submitted package should identify its own exact commit. Testing and merged
+code do not establish that the LMS upload, signatures or final report review
+have been completed. [Issue #34](https://github.com/Hakuverse/ICT304/issues/34)
+tracks report completion; [issue #35](https://github.com/Hakuverse/ICT304/issues/35)
+tracks final checking and submission.
 
-## 10. Teamwork and tools
+## Submission materials
 
-[Explain how the team uses GitHub for issues, version control and code review, and
-Teams/WhatsApp for collaboration and communication. Add real examples or screenshots
-and describe each person's contribution.]
+The LMS submission comprises the completed report, required declarations and
+appendices, and the files needed to run the prototype. The repository's
+[prompt appendix](appendix-ai-prompts.md) is currently a placeholder, not a
+completed record. The required actual prompt record belongs in the submitted
+report; a repository link alone does not replace it.
 
-## 11. Conclusion
+Historical sprint plans and dated test notes remain as development evidence.
+Their task lists describe the position at the time; the current verification
+summary is the reference for the report's T1-T12 checks.
 
-[Briefly state what the assignment has achieved, what the prototype results show
-and what remains for the final project.]
-
-## References
-
-[Add the dataset, NASA handbook, background research and software/code sources using
-the required referencing style. Check each reference against the text.]
-
-## Appendices and accompanying files
-
-- AI-use declaration and actual prompts used: [prompt appendix](appendix-ai-prompts.md).
-- Extra results, screenshots and test-run evidence: [add once available].
-- Code, dataset, package list and run instructions: include with the submission.
-- Group Declaration Sheet: complete and sign the supplied form.
-
----
-
-## Working checklist: assignment preparation (not report prose)
-
-This section supports #28. The assignment is due on 3 October 2026 and needs the
-design report plus at least one working AI subsystem prototype with initial results.
-The full dashboard and recommendation engine belong to the later project stage.
-
-### Report sections and responsibilities
-
-| Report section or item | Current owner or decision needed | What is still needed |
-|---|---|---|
-| Title, problem and requirements | Benjamin proposed; confirm with team | Bring together the approved SARAH scope and earlier subsystem explanation |
-| System engineering phases and references | Anna, based on #20 | PR #37 merged; bring reviewed content and citations into the report |
-| Architecture diagram | Jackie, based on #17 | Review PR #41 and check exact mode inputs |
-| System design and teacher workflow | Anna, based on #21 | PR #44 merged; use SYSTEM_DESIGN.md and keep planned features clearly marked |
-| Model evaluation method | Jackie, based on #18 | PR #40 merged; align the earlier plan with the reserved 79 test students and 316 development students used in #48 |
-| Class weights and comparison plan | Anna, based on #19 | PR #46 merged; use all 12 comparisons and distinguish development from final test results |
-| Input preparation and tests | Benjamin, #26 | Teammate review and run on another machine |
-| Whole-system test plan | Benjamin, #27 | Review the table above and confirm testers |
-| AI techniques, prototype code, results and limitations | Anna supplied the prototype in #48; confirm report writer and checker | Bring the measured results into the report; keep both techniques in the investigation |
-| Remaining project plan and tool-use evidence | Benjamin proposed; confirm with team | Link sprint plans and examples of GitHub, Teams and communication use |
-| Final report editing and reference check | Team to choose | Combine the sections and check against the brief; #34 |
-| Group Declaration and upload | Benjamin, confirmed by #3 and the checked item in #28 | Collect contributions/signatures and check the submitted package; #35 |
-
-Names based on existing issue assignments do not assign new work to anyone. New
-responsibilities marked proposed or to choose need a team decision.
-
-### Prototype and submission dates
-
-- [ ] Confirm who will finish the prototype/report and who will check the run: ____ / ____. Anna supplied the current prototype in #48.
-- [x] A working model run and initial results are available from merged PR #48.
-- [ ] Have a teammate repeat the run and record the result: ____.
-- [ ] Finish the model comparison and report by 1 October where possible.
-- [ ] Have another member run the submission files by 2 October.
-- [ ] Confirm the exact LMS cutoff, upload on time on 3 October and check the files.
-
-### What to include and check
-
-- [ ] Complete report: requirements, design, testing plan, technique comparison and initial results.
-- [ ] Code, Math dataset, package list and all files needed to repeat the prototype run.
-- [ ] Setup/run instructions tried by another teammate. The README now covers
-  data preparation, training, single-student prediction and the sample CSV.
-- [ ] Sources cited and checked, including the dataset and NASA handbook.
-- [ ] Evidence of project management, version control, collaboration and communication.
-- [ ] Each member's contribution recorded; Group Declaration completed and signed.
-- [ ] Required AI-use declaration and prompt appendix prepared from the shared log.
-- [ ] Submission package checked against pages 1, 3 and 4 of the assignment brief.
-- [ ] Uploaded files checked and a submission receipt/backup kept.
-
-The shared prompt log and report appendix exist but are not a completed record of all
-past work. Each member needs to add their actual use. Benjamin can organise the form;
-the other members still need to provide their own contribution details and signatures.
-
-### Work already merged
-
-PR #42 added the original #26 input checks, #27 test-plan table and #28 report outline.
-PR #47 was closed in favour of Anna's #48; this did not remove #42's work. PR #48
-added the three trained setups and initial results; #44 and #46 added their design
-and comparison notes. PR #49 merged the remaining CSV handling and instruction updates. Issues #26 and #27 are closed.
-Team decisions, report assembly and signatures still need the team; they are not
-marked complete just because code has merged.
-
-### Setup check
-
-Use the commands in the root README to install the packages, check the data and run
-data preparation, training and prediction. Run the full tests above and try the sample
-CSV in [the mode guide](../docs/mode-guide.md). Record the teammate's
-name, date, Python version and outcome here: ____.
-
-Do not mark #28 complete until the team has agreed the remaining owners/dates and a
-teammate has checked the instructions. Actual final submission is tracked by #35.
+After submission, preserve the submitted assignment snapshot and continue work
+in [project/](../../project/README.md). Tutorials remain separate.

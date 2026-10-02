@@ -1,4 +1,4 @@
-# SARAH — System Design (Sprint backlog: write the System Design section)
+# SARAH — System Design
 
 The assignment prototype contains data preparation, training and command-line predictions. The complete product will also include recommendations and a tutor dashboard.
 
@@ -8,7 +8,7 @@ A tutor chooses Early-Warning or Confirmatory and supplies one student or a clas
 
 The current output is a risk label and an estimated High-Risk probability. Recommendations and the dashboard are planned for the project stage. The tutor decides what action to take.
 
-See the [current workflow diagram](system-workflow.md). [Jackie's original diagram](figures/SARAH_system_architecture.drawio.png) is retained as earlier design evidence; its labels are clarified in the current workflow.
+See the [current architecture diagram](figures/SARAH_System_Architecture_Diagram_Final%20Version.png) and [current workflow](system-workflow.md). [Jackie's original diagram](figures/SARAH_system_architecture.drawio.png) is retained as earlier design evidence, not the current implementation diagram.
 
 ### 5.1.1 Inputs and outputs, by setup
 
@@ -169,9 +169,9 @@ assessment grades, using only attendance, study habits, and past failures instea
 `previous_score` predictor (correlation -0.72 with risk, versus -0.08 for attendance and study
 hours individually — see `docs/eda_findings.md`). Early-Warning remains the default no-grade mode. The results do not establish when in the term the inputs were available, and the model misses many High Risk students. Confirmatory provides a further check once grades are available. Discuss the false alarms and missed students with the tutor; do not treat the output as a decision by itself.
 
-## 5.6 Where to use this in the report
+## 5.6 Related evidence
 
-Use this design in report Section 5, and the comparison results in Sections 6-7.
-Benjamin's test-plan table (#27) is in [report section 8](../report/Document.md).
-Jackie's earlier evaluation plan (#18) is in [five-part model test plan](model-test-plan.md);
-use the implemented split described above when reporting the current results.
+This design supports report Section 5; the comparison results support Sections 6-7.
+The report's system checks, based on Benjamin's test plan (#27), are mapped in the [verification summary](submission-verification.md).
+The [five-part model test plan](model-test-plan.md), originally developed by Jackie
+under #18, describes the implemented development/reserved-test split.

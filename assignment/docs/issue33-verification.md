@@ -45,15 +45,9 @@ content or results; compare the text if only line endings differ.
 These are the follow-up software checks. They do not replace the final teammate
 review, macOS run or check of the actual submission package.
 
-## Report and submission handoff
+## Later verification and report location
 
-For #34, use the development comparison and model-selection explanation in
-Section 7, add the feature-importance figure and interpretation in 7.3, and use
-the reserved-test results, confusion matrices and limitations in Section 8.
-Keep the original diagram and five-part model test plan. The repository's
-[Document.md](../report/Document.md) remains an outline, not the final report.
-
-For #35, use a final agreed commit and test the actual submission package on a
-teammate's computer. Record the tester, date, environment and outcome. Windows
-checks do not establish a macOS pass. The signed declaration, required appendices,
-final report, uploaded-file check and submission receipt remain team tasks.
+These checks were recorded on 29 September. The [submission verification summary](submission-verification.md)
+records the later macOS result reported by Jackie on 1 October, at commit `0fff0f8`.
+The [assignment file guide](../report/Document.md) maps these records to the report,
+which is maintained separately for LMS submission.

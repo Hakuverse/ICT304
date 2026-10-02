@@ -1,5 +1,8 @@
 # Sprint 4 model checks
 
+> Historical development record. Tasks and results below describe the position at the time.
+> See the [submission verification summary](submission-verification.md) for the later report checks.
+
 Tester: Benjamin
 Date: 29 September 2026
 Issues: #30, #31 and #32
