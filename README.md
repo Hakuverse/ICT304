@@ -17,20 +17,23 @@ Project SARAH (Student Academic Risk Assistance Hub) is a prototype for estimati
 
 The command-line prototype predicts for one student or a class CSV, skips invalid rows and reports why. A dashboard and intervention recommendations are planned for the project stage.
 
+**Current project work:** use [project/](project/README.md) for setup, tests and new features.
+The assignment commands below remain for reproducing the earlier prototype.
+
 ## Repository structure
 
 ```
 ICT304/
 ├── ai-prompt-log/         # Shared prompt-log file (currently blank)
 │   └── log.md
-├── assignment/            # Current work: design report + AI prototype, due 3 October
+├── assignment/            # Assignment-stage record; preserve after submission
 │   ├── report/            # File guide and appendix; full report submitted separately
 │   ├── code/
 │   ├── data/
 │   └── docs/              # EDA findings, figures, feature selection and sprint tasks
-├── project/               # Next stage: continue here after assignment submission
+├── project/               # Current project development, due 7 November
 │   ├── README.md
-│   ├── report/            # Project-stage appendix placeholder
+│   ├── report/            # Project report files and appendix placeholder
 │   ├── code/
 │   ├── data/
 │   ├── docs/
@@ -70,8 +73,10 @@ When starting the project stage, leave out virtual environments, caches and temp
 - [Sprint 2: Requirements and Data Exploration](assignment/docs/sprint2-planning.md)
 - [Sprint 3: System Design](assignment/docs/sprint3-planning.md)
 - [Sprint 4: Prototype and Assignment Submission](assignment/docs/sprint4-planning.md)
+- [Sprint 5: Recommendations and Dashboard Prototype](project/docs/sprint5-planning.md)
+- [Sprint 6: Integration and User Testing](project/docs/sprint6-planning.md)
 
-## Setup / how to run
+## Assignment prototype: setup and reproduction
 
 Download and extract the submitted ZIP, or check out the agreed Git commit.
 The repository root is the folder containing `README.md` and `assignment/`.
@@ -174,7 +179,7 @@ versions. The [Sprint 4 plan](assignment/docs/sprint4-planning.md) remains a dat
 development record. Submission completion is tracked in [issue #35](https://github.com/Hakuverse/ICT304/issues/35).
 
 Dashboard and recommendation work remains planned. After submission, preserve the
-submitted assignment snapshot and follow the [project transition guide](project/README.md).
+submitted assignment snapshot and use the [project setup guide](project/README.md).
 
 See the [five-part model test plan](assignment/docs/model-test-plan.md), [current workflow](assignment/docs/system-workflow.md) and [Pre-Phase A to F mapping](assignment/docs/NASA_SE_HANDBOOK_CH3_CH4.md).
 
