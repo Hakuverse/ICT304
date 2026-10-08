@@ -80,7 +80,10 @@ def show_recommendation(student_fields, label, proba):
 
 def single_student_tab(mode):
     st.subheader("One student")
-    with st.form("single_student"):
+    # No st.form here on purpose: every change to an input or the mode reruns
+    # the page, and st.button is only True on the click itself, so an old
+    # result disappears as soon as anything is changed (#54).
+    with st.container(border=True):
         attendance = st.number_input("Attendance estimate (%)", min_value=0.0, max_value=100.0, value=80.0, step=1.0)
         study_hours = st.number_input("Study hours per week", min_value=0.0, max_value=40.0, value=5.0, step=0.5)
         failures = st.number_input("Past class failures", min_value=0, max_value=3, value=0, step=1)
@@ -88,9 +91,9 @@ def single_student_tab(mode):
         if mode == "confirmatory":
             g1_text = st.text_input("G1 (0-20, required)")
             g2_text = st.text_input("G2 (0-20, optional - leave blank if not available)")
-        submitted = st.form_submit_button("Predict")
+        clicked = st.button("Predict")
 
-    if not submitted:
+    if not clicked:
         return
     try:
         label, proba, grade_setup = predict_single(mode, attendance, study_hours, failures, g1_text, g2_text)

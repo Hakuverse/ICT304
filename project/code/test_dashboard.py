@@ -101,6 +101,19 @@ class DashboardScreen(unittest.TestCase):
         self.assertFalse(at.exception)
         self.assertTrue(any("Risk" in s.value for s in at.success) or any("Risk" in e.value for e in at.error))
 
+    def test_old_result_clears_when_input_or_mode_changes(self):
+        # Note: AppTest reruns on every set_value, so it cannot see the
+        # browser-only st.form behaviour (no rerun until submit). The real-browser
+        # check is the screenshot evidence in the PR; this guards the rerun logic.
+        at = AppTest.from_file(DASHBOARD, default_timeout=30).run()
+        at.button[0].click().run()
+        self.assertIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+        at.number_input[0].set_value(50.0).run()  # change attendance
+        self.assertNotIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+        at.button[0].click().run()
+        at.radio[0].set_value("confirmatory").run()  # change mode
+        self.assertNotIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+
     def test_confirmatory_form_without_g1_shows_error(self):
         at = AppTest.from_file(DASHBOARD, default_timeout=30).run()
         at.radio[0].set_value("confirmatory").run()
