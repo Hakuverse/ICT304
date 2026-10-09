@@ -87,6 +87,64 @@ class ClassUploadLogic(unittest.TestCase):
         self.assertEqual(len(skipped), 2)
 
 
+class UploadStructureChecks(unittest.TestCase):
+    """Messy files a tutor might really upload. The dashboard must never give a
+    student a prediction from the wrong numbers, and totals must always add up."""
+
+    H = "student_id,attendance_pct,study_hours,failures,G1,G2\n"
+
+    def process(self, text, mode="confirmatory"):
+        results, skipped, total = dashboard.process_upload(text, mode)
+        self.assertEqual(len(results) + len(skipped), total, "predicted + skipped must equal rows")
+        return results, skipped
+
+    def test_extra_comma_skips_that_row_instead_of_shifting_columns(self):
+        results, skipped = self.process(self.H + "A,60,4,1,12,14,99\nB,80,5,0,12,14\n")
+        self.assertEqual(list(results["student_id"]), ["B"])
+        self.assertEqual(results["probability_high_risk"].iloc[0], predict_one(80, 5, 0, "confirmatory", 12, 14)[1])
+        self.assertIn("has 7 values but the header has 6", skipped[0]["reason"])
+
+    def test_missing_comma_skips_that_row(self):
+        results, skipped = self.process(self.H + "A,60,4,1,12\nB,80,5,0,12,14\n")
+        self.assertEqual(list(results["student_id"]), ["B"])
+        self.assertIn("has 5 values", skipped[0]["reason"])
+
+    def test_unmatched_quote_rejects_file_clearly(self):
+        with self.assertRaisesRegex(ValueError, "unmatched quote"):
+            self.process(self.H + 'A,"60,4,1,12,14\nB,80,5,0,12,14\n')
+
+    def test_header_case_and_spaces_are_accepted(self):
+        results, _ = self.process(" Student_ID ,Attendance_pct, study_hours ,FAILURES, g1, g2\nA,60,4,1,12,\n")
+        self.assertEqual(list(results["grade_setup"]), ["g1"])
+
+    def test_duplicate_column_rejected(self):
+        with self.assertRaisesRegex(ValueError, "more than once: G1"):
+            self.process("student_id,G1,attendance_pct,study_hours,failures,g1\nA,12,60,4,1,13\n")
+
+    def test_rows_without_ids_keep_their_original_row_numbers(self):
+        results, skipped = self.process("attendance_pct,study_hours,failures\n60,4,1\n150,4,1\n80,5,0\n",
+                                        "early_warning")
+        self.assertEqual(list(results["student_id"]), ["row 1", "row 3"])
+        self.assertEqual(skipped[0]["student_id"], "row 2")
+
+    def test_all_rows_wrong_length_gives_no_results_not_a_crash(self):
+        results, skipped = self.process(self.H + "A,1\nB,2\n")
+        self.assertTrue(results.empty)
+        self.assertEqual(len(skipped), 2)
+
+    def test_windows_line_endings_blank_lines_and_spaces(self):
+        text = (self.H + "\nA, 60 , 4 , 1 , 12 ,\n\nB,80,5,0,12,14\n").replace("\n", "\r\n")
+        results, skipped = self.process(text)
+        self.assertEqual(list(results["student_id"]), ["A", "B"])
+        self.assertEqual(skipped, [])
+
+    def test_sample_file_matches_command_line(self):
+        results, skipped = self.process(dashboard.SAMPLE_CSV.read_text())
+        cli_results, cli_skipped = predict_roster(dashboard.SAMPLE_CSV, "confirmatory")
+        self.assertEqual(results.to_dict("records"), cli_results.to_dict("records"))
+        self.assertEqual(skipped, cli_skipped)
+
+
 class DashboardScreen(unittest.TestCase):
     """The page itself loads and the form works in both modes."""
 
@@ -113,6 +171,23 @@ class DashboardScreen(unittest.TestCase):
         at.button[0].click().run()
         at.radio[0].set_value("confirmatory").run()  # change mode
         self.assertNotIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+
+    def test_out_of_range_typed_values_show_error_not_old_value(self):
+        # Regression: with min/max on the boxes, typing 150 kept the old 80
+        # and predicted silently. Now each out-of-range value must give an error.
+        for box, value, message in [(0, 150.0, "attendance_pct must be 0 to 100"),
+                                    (0, -1.0, "attendance_pct must be 0 to 100"),
+                                    (1, 41.0, "study_hours must be 0 to 40"),
+                                    (1, -0.5, "study_hours must be 0 to 40")]:
+            at = AppTest.from_file(DASHBOARD, default_timeout=30).run()
+            at.number_input[box].set_value(value).run()
+            at.button[0].click().run()
+            self.assertTrue(any(message in e.value for e in at.error), f"{value}: no error shown")
+            self.assertNotIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+
+    def test_failures_only_offers_whole_numbers_0_to_3(self):
+        at = AppTest.from_file(DASHBOARD, default_timeout=30).run()
+        self.assertEqual(list(at.selectbox[0].options), ["0", "1", "2", "3"])
 
     def test_confirmatory_form_without_g1_shows_error(self):
         at = AppTest.from_file(DASHBOARD, default_timeout=30).run()

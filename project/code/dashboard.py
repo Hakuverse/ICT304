@@ -12,6 +12,8 @@ predict.py, so the dashboard gives the same answers as the command line.
 Recommendations (#53) are shown automatically once recommend.py exists.
 """
 
+import csv
+import io
 from pathlib import Path
 
 import streamlit as st
@@ -70,6 +72,85 @@ def predict_single(mode, attendance, study_hours, failures, g1_text="", g2_text=
     return label, proba, grade_setup
 
 
+KNOWN_COLUMNS = ["student_id", "attendance_pct", "study_hours", "failures", "G1", "G2"]
+
+
+def prepare_upload(text):
+    """Check the CSV's structure before predicting.
+
+    Returns (clean_csv_text, skipped_rows, total_rows). Raises ValueError for a
+    problem with the whole file.
+
+    Why: pandas silently shifts every value one column to the left when a row
+    has an extra comma, so a student could get a prediction from the wrong
+    numbers. Here every row must have exactly as many values as the header;
+    a row that does not is skipped with its row number instead of being guessed.
+    Header names are also matched ignoring case and spaces (" g1 " -> "G1").
+    Rows are numbered 1, 2, 3... after the header, blank lines ignored.
+    """
+    rows = list(csv.reader(io.StringIO(text)))
+    if not rows or not any(cell.strip() for cell in rows[0]):
+        raise ValueError("The CSV contains no students.")
+    if any("\n" in cell or "\r" in cell for row in rows for cell in row):
+        raise ValueError("The file has an unmatched quote mark (\"), so its rows cannot be read reliably. "
+                         "Please fix it in the spreadsheet and upload again.")
+
+    canonical = {name.lower(): name for name in KNOWN_COLUMNS}
+    header = [canonical.get(name.strip().lower(), name.strip()) for name in rows[0]]
+    duplicates = sorted({name for name in header if name and header.count(name) > 1})
+    if duplicates:
+        raise ValueError(f"Column(s) appear more than once: {', '.join(duplicates)}")
+
+    data = [row for row in rows[1:] if row]  # csv gives [] for a blank line
+    if not data:
+        raise ValueError("The CSV contains no students.")
+
+    has_id = "student_id" in header
+    out_header = header if has_id else ["student_id"] + header
+    kept, skipped = [], []
+    for number, row in enumerate(data, start=1):
+        if has_id and len(row) == len(header):
+            label = row[header.index("student_id")].strip() or f"row {number}"
+        else:
+            label = f"row {number}"
+        if len(row) != len(header):
+            skipped.append({"student_id": label, "reason": f"has {len(row)} values but the header has "
+                            f"{len(header)} columns (check for a missing or extra comma)"})
+            continue
+        if has_id:
+            row = list(row)
+            row[header.index("student_id")] = label
+            kept.append(row)
+        else:
+            kept.append([label] + row)
+
+    buffer = io.StringIO()
+    writer = csv.writer(buffer, lineterminator="\n")
+    writer.writerow(out_header)
+    writer.writerows(kept)
+    return buffer.getvalue(), skipped, len(data)
+
+
+def process_upload(text, mode):
+    """Everything the Class CSV tab does, without the screen: check the file's
+    structure, then predict with predict.py. Returns (results, skipped, total_rows)."""
+    clean_text, skipped, total_rows = prepare_upload(text)
+    if clean_text.count("\n") > 1:  # at least one row with the right number of values
+        results, value_skipped = predict_roster(io.StringIO(clean_text), mode)
+        skipped = skipped + value_skipped
+    else:  # every row had the wrong number of values
+        results = _empty_results(mode)
+    return results, skipped, total_rows
+
+
+def _empty_results(mode):
+    import pandas as pd
+    columns = ["student_id", "risk_label", "probability_high_risk"]
+    if mode == "confirmatory":
+        columns.append("grade_setup")
+    return pd.DataFrame(columns=columns)
+
+
 def show_recommendation(student_fields, label, proba):
     if recommend is None:
         st.caption("Support suggestions will appear here once the recommendation engine (#53) is added.")
@@ -84,9 +165,14 @@ def single_student_tab(mode):
     # the page, and st.button is only True on the click itself, so an old
     # result disappears as soon as anything is changed (#54).
     with st.container(border=True):
-        attendance = st.number_input("Attendance estimate (%)", min_value=0.0, max_value=100.0, value=80.0, step=1.0)
-        study_hours = st.number_input("Study hours per week", min_value=0.0, max_value=40.0, value=5.0, step=0.5)
-        failures = st.number_input("Past class failures", min_value=0, max_value=3, value=0, step=1)
+        # No min/max on these boxes on purpose: with min/max, Streamlit keeps the
+        # last valid value when an out-of-range number is typed, so the screen
+        # could show 150 while the prediction silently used 80. Without them,
+        # the typed value is sent and predict.py's validation shows an error.
+        attendance = st.number_input("Attendance estimate (%) - 0 to 100", value=80.0, step=1.0)
+        study_hours = st.number_input("Study hours per week - 0 to 40", value=5.0, step=0.5)
+        # A fixed list makes non-whole or out-of-range failures impossible.
+        failures = st.selectbox("Past class failures (whole number, 0 to 3)", [0, 1, 2, 3])
         g1_text = g2_text = ""
         if mode == "confirmatory":
             g1_text = st.text_input("G1 (0-20, required)")
@@ -99,6 +185,9 @@ def single_student_tab(mode):
         label, proba, grade_setup = predict_single(mode, attendance, study_hours, failures, g1_text, g2_text)
     except ValueError as exc:
         st.error(f"Please fix the input: {exc}")
+        return
+    except Exception as exc:  # last safety net: never show a crash screen
+        st.error(f"Something unexpected went wrong ({type(exc).__name__}: {exc}). No prediction was made.")
         return
 
     show = st.error if label == "High Risk" else st.success
@@ -126,12 +215,14 @@ def class_csv_tab(mode):
     except UnicodeDecodeError:
         st.error("This file cannot be read. Please save it as a UTF-8 CSV and upload again.")
         return
-    total_rows = sum(1 for line in text.splitlines()[1:] if line.strip())
-    uploaded.seek(0)
     try:
-        results, skipped = predict_roster(uploaded, mode)
+        results, skipped, total_rows = process_upload(text, mode)
     except ValueError as exc:
         st.error(f"This file cannot be processed: {exc}")
+        return
+    except Exception as exc:  # last safety net: never show a crash screen
+        st.error(f"Something unexpected went wrong reading this file ({type(exc).__name__}: {exc}). "
+                 "No predictions were made. Please check the file and try again.")
         return
 
     c1, c2, c3 = st.columns(3)
