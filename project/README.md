@@ -8,7 +8,8 @@ Keep `assignment/` as the assignment-stage record and keep tutorials separate.
 This project copy starts from reviewed main commit
 [`a97a9b0`](https://github.com/Hakuverse/ICT304/commit/a97a9b09463017d3b4e0a325cf2d310ec5390081)
 (PR #64). This is also the version used to prepare `ICT304_Code_a97a9b0.zip`.
-The exact version uploaded to LMS still needs Benjamin's confirmation; the
+Issue #51 is closed and PR #71 is merged. This identifies the project code
+baseline; the exact package uploaded to LMS is recorded separately. The
 prepared package alone does not prove which files were submitted.
 
 Code, required datasets, three saved models and selected model documents were
@@ -27,10 +28,10 @@ records were not copied. Earlier evidence remains in `assignment/docs/`.
 
 The dashboard is already connected to the recommendation contract agreed in
 #52: `recommend(student_fields, prediction)` returning a list of messages, called
-for the form and for every valid CSV row. The actual recommendation rules
-(`project/code/recommend.py`) are still being built in #53. Until that file
-exists, the dashboard works normally and shows a placeholder instead of
-suggestions. The copied evaluation results describe the assignment model
+for the form and for every valid CSV row. The recommendation function was
+implemented in PR #74. High Risk students receive matching support suggestions
+or general review guidance; Low Risk students receive routine check-in guidance.
+See the [team-approved rules](docs/recommendation-rules.md). The copied evaluation results describe the assignment model
 baseline, not new project or dashboard testing. `feature_stats.json` contains
 statistics for the G1+G2 training setup only; do not use it for every
 recommendation setup.
@@ -86,8 +87,8 @@ python3 -m venv .venv
 .venv/bin/python project/code/predict.py --mode confirmatory --csv project/data/sample_roster.csv
 ```
 
-Expect 78 tests ending in `OK` (41 copied from the assignment plus 37 dashboard
-tests added in PR #72). Dataset verification shows 395 students, including
+Expect 89 tests ending in `OK` (41 copied from the assignment, 37 dashboard
+tests from PR #72 and 11 recommendation tests from PR #74). Dataset verification shows 395 students, including
 130 High Risk and 265 Low Risk. The sample CSV predicts for A and B and skips C
 and D with reasons. See the [migration checks](docs/project-start-checks.md) for
 the actual Windows results recorded when the project folder was created, when the
@@ -119,6 +120,11 @@ experiment. Review those checks if the experiment changes; do not silently reuse
 the original scores for a different experiment.
 
 ## Plans and references
+
+- [Current implementation checks](docs/sprint5-implementation-checks.md)
+- [Issue #56 test checklist](docs/prototype-test-checklist.md)
+- [Issue #57 demo notes](docs/prototype-demo-notes.md)
+- [Current project workflow](docs/system-workflow.md)
 
 - [Sprint 5 plan](docs/sprint5-planning.md)
 - [Sprint 6 plan](docs/sprint6-planning.md)

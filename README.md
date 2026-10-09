@@ -15,7 +15,7 @@ Repository for ICT304 (AI System Design) at Murdoch University — covering both
 
 Project SARAH (Student Academic Risk Assistance Hub) is a prototype for estimating academic risk. Early-Warning uses an attendance estimate, estimated study hours and past failures without assessment grades. Confirmatory requires G1 and accepts optional G2, with separate models for G1 alone and the G1/G2 average. Neither mode uses demographic or family-background inputs. The dataset does not establish day-one or week-specific accuracy.
 
-The command-line prototype predicts for one student or a class CSV, skips invalid rows and reports why. A dashboard and intervention recommendations are planned for the project stage.
+The command-line prototype predicts for one student or a class CSV, skips invalid rows and reports why. The project stage now includes a Streamlit dashboard and High-Risk-only support recommendations, with routine guidance for Low Risk predictions.
 
 **Current project work:** use [project/](project/README.md) for setup, tests and new features.
 The assignment commands below remain for reproducing the earlier prototype.
@@ -178,8 +178,9 @@ if later changes are included; historical test records retain their original
 versions. The [Sprint 4 plan](assignment/docs/sprint4-planning.md) remains a dated
 development record. Submission completion is tracked in [issue #35](https://github.com/Hakuverse/ICT304/issues/35).
 
-Dashboard and recommendation work remains planned. After submission, preserve the
-submitted assignment snapshot and use the [project setup guide](project/README.md).
+The project dashboard and recommendation function are implemented. Preserve the
+submitted assignment snapshot and use the [project setup guide](project/README.md)
+for current work and the 89-test project suite.
 
 See the [five-part model test plan](assignment/docs/model-test-plan.md), [current workflow](assignment/docs/system-workflow.md) and [Pre-Phase A to F mapping](assignment/docs/NASA_SE_HANDBOOK_CH3_CH4.md).
 

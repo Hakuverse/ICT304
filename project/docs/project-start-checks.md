@@ -1,5 +1,8 @@
 # Project starting checks - Issue #51
 
+Historical record from 6 October. For current implementation and remaining
+checks, see [Sprint 5 implementation checks](sprint5-implementation-checks.md).
+
 Date: 6 October 2026. Baseline: reviewed main commit `a97a9b0` (PR #64).
 This records checks of the project copy, not a new model evaluation or dashboard test.
 

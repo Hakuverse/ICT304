@@ -83,7 +83,7 @@ The chart does not show whether an input increases or decreases risk, prove caus
 - The tree depth was selected and scored using the same development folds. Those development scores may be optimistic after selection. The reserved test was excluded from that choice. A fuller future study could use nested validation and repeated splits, without tuning against the current test results.
 - Balanced class weights trade extra false alarms for fewer missed students. The team should discuss both costs with the tutor rather than claim recall alone proves practical usefulness.
 - Predicted probabilities have not been checked for calibration, and subgroup fairness has not been established. Results should support human review, not automatic decisions about students.
-- The working prototype is command-line classification. Dashboard and recommendation work remains planned.
+- These model results describe the classification baseline. The project now includes a dashboard and rule-based recommendations; their software and user checks are separate from model accuracy.
 
 ## Output files
 

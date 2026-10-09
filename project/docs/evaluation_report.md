@@ -54,9 +54,9 @@ Selection criterion (same throughout this project): highest recall on the High R
 
 Early-Warning setup (without assessment grades): development recall 0.482. Confirmatory (G1+G2) setup: development recall 0.904. This is a limitation observed in our current experiments, not a proven irreducible limit: Early-Warning mode predicts without assessment grades, using only attendance, study habits, and past failures, so weaker results here are expected given the narrower feature set -- but these results do not prove that better Early-Warning performance is impossible with more data or features. Early-Warning is the default no-grade mode; Confirmatory is available once grades exist. Review missed students and false alarms alongside recall before considering practical use. This dataset has no week-by-week records, so these results do not establish day-one or week-specific accuracy.
 
-## Feature statistics (Confirmatory G1+G2 development split, for planned recommendation work)
+## Feature statistics (Confirmatory G1+G2 development split, reference statistics)
 
-These statistics describe this setup only. Recommendation code is not yet implemented; do not reuse them for every setup without review.
+These statistics describe this setup only. The recommendation function uses fixed team-approved thresholds, not these statistics at prediction time; do not reuse them for every setup without review.
 
 ```json
 {
