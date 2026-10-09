@@ -22,12 +22,36 @@ records were not copied. Earlier evidence remains in `assignment/docs/`.
   Confirmatory with G1 and G2.
 - CSV validation that skips invalid students and processes valid rows.
 - Training, model comparison and the copied automated tests.
+- Streamlit dashboard (#54, #55, PR #72): a one-student form and a class CSV
+  upload with skipped-row reasons, totals and a results download.
 
-Recommendations and the Streamlit dashboard are still Sprint 5 tasks. Streamlit
-is already in the copied requirements; there is no dashboard launch command yet.
-The copied evaluation results describe the assignment model baseline, not new
-project or dashboard testing. `feature_stats.json` contains statistics for the
-G1+G2 training setup only; do not use it for every recommendation setup.
+The dashboard is already connected to the recommendation contract agreed in
+#52: `recommend(student_fields, prediction)` returning a list of messages, called
+for the form and for every valid CSV row. The actual recommendation rules
+(`project/code/recommend.py`) are still being built in #53. Until that file
+exists, the dashboard works normally and shows a placeholder instead of
+suggestions. The copied evaluation results describe the assignment model
+baseline, not new project or dashboard testing. `feature_stats.json` contains
+statistics for the G1+G2 training setup only; do not use it for every
+recommendation setup.
+
+### Start the dashboard
+
+From the repository root, after the setup below:
+
+```powershell
+.venv\Scripts\python.exe -m streamlit run project/code/dashboard.py
+```
+
+On macOS:
+
+```bash
+.venv/bin/python -m streamlit run project/code/dashboard.py
+```
+
+The dashboard opens in the browser at `http://localhost:8501`. Press `Ctrl + C`
+in the terminal to stop it. Test files for messy or invalid uploads are in
+`project/data/dashboard_checks/`; they use fictional student IDs.
 
 ## Set up from the repository root
 
@@ -62,10 +86,12 @@ python3 -m venv .venv
 .venv/bin/python project/code/predict.py --mode confirmatory --csv project/data/sample_roster.csv
 ```
 
-Expect 41 tests ending in `OK`. Dataset verification shows 395 students, including
+Expect 78 tests ending in `OK` (41 copied from the assignment plus 37 dashboard
+tests added in PR #72). Dataset verification shows 395 students, including
 130 High Risk and 265 Low Risk. The sample CSV predicts for A and B and skips C
 and D with reasons. See the [migration checks](docs/project-start-checks.md) for
-actual Windows results; a new macOS run and teammate review are still pending.
+the actual Windows results recorded when the project folder was created, when the
+suite had 41 tests; a new macOS run is still pending.
 
 ## Working with the models
 
