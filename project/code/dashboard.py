@@ -9,7 +9,8 @@ invalid rows are listed with the reason they were skipped.
 
 This file only handles the screen. Validation and prediction reuse
 predict.py, so the dashboard gives the same answers as the command line.
-Recommendations (#53) are shown automatically once recommend.py exists.
+Recommendations (#53) are shown in the form and as a CSV column once
+recommend.py exists, using the function contract agreed in #52.
 """
 
 import csv
@@ -18,7 +19,8 @@ from pathlib import Path
 
 import streamlit as st
 
-from predict import predict_one, predict_roster
+from data_processing import previous_score_from_grades
+from predict import _parse_g2, predict_one, predict_roster
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]  # project/code -> project/
 SAMPLE_CSV = PROJECT_ROOT / "data" / "sample_roster.csv"
@@ -40,10 +42,23 @@ PROBABILITY_NOTE = (
     "Use it alongside your own knowledge of the student."
 )
 
-try:  # recommend.py is built in #53; until then the dashboard still works.
+# Recommendation contract agreed in #52 (Section 3):
+#   recommend(student_fields, prediction) -> list[str]
+#   student_fields keys: mode, attendance_pct, study_hours, failures, previous_score
+#   (previous_score is None in Early-Warning); prediction is "High Risk" or "Low Risk".
+# recommend.py is built in #53. Until it exists the dashboard still works and shows
+# a placeholder. If the file exists but cannot be used (e.g. a different function
+# name), the page says so instead of silently showing the placeholder.
+RECOMMEND_ERROR = None
+try:
     from recommend import recommend
-except ImportError:
+except ModuleNotFoundError as exc:
     recommend = None
+    if exc.name != "recommend":
+        RECOMMEND_ERROR = f"recommend.py could not be loaded: {exc}"
+except ImportError as exc:
+    recommend = None
+    RECOMMEND_ERROR = f"recommend.py was found but has no usable recommend() function: {exc}"
 
 
 def parse_grade(text, name, required):
@@ -70,6 +85,42 @@ def predict_single(mode, attendance, study_hours, failures, g1_text="", g2_text=
         grade_setup = "g1_g2" if g2 is not None else "g1"
     label, proba = predict_one(attendance, study_hours, failures, mode, g1, g2)
     return label, proba, grade_setup
+
+
+def build_student_fields(mode, attendance, study_hours, failures, g1=None, g2=None):
+    """The exact student_fields dictionary agreed in #52. Uses the existing
+    previous_score_from_grades() so there is only one grade calculation."""
+    return {
+        "mode": mode,
+        "attendance_pct": float(attendance),
+        "study_hours": float(study_hours),
+        "failures": int(float(failures)),
+        "previous_score": previous_score_from_grades(g1, g2) if mode == "confirmatory" else None,
+    }
+
+
+def form_student_fields(mode, attendance, study_hours, failures, g1_text="", g2_text=""):
+    """student_fields for the one-student form (call after predict_single succeeded)."""
+    g1 = g2 = None
+    if mode == "confirmatory":
+        g1 = parse_grade(g1_text, "G1", required=True)
+        g2 = parse_grade(g2_text, "G2", required=False)
+    return build_student_fields(mode, attendance, study_hours, failures, g1, g2)
+
+
+def get_recommendations(student_fields, prediction, recommender=None):
+    """Call recommend() and check it returned a list of strings.
+    Returns (messages, error). messages is None when recommend.py does not exist yet."""
+    recommender = recommender if recommender is not None else recommend
+    if recommender is None:
+        return None, None
+    try:
+        messages = recommender(student_fields, prediction)
+    except Exception as exc:
+        return None, f"recommend() failed: {type(exc).__name__}: {exc}"
+    if not isinstance(messages, list) or not all(isinstance(m, str) for m in messages):
+        return None, "recommend() must return a list of text messages (list[str])."
+    return messages, None
 
 
 KNOWN_COLUMNS = ["student_id", "attendance_pct", "study_hours", "failures", "G1", "G2"]
@@ -107,7 +158,7 @@ def prepare_upload(text):
 
     has_id = "student_id" in header
     out_header = header if has_id else ["student_id"] + header
-    kept, skipped = [], []
+    kept, skipped, rows = [], [], {}
     for number, row in enumerate(data, start=1):
         if has_id and len(row) == len(header):
             label = row[header.index("student_id")].strip() or f"row {number}"
@@ -115,31 +166,61 @@ def prepare_upload(text):
             label = f"row {number}"
         if len(row) != len(header):
             skipped.append({"student_id": label, "reason": f"has {len(row)} values but the header has "
-                            f"{len(header)} columns (check for a missing or extra comma)"})
+                            f"{len(header)} columns (check for a missing or extra comma)", "_row": number})
             continue
+        # Each row gets a unique internal key, so its prediction and recommendations
+        # stay linked to this exact row even if two students share an ID.
+        key = f"__row{number}__"
+        rows[key] = {"row": number, "label": label, "values": dict(zip(header, row))}
         if has_id:
             row = list(row)
-            row[header.index("student_id")] = label
+            row[header.index("student_id")] = key
             kept.append(row)
         else:
-            kept.append([label] + row)
+            kept.append([key] + row)
 
     buffer = io.StringIO()
     writer = csv.writer(buffer, lineterminator="\n")
     writer.writerow(out_header)
     writer.writerows(kept)
-    return buffer.getvalue(), skipped, len(data)
+    return buffer.getvalue(), skipped, len(data), rows
 
 
-def process_upload(text, mode):
+def csv_row_student_fields(values, mode):
+    """student_fields for one valid CSV row (same keys and conversion as the form)."""
+    g1 = g2 = None
+    if mode == "confirmatory":
+        g1 = float(values["G1"])
+        g2 = _parse_g2(values.get("G2"))
+    return build_student_fields(mode, values["attendance_pct"], values["study_hours"],
+                                values["failures"], g1, g2)
+
+
+def process_upload(text, mode, recommender=None):
     """Everything the Class CSV tab does, without the screen: check the file's
-    structure, then predict with predict.py. Returns (results, skipped, total_rows)."""
-    clean_text, skipped, total_rows = prepare_upload(text)
-    if clean_text.count("\n") > 1:  # at least one row with the right number of values
+    structure, predict with predict.py and, when a recommender is given, add a
+    "recommendations" column built from each row's own inputs.
+    Returns (results, skipped, total_rows). Skipped rows never get recommendations."""
+    clean_text, skipped, total_rows, rows = prepare_upload(text)
+    if rows:
         results, value_skipped = predict_roster(io.StringIO(clean_text), mode)
-        skipped = skipped + value_skipped
+        for item in value_skipped:
+            info = rows[item["student_id"]]
+            skipped.append({"student_id": info["label"], "reason": item["reason"], "_row": info["row"]})
     else:  # every row had the wrong number of values
         results = _empty_results(mode)
+    skipped = [{"student_id": s["student_id"], "reason": s["reason"]}
+               for s in sorted(skipped, key=lambda s: s["_row"])]
+
+    keys = list(results["student_id"])
+    results["student_id"] = [rows[k]["label"] for k in keys]
+    if recommender is not None:
+        column = []
+        for key, label in zip(keys, results["risk_label"]):
+            fields = csv_row_student_fields(rows[key]["values"], mode)
+            messages, error = get_recommendations(fields, label, recommender)
+            column.append(error if error else " | ".join(messages))
+        results["recommendations"] = column
     return results, skipped, total_rows
 
 
@@ -151,12 +232,16 @@ def _empty_results(mode):
     return pd.DataFrame(columns=columns)
 
 
-def show_recommendation(student_fields, label, proba):
-    if recommend is None:
+def show_recommendation(student_fields, label):
+    messages, error = get_recommendations(student_fields, label)
+    if error:
+        st.error(error)
+    elif messages is None:
         st.caption("Support suggestions will appear here once the recommendation engine (#53) is added.")
-        return
-    for message in recommend(student_fields, {"risk_label": label, "probability_high_risk": proba}):
-        st.write(f"- {message}")
+    else:
+        st.write("**Support suggestions** (for human review):")
+        for message in messages:
+            st.write(f"- {message}")
 
 
 def single_student_tab(mode):
@@ -196,8 +281,8 @@ def single_student_tab(mode):
     if grade_setup:
         st.write(f"Model used: **{'G1 + G2' if grade_setup == 'g1_g2' else 'G1 only'}**")
     st.caption(PROBABILITY_NOTE)
-    fields = {"attendance_pct": attendance, "study_hours": study_hours, "failures": failures}
-    show_recommendation(fields, label, proba)
+    fields = form_student_fields(mode, attendance, study_hours, failures, g1_text, g2_text)
+    show_recommendation(fields, label)
 
 
 def class_csv_tab(mode):
@@ -216,7 +301,7 @@ def class_csv_tab(mode):
         st.error("This file cannot be read. Please save it as a UTF-8 CSV and upload again.")
         return
     try:
-        results, skipped, total_rows = process_upload(text, mode)
+        results, skipped, total_rows = process_upload(text, mode, recommend)
     except ValueError as exc:
         st.error(f"This file cannot be processed: {exc}")
         return
@@ -237,6 +322,8 @@ def class_csv_tab(mode):
     else:
         st.dataframe(results, hide_index=True)
         st.caption(PROBABILITY_NOTE)
+        if recommend is None:
+            st.caption("A recommendations column will be added once the recommendation engine (#53) is added.")
         st.download_button("Download results as CSV", results.to_csv(index=False).encode("utf-8"),
                            file_name="sarah_predictions.csv", mime="text/csv")
 
@@ -249,6 +336,8 @@ def main():
     st.set_page_config(page_title="SARAH Dashboard")
     st.title("SARAH - Student Academic Risk Assistance Hub")
     st.caption("Prototype for tutors. Results are suggestions for human review, not decisions.")
+    if RECOMMEND_ERROR:
+        st.error(RECOMMEND_ERROR)
 
     mode = st.radio("Prediction mode", list(MODE_LABELS), format_func=MODE_LABELS.get, horizontal=True)
     st.info(MODE_HELP[mode])

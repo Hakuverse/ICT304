@@ -145,6 +145,85 @@ class UploadStructureChecks(unittest.TestCase):
         self.assertEqual(skipped, cli_skipped)
 
 
+class RecommendationContract(unittest.TestCase):
+    """The #52 contract: recommend(student_fields, prediction) -> list[str].
+    A stand-in recommend() records what the dashboard passes, so these tests work
+    before Jackie's real recommend.py exists."""
+
+    KEYS = {"mode", "attendance_pct", "study_hours", "failures", "previous_score"}
+
+    def setUp(self):
+        self.calls = []
+
+        def fake(student_fields, prediction):
+            self.calls.append((student_fields, prediction))
+            return [f"{prediction}: att={student_fields['attendance_pct']}", "second message"]
+        self.fake = fake
+
+    def test_form_fields_early_warning(self):
+        fields = dashboard.form_student_fields("early_warning", 40, 4, 0)
+        self.assertEqual(set(fields), self.KEYS)
+        self.assertEqual(fields, {"mode": "early_warning", "attendance_pct": 40.0, "study_hours": 4.0,
+                                  "failures": 0, "previous_score": None})
+
+    def test_form_fields_confirmatory_scores(self):
+        self.assertEqual(dashboard.form_student_fields("confirmatory", 80, 4, 0, "8", "")["previous_score"], 40.0)
+        self.assertEqual(dashboard.form_student_fields("confirmatory", 80, 4, 0, "8", "12")["previous_score"], 50.0)
+        self.assertEqual(dashboard.form_student_fields("confirmatory", 80, 4, 0, "12", "0")["previous_score"], 30.0)
+
+    def test_prediction_is_passed_as_plain_label_text(self):
+        messages, error = dashboard.get_recommendations(
+            dashboard.form_student_fields("early_warning", 40, 4, 0), "High Risk", self.fake)
+        self.assertIsNone(error)
+        self.assertEqual(self.calls[0][1], "High Risk")
+        self.assertIsInstance(messages, list)
+
+    def test_bad_return_value_is_reported_not_crashed(self):
+        _, error = dashboard.get_recommendations({}, "High Risk", lambda f, p: "not a list")
+        self.assertIn("list", error)
+        _, error = dashboard.get_recommendations({}, "High Risk", lambda f, p: 1 / 0)
+        self.assertIn("ZeroDivisionError", error)
+
+    def test_no_recommend_py_means_placeholder(self):
+        saved, dashboard.recommend = dashboard.recommend, None
+        try:
+            self.assertEqual(dashboard.get_recommendations({}, "High Risk"), (None, None))
+        finally:
+            dashboard.recommend = saved
+
+    def test_csv_each_valid_row_gets_its_own_fields_even_with_duplicate_ids(self):
+        text = ("student_id,attendance_pct,study_hours,failures,G1,G2\n"
+                "A,40,4,0,8,\nA,90,6,1,12,14\nC,150,4,0,12,\nD,80,5,0,12,0\n")
+        results, skipped, total = dashboard.process_upload(text, "confirmatory", self.fake)
+        self.assertEqual(len(results) + len(skipped), total)
+        self.assertEqual(list(results["student_id"]), ["A", "A", "D"])       # file order kept
+        self.assertEqual([s["student_id"] for s in skipped], ["C"])           # skipped row: no call
+        self.assertEqual(len(self.calls), 3)
+        fields = [c[0] for c in self.calls]
+        self.assertTrue(all(set(f) == self.KEYS for f in fields))
+        self.assertEqual([f["attendance_pct"] for f in fields], [40.0, 90.0, 80.0])
+        self.assertEqual([f["previous_score"] for f in fields], [40.0, 65.0, 30.0])  # G2 = 0 is a grade
+        self.assertEqual([c[1] for c in self.calls], list(results["risk_label"]))
+        self.assertTrue(results["recommendations"].iloc[0].startswith(results["risk_label"].iloc[0]))
+        self.assertIn("recommendations", results.to_csv(index=False).splitlines()[0])  # in the download
+
+    def test_csv_early_warning_rows_have_no_previous_score(self):
+        dashboard.process_upload(dashboard.SAMPLE_CSV.read_text(), "early_warning", self.fake)
+        self.assertTrue(self.calls)
+        self.assertTrue(all(c[0]["previous_score"] is None and c[0]["mode"] == "early_warning"
+                            for c in self.calls))
+
+    def test_same_student_same_fields_through_form_and_csv(self):
+        dashboard.process_upload("student_id,attendance_pct,study_hours,failures,G1,G2\nS,60,1.5,2,9,11\n",
+                                 "confirmatory", self.fake)
+        form = dashboard.form_student_fields("confirmatory", 60, 1.5, 2, "9", "11")
+        self.assertEqual(self.calls[0][0], form)
+
+    def test_csv_without_recommend_has_no_recommendation_column(self):
+        results, _, _ = dashboard.process_upload(dashboard.SAMPLE_CSV.read_text(), "confirmatory", None)
+        self.assertNotIn("recommendations", results.columns)
+
+
 class DashboardScreen(unittest.TestCase):
     """The page itself loads and the form works in both modes."""
 
