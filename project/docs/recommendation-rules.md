@@ -26,7 +26,7 @@ The accepted input ranges are:
 
 The attendance value is an estimate derived from capped absence counts rather than a directly measured attendance percentage. Study hours are also estimates converted from the dataset’s study-time categories.
 
-## 2. Proposed Recommendation Rules
+## 2. Approved Recommendation Rules
 
 The following recommendation rules were approved by the project team on 9 October 2026. Targeted recommendations apply only when the model predicts High Risk. A rule may suggest an area for discussion, but it does not prove that the factor caused the student's predicted risk.
 
@@ -37,7 +37,7 @@ The sample inputs below were checked against the saved models at commit `87fbc6d
 | Attendance support | `attendance_pct ≤ 60` | Early-Warning and Confirmatory | Ask about attendance barriers and discuss available support. | Under the project conversion, 60 corresponds to approximately 12 absences. It is also close to one standard deviation below the recorded Confirmatory G1+G2 development mean of 81.569. The team approved this threshold for both Early-Warning and Confirmatory modes. | **Early-Warning:** attendance 40, study hours 4, failures 0 — High Risk |
 | Study planning | `study_hours ≤ 1.5` | Early-Warning and Confirmatory | Help the student prepare a realistic weekly study plan and discuss study-support options. | The value 1.5 represents the lowest study-time category in the source dataset. | **Early-Warning:** attendance 80, study hours 1.5, failures 2 — High Risk; also triggers the previous-failure rule |
 | Previous-failure support | `failures ≥ 1` | Early-Warning and Confirmatory | Discuss previous academic difficulties and suitable support options. | Any previous class failure provides a clear and understandable reason to offer additional academic support. | **Early-Warning:** attendance 80, study hours 4, failures 2 — High Risk |
-| Assessment review | `previous_score < 50` | Confirmatory only | Review the student’s assessment performance and discuss appropriate academic support. | A normalised score below 50 represents an average grade below 10/20. Exactly 50 does not trigger this rule. | **Confirmatory, G1 only:** attendance 80, study hours 4, failures 0, G1 8, G2 blank — previous score 40; High Risk |
+| Assessment review | `previous_score < 50` | Confirmatory only | Review the student’s assessment performance and discuss appropriate academic support. | A normalised score below 50 means G1 below 10/20 when G2 is absent, or the G1/G2 average below 10/20 when both are supplied. Exactly 50 does not trigger this rule. | **Confirmatory, G1 only:** attendance 80, study hours 4, failures 0, G1 8, G2 blank — previous score 40; High Risk |
 
 The attendance threshold uses the stored statistics from the Confirmatory G1+G2 development setup only. These statistics must not be presented as universal values for every setup without further review.
 
@@ -67,7 +67,7 @@ The recommendation component will use the following interface:
 
 `recommend(student_fields, prediction)`
 
-The recommendation function will be implemented in `project/code/recommend.py`, in the same folder as `dashboard.py`. PR #72 at commit `ad22e70` follows this interface. Both the form and CSV paths call `recommend(student_fields, prediction)`.
+The recommendation function is implemented in `project/code/recommend.py`, in the same folder as `dashboard.py`. PR #72 at commit `ad22e70` follows this interface. Both the form and CSV paths call `recommend(student_fields, prediction)`.
 
 The `student_fields` argument is a dictionary containing these exact keys:
 
@@ -197,7 +197,7 @@ These tests check software behaviour. They do not establish prediction accuracy 
 
 ## 7. Review Record
 
-The recommendation rules must be reviewed by either a tutor or a teammate before implementation.
+The recommendation rules were reviewed and approved by the team. Tutor approval is not required for these rules.
 
 - **Reviewer:** Project team
 - **Reviewer role:** Teammate review
@@ -234,7 +234,7 @@ The following decisions were approved on 9 October 2026:
 7. Low Risk predictions receive routine check-in guidance without targeted recommendations.
 8. Recommendation messages use supportive wording and do not claim causation or guarantee improved outcomes.
 9. Anna owns the form and CSV integration in PR #72.
-10. Jackie will implement `project/code/recommend.py` using the approved function contract.
+10. Jackie implemented `project/code/recommend.py` using the approved function contract in PR #74.
 
 ## 9. Review Outcome
 
@@ -242,4 +242,4 @@ The recommendation rules, thresholds, display behaviour and wording were approve
 
 Anna confirmed the function input, function output, form integration and CSV integration in PR #72 at commit `ad22e70`. The dashboard integration passed 78 tests.
 
-Jackie will implement `project/code/recommend.py` using the approved `recommend(student_fields, prediction)` contract. The completed implementation will be reviewed by a teammate before PR #72 is merged.
+The approved rules were merged in [PR #73](https://github.com/Hakuverse/ICT304/pull/73). Jackie implemented the function in [PR #74](https://github.com/Hakuverse/ICT304/pull/74), now merged. The current suite contains 89 tests; the earlier 78-test result above describes the dashboard connection before the real recommendation function was added. See [current checks](sprint5-implementation-checks.md).

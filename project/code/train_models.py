@@ -296,8 +296,8 @@ def main():
     with open(MODELS_DIR / "feature_stats.json", "w", encoding="utf-8") as f:
         json.dump(feature_stats, f, indent=2)
 
-    lines.append("## Feature statistics (Confirmatory G1+G2 development split, for planned recommendation work)\n")
-    lines.append("These statistics describe this setup only. Recommendation code is not yet implemented; do not reuse them for every setup without review.\n")
+    lines.append("## Feature statistics (Confirmatory G1+G2 development split, reference statistics)\n")
+    lines.append("These statistics describe this setup only. The recommendation function uses fixed team-approved thresholds, not these statistics at prediction time; do not reuse them for every setup without review.\n")
     lines.append("```json")
     lines.append(json.dumps(feature_stats, indent=2))
     lines.append("```")

@@ -1,7 +1,9 @@
 # Using the two modes
 
-The command-line prototype now trains models and predicts risk. The tutor dashboard
-and recommendations are still planned work.
+The command-line prototype trains models and predicts risk. The Streamlit
+dashboard supports the form and CSV workflow, with recommendations using the
+[team-approved rules](recommendation-rules.md). See the [project README](../README.md)
+for Windows and macOS dashboard commands.
 
 ## Set up and check
 
@@ -25,7 +27,7 @@ python3 -m venv .venv
 ```
 
 If `.venv` is already set up, start at the install command. No activation is needed.
-Expect `OK` from the tests (currently 41) and predictions for A/B with C/D skipped.
+Expect `OK` from the tests (currently 89) and predictions for A/B with C/D skipped.
 For all examples below, replace `.venv\Scripts\python.exe` with `.venv/bin/python`
 on macOS. This also applies to the training command.
 

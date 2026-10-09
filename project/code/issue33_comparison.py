@@ -255,7 +255,7 @@ def main():
              "both costs with the tutor rather than claim recall alone proves practical usefulness.",
              "- Predicted probabilities have not been checked for calibration, and subgroup fairness has not been "
              "established. Results should support human review, not automatic decisions about students.",
-             "- The working prototype is command-line classification. Dashboard and recommendation work remains planned.", "",
+             "- These model results describe the classification baseline. The project now includes a dashboard and rule-based recommendations; their software and user checks are separate from model accuracy.", "",
              "## Output files", "",
              "The CSV files contain the development comparisons, reserved-test results and feature importances. "
              "The report reuses the three existing confusion matrices in figures/; only the feature-importance "
