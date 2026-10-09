@@ -1,0 +1,239 @@
+# Recommendation Rules
+
+**Status:** Draft for tutor or teammate review
+
+This document defines the proposed recommendation rules for SARAH. The recommendations are supportive prompts for human review. They do not prove why a student is at risk and do not guarantee improved academic outcomes.
+
+## 1. Available Inputs
+
+SARAH has two user-facing prediction modes. Confirmatory mode routes the student to either the G1-only or G1+G2 saved model depending on whether G2 is supplied.
+
+| Mode | Required inputs | Optional inputs | Excluded inputs |
+|---|---|---|---|
+| Early-Warning | `attendance_pct`, `study_hours`, `failures` | None | G1, G2 and G3 |
+| Confirmatory | `attendance_pct`, `study_hours`, `failures`, G1 | G2 | G3 |
+
+The accepted input ranges are:
+
+- `attendance_pct`: 0–100.
+- `study_hours`: 0–40 hours per week.
+- `failures`: a whole number from 0–3.
+- G1 and G2: 0–20.
+- G1 is required in Confirmatory mode.
+- If G2 is blank, the G1-only model is used.
+- If valid G1 and G2 values are supplied, the G1+G2 model is used.
+- G3 is never used as a prediction input.
+
+The attendance value is an estimate derived from capped absence counts rather than a directly measured attendance percentage. Study hours are also estimates converted from the dataset’s study-time categories.
+
+## 2. Proposed Recommendation Rules
+
+The following rules are draft proposals for teammate or tutor review. Targeted recommendations apply only when the model predicts High Risk. A rule may suggest an area for discussion, but it does not prove that the factor caused the student's predicted risk.
+
+The sample inputs below were checked against the saved models at commit `87fbc6d` and returned a High Risk prediction. The first three samples use Early-Warning mode. The fourth sample uses Confirmatory mode with G1 only. They demonstrate rule matching and are not evidence of real-world predictive accuracy.
+
+| Rule | Applies when | Mode | Suggested action | Reason for threshold | High-Risk sample mode and input |
+|---|---|---|---|---|---|
+| Attendance support | `attendance_pct ≤ 60` | Early-Warning and Confirmatory | Ask about attendance barriers and discuss available support. | Under the project conversion, 60 corresponds to approximately 12 absences. It is also close to one standard deviation below the recorded Confirmatory G1+G2 development mean of 81.569. The team must confirm whether this threshold should be used in both modes. | **Early-Warning:** attendance 40, study hours 4, failures 0 — High Risk |
+| Study planning | `study_hours ≤ 1.5` | Early-Warning and Confirmatory | Help the student prepare a realistic weekly study plan and discuss study-support options. | The value 1.5 represents the lowest study-time category in the source dataset. | **Early-Warning:** attendance 80, study hours 1.5, failures 2 — High Risk; also triggers the previous-failure rule |
+| Previous-failure support | `failures ≥ 1` | Early-Warning and Confirmatory | Discuss previous academic difficulties and suitable support options. | Any previous class failure provides a clear and understandable reason to offer additional academic support. | **Early-Warning:** attendance 80, study hours 4, failures 2 — High Risk |
+| Assessment review | `previous_score < 50` | Confirmatory only | Review the student’s assessment performance and discuss appropriate academic support. | A normalised score below 50 represents an average grade below 10/20. Exactly 50 does not trigger this rule. | **Confirmatory, G1 only:** attendance 80, study hours 4, failures 0, G1 8, G2 blank — previous score 40; High Risk |
+
+The attendance threshold uses the stored statistics from the Confirmatory G1+G2 development setup only. These statistics must not be presented as universal values for every setup without further review.
+
+The thresholds are fixed proposed boundaries. They are not recalculated from `feature_stats.json` for each prediction. The dataset mapping explains where the proposed values came from, but it does not prove that they are effective intervention thresholds.
+
+### 2.1 Normalised Previous Score
+
+In Confirmatory mode, the normalised previous score is calculated as follows:
+
+- When G2 is absent: `previous_score = G1 × 5`
+- When both grades are supplied: `previous_score = ((G1 + G2) ÷ 2) × 5`
+
+Assessment review is triggered only when the model predicts High Risk and `previous_score < 50`.
+
+A score of exactly 50 does not trigger the rule. Early-Warning mode does not use this rule. G2 = 0 is a valid supplied grade and must not be treated as blank.
+
+| Grades | Previous score | Assessment rule, assuming High Risk |
+|---|---:|---|
+| G1 = 8, G2 blank | 40 | Trigger |
+| G1 = 8, G2 = 12 | 50 | Do not trigger |
+| G1 = 12, G2 = 0 | 30 | Trigger |
+
+
+## 3. Recommendation Function Contract
+
+The recommendation component will use the following interface:
+
+`recommend(student_fields, prediction)`
+
+The recommendation function will be implemented in `project/code/recommend.py`, in the same folder as `dashboard.py`. PR #72 at commit `ad22e70` follows this interface. Both the form and CSV paths call `recommend(student_fields, prediction)`.
+
+The `student_fields` argument is a dictionary containing these exact keys:
+
+| Key | Value |
+|---|---|
+| `mode` | `"early_warning"` or `"confirmatory"` |
+| `attendance_pct` | Validated attendance value from 0 to 100 |
+| `study_hours` | Validated study-hours value from 0 to 40 |
+| `failures` | Validated whole number from 0 to 3 |
+| `previous_score` | Calculated score from 0 to 100 in Confirmatory mode, or `None` in Early-Warning mode |
+
+The `prediction` argument is the risk-label string returned by the prediction component: `"High Risk"` or `"Low Risk"`.
+
+These argument names and dictionary keys must be used consistently by the recommendation component and Anna’s dashboard implementation. Any change to this interface must be agreed before implementation.
+
+The existing `previous_score_from_grades()` function must be reused to calculate `previous_score`. A second grade-calculation method must not be created. The `previous_score` key must still be present in Early-Warning mode, with the value `None`.
+
+The function returns a `list[str]` containing the recommendation messages.
+
+Each targeted recommendation includes the suggested action and a short reason explaining which rule was triggered.
+
+The expected processing order is:
+
+1. Validate the student inputs.
+2. Select the correct prediction model.
+3. Generate the prediction.
+4. Build `student_fields` using the agreed dictionary keys.
+5. Call `recommend(student_fields, prediction)`.
+6. If the prediction is High Risk, evaluate the targeted recommendation rules.
+7. If the prediction is Low Risk, return only the routine check-in message.
+8. Display or export the prediction and recommendation messages.
+
+
+## 4. How Recommendations Are Shown
+
+### 4.1 When Several Rules Apply
+
+If the model predicts High Risk and several rules apply, the system will show every applicable recommendation once.
+
+Recommendations will be displayed in the following consistent order:
+
+1. Attendance support.
+2. Study planning.
+3. Previous-failure support.
+4. Assessment review.
+
+This order is used for consistent presentation. It does not mean that one factor is more important or caused the prediction.
+
+### 4.2 When No Individual Rule Applies
+
+If the model predicts High Risk but none of the individual thresholds is triggered, the system will show:
+
+> The model identified elevated risk, but no individual recommendation threshold was triggered. A staff member should review the student’s circumstances and discuss whether support is needed.
+
+### 4.3 For a Low Risk Prediction
+
+Targeted recommendation rules are not applied when the model predicts Low Risk. The system will show:
+
+> The model predicts Low Risk. Under the current recommendation rules, targeted suggestions are shown only for High Risk predictions. Continue routine check-ins and offer support where needed.
+
+Inputs that meet a threshold must not produce a targeted recommendation when the model prediction is Low Risk.
+
+### 4.4 Supportive Wording
+
+Recommendations must remain practical and supportive. They may suggest:
+
+- Checking possible attendance barriers.
+- Preparing a realistic study plan.
+- Reviewing previous academic difficulties.
+- Discussing assessment performance.
+- Discussing available support.
+
+Recommendations must not:
+
+- Claim that an individual input caused the prediction.
+- Present statistical associations as causal relationships.
+- Guarantee that following a recommendation will improve grades.
+- Replace human judgement or direct discussion with the student.
+
+### 4.5 Invalid Inputs
+
+Invalid or incomplete inputs must be handled by the existing validation process before prediction.
+
+The system must not generate predictions or recommendations for a row that was skipped because of invalid data.
+
+## 5. Form and CSV Integration
+
+For a single-student prediction, the dashboard must pass the validated inputs, selected mode, calculated previous score where applicable and prediction result to the recommendation function.
+
+For a class CSV:
+
+- Generate recommendations for each successfully predicted row.
+- Use the validated inputs belonging to that row.
+- Include the recommendations in the displayed results.
+- Include the recommendations in the downloaded CSV.
+- Keep skipped or invalid rows out of the prediction results.
+- Preserve the association between each input row, prediction and recommendation.
+- Do not rely on student IDs being unique.
+- Preserve the original valid-row order or use an internal row identifier.
+
+Creating `recommend.py` alone does not complete the CSV integration. Both the single-student and CSV dashboard paths must explicitly call the recommendation function.
+
+Anna owns the form and CSV integration in PR #72. The CSV associates each result with its original row rather than relying on a unique student ID. Recommendation messages are stored in a `recommendations` column in both the displayed table and the downloaded CSV. Invalid or skipped rows are not passed to `recommend()`. The dashboard integration at commit `ad22e70` passed 78 tests.
+
+## 6. Required Recommendation Tests
+
+The implementation should include tests for the following behaviour:
+
+| Test | Expected result |
+|---|---|
+| Attendance = 60 | Attendance recommendation triggers for a High Risk prediction. |
+| Attendance just above 60 | Attendance recommendation does not trigger. |
+| Study hours = 1.5 | Study-planning recommendation triggers for a High Risk prediction. |
+| Study hours just above 1.5 | Study-planning recommendation does not trigger. |
+| Failures = 0 | Previous-failure recommendation does not trigger. |
+| Failures = 1 | Previous-failure recommendation triggers for a High Risk prediction. |
+| Previous score below 50 | Assessment recommendation triggers for a Confirmatory High Risk prediction. |
+| Previous score = 50 | Assessment recommendation does not trigger. |
+| Several rules apply | Each applicable recommendation appears once and in the agreed order. |
+| High Risk with no matching rule | General human-review message appears. |
+| Low Risk with threshold-matching inputs | No targeted recommendation appears; routine check-in guidance appears. |
+| Early-Warning prediction | Assessment recommendation never appears. |
+| Invalid or skipped row | No prediction or recommendation is generated. |
+| Same student through form and CSV | The same prediction inputs produce the same recommendations. |
+
+These tests check software behaviour. They do not establish prediction accuracy or prove that the thresholds improve student outcomes.
+
+## 7. Review Record
+
+The recommendation rules must be reviewed by either a tutor or a teammate before implementation.
+
+- **Reviewer:** To be confirmed
+- **Reviewer role:** Tutor or teammate
+- **Review date:** To be confirmed
+- **Review outcome:** Pending
+- **Comments or required changes:** To be confirmed
+
+| Item for review | Proposed decision | Review status | Notes or required changes |
+|---|---|---|---|
+| Prediction inputs | Early-Warning uses no grades; Confirmatory requires G1 and allows blank G2; G3 is excluded. | Pending | |
+| Recommendation scope | Generate targeted recommendations only for High Risk predictions. Low Risk predictions receive routine check-in guidance. | Approved | Agreed by the team on 9 October 2026. |
+| Attendance rule | Trigger attendance support when `attendance_pct ≤ 60`. | Pending | |
+| Study-hours rule | Trigger study-planning support when `study_hours ≤ 1.5`. | Pending | |
+| Previous-failure rule | Trigger academic support when `failures ≥ 1`. | Pending | |
+| Assessment rule | In Confirmatory mode, trigger assessment review when `previous_score < 50`. | Pending | Exactly 50 does not trigger the rule. |
+| Several rules apply | Display every applicable recommendation once in a consistent order. | Pending | |
+| High Risk with no rule | Display a general human-review recommendation. | Pending | |
+| Low Risk | Display routine check-in guidance without a targeted intervention. | Approved | This follows the agreed High-Risk-only policy. |
+| Function input | Use `recommend(student_fields, prediction)` with the agreed keys `mode`, `attendance_pct`, `study_hours`, `failures` and `previous_score`. Use `previous_score=None` for Early-Warning. | Approved | Confirmed by Anna in PR #72 at commit `ad22e70`. |
+| Function output | Return a `list[str]` containing the recommendation messages. Each targeted recommendation includes a suggested action and a short reason explaining which rule was triggered. | Approved | Confirmed by Anna in PR #72 at commit `ad22e70`. |
+| CSV integration | Both the form and CSV call `recommend()`. Recommendations remain associated with their original rows and are included in the displayed and downloaded `recommendations` column. Invalid or skipped rows receive no recommendations. | Approved | Owner: Anna. Implemented in PR #72; 78 tests passed at commit `ad22e70`. |
+| Recommendation wording | Keep messages supportive and avoid causal or guaranteed-outcome claims. | Pending | |
+
+## 8. Open Questions
+
+1. Should the attendance threshold of 60 apply to both prediction modes?
+2. Is 1.5 hours an appropriate study-support threshold?
+3. Is one previous failure sufficient to trigger a recommendation?
+4. Is a normalised previous score below 50 an appropriate Confirmatory threshold?
+5. Should every triggered recommendation be displayed, or should the interface limit the number shown?
+6. Does the team want any changes to the student-support wording?
+
+## 9. Review Outcome
+
+The team agreed that targeted recommendations will apply only to High Risk predictions. Low Risk predictions will receive routine check-in guidance without threshold-based recommendations.
+
+The remaining thresholds, function contract, display decisions and integration responsibilities remain draft proposals until the team completes the review table.
+
+After the review, record the agreed decisions, required changes and relevant pull-request links. The document status can then be changed from “Draft” to “Approved”.
