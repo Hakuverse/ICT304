@@ -1,6 +1,6 @@
 # Recommendation Rules
 
-**Status:** Draft for tutor or teammate review
+**Status:** Approved
 
 This document defines the proposed recommendation rules for SARAH. The recommendations are supportive prompts for human review. They do not prove why a student is at risk and do not guarantee improved academic outcomes.
 
@@ -199,43 +199,47 @@ These tests check software behaviour. They do not establish prediction accuracy 
 
 The recommendation rules must be reviewed by either a tutor or a teammate before implementation.
 
-- **Reviewer:** Anna
-- **Reviewer role:** Teammate
+- **Reviewer:** Project team
+- **Reviewer role:** Teammate review
 - **Review date:** 9 October 2026
-- **Review outcome:** Partial approval; function contract and integration confirmed
-- **Comments or required changes:** PR #72 at commit `ad22e70`; remaining recommendation rules are pending review
+- **Review outcome:** Approved
+- **Comments or required changes:** All recommendation rules, thresholds, behaviour and wording were approved.
 
 | Item for review | Proposed decision | Review status | Notes or required changes |
 |---|---|---|---|
-| Prediction inputs | Early-Warning uses no grades; Confirmatory requires G1 and allows blank G2; G3 is excluded. | Pending | |
+| Prediction inputs | Early-Warning uses no grades; Confirmatory requires G1 and allows blank G2; G3 is excluded. | Approved | |
 | Recommendation scope | Generate targeted recommendations only for High Risk predictions. Low Risk predictions receive routine check-in guidance. | Approved | Agreed by the team on 9 October 2026. |
-| Attendance rule | Trigger attendance support when `attendance_pct ≤ 60`. | Pending | |
-| Study-hours rule | Trigger study-planning support when `study_hours ≤ 1.5`. | Pending | |
-| Previous-failure rule | Trigger academic support when `failures ≥ 1`. | Pending | |
-| Assessment rule | In Confirmatory mode, trigger assessment review when `previous_score < 50`. | Pending | Exactly 50 does not trigger the rule. |
-| Several rules apply | Display every applicable recommendation once in a consistent order. | Pending | |
-| High Risk with no rule | Display a general human-review recommendation. | Pending | |
+| Attendance rule | Trigger attendance support when `attendance_pct ≤ 60`. | Approved | |
+| Study-hours rule | Trigger study-planning support when `study_hours ≤ 1.5`. | Approved | |
+| Previous-failure rule | Trigger academic support when `failures ≥ 1`. | Approved | |
+| Assessment rule | In Confirmatory mode, trigger assessment review when `previous_score < 50`. | Approved | Exactly 50 does not trigger the rule. |
+| Several rules apply | Display every applicable recommendation once in a consistent order. | Approved | |
+| High Risk with no rule | Display a general human-review recommendation. | Approved | |
 | Low Risk | Display routine check-in guidance without a targeted intervention. | Approved | This follows the agreed High-Risk-only policy. |
 | Function input | Use `recommend(student_fields, prediction)` with the agreed keys `mode`, `attendance_pct`, `study_hours`, `failures` and `previous_score`. Use `previous_score=None` for Early-Warning. | Approved | Confirmed by Anna in PR #72 at commit `ad22e70`. |
 | Function output | Return a `list[str]` containing the recommendation messages. Each targeted recommendation includes a suggested action and a short reason explaining which rule was triggered. | Approved | Confirmed by Anna in PR #72 at commit `ad22e70`. |
 | CSV integration | Both the form and CSV call `recommend()`. Recommendations remain associated with their original rows and are included in the displayed and downloaded `recommendations` column. Invalid or skipped rows receive no recommendations. | Approved | Owner: Anna. Implemented in PR #72; 78 tests passed at commit `ad22e70`. |
-| Recommendation wording | Keep messages supportive and avoid causal or guaranteed-outcome claims. | Pending | |
+| Recommendation wording | Keep messages supportive and avoid causal or guaranteed-outcome claims. | Approved | |
 
-## 8. Open Questions
+## 8. Approved Decisions
 
-1. Should the attendance threshold of 60 apply to both prediction modes?
-2. Is 1.5 hours an appropriate study-support threshold?
-3. Is one previous failure sufficient to trigger a recommendation?
-4. Is a normalised previous score below 50 an appropriate Confirmatory threshold?
-5. Should every triggered recommendation be displayed, or should the interface limit the number shown?
-6. Does the team want any changes to the student-support wording?
+The following decisions were approved on 9 October 2026:
+
+1. The attendance rule applies when `attendance_pct ≤ 60` in both modes.
+2. The study-planning rule applies when `study_hours ≤ 1.5`.
+3. The previous-failure rule applies when `failures ≥ 1`.
+4. The assessment rule applies in Confirmatory mode when `previous_score < 50`. Exactly 50 does not trigger the rule.
+5. When several rules apply, every applicable recommendation is displayed once in the agreed order.
+6. A High Risk prediction with no matching rule receives the general human-review message.
+7. Low Risk predictions receive routine check-in guidance without targeted recommendations.
+8. Recommendation messages use supportive wording and do not claim causation or guarantee improved outcomes.
+9. Anna owns the form and CSV integration in PR #72.
+10. Jackie will implement `project/code/recommend.py` using the approved function contract.
 
 ## 9. Review Outcome
 
-The team agreed that targeted recommendations will apply only to High Risk predictions. Low Risk predictions will receive routine check-in guidance without threshold-based recommendations.
+The recommendation rules, thresholds, display behaviour and wording were approved on 9 October 2026.
 
 Anna confirmed the function input, function output, form integration and CSV integration in PR #72 at commit `ad22e70`. The dashboard integration passed 78 tests.
 
-The recommendation thresholds, display decisions and final recommendation wording remain draft proposals until the remaining review items are completed.
-
-After the remaining items are reviewed, record the agreed decisions, required changes and relevant pull-request links. The document status can then be changed from “Draft” to “Approved”.
+Jackie will implement `project/code/recommend.py` using the approved `recommend(student_fields, prediction)` contract. The completed implementation will be reviewed by a teammate before PR #72 is merged.
