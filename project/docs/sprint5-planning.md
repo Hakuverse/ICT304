@@ -37,10 +37,15 @@ recommendation rules separate from the model's probability estimate.
 Continue with the [Sprint 6 plan](sprint6-planning.md) for fuller system testing,
 user feedback and fixes. Do not mark unfinished Sprint 5 tasks as complete.
 
-## Status on 9 October 2026
+## Status on 12 October 2026
 
-Issues #51-#55 are closed following PRs #71-#74. Benjamin can now run
-[#56 checks](prototype-test-checklist.md), then prepare the
-[#57 demonstration](prototype-demo-notes.md). These two issues remain open.
-Recommendation rules are agreed internally by the team; the tutor meeting in
-#57 is for demonstrating progress and collecting feedback.
+Issues #51-#55 are complete following PRs #71-#74; cleanup PR #75 is merged.
+Benjamin completed the Windows [#56 checks](prototype-test-checklist.md) and
+reported P1-P16 passed. Issue #56 is closed. Its evidence PR records the results
+and identifies two screenshot gaps for P7 and P10. macOS testing remains a
+separate Sprint 6 check under #66.
+
+The next task is the [#57 demonstration](prototype-demo-notes.md), followed by
+recording the actual feedback and agreed actions. Recommendation rules are
+agreed internally by the team; the tutor meeting is for demonstrating progress
+and collecting feedback.
