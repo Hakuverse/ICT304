@@ -41,9 +41,9 @@ user feedback and fixes. Do not mark unfinished Sprint 5 tasks as complete.
 
 Issues #51-#55 are complete following PRs #71-#74; cleanup PR #75 is merged.
 Benjamin completed the Windows [#56 checks](prototype-test-checklist.md) and
-reported P1-P16 passed. Issue #56 is closed. Its evidence PR records the results
-and identifies two screenshot gaps for P7 and P10. macOS testing remains a
-separate Sprint 6 check under #66.
+reported P1-P16 passed. Issue #56 is closed. Evidence PR #76 records the results
+and all 30 screenshots, including the completed P7 and P10 follow-ups.
+macOS testing remains a separate Sprint 6 check under #66.
 
 The next task is the [#57 demonstration](prototype-demo-notes.md), followed by
 recording the actual feedback and agreed actions. Recommendation rules are

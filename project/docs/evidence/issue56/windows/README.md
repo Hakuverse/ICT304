@@ -13,12 +13,11 @@ The recommendation tests are already part of the 89; they are not 11 extra tests
 
 ## Evidence notes
 
-- `p7-study-40.png` is identical to `p7-study-0.png` and shows study hours 0.
-  It is retained as supplied but is not proof of the 40 boundary check.
-  Replace it with a screenshot showing study hours 40 and a successful result.
-- P10's all-invalid case was reported passed, but no screenshot was supplied.
-  Add a capture of `all_invalid.csv` in Confirmatory mode showing 4 rows,
-  0 predicted and 4 skipped with reasons.
+- The replacement [study-hours 40 screenshot](p7-study-40.png) shows the
+  accepted boundary value and a Low Risk result (0.284) with routine guidance.
+- The [all-invalid CSV screenshot](p10-all-invalid.png) shows Confirmatory mode,
+  4 rows, 0 predicted and 4 skipped, with a reason for each skipped row.
+- Both earlier screenshot gaps were resolved in PR #76.
 - P13 shows the downloaded result opened in Excel. The downloaded CSV itself
   is not included in this evidence folder.
 - The [duplicate-ID input](../../../../data/issue56-duplicate-and-invalid.csv)
@@ -30,6 +29,7 @@ The recommendation tests are already part of the 89; they are not 11 extra tests
 - [p1-environment00.png](p1-environment00.png)
 - [p1-environment01.png](p1-environment01.png)
 - [p1-tests.png](p1-tests.png)
+- [p10-all-invalid.png](p10-all-invalid.png)
 - [p10-empty.png](p10-empty.png)
 - [p10-header-only.png](p10-header-only.png)
 - [p10-missing-column.png](p10-missing-column.png)

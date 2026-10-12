@@ -1,8 +1,8 @@
 # Prototype test checklist - Issue #56
 
 Owner and tester: Benjamin. Windows checks completed on 12 October 2026.
-Benjamin reported that P1-P16 passed. The screenshots below record the run;
-P7 and P10 have the evidence gaps noted below. Earlier review checks remain
+Benjamin completed P1-P16 with passing results. The screenshots below record
+the run, including the completed P7 and P10 evidence. Earlier review checks remain
 separate in [implementation checks](sprint5-implementation-checks.md).
 
 ## Record each run
@@ -32,8 +32,8 @@ investigate any failure. Keep the terminal running while using the dashboard.
 
 ## Checks
 
-Fictional student IDs were used. Pass records Benjamin's completed checks.
-Pass (reported) identifies a case whose screenshots do not cover every part.
+Fictional student IDs were used. Pass records Benjamin's completed checks,
+with actual results and screenshot links below.
 
 | ID | Check and expected result | Status | Actual result / evidence |
 |---|---|---|---|
@@ -43,10 +43,10 @@ Pass (reported) identifies a case whose screenshots do not cover every part.
 | P4 | Confirmatory: 80, 4, 0, G1 12, G2 0; G1+G2 model, score 30; zero is accepted | Pass | G1+G2 model: High Risk, 0.996, assessment suggestion; G2 0 accepted (score 30). [p4-g2-zero](evidence/issue56/windows/p4-g2-zero.png) |
 | P5 | Early-Warning: 80, 5, 0; Low Risk and routine guidance only with baseline models | Pass | Low Risk, 0.284, routine guidance only. [p5-low-risk](evidence/issue56/windows/p5-low-risk.png) |
 | P6 | Match form and command-line labels/probabilities for the same inputs and models | Pass | CLI and form agree: Early-Warning 0.859, G1-only 0.818, G1+G2 with zero 0.996; all High Risk. [p6-cli-comparison](evidence/issue56/windows/p6-cli-comparison.png) |
-| P7 | Study hours 0 and 40 accepted; above 40 rejected; invalid attendance rejected | Pass (reported) | Benjamin reports both 0 and 40 accepted; 41 and attendance 150 rejected. The file named p7-study-40.png duplicates the 0 screenshot, so 40 needs a replacement screenshot. [p7-study-0](evidence/issue56/windows/p7-study-0.png); [p7-study-41-error](evidence/issue56/windows/p7-study-41-error.png); [p7-attendance-150-error](evidence/issue56/windows/p7-attendance-150-error.png) |
+| P7 | Study hours 0 and 40 accepted; above 40 rejected; invalid attendance rejected | Pass | Study hours 0 and 40 accepted; 41 and attendance 150 rejected. The 40-hour example returns Low Risk (0.284) with routine guidance. [p7-study-40](evidence/issue56/windows/p7-study-40.png); [p7-study-0](evidence/issue56/windows/p7-study-0.png); [p7-study-41-error](evidence/issue56/windows/p7-study-41-error.png); [p7-attendance-150-error](evidence/issue56/windows/p7-attendance-150-error.png) |
 | P8 | Confirmatory missing G1 rejected; blank G2 accepted; invalid G2 such as NA rejected | Pass | Missing G1 and G2 NA rejected. Blank G2 accepted in P3; zero accepted in P4. [p8-missing-g1](evidence/issue56/windows/p8-missing-g1.png); [p8-g2-NA-error](evidence/issue56/windows/p8-g2-NA-error.png) |
 | P9 | Upload sample_roster.csv in Confirmatory: A/B processed, C/D skipped with reasons | Pass | 4 rows: A/B predicted, C/D skipped with attendance and G2 reasons; valid rows show routine guidance. [p9-results](evidence/issue56/windows/p9-results.png); [p9-skipped](evidence/issue56/windows/p9-skipped.png) |
-| P10 | Try dashboard_checks missing_g1_column.csv, empty.csv, header_only.csv and all_invalid.csv; clear messages and no invented results | Pass (reported) | Missing G1 column, empty and header-only files rejected with clear messages. Benjamin also reports the all-invalid check passed; its screenshot was not supplied. [p10-missing-column](evidence/issue56/windows/p10-missing-column.png); [p10-empty](evidence/issue56/windows/p10-empty.png); [p10-header-only](evidence/issue56/windows/p10-header-only.png) |
+| P10 | Try dashboard_checks missing_g1_column.csv, empty.csv, header_only.csv and all_invalid.csv; clear messages and no invented results | Pass | Missing G1 column, empty and header-only files rejected with clear messages. The all-invalid CSV shows 4 rows, 0 predicted and 4 skipped, with reasons for attendance, study hours, failures and missing G1. [p10-all-invalid](evidence/issue56/windows/p10-all-invalid.png); [p10-missing-column](evidence/issue56/windows/p10-missing-column.png); [p10-empty](evidence/issue56/windows/p10-empty.png); [p10-header-only](evidence/issue56/windows/p10-header-only.png) |
 | P11 | Try extra_comma.csv and no_student_ids.csv; correct row reasons and processed/skipped totals | Pass | Extra-comma file: 2 rows, 1 predicted, 1 skipped. No-ID file: 3 rows, row 1 and row 3 predicted, row 2 skipped for attendance. [p11-extra-comma](evidence/issue56/windows/p11-extra-comma.png); [p11-no-ids](evidence/issue56/windows/p11-no-ids.png) |
 | P12 | Upload duplicate IDs with different valid inputs and an invalid row; recommendations stay with the correct valid row | Pass | Duplicate-ID file: 5 rows, 2 predicted, 3 skipped. First DUP: G1-only High Risk 0.818 with assessment suggestion; second DUP: G1+G2 Low Risk 0.003 with routine guidance. [p12-duplicate-results](evidence/issue56/windows/p12-duplicate-results.png); [p16-invalid-failures](evidence/issue56/windows/p16-invalid-failures.png) |
 | P13 | Same student through form and CSV has matching messages; downloaded CSV includes them | Pass | First DUP matches the G1-only form example in P3. Downloaded CSV opened in Excel with two valid results and their recommendation messages. Export screenshot retained; CSV download itself is not included. [p13-export](evidence/issue56/windows/p13-export.png); [p12-duplicate-results](evidence/issue56/windows/p12-duplicate-results.png); [p3-g1-only](evidence/issue56/windows/p3-g1-only.png) |
@@ -63,10 +63,11 @@ manual model prediction should change simply because a rule threshold is crossed
 | Problem / failed check | Owner | Fix PR | Retest result |
 |---|---|---|---|
 | No software failures reported in this Windows run | Benjamin | Not needed | P1-P16 reported passed |
-| P7: study-hours 40 screenshot duplicates the 0 capture | Benjamin | Evidence follow-up | Replace with a capture showing 40 and its result |
-| P10: all-invalid screenshot missing | Benjamin | Evidence follow-up | Add capture showing 0 predicted, 4 skipped |
+| P7: replacement screenshot supplied | Benjamin | #76 | Resolved: screenshot shows 40 and a successful result |
+| P10: all-invalid screenshot supplied | Benjamin | #76 | Resolved: 4 rows, 0 predicted, 4 skipped with reasons |
 
-Windows run: Completed by Benjamin on 12 October 2026; evidence review gaps above.
+Windows run: Completed by Benjamin on 12 October 2026; P7 and P10 screenshot
+follow-ups are resolved in PR #76.
 macOS run: Not included in this record. Separate platform testing is planned in
 [Sprint 6, issue #66](https://github.com/Hakuverse/ICT304/issues/66).
 Peer review of this evidence is through the accompanying PR. This record does
