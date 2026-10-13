@@ -44,3 +44,29 @@ Phase E covers the deployment and maintenance plan, user guide and demo video.
 Phase F covers closeout, report polish, presentation slides, rehearsal and final
 submission. The final project is due on 7 November 2026. Keep model evaluation
 separate from software and user testing, and link the evidence in the final report.
+
+## Input from the 13 October meeting
+
+The tutor feedback in [#57's meeting record](prototype-demo-notes.md) was positive,
+with no specific changes requested. The team proposed clearer recommendation
+wording, larger text areas and wrapping long result messages. Review these in
+#68 and implement agreed changes through #69; keep approved rule boundaries
+unchanged unless the team separately agrees a rule change.
+
+Start #65 using the merged #56 Windows evidence and the meeting feedback.
+Then run #66-#68 against the agreed test plan, address findings in #69 and update
+records in #70. Sprint 6 owners and the final improvement priorities are still
+to be agreed. The demonstration does not replace the user trials in #68.
+
+## Suggested two-issue split - not yet assigned
+
+| Person | Issues | Why these fit together |
+|---|---|---|
+| Benjamin | #65 and #70 | Define the test/evidence table, then bring the resulting evidence into project notes and the next-stage plan. |
+| Jackie | #66 and #67 | Coordinate platform workflow checks and timing checks using the same tested version. Benjamin can supply the Windows run; Jackie can run macOS. |
+| Anna | #68 and #69 | Collect usability findings, agree improvements, then implement and recheck the changes. |
+
+This is a proposal for team agreement, not an allocation or a claim of equal
+workload. #69 may need help if several fixes are found. #70 finishes after other
+results arrive; its outline can be prepared early. Readability ideas remain
+undecided until the team reviews them. Record confirmed owners on the issues.
