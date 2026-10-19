@@ -19,11 +19,18 @@ warning next to the upload results. Wording agreed by the team on 19 October 202
 #69 part 2 (team readability proposals from the #57 record): long messages wrap
 instead of being cut off, each suggestion's reason is explained, and the
 recommendation and skipped-reason areas are wider.
+
+#69 part 3 (agreed by the team on 20 October 2026 after the #69 retest, where the
+tester saw the skipped-row warning but could not explain the reasons): each
+skipped-row reason now says, in plain words, which value was found and how to fix
+the row. Which rows are skipped does not change; predict.py still decides that, and
+its command-line messages are unchanged.
 """
 
 import csv
 import html
 import io
+import math
 from pathlib import Path
 
 import streamlit as st
@@ -204,6 +211,57 @@ def get_recommendations(student_fields, prediction, recommender=None):
 
 KNOWN_COLUMNS = ["student_id", "attendance_pct", "study_hours", "failures", "G1", "G2"]
 
+# Plain-language skipped-row reasons (#69 part 3, agreed 20 October 2026).
+# (column, name shown to tutors, minimum, maximum, whole numbers only, how to fix it)
+FIELD_RULES = [
+    ("attendance_pct", "Attendance", 0, 100, False, "Enter a value from 0 to 100."),
+    ("study_hours", "Study hours", 0, 40, False, "Enter a value from 0 to 40."),
+    ("failures", "Past class failures", 0, 3, True, "Enter a whole number from 0 to 3."),
+]
+G1_FIX = "Enter the first-period grade from 0 to 20."
+G2_FIX = "Leave it blank if there is no second-period grade, or enter 0\u201320."
+
+
+def _as_number(text):
+    """The typed value as a finite number, or None if it is not one (e.g. "NA", "inf")."""
+    try:
+        value = float(text)
+    except (TypeError, ValueError):
+        return None
+    return value if math.isfinite(value) else None
+
+
+def _shown_value(text, value):
+    """How the value appears in a reason: numbers as typed (150), text in quotes ('NA')."""
+    return text if value is not None else f"'{text}'"
+
+
+def plain_reason(values, mode, original):
+    """Rewrite a skipped row's technical reason in plain words, naming the value that
+    was found and how to fix the row, e.g. "Attendance is 150. Enter a value from 0
+    to 100." Every problem in the row is listed. If no problem can be named here, the
+    original reason from predict.py is kept, so a reason is never hidden."""
+    problems = []
+    for column, name, low, high, whole, fix in FIELD_RULES:
+        text = (values.get(column) or "").strip()
+        value = _as_number(text)
+        if not text:
+            problems.append(f"{name} is missing. {fix}")
+        elif value is None or not low <= value <= high or (whole and value % 1 != 0):
+            problems.append(f"{name} is {_shown_value(text, value)}. {fix}")
+    if mode == "confirmatory":
+        text = (values.get("G1") or "").strip()
+        value = _as_number(text)
+        if not text:
+            problems.append(f"G1 is missing. {G1_FIX}")
+        elif value is None or not 0 <= value <= 20:
+            problems.append(f"G1 is {_shown_value(text, value)}. {G1_FIX}")
+        text = (values.get("G2") or "").strip()
+        value = _as_number(text)
+        if text and (value is None or not 0 <= value <= 20):
+            problems.append(f"G2 is {_shown_value(text, value)}. {G2_FIX}")
+    return " ".join(problems) if problems else original
+
 
 def prepare_upload(text):
     """Check the CSV's structure before predicting.
@@ -285,7 +343,8 @@ def process_upload(text, mode, recommender=None):
         results, value_skipped = predict_roster(io.StringIO(clean_text), mode)
         for item in value_skipped:
             info = rows[item["student_id"]]
-            skipped.append({"student_id": info["label"], "reason": item["reason"], "_row": info["row"]})
+            reason = plain_reason(info["values"], mode, item["reason"])
+            skipped.append({"student_id": info["label"], "reason": reason, "_row": info["row"]})
     else:  # every row had the wrong number of values
         results = _empty_results(mode)
     skipped = [{"student_id": s["student_id"], "reason": s["reason"]}
