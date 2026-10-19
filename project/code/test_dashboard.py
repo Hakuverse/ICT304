@@ -244,12 +244,12 @@ class DashboardScreen(unittest.TestCase):
         # check is the screenshot evidence in the PR; this guards the rerun logic.
         at = AppTest.from_file(DASHBOARD, default_timeout=30).run()
         at.button[0].click().run()
-        self.assertIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+        self.assertIn("Model-estimated High-Risk probability", " ".join(m.value for m in at.markdown))
         at.number_input[0].set_value(50.0).run()  # change attendance
-        self.assertNotIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+        self.assertNotIn("Model-estimated High-Risk probability", " ".join(m.value for m in at.markdown))
         at.button[0].click().run()
         at.radio[0].set_value("confirmatory").run()  # change mode
-        self.assertNotIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+        self.assertNotIn("Model-estimated High-Risk probability", " ".join(m.value for m in at.markdown))
 
     def test_out_of_range_typed_values_show_error_not_old_value(self):
         # Regression: with min/max on the boxes, typing 150 kept the old 80
@@ -262,7 +262,7 @@ class DashboardScreen(unittest.TestCase):
             at.number_input[box].set_value(value).run()
             at.button[0].click().run()
             self.assertTrue(any(message in e.value for e in at.error), f"{value}: no error shown")
-            self.assertNotIn("Estimated High-Risk probability", " ".join(m.value for m in at.markdown))
+            self.assertNotIn("Model-estimated High-Risk probability", " ".join(m.value for m in at.markdown))
 
     def test_failures_only_offers_whole_numbers_0_to_3(self):
         at = AppTest.from_file(DASHBOARD, default_timeout=30).run()
@@ -273,6 +273,59 @@ class DashboardScreen(unittest.TestCase):
         at.radio[0].set_value("confirmatory").run()
         at.button[0].click().run()
         self.assertTrue(any("G1 is required" in e.value for e in at.error))
+
+
+class AcceptedUsabilityChanges(unittest.TestCase):
+    """#69: the four changes the team accepted after the 17 October usability check (#68).
+    Exact wording agreed on 19 October 2026 is checked so it cannot drift."""
+
+    def page(self):
+        return AppTest.from_file(DASHBOARD, default_timeout=30).run()
+
+    def test_human_review_notice_on_page_and_with_result(self):
+        at = self.page()
+        self.assertEqual(at.warning[0].value,
+                         "Support tool only. Do not use this prediction alone to make decisions about a student.")
+        at.button[0].click().run()
+        self.assertEqual(sum(w.value == dashboard.HUMAN_REVIEW_NOTICE for w in at.warning), 2)
+
+    def test_probability_is_a_percentage_with_the_agreed_caveat(self):
+        self.assertEqual(dashboard.probability_text(0.818),
+                         "Model-estimated High-Risk probability: **81.8%**. This estimate may be inaccurate "
+                         "and should be considered alongside other information about the student.")
+        at = self.page()
+        at.number_input[0].set_value(40.0).run()
+        at.number_input[1].set_value(4.0).run()
+        at.button[0].click().run()
+        shown = " ".join(m.value for m in at.markdown)
+        self.assertIn("Model-estimated High-Risk probability: **85.9%**", shown)
+
+    def test_mode_and_field_help_explain_grades_blank_zero_and_attendance(self):
+        at = self.page()
+        at.radio[0].set_value("confirmatory").run()
+        text = " ".join(c.value for c in at.caption) + " " + " ".join(i.value for i in at.info)
+        for phrase in ["first-period grade", "second-period grade", "Leave G2 blank",
+                       "0 is a real grade", "Attendance is an estimate"]:
+            self.assertIn(phrase, text)
+        self.assertEqual([t.label for t in at.text_input],
+                         ["G1 - first-period grade (0-20, required)",
+                          "G2 - second-period grade (0-20, optional - leave blank if not available)"])
+
+    def test_skipped_warning_counts_and_points_to_reasons(self):
+        self.assertIsNone(dashboard.skipped_warning(0, 4))
+        self.assertEqual(dashboard.skipped_warning(2, 4),
+                         "2 of 4 students were skipped and got no prediction. "
+                         "See **Skipped rows** below for the reason for each one.")
+        self.assertTrue(dashboard.skipped_warning(1, 5).startswith("1 of 5 student was skipped"))
+
+    def test_screen_shows_percentages_but_results_and_download_are_unchanged(self):
+        results, skipped, total = dashboard.process_upload(dashboard.SAMPLE_CSV.read_text(), "confirmatory")
+        shown = dashboard.display_results(results)
+        self.assertEqual(list(shown["probability_high_risk"]),
+                         [round(p * 100, 1) for p in results["probability_high_risk"]])
+        self.assertEqual(len(shown), 2)                       # valid results are never hidden
+        self.assertEqual(list(results["probability_high_risk"]),   # download keeps predict.py's 0-1 values
+                         list(predict_roster(dashboard.SAMPLE_CSV, "confirmatory")[0]["probability_high_risk"]))
 
 
 if __name__ == "__main__":
