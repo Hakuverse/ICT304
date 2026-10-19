@@ -71,3 +71,9 @@ This allocation is agreed; it is not a claim of equal workload. #69 may need
 help if several fixes are found. #70 finishes after other results arrive; its
 outline can be prepared early. Readability ideas are agreed as team proposals,
 not completed changes. Review #68's specific findings before implementing #69.
+
+## Test plan
+
+Use the [system test plan](system-test-plan.md) for S6-01 to S6-24. It links
+earlier evidence separately from new run records. Team review and target agreement
+were recorded on 19 October 2026. Actual test evidence remains to be recorded.

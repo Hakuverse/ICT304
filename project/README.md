@@ -131,6 +131,8 @@ the original scores for a different experiment.
 
 ## Plans and references
 
+- [Sprint 6 system test plan](docs/system-test-plan.md) (team-reviewed; targets agreed 19 October 2026)
+
 - [Current implementation checks](docs/sprint5-implementation-checks.md)
 - [Issue #56 test checklist](docs/prototype-test-checklist.md)
 - [Issue #57 meeting record](docs/prototype-demo-notes.md)
