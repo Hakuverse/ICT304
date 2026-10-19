@@ -1,0 +1,73 @@
+# Usability check record (#68)
+
+**Date:** 17 October 2026
+**Run by:** Anna
+**Tester:** Tester A (family member, non-team)
+**Version tested:** `main` at commit 13d85f9
+**Data:** fictional only (typed examples and `project/data/sample_roster.csv`)
+
+## Earlier session with the tutor (13 October 2026)
+
+Presented using the SARAH Progress Update slides (about 1 minute). The tutor tried
+two single-student examples in Confirmatory mode with G1, and the predictions
+worked. No specific feedback was given. This was an assisted demonstration, not
+an independent usability check.
+
+## Tasks
+
+| # | Task | Expected result | Result | Alone or helped |
+|---|---|---|---|---|
+| 1 | Early-Warning: attendance 40, study 4, failures 0 | High Risk 0.859 + attendance suggestion | Correct | Helped: did not know where to choose Early-Warning mode or what attendance % means |
+| 2 | Confirmatory: attendance 80, study 4, failures 0, G1 8, G2 blank | High Risk 0.818 + assessment review suggestion | Correct | Helped: did not know what G1 is or that G2 can be left blank |
+| 3 | Confirmatory: upload `sample_roster.csv` | A and B predicted, C and D skipped | Correct | Alone |
+| 4 | Explain why C and D were skipped | C: attendance over 100; D: G2 "NA" not a number | Correct after help | Helped: did not notice the skipped-row messages or the "NA" value; Anna pointed them out |
+
+## Questions
+
+| Question | Tester's answer |
+|---|---|
+| What does "High Risk" mean? | The student needs more attention from the teacher. (Understood) |
+| What does 0.818 mean? | Did not understand without explanation; Anna then explained it as an estimated chance of High Risk. |
+| Were the suggestions useful? (1–5) | No rating given; tester understood the meaning of the suggestions. |
+| Was anything confusing? | Nothing reported. |
+| Would you use SARAH alone to decide? | Yes, but only for teachers. |
+
+## Findings
+
+1. Tester needed help on tasks 1, 2 and 4: finding the mode choice, and the meaning
+   of attendance %, G1 and a blank G2.
+2. The probability number (e.g. 0.818) was not understood without explanation.
+3. Tester said they would use SARAH alone to decide. The limitation (SARAH supports,
+   not replaces, the teacher's judgement) was not clear.
+4. In the CSV upload, the tester did not notice the skipped-row messages or the
+   "NA" value until they were pointed out.
+
+## Proposed changes (as first suggested)
+
+| Finding | Proposed change |
+|---|---|
+| 1 | Make the mode choice easier to find, and add short help text to fields |
+| 2 | Show plain words next to the probability, e.g. "about 82% estimated chance of High Risk" |
+| 3 | Add a visible note: "Support tool only. Confirm with your own judgement." |
+| 4 | Make skipped rows stand out with a warning near the results |
+
+## Accepted changes for #69 (team decision, 19 October 2026)
+
+All four changes were agreed, with these refinements:
+
+| Finding | Accepted change |
+|---|---|
+| 3 | **Clear human-review notice:** "Support tool only. Do not use this prediction alone to make decisions about a student." |
+| 4 | **More noticeable skipped-row warning:** show the skipped count near the upload results and direct users to the reasons. Never hide valid results. |
+| 1 | **Clearer mode selection and field help:** explain G1/G2 as first-period and second-period grades, blank versus zero for G2, and attendance as an estimate. |
+| 2 | **Percentage plus plain explanation:** "Model-estimated High-Risk probability: 81.8%. This estimate may be inaccurate and should be considered alongside other information about the student." The team noted that "82% estimated chance of High Risk" could sound more certain than the evidence supports. |
+
+These join the existing team proposals already in #69: wrap long messages,
+clarify recommendation reasons, and enlarge specific fields where needed.
+Each change is implemented and rechecked under #69.
+
+## Limits of this check
+
+- One tester only, and a family member of the team.
+- Tasks 1, 2 and 4 were assisted, so they are not fully independent results.
+- The tutor session on 13 October was very short and gave no specific feedback.
