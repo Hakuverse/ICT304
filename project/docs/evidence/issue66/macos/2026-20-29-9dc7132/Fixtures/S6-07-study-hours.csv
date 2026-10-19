@@ -1,5 +1,0 @@
-student_id,attendance_pct,study_hours,failures
-STUDY_ZERO,80,0,0
-STUDY_40,80,40,0
-STUDY_NEG,80,-1,0
-STUDY_HIGH,80,41,0

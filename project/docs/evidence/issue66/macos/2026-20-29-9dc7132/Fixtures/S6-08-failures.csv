@@ -1,8 +1,0 @@
-student_id,attendance_pct,study_hours,failures
-FAIL_0,80,4,0
-FAIL_1,80,4,1
-FAIL_2,80,4,2
-FAIL_3,80,4,3
-FAIL_NEG,80,4,-1
-FAIL_HIGH,80,4,4
-FAIL_DECIMAL,80,4,1.5

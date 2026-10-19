@@ -1,5 +1,0 @@
-student_id,attendance_pct,study_hours,failures
-ATT_ZERO,0,4,0
-ATT_100,100,4,0
-ATT_NEG,-1,4,0
-ATT_HIGH,101,4,0
