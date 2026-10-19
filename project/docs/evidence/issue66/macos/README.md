@@ -1,34 +1,30 @@
-# macOS workflow evidence - Issue #66
+# Issue #66 — macOS functional test evidence
 
-Tester/coordinator: Jackie.
-Cases: **S6-01 to S6-18** in the [system test plan](../../../system-test-plan.md).
+Tester/coordinator: Jackie  
+Test date: 19 October 2026  
+Tested commit: `9dc7132dc0a1a735b508447b99f49b70afb84f6d`  
+Covered cases: S6-01 to S6-18 in the [system test plan](../../../system-test-plan.md)
 
-Follow the project README setup from a clean checkout. Use `.venv/bin/python`
-for the Python commands. Run functional form/CSV checks and save actual outcomes
-for all listed subcases. S6-17/18 use recommendation test output; record any
-extra boundary case separately.
+## Where to start
 
-Save versions/commit, full test output, representative input/error screenshots,
-and the fictional downloaded CSV. Link shared evidence to every case it supports.
-Windows screenshots cannot establish macOS behaviour.
+Open the [19 October macOS run results](2026-10-19-9dc7132/results.md). This file records each case’s inputs, actual outcome, status, and supporting evidence links.
 
-## Recording a run
+## Evidence directory
 
-Create a subfolder named `YYYY-MM-DD-shortcommit` for the actual run. Record date,
-tester, commit, OS, Python/package versions and browser/screen size where relevant.
-Use fictional students only. Keep earlier runs; do not overwrite their evidence.
+| Location | What to find there |
+|---|---|
+| [results.md](2026-10-19-9dc7132/results.md) | Case-by-case results, boundary subcases, test commands, and limitations |
+| [screenshots/](2026-10-19-9dc7132/screenshots/) | Dashboard inputs, results, validation messages, and test-output screenshots |
+| [fixtures/](2026-10-19-9dc7132/fixtures/) | Fictional CSV files used as test inputs |
+| [exports/](2026-10-19-9dc7132/exports/) | CSV result files downloaded from the dashboard |
+| [logs/](2026-10-19-9dc7132/logs/) | Full unit-test output and recommendation boundary-check output |
+| [environment-verified.md](2026-10-19-9dc7132/environment-verified.md) | Supplementary environment details collected during evidence review |
+| [evidence-inventory.md](2026-10-19-9dc7132/evidence-inventory.md) | Retained artifact inventory, original filenames, and SHA-256 hashes |
 
-Add a `results.md` file inside the run folder:
+The filenames and case-specific links are listed in `results.md`; use its results table to locate evidence for a particular S6 case. Repository test fixtures that were not copied into this run are identified there as well.
 
-| Case / subcase | Input or fixture | Actual result | Status | Evidence link | Fix / retest link |
-|---|---|---|---|---|---|
-| Fill after testing | | | Not run | | |
+## Scope and limitations
 
-Use Pass, Fail, Blocked or Not run for functional checks. Timing/usability
-acceptance stays pending until targets are agreed. Record assistance separately
-for user tasks. One screenshot or log can support several cases: link it from
-each applicable row. Do not copy older evidence as a new pass.
+This folder documents the macOS functional checks for Issue #66 only. S6-19 and S6-20 response-time checks belong to Issue #67 and are not claimed here. Windows evidence is stored separately. The evidence-submission branch is not the tested commit, and the saved models at the tested commit were used without retraining.
 
-Save readable PNG screenshots, terminal logs, and fictional CSV fixtures/exports
-where useful. Exclude virtual environments, caches, model copies and private data.
-Link the run from the corresponding actual-result row in the system test plan.
+The checks were performed manually by Jackie with step-by-step guidance. Where a screenshot does not show a complete operation, `results.md` distinguishes tester confirmation from what the retained image independently shows. Browser, viewport, and zoom details were not recorded, so this run does not claim a readability or usability pass.
