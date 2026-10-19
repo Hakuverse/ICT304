@@ -1,2 +1,0 @@
-student_id,risk_label,probability_high_risk,recommendations
-EW,High Risk,0.859,Attendance support: Ask about attendance barriers and discuss available support because the attendance estimate is 60% or below.
