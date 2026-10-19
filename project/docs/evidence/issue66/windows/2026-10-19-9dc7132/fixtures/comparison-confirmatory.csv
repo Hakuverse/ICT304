@@ -1,0 +1,4 @@
+﻿student_id,attendance_pct,study_hours,failures,G1,G2
+G1_ONLY,80,4,0,8,
+G2_ZERO,80,4,0,12,0
+G1_G2,80,4,0,12,14

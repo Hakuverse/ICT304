@@ -25,10 +25,14 @@ Add a `results.md` file inside the run folder:
 | Fill after testing | | | Not run | | |
 
 Use Pass, Fail, Blocked or Not run for functional checks. Timing/usability
-acceptance stays pending until targets are agreed. Record assistance separately
+results are recorded separately against the targets agreed on 19 October 2026. Record assistance separately
 for user tasks. One screenshot or log can support several cases: link it from
 each applicable row. Do not copy older evidence as a new pass.
 
 Save readable PNG screenshots, terminal logs, and fictional CSV fixtures/exports
 where useful. Exclude virtual environments, caches, model copies and private data.
 Link the run from the corresponding actual-result row in the system test plan.
+
+## Recorded runs
+
+- [19 October 2026, commit 9dc7132](2026-10-19-9dc7132/results.md): Benjamin's Windows S6-01 to S6-18 checks, 99 automated tests passed. macOS evidence remains separate.

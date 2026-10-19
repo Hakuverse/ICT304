@@ -1,7 +1,7 @@
 # SARAH system test plan - Sprint 6
 
 Owner: Benjamin. Prepared: 19 October 2026. Issue: #65.
-Status: reviewed; targets agreed by team on 19 October 2026. PR merge pending.
+Status: reviewed; targets agreed by team on 19 October 2026. Planning PR #85 merged; Windows functional results added below.
 Plan baseline: `051596275aab007a5e22704147ff1dc8becbaaa4`.
 
 ## Purpose and scope
@@ -135,24 +135,24 @@ correct result with assistance is not independent success.
 
 | ID | Windows actual result / status | macOS actual result / status | Evidence / fix / retest link |
 |---|---|---|---|
-| S6-01 | Not run | Not run | Pending |
-| S6-02 | Not run | Not run | Pending |
-| S6-03 | Not run | Not run | Pending |
-| S6-04 | Not run | Not run | Pending |
-| S6-05 | Not run | Not run | Pending |
-| S6-06 | Not run | Not run | Pending |
-| S6-07 | Not run | Not run | Pending |
-| S6-08 | Not run | Not run | Pending |
-| S6-09 | Not run | Not run | Pending |
-| S6-10 | Not run | Not run | Pending |
-| S6-11 | Not run | Not run | Pending |
-| S6-12 | Not run | Not run | Pending |
-| S6-13 | Not run | Not run | Pending |
-| S6-14 | Not run | Not run | Pending |
-| S6-15 | Not run | Not run | Pending |
-| S6-16 | Not run | Not run | Pending |
-| S6-17 | Not run | Not run | Pending |
-| S6-18 | Not run | Not run | Pending |
+| S6-01 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-02 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-03 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-04 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-05 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-06 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-07 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-08 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-09 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-10 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-11 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-12 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-13 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-14 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-15 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-16 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-17 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-18 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
 | S6-19 | Not run | Not run | Pending |
 | S6-20 | Not run | Not run | Pending |
 | S6-21 | Not run | Not run | Pending |

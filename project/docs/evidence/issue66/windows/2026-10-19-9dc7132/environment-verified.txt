@@ -1,0 +1,11 @@
+Supplementary environment check on 19 October 2026.
+The original environment.txt transcript retained commands but omitted their output.
+These values were read from the same testing virtual environment during evidence review.
+Commit: 9dc7132dc0a1a735b508447b99f49b70afb84f6d
+Python: 3.12.10
+scikit-learn: 1.8.0
+pandas: 3.0.6
+numpy: 2.5.4
+joblib: 1.6.0
+streamlit: 1.66.0
+pip check: No broken requirements found.
