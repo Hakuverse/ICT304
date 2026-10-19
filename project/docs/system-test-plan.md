@@ -155,10 +155,10 @@ correct result with assistance is not independent success.
 | S6-18 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
 | S6-19 | Not run | Not run | Pending |
 | S6-20 | Not run | Not run | Pending |
-| S6-21 | Not run | Not run | Pending |
-| S6-22 | Not run | Not run | Pending |
-| S6-23 | Not run | Not run | Pending |
-| S6-24 | Not run | Not run | Pending |
+| S6-21 | Target not met - Anna, 19 October 2026, 9dc7132 (one tester, same as 17 October): task 1 assisted (non-verbal nod), task 2 independent; G1/G2 and blank vs 0 explained; attendance not described as an estimate | Not run | [#69 retest results](evidence/issue69/2026-10-19-9dc7132/results.md); before: [17 October record](usability-feedback.md) |
+| S6-22 | Partly met - Anna, 19 October 2026, 9dc7132: High Risk understood; would not use the result alone; probability read as a percentage but not described as an estimate that can be wrong | Not run | [#69 retest results](evidence/issue69/2026-10-19-9dc7132/results.md); before: [17 October record](usability-feedback.md) |
+| S6-23 | Target not met - Anna, 19 October 2026, 9dc7132: task 3 independent (A and B predicted, download worked); task 4 not completed: skipped warning noticed, but C/D reasons and fixes not explained; valid results stayed visible | Not run | [#69 retest results](evidence/issue69/2026-10-19-9dc7132/results.md); before: [17 October record](usability-feedback.md) |
+| S6-24 | Pass - Anna, 19 October 2026, 9dc7132: Edge DevTools device mode at 1366 x 768 and 1920 x 1080, 100% zoom; all six subcases Pass | Not run | [#69 retest results and screenshots](evidence/issue69/2026-10-19-9dc7132/results.md); fixes #86, #87 |
 
 For usability, record each tester's actual platform; do not claim both platforms
 were assessed when only one was used. Retain the 17 October observations in
