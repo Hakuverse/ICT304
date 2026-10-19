@@ -42,14 +42,29 @@ an independent usability check.
 4. In the CSV upload, the tester did not notice the skipped-row messages or the
    "NA" value until they were pointed out.
 
-## Proposed changes for #69 (to be agreed by the team)
+## Proposed changes (as first suggested)
 
-| Finding | Proposed change | Priority |
-|---|---|---|
-| 1 | Make the mode choice easier to find, and add short help text to fields (e.g. "G1 = first test grade, 0–20", "Leave G2 blank if there is no second test yet") | To agree |
-| 2 | Show plain words next to the probability, e.g. "about 82% estimated chance of High Risk" | To agree |
-| 3 | Add a visible note: "Support tool only. Confirm with your own judgement." | To agree |
-| 4 | Make skipped rows stand out (e.g. a warning box near the top: "2 students skipped – see reasons below") | To agree |
+| Finding | Proposed change |
+|---|---|
+| 1 | Make the mode choice easier to find, and add short help text to fields |
+| 2 | Show plain words next to the probability, e.g. "about 82% estimated chance of High Risk" |
+| 3 | Add a visible note: "Support tool only. Confirm with your own judgement." |
+| 4 | Make skipped rows stand out with a warning near the results |
+
+## Accepted changes for #69 (team decision, 19 October 2026)
+
+All four changes were agreed, with these refinements:
+
+| Finding | Accepted change |
+|---|---|
+| 3 | **Clear human-review notice:** "Support tool only. Do not use this prediction alone to make decisions about a student." |
+| 4 | **More noticeable skipped-row warning:** show the skipped count near the upload results and direct users to the reasons. Never hide valid results. |
+| 1 | **Clearer mode selection and field help:** explain G1/G2 as first-period and second-period grades, blank versus zero for G2, and attendance as an estimate. |
+| 2 | **Percentage plus plain explanation:** "Model-estimated High-Risk probability: 81.8%. This estimate may be inaccurate and should be considered alongside other information about the student." The team noted that "82% estimated chance of High Risk" could sound more certain than the evidence supports. |
+
+These join the existing team proposals already in #69: wrap long messages,
+clarify recommendation reasons, and enlarge specific fields where needed.
+Each change is implemented and rechecked under #69.
 
 ## Limits of this check
 
