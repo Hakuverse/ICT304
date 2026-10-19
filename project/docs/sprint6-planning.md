@@ -75,5 +75,5 @@ not completed changes. Review #68's specific findings before implementing #69.
 ## Test plan
 
 Use the [system test plan](system-test-plan.md) for S6-01 to S6-24. It links
-earlier evidence separately from new run records. Team review and tutor agreement
-on response-time/usability targets remain pending; no new passes are claimed.
+earlier evidence separately from new run records. Team review and target agreement
+were recorded on 19 October 2026. Actual test evidence remains to be recorded.

@@ -10,8 +10,9 @@ restart separate from at least five subsequent runs for each scenario. Record
 all individual times, warm median/maximum, expected and actual row counts,
 fixture files and timing method. A screenshot of results alone does not prove time.
 
-The proposed limits in PR #85 are pending tutor/team agreement. Measurements
-can be collected, but do not claim target acceptance until targets are agreed.
+The limits in PR #85 were agreed by the team on 19 October 2026. Use Jackie's
+MacBook Air (M3, 24 GB RAM, macOS 26.6.2) as the reference device and follow the
+plan's remove-and-reupload procedure for fresh repeated CSV processing.
 
 Suggested files: `results.md`, `timings.csv`, fictional input fixtures, and
 optional screenshots showing the resulting counts/results.

@@ -1,7 +1,7 @@
 # SARAH system test plan - Sprint 6
 
 Owner: Benjamin. Prepared: 19 October 2026. Issue: #65.
-Status: draft for team review and tutor agreement on measurable targets.
+Status: reviewed; targets agreed by team on 19 October 2026. PR merge pending.
 Plan baseline: `051596275aab007a5e22704147ff1dc8becbaaa4`.
 
 ## Purpose and scope
@@ -129,7 +129,7 @@ Use the [evidence folder index](evidence/README.md) for ownership, case numbers
 and per-folder recording instructions.
 
 Use Not run, Pass, Fail or Blocked for functional cases. Timing/usability cases
-remain Pending target until a target is agreed; observations can still be saved.
+use the team-agreed targets below; actual results still require a recorded run.
 For user tasks additionally record independent, helped or not completed. A
 correct result with assistance is not independent success.
 
@@ -167,7 +167,7 @@ live in `project/docs/evidence/issue66/`, `issue67/`, `issue68/` or `issue69/`, 
 platform and run. Screenshots should show inputs/results; timing needs recorded
 measurements, and usability needs the observer's task/assistance notes.
 
-## Response-time method and targets - pending agreement
+## Response-time method and targets - agreed 19 October 2026
 
 Jackie records the device, commit, models, browser, files and timing method.
 For a form, measure from clicking Predict until the label, probability and
@@ -183,22 +183,38 @@ fixed fictional 30-row and 395-row fixtures, valid and mixed cases, in both
 modes; include blank and supplied G2 in Confirmatory fixtures. Record expected
 valid/skipped counts. If fixtures need preparing, retain them with the run.
 
-The following are proposed classroom-prototype targets, not measured results or
-approved requirements. Confirm them before judging pass/fail. Agree one reference
-computer for acceptance timing; record other platforms separately for comparison
-unless the team requires both to meet the limits. Keep all measured repeats,
-including slow ones. Do not silently relax a target after a failed run.
+The team agreed these targets on 19 October 2026. They are acceptance targets,
+not measured results. Reference device: Jackie's MacBook Air, Apple M3,
+24 GB RAM, macOS 26.6.2 (as reported in his review). Record other platforms
+separately for comparison. Keep all measured repeats, including slow ones;
+do not silently relax a target after a failed run.
 
-| Area | Proposed target | Decision needed | Agreed by / date |
+| Area | Agreed target | Agreed method / conditions | Agreed by / date |
 |---|---|---|---|
-| Single prediction | First prediction after app restart <=10 s; each of five subsequent predictions <=3 s | Confirm reference computer, all three model setups and timing through visible prediction/recommendations; server startup excluded | Pending tutor/team agreement |
-| 30-row CSV | First run after app restart <=10 s; each of five subsequent runs <=5 s | Confirm fictional fixtures, both modes, valid/mixed cases and expected totals; time from completed file selection to complete results and download control | Pending tutor/team agreement |
-| 395-row CSV | First run after app restart <=20 s; each of five subsequent runs <=10 s | Confirm same measurement boundary and limits for valid/mixed cases; record expected valid/skipped counts | Pending tutor/team agreement |
-| Main user tasks | Complete all four tasks below without verbal help, using on-screen instructions | Confirm task list and permitted help; record assistance and repeat affected tasks after improvements | Pending tutor/team agreement |
-| Understanding limitations | Tester explains that the probability is a model estimate, can be wrong and must not be used alone for student decisions | Agree questions; assess the initial answer before explaining | Pending tutor/team agreement |
-| Readability | At agreed laptop screen sizes and 100% browser zoom, labels/messages are readable, full recommendations accessible and controls not clipped | Record screen sizes; agree whether horizontal scrolling for CSV tables is acceptable; long recommendations must remain easy to read | Pending tutor/team agreement |
+| Single prediction | First prediction after app restart <=10 s; each of five subsequent predictions <=3 s | Jackie's reference device; all three setups; click Predict to complete visible results/recommendations; exclude server startup | Agreed by team - 19 October 2026 |
+| 30-row CSV | First run after app restart <=10 s; each of five subsequent runs <=5 s | Reference device; both modes, valid and mixed files; completed file selection to counts, results, reasons and download control; record exact fixtures and expected totals | Agreed by team - 19 October 2026 |
+| 395-row CSV | First run after app restart <=20 s; each of five subsequent runs <=10 s | Same CSV procedure and reference device; record exact fixtures and expected totals | Agreed by team - 19 October 2026 |
+| Main user tasks | Complete all four tasks below without verbal help, using on-screen instructions | Observe without coaching; offer help only on request or after about one minute stuck; mark any helped task as assisted, not an independent pass | Agreed by team - 19 October 2026 |
+| Understanding limitations | Tester explains that probability is a model estimate, can be wrong and must not be used alone for student decisions | Ask what the probability means and whether the result can be used alone for a decision; record initial answers before explaining | Agreed by team - 19 October 2026 |
+| Readability | Readable full messages and accessible controls at 1920x1080 and 1366x768, 100% zoom | Horizontal scrolling permitted only inside the CSV results table, with every recommendation readable in full; form, buttons, warnings and human-review notice fit without horizontal scrolling | Agreed by team - 19 October 2026 |
 
-### Four proposed usability tasks
+### Repeat the same CSV with fresh processing
+
+1. For the first run, restart the app, select the mode and upload the fixture.
+2. For each subsequent run, remove the uploaded file using the uploader's remove
+   control. Wait until the uploader is empty and the previous CSV results disappear.
+3. Select the same unchanged file again. Start timing when file selection completes;
+   stop when the complete output is available. Do not include the removal/wait step.
+4. Keep the app running between these subsequent runs. Do not count a download,
+   a screenshot, or viewing an already loaded result as a new prediction.
+
+The current dashboard calls process_upload when a file is present, with no
+result-cache decorator on that path. Removing then re-uploading triggers a new
+processing cycle. These are first/subsequent app-run measurements, not proof
+that model objects remain cached between predictions. If the implementation
+changes, verify the procedure still invokes processing before collecting times.
+
+### Four agreed usability tasks
 
 1. Make an Early-Warning prediction with attendance 40, study hours 4 and
    failures 0. The baseline result is High Risk (0.859) with attendance support.
@@ -221,21 +237,36 @@ the initial attempt. A correct result with help is not independent success.
 Do not convert one tester's result into a claim about all users. S6-21 also
 checks understanding of G1+G2; its functional routing is covered by S6-04/05.
 
-Issue #65 asks for practical response-time and usability targets to be agreed
-with the tutor. Ask for those limits and record the actual decision here before
-judging pass/fail. Tutor feedback that the prototype can proceed is not an
-agreement to numerical targets. This is separate from team-approved rules.
+### Exact wording checks for S6-24
+
+Check the accepted #68 wording after #69 changes:
+
+- Human review: "Support tool only. Do not use this prediction alone to make decisions about a student."
+- For the G1-only example with baseline probability 0.818:
+  "Model-estimated High-Risk probability: 81.8%. This estimate may be inaccurate and should be considered alongside other information about the student."
+  Other inputs must show their own computed percentage, not a fixed 81.8%.
+- Grade help explains first-period and second-period grades, blank versus zero
+  for G2, and attendance as an estimate.
+- The skipped-row warning shows the actual skipped count and directs users to
+  reasons without hiding valid results. #68 does not prescribe a single exact
+  sentence for this warning or every field-help label; check the agreed meaning.
+
+Team agreement is sufficient for these targets; no tutor approval is required.
+Jackie's review requested the repeat-upload clarification above. Anna requested
+exact wording checks, now included here. The remaining fixture filenames/counts,
+browser and timing instrument are run-record details to fill before measurement,
+not unresolved target approvals.
 
 ## Review and completion
 
 | Review item | Status | Reviewer / date / evidence |
 |---|---|---|
-| Requirement coverage and steps | Pending team review | Pending |
-| Platform and timing procedure | Pending Jackie review | Pending |
-| Rules and usability procedure | Pending Anna review | Pending |
-| Response-time and usability targets | Pending tutor/team agreement | Pending |
+| Requirement coverage and steps | Reviewed | Team - 19 October 2026; owner confirmation and reviews below |
+| Platform and timing procedure | Reviewed; upload-repeat clarification added | [Jackie - 19 October 2026](https://github.com/Hakuverse/ICT304/pull/85#pullrequestreview-5567670191) |
+| Rules and usability procedure | Reviewed; exact wording checks added | [Anna review](https://github.com/Hakuverse/ICT304/pull/85#pullrequestreview-5567542513) and [conditions](https://github.com/Hakuverse/ICT304/pull/85#issuecomment-6261076489) - 19 October 2026 |
+| Response-time and usability targets | Agreed | Agreed by team - 19 October 2026 |
 
-Close #65 after this plan is reviewed, targets agreed and the PR merged. The
+Close #65 when this reviewed plan is merged. Targets are agreed by the team. The
 actual runs need not be finished to close the planning issue; they belong to
 #66-#69. Benjamin links their outcomes in #70. Leave failed, blocked and unfinished
 work visible. Preserve assignment files and prompt logs.
