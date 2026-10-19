@@ -1,0 +1,13 @@
+student_id,attendance_pct,study_hours,failures,G1,G2
+G1_BLANK,80,4,0,,
+G1_ZERO,80,4,0,0,
+G1_20,80,4,0,20,
+G1_NEG,80,4,0,-1,
+G1_HIGH,80,4,0,21,
+G1_TEXT,80,4,0,NA,
+G2_BLANK,80,4,0,12,
+G2_ZERO,80,4,0,12,0
+G2_20,80,4,0,12,20
+G2_NEG,80,4,0,12,-1
+G2_HIGH,80,4,0,12,21
+G2_TEXT,80,4,0,12,NA

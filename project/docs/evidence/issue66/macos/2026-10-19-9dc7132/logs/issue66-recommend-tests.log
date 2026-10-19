@@ -1,0 +1,16 @@
+test_assessment_score_boundary (test_recommend.RecommendationRules.test_assessment_score_boundary) ... ok
+test_attendance_boundary (test_recommend.RecommendationRules.test_attendance_boundary) ... ok
+test_early_warning_never_uses_assessment_rule (test_recommend.RecommendationRules.test_early_warning_never_uses_assessment_rule) ... ok
+test_high_risk_with_no_matching_rule_gets_fallback (test_recommend.RecommendationRules.test_high_risk_with_no_matching_rule_gets_fallback) ... ok
+test_invalid_mode_is_rejected (test_recommend.RecommendationRules.test_invalid_mode_is_rejected) ... ok
+test_invalid_prediction_is_rejected (test_recommend.RecommendationRules.test_invalid_prediction_is_rejected) ... ok
+test_low_risk_gets_only_routine_message (test_recommend.RecommendationRules.test_low_risk_gets_only_routine_message) ... ok
+test_multiple_rules_use_approved_order_without_duplicates (test_recommend.RecommendationRules.test_multiple_rules_use_approved_order_without_duplicates) ... ok
+test_previous_failure_boundary (test_recommend.RecommendationRules.test_previous_failure_boundary) ... ok
+test_study_hours_boundary (test_recommend.RecommendationRules.test_study_hours_boundary) ... ok
+test_targeted_messages_include_a_reason (test_recommend.RecommendationRules.test_targeted_messages_include_a_reason) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.000s
+
+OK
