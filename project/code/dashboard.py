@@ -15,6 +15,10 @@ recommend.py exists, using the function contract agreed in #52.
 #69 (accepted #68 usability changes): human-review notice, probability shown
 as a percentage with a caveat, clearer mode and field help, and a skipped-row
 warning next to the upload results. Wording agreed by the team on 19 October 2026.
+
+#69 part 2 (team readability proposals from the #57 record): long messages wrap
+instead of being cut off, each suggestion's reason is explained, and the
+recommendation and skipped-reason areas are wider.
 """
 
 import csv
@@ -67,9 +71,30 @@ def skipped_warning(skipped_count, total_rows):
     """Shown next to the upload results so skipped students are not missed (#68 finding 4)."""
     if not skipped_count:
         return None
-    noun = "student was" if skipped_count == 1 else "students were"
-    return (f"{skipped_count} of {total_rows} {noun} skipped and got no prediction. "
+    verb = "was" if skipped_count == 1 else "were"
+    return (f"{skipped_count} of {total_rows} students {verb} skipped and got no prediction. "
             "See **Skipped rows** below for the reason for each one.")
+
+
+SUGGESTION_EXPLANATION = ("Each suggestion ends with the agreed rule it matched (the \"because\" part). "
+                          "A matched rule is a prompt for a conversation with the student; "
+                          "it does not prove why the student is at risk.")
+FULL_LIST_LIMIT = 30  # open the full suggestion list automatically for classes up to this size
+
+
+def suggestions_by_student(results):
+    """(student, risk label, list of messages) for every valid CSV row, in file order,
+    so long suggestions can be shown in full and wrapped instead of cut off in a cell."""
+    if "recommendations" not in results.columns:
+        return []
+    return [(sid, label, [m for m in text.split(" | ") if m])
+            for sid, label, text in zip(results["student_id"], results["risk_label"],
+                                        results["recommendations"])]
+
+
+def skipped_lines(skipped):
+    """One readable line per skipped row; long reasons wrap instead of being cut off."""
+    return [f"**{s['student_id']}**: {s['reason']}" for s in skipped]
 
 
 def display_results(results):
@@ -279,6 +304,7 @@ def show_recommendation(student_fields, label):
         st.write("**Support suggestions** (for human review):")
         for message in messages:
             st.write(f"- {message}")
+        st.caption(SUGGESTION_EXPLANATION)
 
 
 def single_student_tab(mode):
@@ -365,7 +391,17 @@ def class_csv_tab(mode):
             st.warning(warning)
         st.dataframe(display_results(results), hide_index=True, column_config={
             "probability_high_risk": st.column_config.NumberColumn(
-                "Model-estimated High-Risk probability", format="%.1f%%")})
+                "Model-estimated High-Risk probability", format="%.1f%%"),
+            "recommendations": st.column_config.TextColumn("recommendations", width="large")})
+        by_student = suggestions_by_student(results)
+        if by_student:
+            with st.expander("Full support suggestions for each student",
+                             expanded=len(by_student) <= FULL_LIST_LIMIT):
+                st.caption(SUGGESTION_EXPLANATION)
+                for student, label, messages in by_student:
+                    st.markdown(f"**{student}** ({label})")
+                    for message in messages:
+                        st.markdown(f"- {message}")
         st.caption(f"{PROBABILITY_CAVEAT} In the downloaded file the same estimate is written "
                    "as a decimal (for example 0.818 = 81.8%).")
         st.warning(HUMAN_REVIEW_NOTICE)
@@ -376,7 +412,8 @@ def class_csv_tab(mode):
 
     if skipped:
         st.write("**Skipped rows** (no prediction was made for these students):")
-        st.dataframe(skipped, hide_index=True)
+        for line in skipped_lines(skipped):
+            st.markdown(f"- {line}")
 
 
 def main():
