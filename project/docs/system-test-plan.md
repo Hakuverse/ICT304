@@ -125,6 +125,9 @@ to become High Risk at a rule threshold. A rule trigger is not a causal explanat
 
 ## Actual results and evidence
 
+Use the [evidence folder index](evidence/README.md) for ownership, case numbers
+and per-folder recording instructions.
+
 Use Not run, Pass, Fail or Blocked for functional cases. Timing/usability cases
 remain Pending target until a target is agreed; observations can still be saved.
 For user tasks additionally record independent, helped or not completed. A
@@ -160,7 +163,7 @@ correct result with assistance is not independent success.
 For usability, record each tester's actual platform; do not claim both platforms
 were assessed when only one was used. Retain the 17 October observations in
 #68 separately and add a new record for post-change checks. New evidence can
-live in `project/docs/evidence/issue66/`, `issue67/` or `issue68/`, grouped by
+live in `project/docs/evidence/issue66/`, `issue67/`, `issue68/` or `issue69/`, grouped by
 platform and run. Screenshots should show inputs/results; timing needs recorded
 measurements, and usability needs the observer's task/assistance notes.
 
