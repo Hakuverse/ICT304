@@ -352,8 +352,24 @@ class ReadabilityChanges(unittest.TestCase):
     def test_skipped_reasons_are_shown_in_full(self):
         _, skipped, _ = dashboard.process_upload(
             "student_id,attendance_pct,study_hours,failures,G1,G2\nA,60,4,1,12,14,99\n", "confirmatory")
-        self.assertEqual(dashboard.skipped_lines(skipped),
-                         ["**row 1**: has 7 values but the header has 6 columns (check for a missing or extra comma)"])
+        self.assertEqual(dashboard.skipped_html(skipped),
+                         "<ul><li><strong>row 1</strong>: has 7 values but the header has 6 columns "
+                         "(check for a missing or extra comma)</li></ul>")
+
+    def test_uploaded_ids_and_reasons_are_shown_literally_not_as_links_or_markup(self):
+        # Review of PR #87: an ID like [B](https://example.com) must not become a link.
+        from recommend import recommend
+        text = ("student_id,attendance_pct,study_hours,failures,G1,G2\n"
+                "[B](https://example.com),40,1.5,2,8,\n*star*,90,6,0,15,15\n<b>bad</b>,60,4,1,12,*x*\n")
+        results, skipped, _ = dashboard.process_upload(text, "confirmatory", recommend)
+        shown = dashboard.suggestions_html(dashboard.suggestions_by_student(results))
+        self.assertIn("<strong>[B](https://example.com)</strong> (High Risk)", shown)   # literal text
+        self.assertIn("<strong>*star*</strong>", shown)
+        self.assertNotIn("<a", shown)
+        skipped_shown = dashboard.skipped_html(skipped)
+        self.assertIn("<strong>&lt;b&gt;bad&lt;/b&gt;</strong>", skipped_shown)          # no HTML injected
+        self.assertIn("*x*", skipped_shown)                                             # user value kept
+        self.assertNotIn("<b>", skipped_shown)
 
     def test_single_result_explains_what_a_suggestion_means(self):
         at = AppTest.from_file(DASHBOARD, default_timeout=30).run()

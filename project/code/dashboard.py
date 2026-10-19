@@ -22,6 +22,7 @@ recommendation and skipped-reason areas are wider.
 """
 
 import csv
+import html
 import io
 from pathlib import Path
 
@@ -76,10 +77,24 @@ def skipped_warning(skipped_count, total_rows):
             "See **Skipped rows** below for the reason for each one.")
 
 
-SUGGESTION_EXPLANATION = ("Each suggestion ends with the agreed rule it matched (the \"because\" part). "
-                          "A matched rule is a prompt for a conversation with the student; "
-                          "it does not prove why the student is at risk.")
+SUGGESTION_EXPLANATION = ("Targeted suggestions explain which agreed rule was matched. A matched rule "
+                          "is a prompt for discussion, not proof of why the student is at risk. "
+                          "Low-Risk results receive routine guidance, while High-Risk results with "
+                          "no matching rule receive general review guidance.")
 FULL_LIST_LIMIT = 30  # open the full suggestion list automatically for classes up to this size
+
+
+# Uploaded text (student IDs, skipped reasons) is shown as escaped HTML, not Markdown:
+# Markdown would turn an ID like "[B](https://example.com)" into a link, and Streamlit
+# also turns bare web addresses into links even when Markdown characters are escaped.
+def suggestions_html(by_student):
+    """Full support suggestions for each student, shown exactly as written and wrapped."""
+    parts = []
+    for student, label, messages in by_student:
+        items = "".join(f"<li>{html.escape(str(m))}</li>" for m in messages)
+        parts.append(f'<p style="margin:0.6rem 0 0.2rem"><strong>{html.escape(str(student))}</strong> '
+                     f"({html.escape(str(label))})</p><ul>{items}</ul>")
+    return "".join(parts)
 
 
 def suggestions_by_student(results):
@@ -92,9 +107,11 @@ def suggestions_by_student(results):
                                         results["recommendations"])]
 
 
-def skipped_lines(skipped):
-    """One readable line per skipped row; long reasons wrap instead of being cut off."""
-    return [f"**{s['student_id']}**: {s['reason']}" for s in skipped]
+def skipped_html(skipped):
+    """One readable line per skipped row, shown exactly as written; long reasons wrap."""
+    items = "".join(f"<li><strong>{html.escape(str(s['student_id']))}</strong>: "
+                    f"{html.escape(str(s['reason']))}</li>" for s in skipped)
+    return f"<ul>{items}</ul>"
 
 
 def display_results(results):
@@ -398,10 +415,7 @@ def class_csv_tab(mode):
             with st.expander("Full support suggestions for each student",
                              expanded=len(by_student) <= FULL_LIST_LIMIT):
                 st.caption(SUGGESTION_EXPLANATION)
-                for student, label, messages in by_student:
-                    st.markdown(f"**{student}** ({label})")
-                    for message in messages:
-                        st.markdown(f"- {message}")
+                st.html(suggestions_html(by_student))
         st.caption(f"{PROBABILITY_CAVEAT} In the downloaded file the same estimate is written "
                    "as a decimal (for example 0.818 = 81.8%).")
         st.warning(HUMAN_REVIEW_NOTICE)
@@ -412,8 +426,7 @@ def class_csv_tab(mode):
 
     if skipped:
         st.write("**Skipped rows** (no prediction was made for these students):")
-        for line in skipped_lines(skipped):
-            st.markdown(f"- {line}")
+        st.html(skipped_html(skipped))
 
 
 def main():
