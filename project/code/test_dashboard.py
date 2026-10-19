@@ -142,7 +142,8 @@ class UploadStructureChecks(unittest.TestCase):
         results, skipped = self.process(dashboard.SAMPLE_CSV.read_text())
         cli_results, cli_skipped = predict_roster(dashboard.SAMPLE_CSV, "confirmatory")
         self.assertEqual(results.to_dict("records"), cli_results.to_dict("records"))
-        self.assertEqual(skipped, cli_skipped)
+        # Same students skipped; the dashboard rewords the reasons in plain language (#69 part 3).
+        self.assertEqual([s["student_id"] for s in skipped], [s["student_id"] for s in cli_skipped])
 
 
 class RecommendationContract(unittest.TestCase):
@@ -376,6 +377,59 @@ class ReadabilityChanges(unittest.TestCase):
         at.number_input[0].set_value(40.0).run()
         at.button[0].click().run()
         self.assertIn(dashboard.SUGGESTION_EXPLANATION, [c.value for c in at.caption])
+
+
+class PlainSkippedReasons(unittest.TestCase):
+    """#69 part 3 (agreed 20 October 2026): skipped-row reasons say which value was
+    found and how to fix the row. Which rows are skipped must not change."""
+
+    H = "student_id,attendance_pct,study_hours,failures,G1,G2\n"
+
+    def reasons(self, text, mode="confirmatory"):
+        _, skipped, _ = dashboard.process_upload(text, mode)
+        return {s["student_id"]: s["reason"] for s in skipped}
+
+    def test_sample_file_reasons_use_the_agreed_wording(self):
+        self.assertEqual(self.reasons(dashboard.SAMPLE_CSV.read_text()), {
+            "C": "Attendance is 150. Enter a value from 0 to 100.",
+            "D": "G2 is 'NA'. Leave it blank if there is no second-period grade, or enter 0\u201320.",
+        })
+
+    def test_each_field_names_the_value_and_the_fix(self):
+        reasons = self.reasons(self.H + "A,,4,0,12,\nB,80,many,0,12,\nC,80,4,1.5,12,\n"
+                                        "D,80,4,0,,\nE,80,4,0,25,\nF,80,4,0,12,21\n")
+        self.assertEqual(reasons, {
+            "A": "Attendance is missing. Enter a value from 0 to 100.",
+            "B": "Study hours is 'many'. Enter a value from 0 to 40.",
+            "C": "Past class failures is 1.5. Enter a whole number from 0 to 3.",
+            "D": "G1 is missing. Enter the first-period grade from 0 to 20.",
+            "E": "G1 is 25. Enter the first-period grade from 0 to 20.",
+            "F": "G2 is 21. Leave it blank if there is no second-period grade, or enter 0\u201320.",
+        })
+
+    def test_every_problem_in_a_row_is_listed(self):
+        self.assertEqual(self.reasons(self.H + "A,150,4,0,12,NA\n")["A"],
+                         "Attendance is 150. Enter a value from 0 to 100. "
+                         "G2 is 'NA'. Leave it blank if there is no second-period grade, or enter 0\u201320.")
+
+    def test_early_warning_ignores_grade_columns(self):
+        reasons = self.reasons(self.H + "A,60,50,0,abc,NA\n", "early_warning")
+        self.assertEqual(reasons, {"A": "Study hours is 50. Enter a value from 0 to 40."})
+
+    def test_same_rows_skipped_as_the_command_line(self):
+        text = self.H + "A,60,4,1,12,\nB,,4,0,12,\nC,80,4,1.5,12,\nD,80,4,0,12,NA\nE,90,6,0,15,15\n"
+        results, skipped, total = dashboard.process_upload(text, "confirmatory")
+        cli_results, cli_skipped = predict_roster(io.StringIO(text), "confirmatory")
+        self.assertEqual(results.to_dict("records"), cli_results.to_dict("records"))
+        self.assertEqual([s["student_id"] for s in skipped], [s["student_id"] for s in cli_skipped])
+        self.assertEqual(len(results) + len(skipped), total)
+
+    def test_original_reason_kept_when_no_plain_reason_applies(self):
+        self.assertEqual(dashboard.plain_reason({"attendance_pct": "60", "study_hours": "4", "failures": "0"},
+                                                "early_warning", "some other problem"),
+                         "some other problem")
+        self.assertIn("has 7 values but the header has 6",            # wrong-length rows unchanged
+                      self.reasons(self.H + "A,60,4,1,12,14,99\n")["row 1"])
 
 
 if __name__ == "__main__":
