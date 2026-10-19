@@ -180,18 +180,43 @@ fixed fictional 30-row and 395-row fixtures, valid and mixed cases, in both
 modes; include blank and supplied G2 in Confirmatory fixtures. Record expected
 valid/skipped counts. If fixtures need preparing, retain them with the run.
 
-| Area | Target | Decision needed | Agreed by / date |
-|---|---|---|---|
-| Single prediction | Pending | Maximum cold and warm duration, and whether all repeats must meet it | Pending tutor/team agreement |
-| CSV prediction | Pending | Cold/warm limits for each row count and the measurement boundary | Pending tutor/team agreement |
-| Main user tasks | Pending | Required independently completed tasks and allowed assistance | Pending tutor/team agreement |
-| Understanding limitations | Pending | Criterion for explaining model uncertainty and human review | Pending tutor/team agreement |
-| Readability | Pending | Screen sizes/zoom and which messages/controls must remain readable | Pending tutor/team agreement |
+The following are proposed classroom-prototype targets, not measured results or
+approved requirements. Confirm them before judging pass/fail. Agree one reference
+computer for acceptance timing; record other platforms separately for comparison
+unless the team requires both to meet the limits. Keep all measured repeats,
+including slow ones. Do not silently relax a target after a failed run.
 
-Proposed usability approach for discussion: observe task completion without
-coaching, then ask the tester to explain the result and why it should not be
-used alone for decisions. Record any help after the initial attempt. Do not
-convert the one-tester result into a claim about all users.
+| Area | Proposed target | Decision needed | Agreed by / date |
+|---|---|---|---|
+| Single prediction | First prediction after app restart <=10 s; each of five subsequent predictions <=3 s | Confirm reference computer, all three model setups and timing through visible prediction/recommendations; server startup excluded | Pending tutor/team agreement |
+| 30-row CSV | First run after app restart <=10 s; each of five subsequent runs <=5 s | Confirm fictional fixtures, both modes, valid/mixed cases and expected totals; time from completed file selection to complete results and download control | Pending tutor/team agreement |
+| 395-row CSV | First run after app restart <=20 s; each of five subsequent runs <=10 s | Confirm same measurement boundary and limits for valid/mixed cases; record expected valid/skipped counts | Pending tutor/team agreement |
+| Main user tasks | Complete all four tasks below without verbal help, using on-screen instructions | Confirm task list and permitted help; record assistance and repeat affected tasks after improvements | Pending tutor/team agreement |
+| Understanding limitations | Tester explains that the probability is a model estimate, can be wrong and must not be used alone for student decisions | Agree questions; assess the initial answer before explaining | Pending tutor/team agreement |
+| Readability | At agreed laptop screen sizes and 100% browser zoom, labels/messages are readable, full recommendations accessible and controls not clipped | Record screen sizes; agree whether horizontal scrolling for CSV tables is acceptable; long recommendations must remain easy to read | Pending tutor/team agreement |
+
+### Four proposed usability tasks
+
+1. Make an Early-Warning prediction with attendance 40, study hours 4 and
+   failures 0. The baseline result is High Risk (0.859) with attendance support.
+2. Make a Confirmatory prediction with attendance 80, study hours 4, failures 0,
+   G1 8 and G2 blank. The baseline result is High Risk (0.818), using G1 only.
+3. Upload `project/data/sample_roster.csv` in Confirmatory mode and download
+   the valid results.
+4. Find the skipped rows and explain what needs correcting for C and D.
+
+Early-Warning means predicting without grades; it does not mean Low Risk.
+Both modes can return High Risk or Low Risk. The agreed High-Risk-only policy
+applies to targeted recommendations: Low-Risk predictions are still displayed
+with routine guidance. They are not skipped. Only invalid CSV rows are skipped.
+The first usability task uses a known High-Risk example, so it is consistent
+with the agreed policy. Functional tests still check Low-Risk routine guidance.
+
+Observe task completion without coaching, then ask the tester to explain the
+result and why it should not be used alone for decisions. Record any help after
+the initial attempt. A correct result with help is not independent success.
+Do not convert one tester's result into a claim about all users. S6-21 also
+checks understanding of G1+G2; its functional routing is covered by S6-04/05.
 
 Issue #65 asks for practical response-time and usability targets to be agreed
 with the tutor. Ask for those limits and record the actual decision here before
