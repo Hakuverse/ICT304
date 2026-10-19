@@ -1,3 +1,0 @@
-student_id,risk_label,probability_high_risk,recommendations
-STUDY_ZERO,Low Risk,0.284,"The model predicts Low Risk. Under the current recommendation rules, targeted suggestions are shown only for High Risk predictions. Continue routine check-ins and offer support where needed."
-STUDY_40,Low Risk,0.284,"The model predicts Low Risk. Under the current recommendation rules, targeted suggestions are shown only for High Risk predictions. Continue routine check-ins and offer support where needed."

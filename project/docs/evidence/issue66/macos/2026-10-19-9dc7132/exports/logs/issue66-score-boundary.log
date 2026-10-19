@@ -1,5 +1,0 @@
-PASS: previous_score=49
-Assessment review: Review the student's assessment performance and discuss appropriate academic support because the normalised previous score is below 50.
-PASS: previous_score=50
-The model identified elevated risk, but no individual recommendation threshold was triggered. A staff member should review the student's circumstances and discuss whether support is needed.
-ALL CHECKS PASSED
