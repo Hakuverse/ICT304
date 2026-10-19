@@ -316,7 +316,7 @@ class AcceptedUsabilityChanges(unittest.TestCase):
         self.assertEqual(dashboard.skipped_warning(2, 4),
                          "2 of 4 students were skipped and got no prediction. "
                          "See **Skipped rows** below for the reason for each one.")
-        self.assertTrue(dashboard.skipped_warning(1, 5).startswith("1 of 5 student was skipped"))
+        self.assertTrue(dashboard.skipped_warning(1, 5).startswith("1 of 5 students was skipped"))
 
     def test_screen_shows_percentages_but_results_and_download_are_unchanged(self):
         results, skipped, total = dashboard.process_upload(dashboard.SAMPLE_CSV.read_text(), "confirmatory")
@@ -326,6 +326,56 @@ class AcceptedUsabilityChanges(unittest.TestCase):
         self.assertEqual(len(shown), 2)                       # valid results are never hidden
         self.assertEqual(list(results["probability_high_risk"]),   # download keeps predict.py's 0-1 values
                          list(predict_roster(dashboard.SAMPLE_CSV, "confirmatory")[0]["probability_high_risk"]))
+
+
+class ReadabilityChanges(unittest.TestCase):
+    """#69 part 2: team readability proposals from the #57 record. Long suggestions and
+    skipped reasons must be readable in full, and each suggestion's reason explained."""
+
+    def test_full_suggestion_list_keeps_every_message_unchanged(self):
+        from recommend import recommend
+        text = ("student_id,attendance_pct,study_hours,failures\n"
+                "A,40,1.5,2\nB,90,6,0\nC,150,4,0\n")
+        results, skipped, _ = dashboard.process_upload(text, "early_warning", recommend)
+        listed = dashboard.suggestions_by_student(results)
+        self.assertEqual([(s, l) for s, l, _ in listed], list(zip(results["student_id"], results["risk_label"])))
+        for (student, label, messages), key in zip(listed, ["A", "B"]):
+            values = {"A": (40, 1.5, 2), "B": (90, 6, 0)}[key]
+            expected = recommend(dashboard.build_student_fields("early_warning", *values), label)
+            self.assertEqual(messages, expected)            # full text, same order, nothing cut
+        self.assertEqual([s["student_id"] for s in skipped], ["C"])   # skipped rows not listed
+
+    def test_no_recommendation_column_gives_empty_list(self):
+        results, _, _ = dashboard.process_upload(dashboard.SAMPLE_CSV.read_text(), "confirmatory", None)
+        self.assertEqual(dashboard.suggestions_by_student(results), [])
+
+    def test_skipped_reasons_are_shown_in_full(self):
+        _, skipped, _ = dashboard.process_upload(
+            "student_id,attendance_pct,study_hours,failures,G1,G2\nA,60,4,1,12,14,99\n", "confirmatory")
+        self.assertEqual(dashboard.skipped_html(skipped),
+                         "<ul><li><strong>row 1</strong>: has 7 values but the header has 6 columns "
+                         "(check for a missing or extra comma)</li></ul>")
+
+    def test_uploaded_ids_and_reasons_are_shown_literally_not_as_links_or_markup(self):
+        # Review of PR #87: an ID like [B](https://example.com) must not become a link.
+        from recommend import recommend
+        text = ("student_id,attendance_pct,study_hours,failures,G1,G2\n"
+                "[B](https://example.com),40,1.5,2,8,\n*star*,90,6,0,15,15\n<b>bad</b>,60,4,1,12,*x*\n")
+        results, skipped, _ = dashboard.process_upload(text, "confirmatory", recommend)
+        shown = dashboard.suggestions_html(dashboard.suggestions_by_student(results))
+        self.assertIn("<strong>[B](https://example.com)</strong> (High Risk)", shown)   # literal text
+        self.assertIn("<strong>*star*</strong>", shown)
+        self.assertNotIn("<a", shown)
+        skipped_shown = dashboard.skipped_html(skipped)
+        self.assertIn("<strong>&lt;b&gt;bad&lt;/b&gt;</strong>", skipped_shown)          # no HTML injected
+        self.assertIn("*x*", skipped_shown)                                             # user value kept
+        self.assertNotIn("<b>", skipped_shown)
+
+    def test_single_result_explains_what_a_suggestion_means(self):
+        at = AppTest.from_file(DASHBOARD, default_timeout=30).run()
+        at.number_input[0].set_value(40.0).run()
+        at.button[0].click().run()
+        self.assertIn(dashboard.SUGGESTION_EXPLANATION, [c.value for c in at.caption])
 
 
 if __name__ == "__main__":
