@@ -37,7 +37,7 @@ recommendation rules separate from the model's probability estimate.
 Continue with the [Sprint 6 plan](sprint6-planning.md) for fuller system testing,
 user feedback and fixes. Do not mark unfinished Sprint 5 tasks as complete.
 
-## Status on 13 October 2026
+## Status on 19 October 2026
 
 Issues #51-#55 are complete following PRs #71-#74; cleanup PR #75 is merged.
 Benjamin completed the Windows [#56 checks](prototype-test-checklist.md) and
@@ -47,6 +47,7 @@ macOS testing remains a separate Sprint 6 check under #66.
 
 PR #76 is merged. The [13 October meeting record](prototype-demo-notes.md)
 captures positive tutor feedback and the team's proposed readability improvements.
-Issue #57 remains open for the live CSV follow-up or an agreed evidence alternative,
-confirmation of the limitations explanation, Sprint 6 owners/priorities, and review. Recommendation rules
-are agreed internally by the team; the tutor meeting gathers progress feedback.
+The team confirmed use of #56's CSV evidence, the meeting's limitations
+explanation, and Sprint 6 ownership and readability proposals. PR #83 is ready
+for teammate review and closes #57 when merged. Recommendation rules remain
+team-approved; tutor feedback and team proposals are recorded separately.

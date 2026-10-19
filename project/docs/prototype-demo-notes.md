@@ -5,8 +5,8 @@
 - Date: 13 October 2026.
 - Attendees: Benjamin, Anna, Jackie and Tutor.
 - Record provided by: Benjamin.
-- Status: tutor feedback recorded; live CSV follow-up and Sprint 6 ownership
-  remain outstanding before closing #57.
+- Status: meeting and team decisions recorded; ready for teammate review in PR #83.
+- Follow-up decisions confirmed by Benjamin on 19 October 2026.
 - Demonstration basis: Benjamin used the recent issue #56 work. Its tested code
   commit was `2bbb083074e265bb8931b053bd262bbf47d29b19`. The exact checkout
   commit used at the meeting was not recorded; the test commit is a reference,
@@ -37,11 +37,14 @@ G1 and G2. CSV handling with invalid rows was mentioned, not demonstrated live.
 The tutor's positive response about skipped-row messages reflects that discussion;
 it must not be described as a hands-on CSV usability check.
 
-The mixed valid/invalid CSV behaviour already has Windows evidence under #56.
-The live CSV example requested by #57 still needs a short follow-up demonstration,
-or an explicit team decision to accept the existing evidence in its place.
-Whether model results, limitations and human review were explained at the meeting
-was not recorded in the supplied account and needs confirmation.
+The team agreed to use the completed issue #56 Windows CSV evidence for this
+initial review rather than require a repeat live demonstration. Further CSV
+workflow and usability checks continue in #66 and #68. This does not change the
+record that CSV handling was discussed, not demonstrated live at the meeting.
+
+Benjamin confirmed on 19 October that the meeting covered the model results and
+all three limitations: probabilities are estimates, predictions can be wrong,
+and recommendations require human review and do not prove the cause of risk.
 
 ## Team improvement ideas
 
@@ -50,27 +53,31 @@ review; no UI or recommendation changes are implemented by this record.
 
 | Proposal | Next action | Follow-up | Owner |
 |---|---|---|---|
-| Make the UI easier to read | Choose specific screens and identify what is difficult to read | #68, then #69 if agreed | To agree |
-| Explain recommendation reasons more clearly | Review wording while preserving the approved thresholds and human-review limitation | #68 and #69 | To agree |
-| Make text areas larger where needed | Identify the field or results area and check it at the intended screen size | #68 and #69 | To agree |
-| Wrap long messages onto two or three lines where practical | Check form and CSV result displays; avoid requiring one long line or hiding the message | #68 and #69 | To agree |
+| Make the UI easier to read | Choose specific screens and identify what is difficult to read | #68, then #69 if agreed | Anna (#68/#69) |
+| Explain recommendation reasons more clearly | Review wording while preserving the approved thresholds and human-review limitation | #68 and #69 | Anna (#68/#69) |
+| Make text areas larger where needed | Identify the field or results area and check it at the intended screen size | #68 and #69 | Anna (#68/#69) |
+| Wrap long messages onto two or three lines where practical | Check form and CSV result displays; avoid requiring one long line or hiding the message | #68 and #69 | Anna (#68/#69) |
 
 Prioritise observed functional failures first. Then agree which readability
 changes are useful, implement them in a separate PR and recheck affected cases.
 A clearer rule explanation must not imply that a feature caused the risk.
 
-## Next steps and completion
+## Confirmed next steps - 19 October 2026
 
-1. Complete the live CSV follow-up or record the team's decision to use the
-   existing #56 evidence. Confirm whether results, limitations and human review
-   were explained; cover them at the follow-up if needed. The unrecorded exact
-   meeting commit is explicitly noted above.
-2. Agree Sprint 6 priorities and owners for #65-#70; the suggested split is in the
-   [Sprint 6 plan](sprint6-planning.md).
-3. Start #65 by mapping requirements to tests. Use #66 for Windows/macOS
-   checks, #67 for response times and #68 for observed user tasks.
-4. Use #69 for agreed fixes and improvements, and #70 for report evidence.
-5. Have a teammate review this record and link its PR in #57 before closing it.
+The team agreed the allocation: Benjamin #65/#70, Jackie #66/#67, Anna #68/#69.
+The team also agreed to carry the readability ideas forward as team proposals:
+wrap long messages first, clarify explanation wording next, and resize fields
+where needed. Specific implementation choices and additional findings from #68
+are reviewed before changes under #69; this record does not approve those later
+findings automatically.
+
+1. Benjamin prepares #65's test plan and brings the resulting evidence together in #70.
+2. Jackie coordinates platform checks in #66 and response-time checks in #67.
+3. Anna records usability findings in #68 and implements agreed fixes in #69.
+4. A teammate reviews PR #83; merging it completes the #57 documentation record.
+
+The evidence alternative, limitations explanation and next-action allocation are
+confirmed. The exact meeting checkout remains unrecorded rather than guessed.
 
 No software failures were reported in the supplied meeting feedback. macOS
 coverage, response-time results and independent usability checks remain separate

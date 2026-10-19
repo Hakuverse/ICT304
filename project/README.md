@@ -40,7 +40,7 @@ recommendation setup.
 
 The tutor found the modes, displayed results and skipped-row messages clear and
 suggested proceeding to the next steps. See the [meeting record](docs/prototype-demo-notes.md)
-for the reported feedback and details still to confirm. The team proposed clearer
+for the feedback and decisions confirmed on 19 October. The team proposed clearer
 wording, larger text areas and wrapping long messages for Sprint 6 review; these
 are planned improvements, not completed features or tutor requests.
 Windows checks are recorded in [issue #56](docs/prototype-test-checklist.md).
