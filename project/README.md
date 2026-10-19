@@ -42,7 +42,10 @@ The tutor found the modes, displayed results and skipped-row messages clear and
 suggested proceeding to the next steps. See the [meeting record](docs/prototype-demo-notes.md)
 for the feedback and decisions confirmed on 19 October. The team proposed clearer
 wording, larger text areas and wrapping long messages for Sprint 6 review; these
-are planned improvements, not completed features or tutor requests.
+were team proposals, not tutor requests. Reviewed wording and readability changes
+subsequently merged in PRs #86, #87 and #92. See the system test plan for recorded
+usability results and remaining follow-up; merged changes do not establish that
+all usability targets have been met.
 Windows checks are recorded in [issue #56](docs/prototype-test-checklist.md).
 Further platform, timing and usability checks remain Sprint 6 work.
 
@@ -143,6 +146,8 @@ the original scores for a different experiment.
 
 - [Sprint 5 plan](docs/sprint5-planning.md)
 - [Sprint 6 plan](docs/sprint6-planning.md)
+- [Sprint 7 plan](docs/sprint7-planning.md) - Phase E, 20-27 October
+- [Sprint 8 plan](docs/sprint8-planning.md) - Phase F, 27 October-3 November; final submission by 7 November
 - [Baseline evaluation](docs/evaluation_report.md)
 - [Baseline comparison and limitations](docs/issue33_report.md)
 - [Assignment system design](../assignment/docs/SYSTEM_DESIGN.md) and

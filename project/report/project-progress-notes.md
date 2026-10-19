@@ -1,4 +1,4 @@
-# Project progress notes - updated 19 October 2026
+# Project progress notes - updated 20 October 2026
 
 SARAH currently supports single-student and class CSV predictions using
 Early-Warning, G1-only Confirmatory and G1+G2 Confirmatory models. Invalid CSV
@@ -25,10 +25,28 @@ Benjamin confirmed that estimated probabilities, possible prediction errors and
 human review were explained during the meeting.
 
 The team proposed improving layout, explanation wording, text-area sizes and
-long-line wrapping. These are candidates for Sprint 6 review, not implemented
-changes. Sprint 6 covers requirements-to-test mapping, Windows/macOS workflow
-checks, timing, user trials, fixes and updated evidence. The agreed owners are
-Benjamin (#65/#70), Jackie (#66/#67) and Anna (#68/#69). The team agreed to
-prioritise wrapping long messages, clearer wording and resizing fields where
-needed as proposals for review, not completed changes. Deployment and maintenance guidance, the user guide and
-demo video follow in Phase E; closeout and final submission follow in Phase F.
+long-line wrapping. Wording and readability changes merged through PRs #86 and
+#87; PR #92 added clearer dashboard CSV error reasons. These changes do not by
+themselves establish that the usability targets have been met.
+
+The [system test plan](../docs/system-test-plan.md) links Benjamin's 19 October
+Windows evidence at commit `9dc7132` and Anna's usability retest at that version.
+The Windows record reports 99 passing automated tests. The retest records mixed
+usability outcomes, including difficulty explaining probability uncertainty and
+correcting skipped rows. New changes need affected checks and updated evidence.
+Jackie's macOS evidence is under [PR #90](https://github.com/Hakuverse/ICT304/pull/90)
+review; timing evidence remains under [#67](https://github.com/Hakuverse/ICT304/issues/67).
+These records are separate from the earlier model evaluation.
+
+## Remaining stages
+
+| Period | Work | Plan |
+|---|---|---|
+| Sprint 6 carry-forward | Finish platform/timing reviews, follow up usability findings and consolidate evidence in #70 | [Sprint 6](../docs/sprint6-planning.md) |
+| 20-27 October | Phase E: deployment, maintenance, user guide, walkthrough and demo video (#77-#82) | [Sprint 7](../docs/sprint7-planning.md) |
+| 27 October-3 November | Phase F: final report/forms, slides, rehearsal, package checks and readiness review (#93-#98) | [Sprint 8](../docs/sprint8-planning.md) |
+| 4-7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover recorded under #98 |
+
+Sprint 6 owners remain Benjamin (#65/#70), Jackie (#66/#67) and Anna (#68/#69).
+Sprint 7 and Sprint 8 owners are still to be agreed. The milestone dates and
+planning pages do not claim that deliverables or submission are complete.
