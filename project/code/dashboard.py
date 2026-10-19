@@ -11,6 +11,10 @@ This file only handles the screen. Validation and prediction reuse
 predict.py, so the dashboard gives the same answers as the command line.
 Recommendations (#53) are shown in the form and as a CSV column once
 recommend.py exists, using the function contract agreed in #52.
+
+#69 (accepted #68 usability changes): human-review notice, probability shown
+as a percentage with a caveat, clearer mode and field help, and a skipped-row
+warning next to the upload results. Wording agreed by the team on 19 October 2026.
 """
 
 import csv
@@ -26,21 +30,54 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]  # project/code -> project/
 SAMPLE_CSV = PROJECT_ROOT / "data" / "sample_roster.csv"
 
 MODE_LABELS = {
-    "early_warning": "Early-Warning (no grades)",
-    "confirmatory": "Confirmatory (G1 required, G2 optional)",
+    "early_warning": "Early-Warning (no grades yet)",
+    "confirmatory": "Confirmatory (G1 grade needed, G2 optional)",
 }
 MODE_HELP = {
-    "early_warning": "Uses attendance estimate, study hours and past failures only. No assessment grades are needed.",
-    "confirmatory": "Adds assessment grades. G1 is required. G2 is optional: leave it blank if there is no G2 yet (0 is a valid grade).",
+    "early_warning": ("Use before any grades are available. Uses the attendance estimate, "
+                      "study hours and past class failures only."),
+    "confirmatory": ("Use once the first-period grade (G1) is available. G1 is required. "
+                     "The second-period grade (G2) is optional."),
 }
 REQUIRED_COLUMNS = {
     "early_warning": "student_id (optional), attendance_pct, study_hours, failures",
     "confirmatory": "student_id (optional), attendance_pct, study_hours, failures, G1, G2 (optional, may be blank)",
 }
-PROBABILITY_NOTE = (
-    "The probability is the model's estimate, not a guaranteed chance of failing. "
-    "Use it alongside your own knowledge of the student."
-)
+
+# Wording agreed by the team on 19 October 2026 (#68 accepted changes, #69).
+HUMAN_REVIEW_NOTICE = "Support tool only. Do not use this prediction alone to make decisions about a student."
+PROBABILITY_CAVEAT = ("This estimate may be inaccurate and should be considered alongside "
+                      "other information about the student.")
+ATTENDANCE_HELP = ("Attendance is an estimate (0 to 100%), not an exact register count. "
+                   "SARAH's models learned it from absence counts.")
+GRADE_HELP = ("G1 = first-period grade, G2 = second-period grade, both out of 20. "
+              "Leave G2 blank if there is no second-period grade yet. "
+              "Blank and 0 are different: 0 is a real grade.")
+CSV_FIELD_HELP = ("attendance_pct is an estimate (0 to 100). G1 = first-period grade and "
+                  "G2 = second-period grade, both 0 to 20. Leave a G2 cell blank if there is "
+                  "no second-period grade yet; 0 is a real grade, not a blank.")
+
+
+def probability_text(proba):
+    """The agreed sentence for one student, e.g. 0.818 -> 81.8%."""
+    return f"Model-estimated High-Risk probability: **{proba * 100:.1f}%**. {PROBABILITY_CAVEAT}"
+
+
+def skipped_warning(skipped_count, total_rows):
+    """Shown next to the upload results so skipped students are not missed (#68 finding 4)."""
+    if not skipped_count:
+        return None
+    noun = "student was" if skipped_count == 1 else "students were"
+    return (f"{skipped_count} of {total_rows} {noun} skipped and got no prediction. "
+            "See **Skipped rows** below for the reason for each one.")
+
+
+def display_results(results):
+    """Copy of the results for the screen, with the probability as a percentage.
+    The results themselves (and the download) keep the 0-1 value used by predict.py."""
+    shown = results.copy()
+    shown["probability_high_risk"] = (shown["probability_high_risk"].astype(float) * 100).round(1)
+    return shown
 
 # Recommendation contract agreed in #52 (Section 3):
 #   recommend(student_fields, prediction) -> list[str]
@@ -255,13 +292,15 @@ def single_student_tab(mode):
         # could show 150 while the prediction silently used 80. Without them,
         # the typed value is sent and predict.py's validation shows an error.
         attendance = st.number_input("Attendance estimate (%) - 0 to 100", value=80.0, step=1.0)
+        st.caption(ATTENDANCE_HELP)
         study_hours = st.number_input("Study hours per week - 0 to 40", value=5.0, step=0.5)
         # A fixed list makes non-whole or out-of-range failures impossible.
         failures = st.selectbox("Past class failures (whole number, 0 to 3)", [0, 1, 2, 3])
         g1_text = g2_text = ""
         if mode == "confirmatory":
-            g1_text = st.text_input("G1 (0-20, required)")
-            g2_text = st.text_input("G2 (0-20, optional - leave blank if not available)")
+            st.caption(GRADE_HELP)
+            g1_text = st.text_input("G1 - first-period grade (0-20, required)")
+            g2_text = st.text_input("G2 - second-period grade (0-20, optional - leave blank if not available)")
         clicked = st.button("Predict")
 
     if not clicked:
@@ -277,10 +316,10 @@ def single_student_tab(mode):
 
     show = st.error if label == "High Risk" else st.success
     show(f"**{label}**")
-    st.write(f"Estimated High-Risk probability: **{proba:.3f}**")
+    st.write(probability_text(proba))
     if grade_setup:
         st.write(f"Model used: **{'G1 + G2' if grade_setup == 'g1_g2' else 'G1 only'}**")
-    st.caption(PROBABILITY_NOTE)
+    st.warning(HUMAN_REVIEW_NOTICE)
     fields = form_student_fields(mode, attendance, study_hours, failures, g1_text, g2_text)
     show_recommendation(fields, label)
 
@@ -288,6 +327,7 @@ def single_student_tab(mode):
 def class_csv_tab(mode):
     st.subheader("Class CSV")
     st.write(f"Required columns for this mode: `{REQUIRED_COLUMNS[mode]}`")
+    st.caption(CSV_FIELD_HELP)
     if SAMPLE_CSV.exists():
         st.download_button("Download sample CSV (fictional students)", SAMPLE_CSV.read_bytes(),
                            file_name="sample_roster.csv", mime="text/csv")
@@ -320,8 +360,15 @@ def class_csv_tab(mode):
     if results.empty:
         st.error("No valid students to process. See the skipped rows below.")
     else:
-        st.dataframe(results, hide_index=True)
-        st.caption(PROBABILITY_NOTE)
+        warning = skipped_warning(len(skipped), total_rows)
+        if warning:
+            st.warning(warning)
+        st.dataframe(display_results(results), hide_index=True, column_config={
+            "probability_high_risk": st.column_config.NumberColumn(
+                "Model-estimated High-Risk probability", format="%.1f%%")})
+        st.caption(f"{PROBABILITY_CAVEAT} In the downloaded file the same estimate is written "
+                   "as a decimal (for example 0.818 = 81.8%).")
+        st.warning(HUMAN_REVIEW_NOTICE)
         if recommend is None:
             st.caption("A recommendations column will be added once the recommendation engine (#53) is added.")
         st.download_button("Download results as CSV", results.to_csv(index=False).encode("utf-8"),
@@ -335,13 +382,15 @@ def class_csv_tab(mode):
 def main():
     st.set_page_config(page_title="SARAH Dashboard")
     st.title("SARAH - Student Academic Risk Assistance Hub")
-    st.caption("Prototype for tutors. Results are suggestions for human review, not decisions.")
+    st.warning(HUMAN_REVIEW_NOTICE)
     if RECOMMEND_ERROR:
         st.error(RECOMMEND_ERROR)
 
+    st.subheader("Step 1: Choose a prediction mode")
     mode = st.radio("Prediction mode", list(MODE_LABELS), format_func=MODE_LABELS.get, horizontal=True)
     st.info(MODE_HELP[mode])
 
+    st.subheader("Step 2: Enter one student or upload a class")
     tab_one, tab_class = st.tabs(["One student", "Class CSV"])
     with tab_one:
         single_student_tab(mode)
