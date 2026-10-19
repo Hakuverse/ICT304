@@ -1,0 +1,3 @@
+student_id,risk_label,probability_high_risk,grade_setup,recommendations
+DUP,High Risk,0.818,g1,Assessment review: Review the student's assessment performance and discuss appropriate academic support because the normalised previous score is below 50.
+DUP,Low Risk,0.003,g1_g2,"The model predicts Low Risk. Under the current recommendation rules, targeted suggestions are shown only for High Risk predictions. Continue routine check-ins and offer support where needed."

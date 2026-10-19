@@ -1,0 +1,6 @@
+Supplementary evidence verification on 19 October 2026.
+This checks the retained files; it is not a new manual browser run.
+PASS: downloaded CSV has two DUP rows in order; labels, probabilities, setups and full messages match the saved models and rules.
+PASS: boundary fixture has 28 rows, 14 predicted and 14 skipped.
+Predicted IDs: CONTROL, ATT_0, ATT_100, STUDY_0, STUDY_40, FAIL_0, FAIL_1, FAIL_2, FAIL_3, G1_0, G1_20, G2_BLANK, G2_0, G2_20
+Skipped IDs: ATT_NEG, ATT_101, STUDY_NEG, STUDY_41, FAIL_NEG, FAIL_4, FAIL_DECIMAL, G1_BLANK, G1_NEG, G1_21, G1_TEXT, G2_NEG, G2_21, G2_TEXT

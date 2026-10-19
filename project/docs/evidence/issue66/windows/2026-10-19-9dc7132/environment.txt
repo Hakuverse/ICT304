@@ -1,0 +1,32 @@
+**********************
+Windows PowerShell transcript start
+Start time: 20261019161055
+Username: HAKU_LAPTOP\Haku
+RunAs User: HAKU_LAPTOP\Haku
+Configuration Name:
+Machine: HAKU_LAPTOP (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 2108
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is project/docs/evidence/issue66/windows/2026-10-19-9dc7132/environment.txt
+PS C:\Users\beson\Documents\GitHub\ICT304-sprint6-windows> git rev-parse HEAD
+
+PS C:\Users\beson\Documents\GitHub\ICT304-sprint6-windows> .venv\Scripts\python.exe --version
+
+PS C:\Users\beson\Documents\GitHub\ICT304-sprint6-windows> .venv\Scripts\python.exe -m pip show scikit-learn pandas numpy joblib streamlit
+
+PS C:\Users\beson\Documents\GitHub\ICT304-sprint6-windows> .venv\Scripts\python.exe -m pip check
+
+PS C:\Users\beson\Documents\GitHub\ICT304-sprint6-windows> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261019161122
+**********************
