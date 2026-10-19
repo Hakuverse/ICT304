@@ -36,6 +36,16 @@ baseline, not new project or dashboard testing. `feature_stats.json` contains
 statistics for the G1+G2 training setup only; do not use it for every
 recommendation setup.
 
+### Review on 13 October 2026
+
+The tutor found the modes, displayed results and skipped-row messages clear and
+suggested proceeding to the next steps. See the [meeting record](docs/prototype-demo-notes.md)
+for the feedback and decisions confirmed on 19 October. The team proposed clearer
+wording, larger text areas and wrapping long messages for Sprint 6 review; these
+are planned improvements, not completed features or tutor requests.
+Windows checks are recorded in [issue #56](docs/prototype-test-checklist.md).
+Further platform, timing and usability checks remain Sprint 6 work.
+
 ### Start the dashboard
 
 From the repository root, after the setup below:
@@ -123,7 +133,8 @@ the original scores for a different experiment.
 
 - [Current implementation checks](docs/sprint5-implementation-checks.md)
 - [Issue #56 test checklist](docs/prototype-test-checklist.md)
-- [Issue #57 demo notes](docs/prototype-demo-notes.md)
+- [Issue #57 meeting record](docs/prototype-demo-notes.md)
+- [Project progress notes](report/project-progress-notes.md)
 - [Current project workflow](docs/system-workflow.md)
 
 - [Sprint 5 plan](docs/sprint5-planning.md)
