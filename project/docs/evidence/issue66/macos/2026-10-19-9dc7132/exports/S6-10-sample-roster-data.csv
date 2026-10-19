@@ -1,0 +1,3 @@
+student_id,risk_label,probability_high_risk,grade_setup,recommendations
+A,Low Risk,0.155,g1,"The model predicts Low Risk. Under the current recommendation rules, targeted suggestions are shown only for High Risk predictions. Continue routine check-ins and offer support where needed."
+B,Low Risk,0.004,g1_g2,"The model predicts Low Risk. Under the current recommendation rules, targeted suggestions are shown only for High Risk predictions. Continue routine check-ins and offer support where needed."
