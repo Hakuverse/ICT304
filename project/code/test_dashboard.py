@@ -424,6 +424,13 @@ class PlainSkippedReasons(unittest.TestCase):
         self.assertEqual([s["student_id"] for s in skipped], [s["student_id"] for s in cli_skipped])
         self.assertEqual(len(results) + len(skipped), total)
 
+    def test_table_leaves_out_recommendations_but_download_keeps_them(self):
+        from recommend import recommend
+        results, _, _ = dashboard.process_upload(dashboard.SAMPLE_CSV.read_text(), "confirmatory", recommend)
+        self.assertNotIn("recommendations", dashboard.display_results(results).columns)  # shown once, below
+        self.assertIn("recommendations", results.columns)                              # still downloaded
+        self.assertEqual(len(dashboard.suggestions_by_student(results)), len(results))  # full list complete
+
     def test_original_reason_kept_when_no_plain_reason_applies(self):
         self.assertEqual(dashboard.plain_reason({"attendance_pct": "60", "study_hours": "4", "failures": "0"},
                                                 "early_warning", "some other problem"),
