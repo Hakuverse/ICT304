@@ -12,6 +12,10 @@ For S6-19, timing starts when **Predict** is clicked and stops when the label, p
 
 Server startup, choosing the file, removing the previous upload, saving a download and taking screenshots are excluded. Screenshots show the resulting interface; they do not independently prove the recorded times.
 
+Timing tool: Jackie used a standalone electronic stopwatch, not a phone or computer timer. The stopwatch was started and stopped manually at the full-dashboard boundaries described below; readings were recorded to two decimal places.
+
+Cold-run restart: For each scenario, Jackie stopped the Streamlit process and restarted it using the dashboard launch command. The first form prediction or CSV upload after the dashboard was ready was recorded as the cold run. Refreshing the browser alone was not treated as an app restart. The five repeat runs used the same running Streamlit process.
+
 ## S6-19 — one student
 
 | Scenario | Cold (s) | Warm runs 1–5 (s) | Warm median (s) | Warm maximum (s) |
