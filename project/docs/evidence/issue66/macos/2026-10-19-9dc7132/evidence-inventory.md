@@ -24,6 +24,7 @@ Artifacts: 103; screenshots: 85; fixtures: 8; exports: 7; logs: 3.
 | [logs/issue66-recommend-tests.log](logs/issue66-recommend-tests.log) | Desktop/Test/Test Log/issue66-recommend-tests.log | `c7909f1c09e48beab3d13810a0a8dfe40d9a9f52e117a45418162f9190a54fd8` |
 | [logs/issue66-score-boundary.log](logs/issue66-score-boundary.log) | Desktop/Test/Test Log/issue66-score-boundary.log | `159c2e138f06ab8458820ee8521f725aaf8e910be9be926b2dded0039fa2aef4` |
 | [logs/issue66-unittest.log](logs/issue66-unittest.log) | Desktop/Test/Test Log/issue66-unittest.log | `6c34d24f483b557d154c9fc30e3188a3f089a79635c0e23647d0a5901cac37a3` |
+| [screenshots/Environment.png](screenshots/Environment.png) | Existing screenshot in this run; original source not recorded | `bf4d87cd3fca772daee023c9d3071b02033aeaee6766442c49da56bb2d03fcdc` |
 | [screenshots/Issue-Unittest.png](screenshots/Issue-Unittest.png) | Desktop/Test/Issue-Unittest.png | `32b4bb6b73e853751911d61afb1f1e0af2f0bf00cf58e6aca91109e48fd3e51b` |
 | [screenshots/S6-02-early-warning-result.png](screenshots/S6-02-early-warning-result.png) | Desktop/Test/S6-02-early-warning-result.png | `1dc5801991e4152be8035a2ff04989aa79cc81661904323a26bb90e35d5b285e` |
 | [screenshots/S6-02-early-warning.png](screenshots/S6-02-early-warning.png) | Desktop/Test/S6-02-early-warning.png | `e2835c6ad8f2cf99e2261f92211d0b0fe5c83790b99612c205f1c169147e7b17` |
