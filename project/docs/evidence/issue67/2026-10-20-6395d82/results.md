@@ -2,11 +2,11 @@
 
 Tester: Jackie  
 Run date: 20 October 2026 (Singapore time)  
-Tested commit: `6395d82b2e94f4da622e2bca83722d617162730c` — confirm the dashboard was launched from this checkout.  
-Device and OS: [record the device, memory and macOS version actually used]  
-Browser and version: [record]  
-Screen size and browser zoom: [record]  
-Python and relevant package versions: [record or link to a retained environment log]
+Tested commit: `6395d82b2e94f4da622e2bca83722d617162730c`  
+Device and OS: MacBook Air, Apple M3, 24 GB RAM; macOS 26.6.2  
+Browser and version: Google Chrome 152.0.7977.75 (arm64)  
+Screen size and browser zoom: Not recorded during the timed run.  
+Python and relevant package versions: Python 3.14.0; Streamlit 1.64.0; pandas 3.0.6; NumPy 2.5.3; scikit-learn 1.8.0; joblib 1.6.0. These versions were checked in the project `.venv` after the run; no version log was captured during timing.
 
 [Full timing method and individual measurements](timings.md)
 
