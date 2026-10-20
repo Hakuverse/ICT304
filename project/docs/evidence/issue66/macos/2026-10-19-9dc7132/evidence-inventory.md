@@ -1,10 +1,8 @@
 # macOS evidence inventory
 
-Original screenshots, CSVs and logs were copied without editing from Jackie's Desktop/Test folder.
-The corrected S6-11 Early-Warning screenshot was copied from the original 17:35:40 attachment supplied in this conversation.
-Source originals remain unchanged. Filenames are retained, including S6-14 names supporting S6-15.
+The 19 October 2026 screenshots, CSV fixtures, exports and logs were retained from Jackie's functional test run. The S6-11 Early-Warning missing-attendance screenshot was captured during a retest on 20 October 2026 at the same tested commit, `9dc7132dc0a1a735b508447b99f49b70afb84f6d`. The earlier Confirmatory screenshot remains separately retained. Filenames are kept for traceability, including the S6-14 files that also support S6-15.
 
-Artifacts: 102; screenshots: 84; fixtures: 8; exports: 7; logs: 3.
+Artifacts: 103; screenshots: 85; fixtures: 8; exports: 7; logs: 3.
 
 | Artifact | Source | SHA-256 |
 |---|---|---|
@@ -88,7 +86,7 @@ Artifacts: 102; screenshots: 84; fixtures: 8; exports: 7; logs: 3.
 | [screenshots/S6-10-sample-roster-skipped.png](screenshots/S6-10-sample-roster-skipped.png) | Desktop/Test/S6-10-sample-roster-skipped.png | `c4135ed4b976ad18e14c01266aa83a7b3a6a7f500caacdea592b3815f1a71d6a` |
 | [screenshots/S6-11-empty.png](screenshots/S6-11-empty.png) | Desktop/Test/S6-11-empty.png | `d328c8ff97389036a54068c9ba5692b90a4ec796dcbfc51900656c1a769aab0c` |
 | [screenshots/S6-11-header-only.png](screenshots/S6-11-header-only.png) | Desktop/Test/S6-11-header-only.png | `fac1d2b5b437453f3f126a6fe837e672abd387fff8013718c23232306fdb2e8b` |
-| [screenshots/S6-11-missing-attendance-ew.png](screenshots/S6-11-missing-attendance-ew.png) | Original screenshot attachment, 19 October 2026 17:35:40 | `5649ef03e82ce484afb8a5a598b17fd54bb45e7f2799ece45d7def2ecd5cda06` |
+| [screenshots/S6-11-missing-attendance-ew.png](screenshots/S6-11-missing-attendance-ew.png) | Early-Warning retest screenshot, 20 October 2026; tested commit `9dc7132dc0a1a735b508447b99f49b70afb84f6d` | `eabb0a5a414bfa8154875063faac46a67a42ff97ca32ae2fe99ccd654e1ed649` |
 | [screenshots/S6-11-missing-attendance.png](screenshots/S6-11-missing-attendance.png) | Desktop/Test/S6-11-missing-attendance.png | `827537b74f75b62f31e0437099fe101042642592ce0816105d4dea7d7088fb33` |
 | [screenshots/S6-11-missing-g1-column.png](screenshots/S6-11-missing-g1-column.png) | Desktop/Test/S6-11-missing-g1-column.png | `6a449691cd4baf44b5d84c4b0f561aa959b521bc32b490665e58547700edff24` |
 | [screenshots/S6-12-all-invalid-result.png](screenshots/S6-12-all-invalid-result.png) | Desktop/Test/S6-12-all-invalid-result.png | `6ecc40f99c2988c68edf932cecf4f47b7cce561e94867df8be8017aff63f1200` |
