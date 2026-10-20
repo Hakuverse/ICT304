@@ -25,6 +25,10 @@ tester saw the skipped-row warning but could not explain the reasons): each
 skipped-row reason now says, in plain words, which value was found and how to fix
 the row. Which rows are skipped does not change; predict.py still decides that, and
 its command-line messages are unchanged.
+
+The on-screen results table no longer repeats the recommendations: they are shown
+once, in full, under "Full support suggestions for each student". The downloaded
+CSV still includes the recommendations column.
 """
 
 import csv
@@ -123,8 +127,10 @@ def skipped_html(skipped):
 
 def display_results(results):
     """Copy of the results for the screen, with the probability as a percentage.
-    The results themselves (and the download) keep the 0-1 value used by predict.py."""
-    shown = results.copy()
+    Recommendations are left out of the table because the full list below it already
+    shows them. The results themselves (and the download) keep the 0-1 value used by
+    predict.py and the recommendations column."""
+    shown = results.drop(columns=["recommendations"], errors="ignore")
     shown["probability_high_risk"] = (shown["probability_high_risk"].astype(float) * 100).round(1)
     return shown
 
@@ -467,8 +473,7 @@ def class_csv_tab(mode):
             st.warning(warning)
         st.dataframe(display_results(results), hide_index=True, column_config={
             "probability_high_risk": st.column_config.NumberColumn(
-                "Model-estimated High-Risk probability", format="%.1f%%"),
-            "recommendations": st.column_config.TextColumn("recommendations", width="large")})
+                "Model-estimated High-Risk probability", format="%.1f%%")})
         by_student = suggestions_by_student(results)
         if by_student:
             with st.expander("Full support suggestions for each student",
