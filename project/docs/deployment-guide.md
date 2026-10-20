@@ -100,6 +100,7 @@ The commands use the Python executable inside `.venv`; activating the environmen
 | A saved model is missing or cannot be loaded | Confirm that all three `.joblib` files are present in `project/models/`, the complete repository was obtained, and the requirements installed successfully. Do not retrain as a setup workaround. |
 | Port 8501 is already in use | Stop any earlier Streamlit process with Ctrl+C. If Streamlit displays a different local URL, use the URL shown in the terminal. |
 | A test or verification command fails | Keep the full error output and report the OS, Python version and handover commit to the team. Do not describe that installation as verified. |
+| On macOS, `git clone` stops at an Xcode/Apple SDK licence prompt | Git cannot continue until the computer’s user reviews and accepts that licence. If they do not want to do so, download the repository ZIP from the pinned commit instead; ZIP download does not require Git. |
 
 ## Evidence and platform limits
 
