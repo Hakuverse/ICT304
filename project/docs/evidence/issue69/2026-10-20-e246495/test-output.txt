@@ -1,0 +1,18 @@
+2026-10-20 16:00:25.290 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.2026-10-20 16:00:26.581 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.2026-10-20 16:00:26.759 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+........2026-10-20 16:00:27.014 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.2026-10-20 16:00:27.232 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.2026-10-20 16:00:27.424 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.2026-10-20 16:00:27.574 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.2026-10-20 16:00:27.801 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 16:00:28.005 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 16:00:28.193 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-20 16:00:28.379 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.2026-10-20 16:00:28.630 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+..........2026-10-20 16:00:28.889 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+.................................................................................
+----------------------------------------------------------------------
+Ran 106 tests in 12.696s
+
+OK

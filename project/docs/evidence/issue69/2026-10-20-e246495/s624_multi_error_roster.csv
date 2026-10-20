@@ -1,0 +1,7 @@
+student_id,attendance_pct,study_hours,failures,G1,G2
+A,60,4,1,12,
+B,80,6,0,12,14
+C,150,5,0,12,14
+D,80,5,0,12,NA
+E,150,many,1.5,25,NA
+F,,4,0,,
