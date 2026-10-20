@@ -19,9 +19,9 @@ This is Phase D. Use project/ for changes and preserve the assignment-stage reco
 | [#69](https://github.com/Hakuverse/ICT304/issues/69) | Fix and recheck integration and feedback problems | Failures or agreed feedback from #66-#68 |
 | [#70](https://github.com/Hakuverse/ICT304/issues/70) | Update project evidence and plan the final stages | Evidence from #65-#69 |
 
-Owners: Benjamin #65/#70, Jackie #66/#67, Anna #68/#69. These are planned tasks,
-not completed tests or tutor approvals. Keep unfinished Sprint 5 issues open
-and link them here rather than creating duplicates.
+Owners: Benjamin #65/#70, Jackie #66/#67, Anna #68/#69.
+The sections below retain the sprint plan. For actual outcomes and the
+20 October handover, see the [Sprint 6 review](sprint6-review.md).
 
 ## Suggested order
 
@@ -76,8 +76,10 @@ not completed changes. Review #68's specific findings before implementing #69.
 
 Use the [system test plan](system-test-plan.md) for S6-01 to S6-24. It links
 earlier evidence separately from new run records. Team review and target agreement
-were recorded on 19 October 2026. The table now links Windows results and the
-recorded usability retest. Other evidence and reviews remain under their existing issues.
+were recorded on 19 October 2026. The table now links Windows and macOS functional results, reference-device
+timings and both usability retests. S6-21 remains not met and S6-22 partly met.
+The [review](sprint6-review.md) records their follow-up without changing the
+historical outcomes.
 
 ## Handover to the next sprints
 
@@ -85,6 +87,8 @@ recorded usability retest. Other evidence and reviews remain under their existin
 - [Sprint 8](sprint8-planning.md): Phase F, 27 October-3 November, issues #93-#98.
 - Final corrections and actual submission: 4-7 November; confirm the LMS cutoff.
 
-Drafting guides and report sections can start while evidence is being reviewed.
-Keep #66, #67, #69 and #70 open until their own completion requirements are met.
-Link any work carried forward rather than creating duplicate issues.
+As checked on 20 October, #65–#69 are closed and their evidence is merged.
+#70 closes after its consolidation PR is reviewed and merged; milestone 6 can
+then close. The confirmed Sprint 7 split is Benjamin #77/#78, Anna #79/#81 and
+Jackie #80/#82. Remaining usability explanations continue in #79/#80.
+Sprint closure does not mean that every usability target passed.

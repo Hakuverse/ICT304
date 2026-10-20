@@ -2,7 +2,7 @@
 
 Working period: 20-27 October 2026. Phase E.
 Milestone: [Sprint 7](https://github.com/Hakuverse/ICT304/milestone/7).
-Prepared: 20 October 2026. Owners are to be agreed by the team.
+Prepared: 20 October 2026. Allocation confirmed by Benjamin on 20 October.
 
 ## Goal
 
@@ -25,29 +25,36 @@ These paths are planned outputs, not claims that the files or work are complete.
 Use the existing [project setup instructions](../README.md) and
 [mode guide](mode-guide.md) so commands and input rules stay consistent.
 
-## Suggested pairs for the team to allocate
+## Agreed allocation
 
-- #77 and #78: setup, maintenance and recovery.
-- #79 and #81: explain the system through the guide and video.
-- #80 and #82: check the instructions and bring the handover together.
+| Owner | Issues | Responsibility |
+|---|---|---|
+| Benjamin | #77 and #78 | Local setup, maintenance and recovery plans |
+| Anna | #79 and #81 | User guide, outstanding usability explanations and demo video |
+| Jackie | #80 and #82 | Teammate walkthrough, Phase E review and next-stage handover |
 
-No assignments are confirmed by this plan. A guide's walkthrough should be done
-by someone other than its author; everyone helps with reviewing the final outputs.
+The guide walkthrough is done by someone other than its author. All members
+help with reviews. This allocation was confirmed by Benjamin on 20 October.
 
 ## Work carried forward
 
-Keep [#66](https://github.com/Hakuverse/ICT304/issues/66),
-[#67](https://github.com/Hakuverse/ICT304/issues/67),
-[#69](https://github.com/Hakuverse/ICT304/issues/69) and
-[#70](https://github.com/Hakuverse/ICT304/issues/70) linked until their remaining
-checks and reviews are complete. Do not create another issue for the same task.
-The [system test plan](system-test-plan.md) records the actual results and gaps.
-Guide drafting can start now; final screenshots and video should use the reviewed
-version after relevant fixes. Retest affected cases after a code change.
+[Sprint 6 evidence](sprint6-review.md) is consolidated under #70. Issues #65–#69
+are closed with merged records. After #70 merges, close milestone 6 and use this
+plan for Phase E.
+
+Anna's #79 guide must explain attendance as an estimate, the prediction steps,
+and probability as a model estimate that can be wrong. S6-21 was not met and
+S6-22 was partly met; those results remain unchanged. Jackie records any help
+needed while following the guide in #80. This is a teammate walkthrough, not
+proof of independent-user success. Record later findings as a new dated check.
+
+Use the reviewed version for final screenshots and video. Earlier platform and
+timing records keep their original tested commits. Retest affected cases after
+code changes; do not describe historical evidence as a fresh run.
 
 ## Order for the week
 
-1. At the 20 October team meeting, agree owners and review unfinished Sprint 6 work.
+1. Use the confirmed owners and review the Sprint 6 limitations and handover.
 2. Draft the deployment, maintenance and user guides in parallel.
 3. Have another teammate follow the instructions and record any help needed.
 4. Correct the guides, choose the demo commit and confirm video requirements from the brief.
