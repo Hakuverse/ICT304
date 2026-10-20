@@ -76,4 +76,15 @@ not completed changes. Review #68's specific findings before implementing #69.
 
 Use the [system test plan](system-test-plan.md) for S6-01 to S6-24. It links
 earlier evidence separately from new run records. Team review and target agreement
-were recorded on 19 October 2026. Actual test evidence remains to be recorded.
+were recorded on 19 October 2026. The table now links Windows results and the
+recorded usability retest. Other evidence and reviews remain under their existing issues.
+
+## Handover to the next sprints
+
+- [Sprint 7](sprint7-planning.md): Phase E, 20-27 October, issues #77-#82.
+- [Sprint 8](sprint8-planning.md): Phase F, 27 October-3 November, issues #93-#98.
+- Final corrections and actual submission: 4-7 November; confirm the LMS cutoff.
+
+Drafting guides and report sections can start while evidence is being reviewed.
+Keep #66, #67, #69 and #70 open until their own completion requirements are met.
+Link any work carried forward rather than creating duplicate issues.

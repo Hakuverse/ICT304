@@ -75,6 +75,8 @@ When starting the project stage, leave out virtual environments, caches and temp
 - [Sprint 4: Prototype and Assignment Submission](assignment/docs/sprint4-planning.md)
 - [Sprint 5: Recommendations and Dashboard Prototype](project/docs/sprint5-planning.md)
 - [Sprint 6: Integration and User Testing](project/docs/sprint6-planning.md)
+- [Sprint 7: Deployment, User Guide and Demo Video](project/docs/sprint7-planning.md)
+- [Sprint 8: Closeout, Report Polish and Rehearsal](project/docs/sprint8-planning.md)
 
 ## Assignment prototype: setup and reproduction
 
@@ -180,7 +182,7 @@ development record. Submission completion is tracked in [issue #35](https://gith
 
 The project dashboard and recommendation function are implemented. Preserve the
 submitted assignment snapshot and use the [project setup guide](project/README.md)
-for current work and the 89-test project suite.
+for current work and the current project test instructions.
 
 See the [five-part model test plan](assignment/docs/model-test-plan.md), [current workflow](assignment/docs/system-workflow.md) and [Pre-Phase A to F mapping](assignment/docs/NASA_SE_HANDBOOK_CH3_CH4.md).
 
