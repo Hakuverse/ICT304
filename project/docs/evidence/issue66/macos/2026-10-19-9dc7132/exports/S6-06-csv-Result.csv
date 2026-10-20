@@ -1,0 +1,3 @@
+student_id,risk_label,probability_high_risk,recommendations
+ATT_ZERO,High Risk,1.0,Attendance support: Ask about attendance barriers and discuss available support because the attendance estimate is 60% or below.
+ATT_100,High Risk,0.524,"The model identified elevated risk, but no individual recommendation threshold was triggered. A staff member should review the student's circumstances and discuss whether support is needed."
