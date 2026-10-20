@@ -30,7 +30,9 @@ cd ICT304
 git checkout fe9685a729864d1caaa68f00daf92a83b3099412
 ```
 
-The Git commands require Git to be installed. Downloading the ZIP does not. After either method, work from the **repository root**—the folder containing `README.md`, `assignment/` and `project/`. Checking out a commit may show a “detached HEAD” message; that is normal when running a fixed version without editing it.
+The Git commands require Git to be installed. On macOS, if `git clone` stops at an Xcode/Apple SDK licence prompt, press **Ctrl+C**. Return to the pinned commit page linked above and choose **Browse files → Code → Download ZIP** instead. After extracting it, continue with [Find the repository root](#find-the-repository-root); the ZIP route needs neither `git clone` nor `git checkout`. Accept the licence only if you choose to use Git.
+
+After either method, work from the **repository root**—the folder containing `README.md`, `assignment/` and `project/`. Checking out a commit may show a “detached HEAD” message; that is normal when running a fixed version without editing it.
 
 ## Find the repository root
 
@@ -100,8 +102,7 @@ The commands use the Python executable inside `.venv`; activating the environmen
 | A saved model is missing or cannot be loaded | Confirm that all three `.joblib` files are present in `project/models/`, the complete repository was obtained, and the requirements installed successfully. Do not retrain as a setup workaround. |
 | Port 8501 is already in use | Stop any earlier Streamlit process with Ctrl+C. If Streamlit displays a different local URL, use the URL shown in the terminal. |
 | A test or verification command fails | Keep the full error output and report the OS, Python version and handover commit to the team. Do not describe that installation as verified. |
-| On macOS, `git clone` stops at an Xcode/Apple SDK licence prompt | Git cannot continue until the computer’s user reviews and accepts that licence. If they do not want to do so, download the repository ZIP from the pinned commit instead; ZIP download does not require Git. |
-
+| On macOS, `git clone` stops at an Xcode/Apple SDK licence prompt | Press **Ctrl+C** to leave the prompt. Open the [pinned commit page](https://github.com/Hakuverse/ICT304/commit/fe9685a729864d1caaa68f00daf92a83b3099412), choose **Browse files → Code → Download ZIP**, and extract the ZIP. Open the folder containing `README.md`, `assignment/` and `project/`, then follow the [macOS Terminal steps](#macos-terminal). The ZIP route does not require `git clone` or `git checkout`. Alternatively, use Git only if you choose to review and accept the licence. |
 ## Evidence and platform limits
 
 The earlier functional setup and workflow runs are recorded in the [Windows #66 results](evidence/issue66/windows/2026-10-19-9dc7132/results.md) and [macOS #66 results](evidence/issue66/macos/2026-10-19-9dc7132/results.md). The main runs were on 19 October 2026; the macOS S6-11 Early-Warning retest was on 20 October 2026. Those runs tested commit `9dc7132`, **not** the handover commit above. Refer to their results and limitations without treating the older evidence as a new test of `fe9685a`.
