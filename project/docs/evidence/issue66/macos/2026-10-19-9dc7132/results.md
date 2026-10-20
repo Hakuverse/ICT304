@@ -2,7 +2,7 @@
 
 Tester/coordinator: Jackie. Date: 19 October 2026. Related issue: #66.  
 Tested commit: `9dc7132dc0a1a735b508447b99f49b70afb84f6d` (PR #87 merged).  
-S6-11 Early-Warning retest: 20 October 2026, at the same tested commit.
+S6-11 Early-Warning retest: 20 October 2026, at the same tested commit (`9dc7132dc0a1a735b508447b99f49b70afb84f6d`).
 Test-run branch: `main` in a fresh dedicated clone, initially clean as recorded during the guided run.  
 Evidence submission branch: `66NNest-s6-run-complete-workflow-checks-on-windows-and-macos`.  
 The submission branch is not the tested commit. Saved models at the tested commit were used without retraining.
