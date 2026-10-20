@@ -24,29 +24,60 @@ for the confirmed decisions. The team accepted #56 CSV evidence for this review.
 Benjamin confirmed that estimated probabilities, possible prediction errors and
 human review were explained during the meeting.
 
-The team proposed improving layout, explanation wording, text-area sizes and
-long-line wrapping. Wording and readability changes merged through PRs #86 and
-#87; PR #92 added clearer dashboard CSV error reasons. These changes do not by
-themselves establish that the usability targets have been met.
+The Sprint 6 fixes added clearer field help, human-review notices, readable
+support messages and plain-language skipped-row corrections. PR #100 removed
+repeated recommendations from the CSV table while keeping the full suggestions
+below it and in the download. The [current workflow](../docs/system-workflow.md)
+shows how the implemented parts fit together.
 
-The [system test plan](../docs/system-test-plan.md) links Benjamin's 19 October
-Windows evidence at commit `9dc7132` and Anna's usability retest at that version.
-The Windows record reports 99 passing automated tests. The retest records mixed
-usability outcomes, including difficulty explaining probability uncertainty and
-correcting skipped rows. New changes need affected checks and updated evidence.
-Jackie's macOS evidence is under [PR #90](https://github.com/Hakuverse/ICT304/pull/90)
-review; timing evidence remains under [#67](https://github.com/Hakuverse/ICT304/issues/67).
-These records are separate from the earlier model evaluation.
+## Sprint 6 results
+
+The [Sprint 6 evidence summary](../docs/sprint6-review.md) links the requirements,
+subsystem checks, full-system results, review history and handover. The
+[system test plan](../docs/system-test-plan.md) retains each actual case outcome.
+
+- Benjamin's Windows run and Jackie's macOS run passed S6-01–S6-18 at `9dc7132`
+  with 99 automated tests each. The macOS missing-attendance retest was recorded
+  on 20 October at the same commit. PRs #88 and #90 are merged.
+- Jackie's reference-device timings at `6395d82` met the agreed S6-19/S6-20
+  targets for all three form setups and all eight CSV scenarios. PR #101 is
+  merged. These manual measurements describe that device/version, before the
+  latest UI changes; they do not establish performance on every computer.
+- Anna's 20 October retest at `e246495` records 106 automated tests passing.
+  S6-23 was met without help, and the changed CSV view passed S6-24 readability
+  checks at both agreed sizes. PR #102 is merged. The same tester had previously
+  received explanations, so improved results may partly reflect familiarity.
+- S6-21 remains not met from the earlier assisted task. S6-22 remains partly
+  met: the tester understood human review but did not explain probability as
+  an estimate that can be wrong. Anna carries the explanation work into #79;
+  Benjamin checks the guide in #80. Closing #69 does not mean every target passed.
+
+## Model evaluation and limitations
+
+The existing [evaluation](../docs/evaluation_report.md) compares Logistic
+Regression and Decision Tree across 12 development combinations. Model selection
+uses 316 development students; the separate results use 79 reserved students.
+Selected models are the balanced depth-4 Decision Tree for Early-Warning and
+balanced Logistic Regression for each Confirmatory setup. Reserved-test
+High-Risk recalls are 0.423, 0.769 and 0.885 respectively. These are the retained
+baseline results, not new Sprint 6 model validation.
+
+The [comparison discussion](../docs/issue33_report.md) explains missed students,
+false alarms, feature importance and data limitations. Attendance and study
+hours are proxy estimates, probabilities are not established as calibrated,
+and the dataset does not demonstrate day-one accuracy. Fixed recommendations
+suggest discussion topics, not causes or proven interventions. Functional test
+passes and fast responses do not remove those limits.
 
 ## Remaining stages
 
-| Period | Work | Plan |
+| Period | Work and owners | Plan |
 |---|---|---|
-| Sprint 6 carry-forward | Finish platform/timing reviews, follow up usability findings and consolidate evidence in #70 | [Sprint 6](../docs/sprint6-planning.md) |
-| 20-27 October | Phase E: deployment, maintenance, user guide, walkthrough and demo video (#77-#82) | [Sprint 7](../docs/sprint7-planning.md) |
-| 27 October-3 November | Phase F: final report/forms, slides, rehearsal, package checks and readiness review (#93-#98) | [Sprint 8](../docs/sprint8-planning.md) |
-| 4-7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover recorded under #98 |
+| Sprint 6 closeout | Benjamin: merge the reviewed #70 evidence/handover PR, then close milestone 6 | [Review](../docs/sprint6-review.md) |
+| 20–27 October | Jackie #77/#78; Anna #79/#81; Benjamin #80/#82 | [Sprint 7](../docs/sprint7-planning.md) |
+| 27 October–3 November | Report/forms, slides/rehearsal, package/readiness checks #93–#98; Benjamin coordinates owner agreement under #82 | [Sprint 8](../docs/sprint8-planning.md) |
+| 4–7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover under #98 |
 
-Sprint 6 owners remain Benjamin (#65/#70), Jackie (#66/#67) and Anna (#68/#69).
-Sprint 7 and Sprint 8 owners are still to be agreed. The milestone dates and
-planning pages do not claim that deliverables or submission are complete.
+Benjamin confirmed the Sprint 7 split on 20 October. Sprint 8 individual owners
+remain to be agreed. These dates describe planned work, not completed guides,
+rehearsals or submission.

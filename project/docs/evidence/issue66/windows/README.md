@@ -1,5 +1,10 @@
 # Windows workflow evidence - Issue #66
 
+## Recorded run
+
+[Windows functional evidence](2026-10-19-9dc7132/results.md) contains the completed results and supporting evidence.
+Earlier run dates and commits are preserved. The recording guidance below is for future runs.
+
 Tester: Benjamin; coordinated by Jackie under #66.
 Cases: **S6-01 to S6-18** in the [system test plan](../../../system-test-plan.md).
 

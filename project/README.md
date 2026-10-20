@@ -43,11 +43,13 @@ suggested proceeding to the next steps. See the [meeting record](docs/prototype-
 for the feedback and decisions confirmed on 19 October. The team proposed clearer
 wording, larger text areas and wrapping long messages for Sprint 6 review; these
 were team proposals, not tutor requests. Reviewed wording and readability changes
-subsequently merged in PRs #86, #87 and #92. See the system test plan for recorded
+subsequently merged in PRs #86, #87, #92 and #100. See the system test plan for recorded
 usability results and remaining follow-up; merged changes do not establish that
 all usability targets have been met.
 Windows checks are recorded in [issue #56](docs/prototype-test-checklist.md).
-Further platform, timing and usability checks remain Sprint 6 work.
+The [Sprint 6 review](docs/sprint6-review.md) now brings together Windows/macOS
+functional checks, reference-device timing and usability retests. S6-21 remains
+not met and S6-22 partly met, with guide follow-up under #79/#80.
 
 ### Start the dashboard
 
@@ -107,7 +109,8 @@ plain-language skipped reasons and results table in #69). Dataset verification s
 130 High Risk and 265 Low Risk. The sample CSV predicts for A and B and skips C
 and D with reasons. See the [migration checks](docs/project-start-checks.md) for
 the actual Windows results recorded when the project folder was created, when the
-suite had 41 tests; a new macOS run is still pending.
+suite had 41 tests. Later [Windows and macOS functional evidence](docs/sprint6-review.md)
+records 99 tests at `9dc7132`; Anna's 20 October retest records 106 at `e246495`.
 
 ## Working with the models
 
@@ -136,6 +139,7 @@ the original scores for a different experiment.
 
 ## Plans and references
 
+- [Sprint 6 evidence and handover](docs/sprint6-review.md)
 - [Sprint 6 system test plan](docs/system-test-plan.md) (team-reviewed; targets agreed 19 October 2026)
 
 - [Current implementation checks](docs/sprint5-implementation-checks.md)

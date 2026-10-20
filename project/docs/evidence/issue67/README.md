@@ -1,5 +1,10 @@
 # Response-time evidence - Issue #67
 
+## Recorded run
+
+[Reference-device timing evidence](2026-10-20-6395d82/results.md) contains the completed results and supporting evidence.
+Earlier run dates and commits are preserved. The recording guidance below is for future runs.
+
 Owner: Jackie. Cases: **S6-19 and S6-20** in the
 [system test plan](../../system-test-plan.md).
 
@@ -29,8 +34,7 @@ Add a `results.md` file inside the run folder:
 |---|---|---|---|---|---|
 | Fill after testing | | | Not run | | |
 
-Use Pass, Fail, Blocked or Not run for functional checks. Timing/usability
-acceptance stays pending until targets are agreed. Record assistance separately
+Use Pass, Fail, Blocked or Not run for functional checks. Use the team-agreed targets in the system test plan for timing/usability acceptance. Record assistance separately
 for user tasks. One screenshot or log can support several cases: link it from
 each applicable row. Do not copy older evidence as a new pass.
 

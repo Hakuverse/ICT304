@@ -1,7 +1,9 @@
 # SARAH system test plan - Sprint 6
 
 Owner: Benjamin. Prepared: 19 October 2026. Issue: #65.
-Status: reviewed; targets agreed by team on 19 October 2026. Planning PR #85 merged; Windows functional results added below.
+Status: targets agreed by team on 19 October 2026; platform, timing and usability
+results recorded below. See the [Sprint 6 review](sprint6-review.md) for the
+consolidated outcome and remaining limitations.
 Plan baseline: `051596275aab007a5e22704147ff1dc8becbaaa4`.
 
 ## Purpose and scope
@@ -159,6 +161,10 @@ correct result with assistance is not independent success.
 | S6-22 | Partly met - Anna, 20 October 2026, e246495 (same tester): would not use the result alone; probability linked to the High Risk label but not described as an estimate that can be wrong. Recorded as an unresolved limitation (team decision, 20 October); follow-up in #79, owner Anna. Earlier: partly met, 19 October, 9dc7132 | Not run | [20 October retest](evidence/issue69/2026-10-20-e246495/results.md); [19 October retest](evidence/issue69/2026-10-19-9dc7132/results.md) |
 | S6-23 | Met - Anna, 20 October 2026, e246495 (same tester, after #92): task 3 and task 4 independent; both skipped rows explained with how to correct them. Earlier: target not met, 19 October, 9dc7132 | Not run | [20 October retest](evidence/issue69/2026-10-20-e246495/results.md); [19 October retest](evidence/issue69/2026-10-19-9dc7132/results.md); fix #92 |
 | S6-24 | Pass - Anna, 20 October 2026, e246495: CSV view re-checked after #92 and #100 at 1366 x 768 and 1920 x 1080, 100% zoom, including a row with five errors. Form unchanged since the 19 October Pass at 9dc7132 | Not run | [20 October retest](evidence/issue69/2026-10-20-e246495/results.md); [19 October retest](evidence/issue69/2026-10-19-9dc7132/results.md); fixes #86, #87, #92, #100 |
+
+Windows timing was not run: the agreed timing target uses Jackie's reference Mac.
+S6-21 remains unmet and S6-22 partly met; follow-up explanations belong to Anna
+in #79, with Benjamin checking the guide under #80. Neither is relabelled as passed.
 
 For usability, record each tester's actual platform; do not claim both platforms
 were assessed when only one was used. Retain the 17 October observations in

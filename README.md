@@ -75,6 +75,7 @@ When starting the project stage, leave out virtual environments, caches and temp
 - [Sprint 4: Prototype and Assignment Submission](assignment/docs/sprint4-planning.md)
 - [Sprint 5: Recommendations and Dashboard Prototype](project/docs/sprint5-planning.md)
 - [Sprint 6: Integration and User Testing](project/docs/sprint6-planning.md)
+- [Sprint 6 evidence and handover](project/docs/sprint6-review.md)
 - [Sprint 7: Deployment, User Guide and Demo Video](project/docs/sprint7-planning.md)
 - [Sprint 8: Closeout, Report Polish and Rehearsal](project/docs/sprint8-planning.md)
 
