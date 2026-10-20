@@ -78,10 +78,10 @@ has been established. Software tests do not remove those limitations.
 
 | Item | Owner / next action |
 |---|---|
-| S6-21 assisted task and attendance-estimate explanation | Anna: make the steps and proxy inputs clear in #79; Jackie: record any help needed during the #80 walkthrough. Keep the original unmet result. |
-| S6-22 probability understanding partly met | Anna: explain model uncertainty and human review in #79, as recorded in #102. Jackie checks the guide in #80; a teammate walkthrough is not a new independent-user study. |
+| S6-21 assisted task and attendance-estimate explanation | Anna: make the steps and proxy inputs clear in #79; Benjamin: record any help needed during the #80 walkthrough. Keep the original unmet result. |
+| S6-22 probability understanding partly met | Anna: explain model uncertainty and human review in #79, as recorded in #102. Benjamin checks the guide in #80; a teammate walkthrough is not a new independent-user study. |
 | One repeat usability tester, prior coaching and one browser | Retain these limits in the report under #70/#93. Do not claim all users can use the system independently. |
-| Timing on one device and an earlier UI version | Retain original commit and method. Jackie flags any affected checks during #80/#82 if later changes affect performance. |
+| Timing on one device and an earlier UI version | Retain original commit and method. Benjamin flags any affected checks during #80/#82 if later changes affect performance. |
 | macOS S6-16 input-change clearance partly confirmed by tester | Preserve the limitation in the macOS results; do not describe its screenshots alone as proof of the cleared state. |
 
 ## Sprint 7 and final-stage handover
@@ -90,13 +90,13 @@ Benjamin confirmed this Sprint 7 split on 20 October 2026:
 
 | Owner | Issues | Output by the 27 October review |
 |---|---|---|
-| Benjamin | #77, #78 | Local deployment instructions and maintenance/recovery plan |
+| Jackie | #77, #78 | Local deployment instructions and maintenance/recovery plan |
 | Anna | #79, #81 | User guide including the usability follow-up, and reviewed demo video |
-| Jackie | #80, #82 | Teammate guide walkthrough and Phase E review/handover |
+| Benjamin | #80, #82 | Teammate guide walkthrough and Phase E review/handover |
 
 See [Sprint 7](sprint7-planning.md) for dependencies. Sprint 8 (27 October–3
 November) covers report/forms, slides/rehearsal and package/readiness checks in
-[#93–#98](sprint8-planning.md). Jackie coordinates confirmation of Sprint 8 owners
+[#93–#98](sprint8-planning.md). Benjamin coordinates confirmation of Sprint 8 owners
 under #82; those individual assignments are still to be agreed. Keep 4–7 November
 for final corrections and submission, and confirm the exact LMS cutoff.
 

@@ -29,9 +29,9 @@ Use the existing [project setup instructions](../README.md) and
 
 | Owner | Issues | Responsibility |
 |---|---|---|
-| Benjamin | #77 and #78 | Local setup, maintenance and recovery plans |
+| Jackie | #77 and #78 | Local setup, maintenance and recovery plans |
 | Anna | #79 and #81 | User guide, outstanding usability explanations and demo video |
-| Jackie | #80 and #82 | Teammate walkthrough, Phase E review and next-stage handover |
+| Benjamin | #80 and #82 | Teammate walkthrough, Phase E review and next-stage handover |
 
 The guide walkthrough is done by someone other than its author. All members
 help with reviews. This allocation was confirmed by Benjamin on 20 October.
@@ -44,7 +44,7 @@ plan for Phase E.
 
 Anna's #79 guide must explain attendance as an estimate, the prediction steps,
 and probability as a model estimate that can be wrong. S6-21 was not met and
-S6-22 was partly met; those results remain unchanged. Jackie records any help
+S6-22 was partly met; those results remain unchanged. Benjamin records any help
 needed while following the guide in #80. This is a teammate walkthrough, not
 proof of independent-user success. Record later findings as a new dated check.
 

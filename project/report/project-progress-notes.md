@@ -50,7 +50,7 @@ subsystem checks, full-system results, review history and handover. The
 - S6-21 remains not met from the earlier assisted task. S6-22 remains partly
   met: the tester understood human review but did not explain probability as
   an estimate that can be wrong. Anna carries the explanation work into #79;
-  Jackie checks the guide in #80. Closing #69 does not mean every target passed.
+  Benjamin checks the guide in #80. Closing #69 does not mean every target passed.
 
 ## Model evaluation and limitations
 
@@ -74,8 +74,8 @@ passes and fast responses do not remove those limits.
 | Period | Work and owners | Plan |
 |---|---|---|
 | Sprint 6 closeout | Benjamin: merge the reviewed #70 evidence/handover PR, then close milestone 6 | [Review](../docs/sprint6-review.md) |
-| 20–27 October | Benjamin #77/#78; Anna #79/#81; Jackie #80/#82 | [Sprint 7](../docs/sprint7-planning.md) |
-| 27 October–3 November | Report/forms, slides/rehearsal, package/readiness checks #93–#98; Jackie coordinates owner agreement under #82 | [Sprint 8](../docs/sprint8-planning.md) |
+| 20–27 October | Jackie #77/#78; Anna #79/#81; Benjamin #80/#82 | [Sprint 7](../docs/sprint7-planning.md) |
+| 27 October–3 November | Report/forms, slides/rehearsal, package/readiness checks #93–#98; Benjamin coordinates owner agreement under #82 | [Sprint 8](../docs/sprint8-planning.md) |
 | 4–7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover under #98 |
 
 Benjamin confirmed the Sprint 7 split on 20 October. Sprint 8 individual owners

@@ -164,7 +164,7 @@ correct result with assistance is not independent success.
 
 Windows timing was not run: the agreed timing target uses Jackie's reference Mac.
 S6-21 remains unmet and S6-22 partly met; follow-up explanations belong to Anna
-in #79, with Jackie checking the guide under #80. Neither is relabelled as passed.
+in #79, with Benjamin checking the guide under #80. Neither is relabelled as passed.
 
 For usability, record each tester's actual platform; do not claim both platforms
 were assessed when only one was used. Retain the 17 October observations in

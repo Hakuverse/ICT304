@@ -31,7 +31,7 @@ that the report, rehearsal, package checks or submission have happened.
 - #95 and #96: slides, speaking roles and rehearsal.
 - #97 and #98: package checks, readiness review and final handover.
 
-Jackie coordinates agreement of Sprint 8 owners under #82 by the 27 October
+Benjamin coordinates agreement of Sprint 8 owners under #82 by the 27 October
 review. Individual Sprint 8 assignments remain to be agreed. All three members
 review their contributions, take part in rehearsal and help with peer review.
 Keep legal names, student IDs, signatures and submission receipts private.
