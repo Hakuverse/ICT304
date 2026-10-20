@@ -49,4 +49,4 @@ All eight CSV scenarios met the agreed cold target and every warm measurement me
 
 ## Conclusion
 
-The reported full-dashboard timings met the agreed targets for S6-19 and S6-20. CSV row counts and skipped-row reasons matched the fixed fixtures in both modes. This conclusion applies to the environment and tested commit recorded above; complete and confirm those fields before submission.
+The reported full-dashboard timings met the agreed targets for S6-19 and S6-20. CSV row counts and skipped-row reasons matched the fixed fixtures in both modes.
