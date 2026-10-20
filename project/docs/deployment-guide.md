@@ -32,6 +32,16 @@ git checkout fe9685a729864d1caaa68f00daf92a83b3099412
 
 The Git commands require Git to be installed. Downloading the ZIP does not. After either method, work from the **repository root**—the folder containing `README.md`, `assignment/` and `project/`. Checking out a commit may show a “detached HEAD” message; that is normal when running a fixed version without editing it.
 
+## Find the repository root
+
+The **repository root** is the extracted or cloned `ICT304` folder that directly contains `README.md`, `assignment/` and `project/`. It is **not** the `project/` or `project/code/` folder. If a ZIP creates an extra outer folder, open folders until you see those three items together.
+
+- **Windows:** Open that root folder in File Explorer. Click the address bar, type `powershell`, and press Enter. PowerShell should open in that folder.
+- **macOS:** Open Terminal, type `cd ` including the space, drag the root folder from Finder into Terminal, and press Return.
+
+Run all commands below from this location. If a command says it cannot find `project/code/requirements.txt`, check the folder location first.
+
+
 ## Windows PowerShell
 
 Open PowerShell in the repository root. Run these commands in order:
