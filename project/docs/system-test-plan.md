@@ -135,24 +135,24 @@ correct result with assistance is not independent success.
 
 | ID | Windows actual result / status | macOS actual result / status | Evidence / fix / retest link |
 |---|---|---|---|
-| S6-01 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-02 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-03 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-04 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-05 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-06 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-07 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-08 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-09 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-10 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-11 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-12 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-13 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-14 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-15 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-16 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-17 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
-| S6-18 | Pass - Benjamin, 19 October 2026, 9dc7132 | Not run | [Windows results and subcases](evidence/issue66/windows/2026-10-19-9dc7132/results.md) |
+| S6-01 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-02 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-03 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-04 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-05 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-06 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-07 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-08 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-09 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-10 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-11 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132; Early-Warning missing-attendance retest: 20 October 2026, same commit | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results and retest](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-12 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-13 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-14 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-15 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-16 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-17 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
+| S6-18 | Pass - Benjamin, 19 October 2026, 9dc7132 | Pass - Jackie, 19 October 2026, 9dc7132 | [Windows results](evidence/issue66/windows/2026-10-19-9dc7132/results.md); [macOS results](evidence/issue66/macos/2026-10-19-9dc7132/results.md) |
 | S6-19 | Not run | Not run | Pending |
 | S6-20 | Not run | Not run | Pending |
 | S6-21 | Not run | Not run | Pending |
