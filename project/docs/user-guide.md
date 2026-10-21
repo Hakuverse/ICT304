@@ -35,9 +35,8 @@ unless your institution has approved it.
 ## 2. Start and stop SARAH
 
 SARAH runs on your own computer and opens in your web browser. It needs to be set up
-once. Follow [Set up from the repository root](../README.md#set-up-from-the-repository-root)
-in the project README. (When the local deployment guide from #77 is finished, follow that
-guide instead.)
+once: follow the [local deployment guide](deployment-guide.md) for Windows or macOS.
+It also lists what to do if setup does not work.
 
 **To start SARAH**, open PowerShell (Windows) or Terminal (macOS) in the repository root
 folder and run:
@@ -52,7 +51,7 @@ SARAH opens in your browser at **http://localhost:8501**. If the browser does no
 by itself, copy the "Local URL" shown in the terminal into your browser.
 
 **Keep the terminal window open** while you use SARAH. **To stop SARAH**, click the
-terminal window and press **Ctrl + C**, or close it.
+terminal window and press **Ctrl + C** (**Control + C** on macOS), or close it.
 
 ## 3. The screen at a glance
 
