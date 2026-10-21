@@ -66,7 +66,9 @@ On macOS:
 ```
 
 The dashboard opens in the browser at `http://localhost:8501`. Press `Ctrl + C`
-in the terminal to stop it. Test files for messy or invalid uploads are in
+in the terminal to stop it.
+For step-by-step instructions on using the dashboard, see the
+[user guide](docs/user-guide.md). Test files for messy or invalid uploads are in
 `project/data/dashboard_checks/`; they use fictional student IDs.
 
 ## Set up from the repository root
@@ -151,8 +153,6 @@ the original scores for a different experiment.
 - [Sprint 5 plan](docs/sprint5-planning.md)
 - [Sprint 6 plan](docs/sprint6-planning.md)
 - [Sprint 7 plan](docs/sprint7-planning.md) - Phase E, 20-27 October
-- [Local deployment and handover guide](docs/deployment-guide.md) (#77)
-- [Maintenance and recovery plan](docs/maintenance-plan.md) (#78)
 - [Sprint 8 plan](docs/sprint8-planning.md) - Phase F, 27 October-3 November; final submission by 7 November
 - [Baseline evaluation](docs/evaluation_report.md)
 - [Baseline comparison and limitations](docs/issue33_report.md)
