@@ -66,7 +66,9 @@ On macOS:
 ```
 
 The dashboard opens in the browser at `http://localhost:8501`. Press `Ctrl + C`
-in the terminal to stop it. Test files for messy or invalid uploads are in
+in the terminal to stop it.
+For step-by-step instructions on using the dashboard, see the
+[user guide](docs/user-guide.md). Test files for messy or invalid uploads are in
 `project/data/dashboard_checks/`; they use fictional student IDs.
 
 ## Set up from the repository root
