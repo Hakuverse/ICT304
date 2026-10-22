@@ -153,6 +153,8 @@ the original scores for a different experiment.
 - [Sprint 5 plan](docs/sprint5-planning.md)
 - [Sprint 6 plan](docs/sprint6-planning.md)
 - [Sprint 7 plan](docs/sprint7-planning.md) - Phase E, 20-27 October
+- [Local deployment and handover guide](docs/deployment-guide.md) (#77)
+- [Maintenance and recovery plan](docs/maintenance-plan.md) (#78)
 - [Sprint 8 plan](docs/sprint8-planning.md) - Phase F, 27 October-3 November; final submission by 7 November
 - [Baseline evaluation](docs/evaluation_report.md)
 - [Baseline comparison and limitations](docs/issue33_report.md)

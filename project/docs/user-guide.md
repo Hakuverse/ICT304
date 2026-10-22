@@ -18,6 +18,7 @@ on Windows in Microsoft Edge at 1366 × 768, using fictional students only.
 7. [A whole class: upload a CSV file](#7-a-whole-class-upload-a-csv-file)
 8. [When something goes wrong](#8-when-something-goes-wrong)
 9. [Limitations](#9-limitations)
+10. [Reproducing the results](#10-reproducing-the-results)
 
 ## 1. What SARAH does, and what it does not do
 
@@ -86,8 +87,9 @@ Choose the mode that matches the information you have **right now**.
   with a mark of 0.
 
 Early-Warning does **not** mean the student is safe. Both modes can give High Risk or
-Low Risk. Confirmatory results are usually more reliable because they include grades
-(see [Limitations](#9-limitations)).
+Low Risk. In our reserved test set, the Confirmatory models identified more High-Risk
+students than Early-Warning. This does not guarantee better predictions for another
+course or institution (see [Limitations](#9-limitations)).
 
 ## 5. Your first prediction: one student
 
@@ -115,8 +117,9 @@ G1 **8**, G2 blank. SARAH shows **High Risk** with a model-estimated probability
 **High Risk**, **85.9%**, with an attendance support suggestion.)
 
 **About the attendance number:** it is an **estimate**, not an exact register count.
-SARAH's models learned from the number of absences recorded in the original data, which
-were converted to an approximate attendance percentage. Enter your best estimate.
+Use fictional attendance estimates when trying this prototype. The training input was
+calculated from absence counts, so it is not equivalent to a measured attendance
+percentage. Using real attendance data would require further review.
 
 If you change any box or the mode after predicting, the old result disappears. Click
 **Predict** again to get a new one.
@@ -295,8 +298,9 @@ save it as CSV again and upload it again.
 
 ## 9. Limitations
 
-- **Predictions can be wrong.** Early-Warning results, made without grades, are much less
-  reliable than Confirmatory results (see the test figures in [section 6](#6-how-to-read-the-result)).
+- **Predictions can be wrong.** In our reserved test set, the Confirmatory models identified
+  more High-Risk students than Early-Warning (see the figures in [section 6](#6-how-to-read-the-result)).
+  This does not guarantee better predictions for another course or institution.
   SARAH does not promise accuracy for any student.
 - **The data is limited.** The models learned from 395 students in a mathematics course
   at two Portuguese schools (UCI Student Performance dataset). Results may not carry over
@@ -309,3 +313,24 @@ save it as CSV again and upload it again.
   [Sprint 6 review](sprint6-review.md) for the recorded results and limitations.
 
 Always use SARAH alongside human judgement and other information about the student.
+
+## 10. Reproducing the results
+
+This section is for a lecturer or developer who wants to check how the models were built.
+Normal use of the dashboard does not need any of these steps: the trained models are
+already included.
+
+| Topic | Summary | Where to find details |
+|---|---|---|
+| Dataset | UCI Student Performance dataset, mathematics course (`student-mat.csv`, 395 students), Cortez and Silva (2008), [doi.org/10.24432/C5TG7T](https://doi.org/10.24432/C5TG7T). Stored at `project/data/student-mat.csv`. `project/code/verify_dataset.py` checks it has 395 students: 130 High Risk and 265 Low Risk. | [Project README](../README.md#set-up-from-the-repository-root) |
+| Preprocessing | High Risk means final grade G3 below 10 out of 20. Inputs: attendance estimate from absences (capped at 30), study hours from the study-time category, past failures and, in Confirmatory mode, a previous score from G1 or the average of G1 and G2. G3 is never used as an input. | [`data_processing.py`](../code/data_processing.py), [feature selection](../../assignment/docs/feature_selection.md), [mode guide](mode-guide.md) |
+| Data split and validation | 79 students (20%, stratified, random seed 42) are reserved as the test set before any model selection. The other 316 development students are used for five-fold stratified cross-validation of 12 combinations (3 setups × Logistic Regression or Decision Tree × 2 class-weight settings), chosen by High-Risk recall. The reserved students are used once, at the end. | [Evaluation report](evaluation_report.md), [`train_models.py`](../code/train_models.py) |
+| Software versions | Python 3.11 or newer. Packages are listed in `project/code/requirements.txt`; scikit-learn is pinned to 1.8.0 because the saved models were created with it. Run `pip freeze` to record the exact versions you used. | [`requirements.txt`](../code/requirements.txt), [deployment guide](deployment-guide.md) |
+| Training and comparison commands | `project/code/train_models.py` retrains the three models; `project/code/issue33_comparison.py --overwrite` refreshes the comparison outputs. Run them from the repository root with the `.venv` Python. | [Working with the models](../README.md#working-with-the-models), [mode guide](mode-guide.md#repeat-training-and-evaluation) |
+| Expected outputs | Training writes the models, `selected_mode.txt` and `feature_stats.json` to `project/models/`, `project/docs/evaluation_report.md`, and the confusion matrices in `project/docs/figures/`. The comparison script writes its CSV files, `run_details.txt` and the [comparison report](issue33_report.md) in `project/docs/`, and its chart in `project/docs/figures/`. | [Project README](../README.md#working-with-the-models) |
+
+**Warning: retraining overwrites the generated files** listed above, including the saved
+models used by the dashboard. Work on a separate copy or branch, and compare the new
+evaluation report with the committed one before replacing anything. The submitted
+assignment files in `assignment/` are not changed by these commands.
+
