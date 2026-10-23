@@ -1,0 +1,76 @@
+**********************
+Windows PowerShell transcript start
+Start time: 20261023180240
+Username: [local account]
+RunAs User: [local account]
+Configuration Name: 
+Machine: [local computer] (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 33320
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is project/docs/evidence/issue80/windows/setup-log.txt
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> python --version
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> python --version
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> py --version
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> py -3.12 -m venv .venv
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe --version
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe -m pip --version
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe -m pip install -r project/code/requirements.txt
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe -m pip freeze
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe --version
+Python 3.12.10
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe -m pip --version
+pip 25.0.1 from C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough\.venv\Lib\site-packages\pip (python 3.12)
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe -m pip check
+No broken requirements found.
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe -m unittest discover -s project/code -v
+test_assessment_score_boundary (test_recommend.RecommendationRules.test_assessment_score_boundary) ... ok
+test_attendance_boundary (test_recommend.RecommendationRules.test_attendance_boundary) ... ok
+test_early_warning_never_uses_assessment_rule (test_recommend.RecommendationRules.test_early_warning_never_uses_asse
+ssment_rule) ... ok
+test_high_risk_with_no_matching_rule_gets_fallback (test_recommend.RecommendationRules.test_high_risk_with_no_matchi
+ng_rule_gets_fallback) ... ok
+test_invalid_mode_is_rejected (test_recommend.RecommendationRules.test_invalid_mode_is_rejected) ... ok
+test_invalid_prediction_is_rejected (test_recommend.RecommendationRules.test_invalid_prediction_is_rejected) ... ok
+test_low_risk_gets_only_routine_message (test_recommend.RecommendationRules.test_low_risk_gets_only_routine_message)
+ ... ok
+test_multiple_rules_use_approved_order_without_duplicates (test_recommend.RecommendationRules.test_multiple_rules_us
+e_approved_order_without_duplicates) ... ok
+test_previous_failure_boundary (test_recommend.RecommendationRules.test_previous_failure_boundary) ... ok
+test_study_hours_boundary (test_recommend.RecommendationRules.test_study_hours_boundary) ... ok
+test_targeted_messages_include_a_reason (test_recommend.RecommendationRules.test_targeted_messages_include_a_reason)
+ ... ok
+
+----------------------------------------------------------------------
+Ran 106 tests in 23.597s
+
+OK
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe project/code/verify_dataset.py
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe project/code/predict.py --mode confirmatory --csv project/data/sample_roster.csv
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> .\.venv\Scripts\python.exe -m streamlit run project/code/dashboard.py
+
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS C:\Users\[local user]\Documents\GitHub\ICT304-issue80-walkthrough> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261023234901
+**********************

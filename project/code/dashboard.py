@@ -40,7 +40,7 @@ from pathlib import Path
 import streamlit as st
 
 from data_processing import previous_score_from_grades
-from predict import _parse_g2, predict_one, predict_roster
+from predict import _parse_g2, predict_one, predict_roster, study_hours_warning
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]  # project/code -> project/
 SAMPLE_CSV = PROJECT_ROOT / "data" / "sample_roster.csv"
@@ -373,6 +373,7 @@ def _empty_results(mode):
     columns = ["student_id", "risk_label", "probability_high_risk"]
     if mode == "confirmatory":
         columns.append("grade_setup")
+    columns.append("input_warning")
     return pd.DataFrame(columns=columns)
 
 
@@ -402,6 +403,8 @@ def single_student_tab(mode):
         attendance = st.number_input("Attendance estimate (%) - 0 to 100", value=80.0, step=1.0)
         st.caption(ATTENDANCE_HELP)
         study_hours = st.number_input("Study hours per week - 0 to 40", value=5.0, step=0.5)
+        st.caption("Values above 12 are accepted, but exceed the highest converted training value. "
+                   "A warning will accompany the prediction; 12 is not a proven reliability boundary.")
         # A fixed list makes non-whole or out-of-range failures impossible.
         failures = st.selectbox("Past class failures (whole number, 0 to 3)", [0, 1, 2, 3])
         g1_text = g2_text = ""
@@ -424,6 +427,8 @@ def single_student_tab(mode):
 
     show = st.error if label == "High Risk" else st.success
     show(f"**{label}**")
+    if study_hours_warning(study_hours):
+        st.warning(study_hours_warning(study_hours))
     st.write(probability_text(proba))
     if grade_setup:
         st.write(f"Model used: **{'G1 + G2' if grade_setup == 'g1_g2' else 'G1 only'}**")
@@ -471,6 +476,12 @@ def class_csv_tab(mode):
         warning = skipped_warning(len(skipped), total_rows)
         if warning:
             st.warning(warning)
+        cautions = results.loc[results["input_warning"].ne(""), ["student_id", "input_warning"]]
+        if not cautions.empty:
+            st.warning(f"{len(cautions)} predicted student(s) have study hours above the training "
+                       "representation. These rows are not skipped. Review the input warnings below.")
+            st.warning(study_hours_warning(40))
+            st.dataframe(cautions, hide_index=True)
         st.dataframe(display_results(results), hide_index=True, column_config={
             "probability_high_risk": st.column_config.NumberColumn(
                 "Model-estimated High-Risk probability", format="%.1f%%")})

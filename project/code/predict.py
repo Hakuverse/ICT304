@@ -45,6 +45,18 @@ from data_processing import GRADE_SETUPS, VALID_MODES, prepare_model_inputs, pre
 PROJECT_ROOT = Path(__file__).resolve().parents[1]  # project/code -> project/
 MODELS_DIR = PROJECT_ROOT / "models"
 
+STUDY_HOURS_WARNING = (
+    "Study hours exceed 12, the highest numerical value used in the training-data "
+    "conversion. This prediction extends beyond those training values and may be "
+    "unreliable. Review it with other information; do not change the input to 12. "
+    "Values at or below 12 are not guaranteed reliable either."
+)
+
+
+def study_hours_warning(study_hours):
+    """Call after validation; a caution, not another input limit or support rule."""
+    return STUDY_HOURS_WARNING if float(study_hours) > 12 else ""
+
 
 def load_model(mode: str, grade_setup: str = None):
     """grade_setup is required for mode="confirmatory" ("g1" or "g1_g2"),
@@ -164,6 +176,7 @@ def predict_roster(csv_path: Path, mode: str = "early_warning"):
                 "student_id": student_id,
                 "risk_label": "High Risk" if pred == 1 else "Low Risk",
                 "probability_high_risk": round(proba, 3),
+                "input_warning": study_hours_warning(fields["study_hours"]),
                 **({"grade_setup": grade_setup} if mode == "confirmatory" else {}),
             })
         except (ValueError, KeyError, TypeError) as exc:
@@ -172,6 +185,7 @@ def predict_roster(csv_path: Path, mode: str = "early_warning"):
     columns = ["student_id", "risk_label", "probability_high_risk"]
     if mode == "confirmatory":
         columns.append("grade_setup")
+    columns.append("input_warning")
     return pd.DataFrame(results, columns=columns), skipped
 
 
@@ -198,6 +212,9 @@ def main():
             args.out.parent.mkdir(parents=True, exist_ok=True)
             results.to_csv(args.out, index=False)
             print(f"Saved {len(results)} prediction(s) to {args.out}")
+            for row in results.to_dict("records"):
+                if row["input_warning"]:
+                    print(f"Warning for {row['student_id']}: {row['input_warning']}")
         elif not results.empty:
             print(results.to_string(index=False))
         if skipped:
@@ -219,6 +236,8 @@ def main():
         parser.error(str(exc))
         return
     print(f"Risk: {label} (probability High Risk: {proba})")
+    if study_hours_warning(args.study_hours):
+        print(f"Warning: {study_hours_warning(args.study_hours)}")
 
 
 if __name__ == "__main__":

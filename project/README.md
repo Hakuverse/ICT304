@@ -165,3 +165,25 @@ the original scores for a different experiment.
 
 New system results, feedback and project diagrams belong in `project/docs/`.
 Keep personal identifiers and signed declarations out of the public repository.
+
+### Windows Python launcher fallback
+
+If `python --version` opens the Microsoft Store message, try `py --version`.
+If several versions are installed, choose Python 3.12 explicitly:
+
+```powershell
+py -3.12 --version
+py -3.12 -m venv .venv
+.venv\Scripts\python.exe --version
+```
+
+Then continue with the package-installation commands using `.venv\Scripts\python.exe`.
+`py --version` can show a different default version; the explicit `-3.12` chooses
+3.12. If that version is not installed, install it before running these commands.
+Do not copy another checkout's virtual environment. Benjamin used this route
+successfully on 23 October; see the [walkthrough](docs/guide-walkthrough.md).
+
+## Walkthrough and input limitation
+
+See the [23 October walkthrough](docs/guide-walkthrough.md) and
+[study-hours finding and warning](docs/study-hours-limitation.md).

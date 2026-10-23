@@ -334,3 +334,15 @@ models used by the dashboard. Work on a separate copy or branch, and compare the
 evaluation report with the committed one before replacing anything. The submitted
 assignment files in `assignment/` are not changed by these commands.
 
+
+
+## Study-hours input warning and limitation
+
+The accepted range remains 0–40. Values above 12 receive an input warning because
+training categories were converted to 1.5, 3.5, 7.5 and 12 hours. Twelve is an
+assumed conversion value, not a real maximum or a proven reliability boundary.
+Values at or below 12 are not guaranteed reliable either. Do not substitute 12
+for a higher value to avoid the warning. Valid rows remain processed.
+Warnings apply to either risk label in both modes, separately from support rules.
+The `input_warning` column stays with each CSV result and export; it is blank
+when no warning applies. See the [finding and critical discussion](study-hours-limitation.md).

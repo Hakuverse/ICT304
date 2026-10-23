@@ -6,7 +6,7 @@ This guide helps another person start and stop the SARAH prototype on their own 
 
 Handover commit: `fe9685a729864d1caaa68f00daf92a83b3099412` (`main`, merge of PR #103).
 
-Use the complete repository at this commit. The [project README](../README.md) is the canonical reference for setup commands; if those commands change, update this guide to match it.
+This pin records the original handover and does not contain the later study-hours warning. For that warning, use the reviewed warning PR version and record its exact commit. Use the complete repository at the chosen commit. The [project README](../README.md) is the canonical reference for setup commands; if those commands change, update this guide to match it.
 
 ## What is needed
 
@@ -119,3 +119,20 @@ A teammate should use this guide on their own computer and record:
 - any error and the step where it occurred.
 
 Link that actual walkthrough or its issue/PR record when claiming that the handover instructions have been verified.
+
+### Windows Python launcher fallback
+
+If `python --version` opens the Microsoft Store message, try `py --version`.
+If several versions are installed, choose Python 3.12 explicitly:
+
+```powershell
+py -3.12 --version
+py -3.12 -m venv .venv
+.venv\Scripts\python.exe --version
+```
+
+Then continue with the package-installation commands using `.venv\Scripts\python.exe`.
+`py --version` can show a different default version; the explicit `-3.12` chooses
+3.12. If that version is not installed, install it before running these commands.
+Do not copy another checkout's virtual environment. Benjamin used this route
+successfully on 23 October; see the [walkthrough](guide-walkthrough.md).
