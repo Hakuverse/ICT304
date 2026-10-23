@@ -104,10 +104,8 @@ python3 -m venv .venv
 .venv/bin/python project/code/predict.py --mode confirmatory --csv project/data/sample_roster.csv
 ```
 
-Expect 106 tests ending in `OK` (41 copied from the assignment, 37 dashboard
-tests from PR #72, 11 recommendation tests from PR #74 and 5 tests for the
-accepted #68 usability changes, 5 readability tests and 7 tests for the
-plain-language skipped reasons and results table in #69). Dataset verification shows 395 students, including
+Expect 109 tests ending in `OK`: the previous 106 plus three study-hours warning
+tests added after the #80 walkthrough. Dataset verification shows 395 students, including
 130 High Risk and 265 Low Risk. The sample CSV predicts for A and B and skips C
 and D with reasons. See the [migration checks](docs/project-start-checks.md) for
 the actual Windows results recorded when the project folder was created, when the

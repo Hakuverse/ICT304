@@ -72,3 +72,16 @@ code changes; do not describe historical evidence as a fresh run.
 Next: [Sprint 8 planning](sprint8-planning.md), 27 October-3 November.
 The final project deadline remains 7 November; confirm the exact LMS cutoff.
 The team makes scope and priority decisions; no extra tutor approval is required.
+
+
+## 24 October update before the final video
+
+The #77–#79 guides are merged. Benjamin's #80 walkthrough and the study-hours
+warning are in PR #108, awaiting review/merge. Anna's video notes are in PR #107;
+#81 remains open. Record the final video after #108 is accepted, using the merged
+commit. Keep the original demonstration examples, add the 40-hour warning and
+its CSV export, and show the actual current automated test result (109 expected).
+Record actual recording and peer-review dates. Submit a video file as required
+by the brief; a viewing link is an additional convenience. #82 remains the
+Phase E review after these outputs are accepted. The local application trial is
+not the version to demonstrate.

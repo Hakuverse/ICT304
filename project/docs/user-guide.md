@@ -6,6 +6,8 @@ the results. No programming knowledge is needed after setup.
 
 Screenshots in this guide show the dashboard at commit `fe9685a` (20 October 2026),
 on Windows in Microsoft Edge at 1366 × 768, using fictional students only.
+They predate the #80 study-hours warning and the `input_warning` CSV column.
+The updated behaviour is described below; those screenshots are historical.
 
 ## Contents
 
@@ -238,10 +240,14 @@ Class CSV tab.
 
 ![Full suggestions, download button and skipped rows with reasons](user-guide-images/05-csv-skipped-rows.png)
 
+For study hours above 12, valid predictions carry an input warning. Read the full
+warning above the table and check which students it applies to. It is separate
+from skipped rows and support suggestions.
+
 ### Download the results
 
 Click **Download results as CSV** to save `sarah_predictions.csv`. It contains only the
-predicted students, with their recommendations. In the downloaded file the probability is
+predicted students, with their recommendations and `input_warning` values. In the downloaded file the probability is
 written as a decimal: **0.818 means 81.8%**. Skipped students are not in the download.
 
 ### Skipped rows: why and how to fix them
