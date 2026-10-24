@@ -40,7 +40,7 @@ from pathlib import Path
 import streamlit as st
 
 from data_processing import previous_score_from_grades
-from predict import _parse_g2, predict_one, predict_roster, study_hours_warning
+from predict import STUDY_HOURS_WARNING, _parse_g2, predict_one, predict_roster, study_hours_warning
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]  # project/code -> project/
 SAMPLE_CSV = PROJECT_ROOT / "data" / "sample_roster.csv"
@@ -125,12 +125,33 @@ def skipped_html(skipped):
     return f"<ul>{items}</ul>"
 
 
+WARNING_MARK = "Yes - see warning above"
+
+
+def study_hours_summary(results):
+    """One line counting the students with a study-hours warning (None if there are none).
+    Uploaded IDs are not put in this Markdown message (see #87); the table marks each student."""
+    if "input_warning" not in results.columns:
+        return None
+    count = sum(1 for w in results["input_warning"] if w)
+    if not count:
+        return None
+    return (f"{count} predicted student(s) have study hours above 12. These rows are not skipped. "
+            "They are marked in the study_hours_warning column of the table below.")
+
+
 def display_results(results):
     """Copy of the results for the screen, with the probability as a percentage.
     Recommendations are left out of the table because the full list below it already
     shows them. The results themselves (and the download) keep the 0-1 value used by
     predict.py and the recommendations column."""
     shown = results.drop(columns=["recommendations"], errors="ignore")
+    # The full study-hours warning is shown once above the table; the table only marks
+    # which students it applies to, so the long text is not repeated and cut off.
+    # The download keeps the full input_warning text.
+    if "input_warning" in shown.columns:
+        shown["input_warning"] = [WARNING_MARK if w else "" for w in shown["input_warning"]]
+        shown = shown.rename(columns={"input_warning": "study_hours_warning"})
     shown["probability_high_risk"] = (shown["probability_high_risk"].astype(float) * 100).round(1)
     return shown
 
@@ -476,12 +497,10 @@ def class_csv_tab(mode):
         warning = skipped_warning(len(skipped), total_rows)
         if warning:
             st.warning(warning)
-        cautions = results.loc[results["input_warning"].ne(""), ["student_id", "input_warning"]]
-        if not cautions.empty:
-            st.warning(f"{len(cautions)} predicted student(s) have study hours above the training "
-                       "representation. These rows are not skipped. Review the input warnings below.")
-            st.warning(study_hours_warning(40))
-            st.dataframe(cautions, hide_index=True)
+        summary = study_hours_summary(results)
+        if summary:
+            st.warning(summary)
+            st.warning(STUDY_HOURS_WARNING)
         st.dataframe(display_results(results), hide_index=True, column_config={
             "probability_high_risk": st.column_config.NumberColumn(
                 "Model-estimated High-Risk probability", format="%.1f%%")})
