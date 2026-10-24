@@ -21,6 +21,7 @@ The updated behaviour is described below; those screenshots are historical.
 8. [When something goes wrong](#8-when-something-goes-wrong)
 9. [Limitations](#9-limitations)
 10. [Reproducing the results](#10-reproducing-the-results)
+11. [Study-hours input warning and limitation](#11-study-hours-input-warning-and-limitation)
 
 ## 1. What SARAH does, and what it does not do
 
@@ -313,6 +314,9 @@ save it as CSV again and upload it again.
   to other courses, institutions or countries.
 - **Inputs are approximate.** Attendance is an estimate converted from absence counts, and
   study hours come from broad categories in the original data.
+- **Study hours above 12 receive a warning.** They go beyond the highest value used in the
+  training-data conversion, so those predictions may be unreliable
+  (see [section 11](#11-study-hours-input-warning-and-limitation)).
 - **Suggestions are not proven interventions.** They come from simple agreed rules and
   do not explain the cause of a result or guarantee improvement.
 - **Testing so far is small.** Usability was checked with one tester; see the
@@ -340,9 +344,7 @@ models used by the dashboard. Work on a separate copy or branch, and compare the
 evaluation report with the committed one before replacing anything. The submitted
 assignment files in `assignment/` are not changed by these commands.
 
-
-
-## Study-hours input warning and limitation
+## 11. Study-hours input warning and limitation
 
 The accepted range remains 0–40. Values above 12 receive an input warning because
 training categories were converted to 1.5, 3.5, 7.5 and 12 hours. Twelve is an
