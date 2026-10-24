@@ -104,8 +104,9 @@ python3 -m venv .venv
 .venv/bin/python project/code/predict.py --mode confirmatory --csv project/data/sample_roster.csv
 ```
 
-Expect 109 tests ending in `OK`: the previous 106 plus three study-hours warning
-tests added after the #80 walkthrough. Dataset verification shows 395 students, including
+Expect 110 tests ending in `OK`: the previous 106 plus three study-hours warning
+tests added after the #80 walkthrough and one test for showing that warning once in the
+CSV view. Dataset verification shows 395 students, including
 130 High Risk and 265 Low Risk. The sample CSV predicts for A and B and skips C
 and D with reasons. See the [migration checks](docs/project-start-checks.md) for
 the actual Windows results recorded when the project folder was created, when the

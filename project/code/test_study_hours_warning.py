@@ -46,6 +46,20 @@ class StudyHoursWarning(unittest.TestCase):
         self.assertNotIn(STUDY_HOURS_WARNING, [w.value for w in at.warning])
         self.assertFalse(at.exception)
 
+    def test_csv_screen_shows_full_warning_once_and_marks_students(self):
+        import dashboard
+        text = ('student_id,attendance_pct,study_hours,failures,G1,G2\n'
+                'A,80,40,0,12,\nB,80,6,0,12,14\n')
+        rows, _, _ = process_upload(text, 'confirmatory', recommend)
+        shown = dashboard.display_results(rows)
+        self.assertNotIn('input_warning', shown.columns)
+        self.assertEqual(shown['study_hours_warning'].tolist(), [dashboard.WARNING_MARK, ''])
+        self.assertEqual(rows.input_warning.tolist(), [STUDY_HOURS_WARNING, ''])  # download unchanged
+        summary = dashboard.study_hours_summary(rows)
+        self.assertTrue(summary.startswith('1 predicted student(s) have study hours above 12.'))
+        self.assertNotIn(STUDY_HOURS_WARNING, summary)
+        self.assertIsNone(dashboard.study_hours_summary(rows.iloc[[1]]))
+
 
 if __name__ == '__main__':
     unittest.main()
