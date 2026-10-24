@@ -118,7 +118,7 @@ class TestPredictRoster(unittest.TestCase):
         path = self._write_csv([{"attendance_pct": 150, "study_hours": 5, "failures": 0}])
         result, skipped = predict_roster(path)
         self.assertTrue(result.empty)
-        self.assertEqual(list(result), ["student_id", "risk_label", "probability_high_risk"])
+        self.assertEqual(list(result), ["student_id", "risk_label", "probability_high_risk", "input_warning"])
         with patch("sys.argv", ["predict.py", "--csv", str(path)]), patch("sys.stdout", new_callable=io.StringIO) as output:
             main()
         self.assertIn("No valid students to process.", output.getvalue())
