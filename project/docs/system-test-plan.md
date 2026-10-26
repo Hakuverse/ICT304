@@ -276,3 +276,13 @@ Close #65 when this reviewed plan is merged. Targets are agreed by the team. The
 actual runs need not be finished to close the planning issue; they belong to
 #66-#69. Benjamin links their outcomes in #70. Leave failed, blocked and unfinished
 work visible. Preserve assignment files and prompt logs.
+
+
+## Study-hours warning follow-up - 24 October 2026
+
+Historical S6 results remain at their original commits. New checks cover 12 (no
+warning), 12.1 and 40 (warning with prediction), and 41 (invalid), in all three
+setups. Check Low-Risk and High-Risk rows, CSV warning alignment and export,
+and removal of old form warnings after input changes. See
+`project/code/test_study_hours_warning.py` and the [walkthrough](guide-walkthrough.md).
+This is not a new independent-user study.

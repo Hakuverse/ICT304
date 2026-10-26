@@ -243,3 +243,12 @@ The recommendation rules, thresholds, display behaviour and wording were approve
 Anna confirmed the function input, function output, form integration and CSV integration in PR #72 at commit `ad22e70`. The dashboard integration passed 78 tests.
 
 The approved rules were merged in [PR #73](https://github.com/Hakuverse/ICT304/pull/73). Jackie implemented the function in [PR #74](https://github.com/Hakuverse/ICT304/pull/74), now merged. The current suite contains 89 tests; the earlier 78-test result above describes the dashboard connection before the real recommendation function was added. See [current checks](sprint5-implementation-checks.md).
+
+
+## Input warning added after the guide walkthrough
+
+Study hours remain valid from 0–40. A value above 12 receives a caution because
+it exceeds the converted training values. This warning applies to both risk
+labels and all model setups, and stays in CSV exports as `input_warning`.
+It does not skip valid rows or change the targeted support rules. See the
+[critical discussion](study-hours-limitation.md).

@@ -6,6 +6,8 @@ the results. No programming knowledge is needed after setup.
 
 Screenshots in this guide show the dashboard at commit `fe9685a` (20 October 2026),
 on Windows in Microsoft Edge at 1366 × 768, using fictional students only.
+They predate the #80 study-hours warning and the `input_warning` CSV column.
+The updated behaviour is described below; those screenshots are historical.
 
 ## Contents
 
@@ -19,6 +21,7 @@ on Windows in Microsoft Edge at 1366 × 768, using fictional students only.
 8. [When something goes wrong](#8-when-something-goes-wrong)
 9. [Limitations](#9-limitations)
 10. [Reproducing the results](#10-reproducing-the-results)
+11. [Study-hours input warning and limitation](#11-study-hours-input-warning-and-limitation)
 
 ## 1. What SARAH does, and what it does not do
 
@@ -238,10 +241,14 @@ Class CSV tab.
 
 ![Full suggestions, download button and skipped rows with reasons](user-guide-images/05-csv-skipped-rows.png)
 
+For study hours above 12, valid predictions carry an input warning. Read the full
+warning above the table and check which students it applies to. It is separate
+from skipped rows and support suggestions.
+
 ### Download the results
 
 Click **Download results as CSV** to save `sarah_predictions.csv`. It contains only the
-predicted students, with their recommendations. In the downloaded file the probability is
+predicted students, with their recommendations and `input_warning` values. In the downloaded file the probability is
 written as a decimal: **0.818 means 81.8%**. Skipped students are not in the download.
 
 ### Skipped rows: why and how to fix them
@@ -307,6 +314,9 @@ save it as CSV again and upload it again.
   to other courses, institutions or countries.
 - **Inputs are approximate.** Attendance is an estimate converted from absence counts, and
   study hours come from broad categories in the original data.
+- **Study hours above 12 receive a warning.** They go beyond the highest value used in the
+  training-data conversion, so those predictions may be unreliable
+  (see [section 11](#11-study-hours-input-warning-and-limitation)).
 - **Suggestions are not proven interventions.** They come from simple agreed rules and
   do not explain the cause of a result or guarantee improvement.
 - **Testing so far is small.** Usability was checked with one tester; see the
@@ -334,3 +344,13 @@ models used by the dashboard. Work on a separate copy or branch, and compare the
 evaluation report with the committed one before replacing anything. The submitted
 assignment files in `assignment/` are not changed by these commands.
 
+## 11. Study-hours input warning and limitation
+
+The accepted range remains 0–40. Values above 12 receive an input warning because
+training categories were converted to 1.5, 3.5, 7.5 and 12 hours. Twelve is an
+assumed conversion value, not a real maximum or a proven reliability boundary.
+Values at or below 12 are not guaranteed reliable either. Do not substitute 12
+for a higher value to avoid the warning. Valid rows remain processed.
+Warnings apply to either risk label in both modes, separately from support rules.
+The `input_warning` column stays with each CSV result and export; it is blank
+when no warning applies. See the [finding and critical discussion](study-hours-limitation.md).

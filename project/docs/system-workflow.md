@@ -58,3 +58,12 @@ change model predictions nor prove that an input caused the predicted risk.
 
 [Deployment, maintenance, user guide and demo video](sprint7-planning.md) are
 Phase E work. Current operation is local Streamlit use, not a hosted service.
+
+
+## Input warning added after the guide walkthrough
+
+Study hours remain valid from 0–40. A value above 12 receives a caution because
+it exceeds the converted training values. This warning applies to both risk
+labels and all model setups, and stays in CSV exports as `input_warning`.
+It does not skip valid rows or change the targeted support rules. See the
+[critical discussion](study-hours-limitation.md).

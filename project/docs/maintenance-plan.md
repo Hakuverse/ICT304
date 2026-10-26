@@ -57,7 +57,7 @@ For each version the team accepts for use, keep a record of these items **togeth
 | Verification | Links to `pip check`, automated tests, sample prediction, relevant form/CSV checks and any platform or walkthrough results. |
 | Limitations | Known failures, untested areas and any reason the version should not be used for a particular purpose. |
 
-The reviewed deployment guide points to handover commit `fe9685a729864d1caaa68f00daf92a83b3099412`. Its guide review does **not**, by itself, prove a recovery drill or a new cross-platform application test at that commit.
+The deployment guide now identifies warning-ready code `2dfcdf3` from PR #108, subject to team review. The previous handover was `fe9685a`. Keep both version records; going back to the older version removes the study-hours warning. Neither guide review nor automated warning tests establish a recovery drill or a new macOS run.
 
 The earlier [Sprint 6 functional evidence](sprint6-review.md) records Windows and macOS checks at `9dc7132`. That is a historical tested baseline, but it predates later usability changes. The [response-time evidence](evidence/issue67/2026-10-20-6395d82/results.md) is from `6395d82` on one reference Mac. Keep these original tested commits attached to their evidence; do not relabel the old runs as tests of `fe9685a`.
 
