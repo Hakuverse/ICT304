@@ -77,3 +77,17 @@ unfinished issues keep their owners and next actions rather than being duplicate
 
 This plan supports [#70](https://github.com/Hakuverse/ICT304/issues/70) and
 [#82](https://github.com/Hakuverse/ICT304/issues/82); it does not close them.
+
+## Application work alongside Sprint 8
+
+Benjamin confirmed the [application deployment plan](app-deployment-plan.md)
+decisions on 27 October. #112–#118 cover the launcher, Windows/macOS packages,
+checks, first-use walkthrough and release. Benjamin handles Windows, Jackie
+macOS, and Anna wording/instructions and review, with shared release decisions.
+Builds are unsigned prototypes; platform security restrictions must be tested.
+The 30-second startup target is separate from earlier prediction timings.
+
+Report/slides preparation continues in parallel. Coordinate #97/#98 with the
+packaged-app evidence before including releases in the submission. The 3 November
+review decides which platforms are ready; no package test or release is claimed
+by this plan.

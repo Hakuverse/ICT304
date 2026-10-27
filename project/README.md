@@ -189,3 +189,10 @@ successfully on 23 October; see the [walkthrough](docs/guide-walkthrough.md).
 
 See the [23 October walkthrough](docs/guide-walkthrough.md) and
 [study-hours finding and warning](docs/study-hours-limitation.md).
+
+## Planned double-click applications
+
+The [application deployment plan](docs/app-deployment-plan.md) records the Windows
+and Apple Silicon Mac targets, unsigned prototype decision and 30-second startup
+target. Work is tracked in #112–#118 alongside Sprint 8. Packages are not yet
+released or verified; use the existing setup instructions above for now.
