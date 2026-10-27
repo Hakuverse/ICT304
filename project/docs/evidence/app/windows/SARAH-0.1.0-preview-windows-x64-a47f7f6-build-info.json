@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0-preview",
+  "source_commit": "a47f7f666cd2ce70c60a0e3ad21ac3c3982e07eb",
+  "platform": "windows-x64",
+  "built_utc": "2026-10-27T07:25:24.077618+00:00",
+  "build_os": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "signing": "No publisher signing or Apple notarization; Mac tool ad-hoc signing only if applied.",
+  "status": "test candidate; manual platform/security/startup checks pending",
+  "executable_sha256": "70be2bf5b0ee44dc661272efbde4bbedbf4eb81c9bfd4feb1834be9ea8260bb7",
+  "models_sha256": {
+    "confirmatory_g1_g2_model.joblib": "68090de592d5de13f80b34a45c5f70802ce03ca021fd2cc1a4d9dfee0c0b89b5",
+    "confirmatory_g1_model.joblib": "e970bae667f10db51acdb7d3fd52d8858cc95fd01b90f1f500f8c49ba9303775",
+    "early_warning_model.joblib": "08f04c1d85c678d6dae5b1794c73e2a002874d110892110acf444d862af5a07c"
+  }
+}
