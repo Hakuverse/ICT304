@@ -156,3 +156,9 @@ usability targets into passes.
 
 These are tracked follow-ups; they do not prevent starting launcher development
 once this planning PR is accepted.
+
+## Launcher implementation
+
+The [launcher checks](app-launcher-checks.md) record issue #113 development results.
+The [developer build guide](../packaging/README.md) covers the shared launcher and
+build recipe. Platform release and user checks remain under #114–#118.

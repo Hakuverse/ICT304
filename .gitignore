@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# SARAH application build environment and maintained recipe
+.build-venv/
+!project/packaging/SARAH.spec
