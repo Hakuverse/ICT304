@@ -18,6 +18,8 @@ message and does not start another service. The service binds to a free loopback
 port with a random session path; the browser opens after its health check passes.
 The child watches a pipe owned by the launcher and exits when it closes, including
 when the launcher crashes. Quit also terminates only the child it started.
+Before starting that watcher, the child loads all three models so native numerical
+libraries are initialised before a background read of stdin on Windows.
 
 The GUI reports a slower start after 30 seconds and stops a failed startup after
 90 seconds. The 90-second timeout does not change the agreed 30-second target.
@@ -88,7 +90,11 @@ configured. Mac build-tool ad-hoc signing is not verified publisher identity.
 
 The development smoke check verifies all three model setups, the 40-hour warning,
 CSV export, dashboard rendering, served HTML/static assets, normal stop and
-parent-pipe closure. It does not click the native GUI or measure human-visible
+parent-pipe closure. It also opens a live WebSocket session and requires both
+the form and a prediction result, catching faults that a health check misses.
+The developer check needs `websockets>=12,<17` (included by current Streamlit;
+install it separately if using an older environment).
+It does not click the native GUI or measure human-visible
 startup. For source checking, omit `--executable` and keep `--output`.
 
 ## Before distributing

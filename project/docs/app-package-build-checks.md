@@ -1,5 +1,32 @@
 # Platform package build checks
 
+## Windows loading fix — 28 October 2026
+
+Benjamin reported that candidate `c7440f7` opened its launcher and browser but
+stayed loading. This was reproduced locally. A diagnostic trace showed a native
+numerical-library import blocked while the launcher watcher read its parent pipe.
+The launcher now loads all three saved models and their dependencies before
+starting that watcher. This changes startup order, not the predictions.
+
+The earlier smoke checks below are historical results, not acceptance of those
+packages. Their in-process model tests preloaded dependencies; their separate
+live-server checks only fetched health, HTML and static assets. They missed the
+first live dashboard/prediction import. Do not use earlier candidates for acceptance.
+
+The strengthened check opens a live WebSocket session, requires the form controls,
+presses Predict and requires a probability result. It runs before archiving and
+on the extracted package, for both normal stop and parent-pipe closure.
+
+A corrected local Windows executable passed these checks, all model examples,
+the study-hours warning and CSV checks. A browser check also displayed the full
+form and returned High Risk, 85.9% for attendance 40, study hours 4, failures 0.
+All 18 launcher/package unit tests passed. See the
+[corrected local runtime record](evidence/app/windows/startup-fix-runtime-check.json).
+This is a local development check; Anna's full Windows checks and Jackie's Mac
+checks still need the rebuilt candidate. Check PR #121 for the replacement build.
+
+## Earlier build records
+
 Recorded 27 October 2026. These are development/build checks, separate from
 Anna and Jackie's manual results. PR #121 implements packaging for #114/#115;
 those issues remain open until their platform evidence is reviewed.
