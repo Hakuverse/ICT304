@@ -1,7 +1,8 @@
 # SARAH application deployment plan
 
 Issue: [#112](https://github.com/Hakuverse/ICT304/issues/112).
-Decisions confirmed by Benjamin on 27 October 2026; plan prepared for peer review.
+Decisions confirmed by Benjamin on 27 October 2026; plan merged in PR #119.
+Status and testing allocation updated 28 October 2026.
 Starting baseline: `4f4d5ce7bf4912d5825e8bd40a48874d3f985b4a` after PR #111.
 This is the build plan, not evidence that a packaged app is ready or tested.
 
@@ -32,8 +33,9 @@ The agreed preference is an application: SARAH.exe on Windows and SARAH.app on
 macOS, not a terminal script. This does not require a single standalone Windows
 executable or a traditional installer. If the build needs supporting files, ship
 the complete application folder and tell users to keep it together. A ZIP or disk
-image may be used as the download container; choose and test that container in
-#114/#115. Packaging format must preserve the double-click experience.
+image could serve as the download container; the current #114/#115 candidates
+use ZIP archives. Extract the outer Actions ZIP, then the inner SARAH ZIP.
+macOS archives preserve app links and permissions. Actual device checks remain pending.
 
 Build Windows on Windows and macOS on macOS. Record the actual source commit,
 architecture, runtime, dependencies, build tool, artifact name and checksum.
@@ -64,9 +66,9 @@ Benjamin confirmed this practical arrangement on 27 October:
 
 | Person | Work |
 |---|---|
-| Benjamin | Windows build/checks and Windows evidence |
-| Jackie | Mac build/checks and macOS evidence |
-| Anna | Launcher wording, installation instructions and behaviour review |
+| Benjamin | Coordinate build preparation and evidence; preliminary Windows launch check |
+| Jackie | Full macOS package checks and evidence on his M3 Mac |
+| Anna | Full Windows package checks and evidence; wording/instruction review |
 | All three | Scope decisions, report discussion and release review |
 
 Work may be shared. Record the person who actually performed each check and have
@@ -147,15 +149,15 @@ usability targets into passes.
 
 ## Outstanding before release
 
-- Peer review of this plan and its proposed measurement procedure.
+- Complete the agreed platform and startup measurements; planning PR #119 is merged.
 - Jackie verifies the reported macOS version/build and captures actual build details.
 - Check the downloaded app on the tutor's computer before claiming that device passed; matching chip and OS do not establish its security settings or launch outcome.
-- Choose and test the distribution container, downloaded first-launch behaviour
+- Test the chosen ZIP distribution, downloaded first-launch behaviour
   and final artifact on each platform under #114–#117.
 - Complete #97/#98 submission decisions, including exact cutoff, uploader and backup.
 
-These are tracked follow-ups; they do not prevent starting launcher development
-once this planning PR is accepted.
+These are tracked release follow-ups. Shared launcher PR #120 is merged;
+packaging and its startup fix are under review in PR #121.
 
 ## Launcher implementation
 
@@ -168,6 +170,6 @@ build recipe. Platform release and user checks remain under #114–#118.
 
 On 27 October Benjamin confirmed that Anna will test the Windows package and
 Jackie will test the Mac package after implementation. Benjamin coordinates the
-build preparation. This supersedes the earlier Windows testing allocation above.
+build preparation. The roles table above reflects this current allocation.
 Use the [package testing guide](app-package-testing.md) and record actual results
 under #114/#115. This allocation is not a claim that testing is finished.

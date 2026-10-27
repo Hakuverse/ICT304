@@ -7,6 +7,17 @@ results have been reviewed.
 
 ## Get the correct package
 
+Current candidate, checked 28 October 2026: source `ab4a604`, built from PR #121
+code head `9cdda7a`. Later evidence/documentation commits do not change these files.
+Both platform jobs passed in [run 40556703379](https://github.com/Hakuverse/ICT304/actions/runs/40556703379).
+
+- [Anna: Windows package -4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12757642322)
+- [Jackie: Apple Silicon macOS package -4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12758175843)
+
+Earlier candidates are superseded after the Windows loading fault. Use `-4`,
+record its own build-info.json, and retain it locally before the 14-day artifact
+retention expires. These are review candidates, not a published release.
+
 1. Open the packaging PR and its **Checks**, or the repository **Actions** tab.
 2. Choose **Build SARAH test apps** for the exact commit being reviewed. Wait for
    the platform build to finish successfully; do not use an artifact from a failed run.
@@ -19,6 +30,36 @@ results have been reviewed.
 6. Read START-HERE.txt and record the package filename and source commit from
    build-info.json. Files built on different source commits must not be described
    as the same tested version.
+
+Keep the checksum, build-info and extracted-check JSON files alongside the
+extracted package as evidence. They do not need to be combined into one file or
+re-zipped. Keep SARAH.exe beside its complete _internal folder on Windows.
+
+## Unsigned-app first launch
+
+Windows may show "Windows protected your PC". Only consider continuing for the
+team's verified download, with a matching package checksum. More info shows the
+application and publisher. If it identifies SARAH.exe and Run anyway is offered,
+the tester may choose it where their device policy permits. Record the warning,
+the decision and actual launch outcome. Do not disable security protections.
+If no permitted option is available, stop and report the block.
+
+Benjamin's [preliminary check](evidence/app/windows/benjamin-preliminary/README.md)
+recorded Unknown publisher and a successful launch after Run anyway. This does
+not establish that Anna's computer will behave the same way. Mac testers must
+record their own Gatekeeper outcome; Windows steps do not apply to macOS.
+
+## Add evidence and review PR #121
+
+Testing can start before approval or merge. Anna fills the Windows record and
+Jackie fills the Mac record. Add screenshots and fictional exports in their
+platform folders, using the filenames below. Keep personal details out of images.
+
+While PR #121 is open, commit evidence to its `app-platform-packages` branch, or
+send it to Benjamin to add there. Review and approve the latest PR after evidence
+is included and blockers are resolved. Approval alone does not record tests.
+If the PR has already merged, add subsequent evidence through a new branch/PR.
+Keep #114/#115 open until the relevant platform evidence is reviewed.
 
 The workflow uses native Windows x64 and macOS Apple Silicon build machines.
 A hosted Mac build is not a test on Jackie's M3/Tahoe computer. The actual OS
@@ -57,7 +98,9 @@ the same action solely to produce another screenshot.
 
 The builder runs the fictional model/form/CSV smoke check before archiving and
 again after extraction. It checks health, HTML/static assets, normal shutdown and
-loss of the launcher pipe. The workflow also runs application and packaging tests.
+loss of the launcher pipe. The corrected build also opens a live WebSocket session,
+requires the form, presses Predict and requires a probability result. The workflow
+also runs application and packaging tests.
 Those automated results do not establish GUI usability, Gatekeeper/SmartScreen
 behaviour, offline use on the recipient's machine or the 30-second target.
 

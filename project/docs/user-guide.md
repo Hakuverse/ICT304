@@ -4,6 +4,12 @@ This guide is for a tutor or student tester using the SARAH dashboard for the fi
 It explains how to make a prediction for one student or a whole class, and how to read
 the results. No programming knowledge is needed after setup.
 
+For the Windows/macOS double-click test packages, use the
+[package opening and testing guide](app-package-testing.md), including extraction,
+unsigned-app warnings and Quit SARAH. These packages are under review in PR #121;
+the source-based setup remains available. The prediction instructions below apply
+to both routes. Final release downloads will be recorded under #118.
+
 Screenshots in this guide show the dashboard at commit `fe9685a` (20 October 2026),
 on Windows in Microsoft Edge at 1366 × 768, using fictional students only.
 They predate the #80 study-hours warning and the `input_warning` CSV column.

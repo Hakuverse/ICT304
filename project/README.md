@@ -152,7 +152,7 @@ the original scores for a different experiment.
 - [Sprint 5 plan](docs/sprint5-planning.md)
 - [Sprint 6 plan](docs/sprint6-planning.md)
 - [Sprint 7 plan](docs/sprint7-planning.md) - Phase E, 20-27 October
-- [Sprint 7 review and handover](docs/sprint7-review.md) (#82; pending peer review)
+- [Sprint 7 review and handover](docs/sprint7-review.md) (#82; accepted through merged PR #111)
 - [Guide walkthrough](docs/guide-walkthrough.md) (#80)
 - [Demonstration video record](docs/demo-video-notes.md) (#81; video file held in the team workspace)
 - [Local deployment and handover guide](docs/deployment-guide.md) (#77)
@@ -190,9 +190,13 @@ successfully on 23 October; see the [walkthrough](docs/guide-walkthrough.md).
 See the [23 October walkthrough](docs/guide-walkthrough.md) and
 [study-hours finding and warning](docs/study-hours-limitation.md).
 
-## Planned double-click applications
+## Double-click application test packages
 
 The [application deployment plan](docs/app-deployment-plan.md) records the Windows
 and Apple Silicon Mac targets, unsigned prototype decision and 30-second startup
-target. Work is tracked in #112–#118 alongside Sprint 8. Packages are not yet
-released or verified; use the existing setup instructions above for now.
+target. Work is tracked in #112–#118 alongside Sprint 8. The plan and launcher
+PRs are merged. PR #121 provides Windows x64 and Apple Silicon Mac test packages
+with passing hosted checks; full device acceptance and release are still pending.
+Use the [package downloads and testing guide](docs/app-package-testing.md).
+Anna tests Windows, Jackie tests macOS, and Benjamin coordinates builds/evidence.
+The source setup above remains available for reproducibility and fallback.

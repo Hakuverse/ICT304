@@ -12,6 +12,11 @@ The [project README](../README.md) is the canonical setup reference.
 
 ## What is needed
 
+The requirements below apply to running from source. For the unsigned double-click
+test packages, follow the [package guide](app-package-testing.md); normal app use
+does not require a separate Python installation. Full platform acceptance and
+release remain pending under #114–#118. The app still runs locally in a browser.
+
 - Python 3.11 or newer.
 - The complete repository, including `project/code/`, `project/data/` and `project/models/`.
 - Packages listed in [`project/code/requirements.txt`](../code/requirements.txt). In particular, the saved models require the pinned `scikit-learn==1.8.0`.

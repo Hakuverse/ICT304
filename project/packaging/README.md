@@ -49,7 +49,7 @@ py -3.12 -m venv .build-venv
 .build-venv\Scripts\python.exe project/packaging/launcher.py
 ```
 
-macOS Terminal (developer steps; actual Mac build still needs #115 verification):
+macOS Terminal (developer steps; Jackie's M3/Tahoe device checks remain under #115):
 
 ```bash
 python3.12 -m venv .build-venv
@@ -99,10 +99,10 @@ startup. For source checking, omit `--executable` and keep `--output`.
 
 ## Before distributing
 
-Keep builds and virtual environments out of source commits. This issue provides
-launcher/build sources and a local development check, not a final installer or
-release. #114/#115 must prepare complete packages with licences, version records,
-checksums and download instructions. #116/#117 must check the actual GUI, downloads,
+Keep builds and virtual environments out of source commits. PR #121 provides
+complete test candidates with notices, version records, checksums and download
+instructions, not an accepted release. #114/#115 still require reviewed platform
+evidence. #116/#117 must check the actual GUI, downloads,
 security prompts, clean-device behaviour, startup timing and another-person use.
 Use #118 to publish accepted artifacts and update user-facing instructions.
 
@@ -136,3 +136,9 @@ See [Anna and Jackie's testing guide](../docs/app-package-testing.md). Signing,
 GUI startup, clean-device checks and recipient security behaviour remain
 explicit manual follow-ups. The runner OS is recorded in build-info.json and
 must not be described as Jackie's or the tutor's actual computer.
+
+Current candidate links and the evidence-before-approval process are maintained
+in that guide. Anna tests Windows, Jackie tests macOS, and Benjamin coordinates
+builds and evidence. Do not rebuild solely for a documentation-only change;
+retain the tested package's own source identity. Recheck affected behaviour when
+application or packaging code changes.

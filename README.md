@@ -20,6 +20,10 @@ The command-line prototype predicts for one student or a class CSV, skips invali
 **Current project work:** use [project/](project/README.md) for setup, tests and new features.
 The assignment commands below remain for reproducing the earlier prototype.
 
+**Application testing:** Windows and Apple Silicon Mac candidates are available
+through the [package testing guide](project/docs/app-package-testing.md).
+These are unsigned review packages; full platform acceptance and release are pending.
+
 ## Repository structure
 
 ```
