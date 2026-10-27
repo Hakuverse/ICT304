@@ -25,7 +25,7 @@ Core predictions must work offline after downloading the complete package.
 |---|---|---|
 | Benjamin's Windows computer | Windows 11 Home 25H2 reported by Benjamin; local system check confirms x64, 25H2, build 26200.9711 | Initial Windows x64 target; package testing still required |
 | Jackie's Mac | Apple M3, macOS Tahoe 26.6.2 reported by Benjamin | Initial Apple Silicon target; Jackie must record the exact OS version/build from About This Mac when building/testing |
-| Lecturer's Mac | Chip and macOS version unknown | Unverified; do not assume it matches Jackie's Mac |
+| Tutor's Mac | Apple M3, macOS Tahoe 26.6.2; Benjamin confirmed it matches Jackie's Mac on 27 October | Same initial Apple Silicon target; actual package launch on the tutor's computer remains to be checked |
 | Intel Mac / Windows ARM / other OS versions | No agreed test device | Outside the initial verified support claim |
 
 The agreed preference is an application: SARAH.exe on Windows and SARAH.app on
@@ -149,7 +149,7 @@ usability targets into passes.
 
 - Peer review of this plan and its proposed measurement procedure.
 - Jackie verifies the reported macOS version/build and captures actual build details.
-- Confirm the lecturer's platform before claiming it is supported.
+- Check the downloaded app on the tutor's computer before claiming that device passed; matching chip and OS do not establish its security settings or launch outcome.
 - Choose and test the distribution container, downloaded first-launch behaviour
   and final artifact on each platform under #114–#117.
 - Complete #97/#98 submission decisions, including exact cutoff, uploader and backup.
