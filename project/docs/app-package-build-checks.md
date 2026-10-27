@@ -25,6 +25,13 @@ All 18 launcher/package unit tests passed. See the
 This is a local development check; Anna's full Windows checks and Jackie's Mac
 checks still need the rebuilt candidate. Check PR #121 for the replacement build.
 
+The replacement [hosted build](https://github.com/Hakuverse/ICT304/actions/runs/40556703379)
+passed on Windows and Apple Silicon macOS for PR head `9cdda7a`. Both platforms
+passed the live form/prediction checks before archiving and after extraction.
+Benjamin's [preliminary Windows launch record](evidence/app/windows/benjamin-preliminary/README.md)
+identifies downloaded candidate `ab4a604` and its observed SmartScreen warning.
+Full platform acceptance remains pending.
+
 ## Earlier build records
 
 Recorded 27 October 2026. These are development/build checks, separate from

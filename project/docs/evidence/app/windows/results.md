@@ -2,6 +2,10 @@
 
 Tester: Anna (planned). Status: pending actual device checks.
 
+Benjamin's separate [preliminary launch check](benjamin-preliminary/README.md)
+records the SmartScreen warning and successful launch on 28 October 2026.
+It does not fill or replace Anna's results below.
+
 | Detail | Actual record |
 |---|---|
 | Date | Not recorded |
