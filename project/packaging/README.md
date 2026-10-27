@@ -102,3 +102,31 @@ Use #118 to publish accepted artifacts and update user-facing instructions.
 
 See the [launcher verification record](../docs/app-launcher-checks.md) for actual
 outcomes and remaining platform limits.
+
+
+## Complete test packages for #114 and #115
+
+After the environment setup above, commit the build sources and ensure the
+checkout is clean. Run on the matching platform:
+
+```text
+python project/packaging/build_package.py --version 0.1.0-preview
+```
+
+Use the selected `.build-venv` Python path in place of `python`. The builder
+checks dependencies/Tk, builds, adds samples/notices/build details, runs the
+runtime smoke check, archives the app and checks an extracted copy. Output is
+under `dist/packages/`, with a source-commit suffix and SHA-256 checksum.
+Existing archives are not overwritten. Use a new version for a new candidate.
+Mac archives use ditto to preserve .app symlinks and permissions.
+
+The Build SARAH test apps workflow performs this on native Windows x64 and
+Apple Silicon macOS runners. After merge, the team can also start it through
+Actions > Build SARAH test apps > Run workflow. It uploads test artifacts only;
+it does not publish a release. Download artifacts within their 14-day retention
+period and retain the chosen tested package for submission separately.
+
+See [Anna and Jackie's testing guide](../docs/app-package-testing.md). Signing,
+GUI startup, clean-device checks and recipient security behaviour remain
+explicit manual follow-ups. The runner OS is recorded in build-info.json and
+must not be described as Jackie's or the tutor's actual computer.

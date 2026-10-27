@@ -162,3 +162,12 @@ once this planning PR is accepted.
 The [launcher checks](app-launcher-checks.md) record issue #113 development results.
 The [developer build guide](../packaging/README.md) covers the shared launcher and
 build recipe. Platform release and user checks remain under #114–#118.
+
+
+## Platform testing allocation update
+
+On 27 October Benjamin confirmed that Anna will test the Windows package and
+Jackie will test the Mac package after implementation. Benjamin coordinates the
+build preparation. This supersedes the earlier Windows testing allocation above.
+Use the [package testing guide](app-package-testing.md) and record actual results
+under #114/#115. This allocation is not a claim that testing is finished.
