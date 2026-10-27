@@ -15,6 +15,49 @@ import urllib.request
 from launcher import available_port, is_ready, stop_process
 
 
+def check_live_dashboard(url, timeout=45):
+    """Run the dashboard through the live server, not the in-process AppTest."""
+    from websockets.sync.client import connect
+    from streamlit.proto.BackMsg_pb2 import BackMsg
+    from streamlit.proto.ForwardMsg_pb2 import ForwardMsg
+
+    deadline = time.monotonic() + timeout
+    elements = set()
+    predict_id = None
+    prediction_requested = False
+    prediction_seen = False
+    with connect(url.replace('http://', 'ws://', 1) + '/_stcore/stream',
+                 origin=url, subprotocols=['streamlit'], open_timeout=10) as ws:
+        request = BackMsg()
+        request.rerun_script.query_string = ''
+        ws.send(request.SerializeToString())
+        while True:
+            message = ForwardMsg()
+            message.ParseFromString(ws.recv(timeout=max(.01, deadline - time.monotonic())))
+            kind = message.WhichOneof('type')
+            if kind == 'delta' and message.delta.HasField('new_element'):
+                element = message.delta.new_element
+                if element.HasField('exception'):
+                    raise AssertionError('Live dashboard raised an exception')
+                elements.add(element.WhichOneof('type'))
+                if element.HasField('button') and element.button.label == 'Predict':
+                    predict_id = element.button.id
+                if element.HasField('markdown') and 'Model-estimated High-Risk probability:' in element.markdown.body:
+                    prediction_seen = True
+            if kind == 'script_finished':
+                assert {'radio', 'number_input', 'button', 'file_uploader'} <= elements, elements
+                if prediction_requested:
+                    assert prediction_seen, 'Live prediction result missing'
+                    return 'form_and_prediction_passed'
+                assert predict_id, 'Predict button missing'
+                request = BackMsg()
+                widget = request.rerun_script.widget_states.widgets.add()
+                widget.id = predict_id
+                widget.trigger_value = True
+                ws.send(request.SerializeToString())
+                prediction_requested = True
+
+
 def check(command, output):
     env = os.environ.copy()
     for key in ('PYTHONHOME', 'PYTHONPATH', 'VIRTUAL_ENV'):
@@ -51,6 +94,7 @@ def check(command, output):
                 for asset in assets:
                     with opener.open(url + '/' + asset.removeprefix('./'), timeout=5) as response:
                         assert response.status == 200 and response.read(1)
+                live_dashboard = check_live_dashboard(url)
                 if end == 'normal_stop':
                     stop_process(process)
                 else:
@@ -67,7 +111,7 @@ def check(command, output):
                         raise AssertionError('Server port still open after shutdown')
                     time.sleep(.1)
                 results[end] = {'health_seconds_not_GUI_startup': health_time, 'static_assets': len(assets),
-                                'shutdown': 'passed'}
+                                'live_dashboard': live_dashboard, 'shutdown': 'passed'}
             finally:
                 stop_process(process)
         results['scope'] = 'Developer smoke check; no clean-device, GUI timing, downloaded trust or macOS claim.'
