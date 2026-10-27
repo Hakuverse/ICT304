@@ -8,7 +8,7 @@ It does not replace Anna's full Windows checklist or Jackie's macOS checks.
 ## Package and environment
 
 - Reported OS: Windows 11 Home 25H2. Exact OS build was not recorded for this check.
-- Browser: Opera GX, visible in the supplied dashboard screenshot. Version not recorded.
+- Browser: Opera GX, identified from the original supplied screenshot. Version not recorded.
 - Package: `SARAH-0.1.0-preview-windows-x64-ab4a604.zip`.
 - Source: `ab4a604a71ecef9f0585a137a014e7dd6fb861e2` (PR test-merge build).
 - [Actions run](https://github.com/Hakuverse/ICT304/actions/runs/40556703379),
@@ -26,11 +26,12 @@ It does not replace Anna's full Windows checklist or Jackie's macOS checks.
 |---|---|---|
 | First launch | Windows displayed "Windows protected your PC" and blocked initial startup. | [Warning screenshot](01-smartscreen-warning.png) |
 | More info | The expanded warning showed SARAH.exe, Unknown publisher and Run anyway. | [Expanded warning](02-smartscreen-more-info.png) |
-| Continue | Benjamin reported selecting Run anyway, after which the mini launcher and browser dashboard opened and worked. | Tester confirmation; supplied browser screenshot showed the dashboard and input controls. |
+| Continue | Benjamin reported selecting Run anyway, after which the mini launcher and browser dashboard opened and worked. | Tester confirmation and [loaded dashboard](03-dashboard-loaded.png), showing the page and input controls. |
 
 Outcome: **launch passed with an unsigned-application warning** on this device.
-The dashboard screenshot is retained locally because browser tabs and bookmarks
-contain personal information; it is not included in this public repository.
+The included dashboard screenshot was supplied by Benjamin without the browser
+tabs and bookmarks. It shows the loaded form, not a completed prediction or startup
+duration. The original screenshot containing personal information remains local.
 No separate screenshot of the mini launcher was supplied.
 
 Startup duration, offline operation, repeated launch, quit/restart, detailed
