@@ -152,6 +152,9 @@ the original scores for a different experiment.
 - [Sprint 5 plan](docs/sprint5-planning.md)
 - [Sprint 6 plan](docs/sprint6-planning.md)
 - [Sprint 7 plan](docs/sprint7-planning.md) - Phase E, 20-27 October
+- [Sprint 7 review and handover](docs/sprint7-review.md) (#82; pending peer review)
+- [Guide walkthrough](docs/guide-walkthrough.md) (#80)
+- [Demonstration video record](docs/demo-video-notes.md) (#81; video file held in the team workspace)
 - [Local deployment and handover guide](docs/deployment-guide.md) (#77)
 - [Maintenance and recovery plan](docs/maintenance-plan.md) (#78)
 - [Sprint 8 plan](docs/sprint8-planning.md) - Phase F, 27 October-3 November; final submission by 7 November

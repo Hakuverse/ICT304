@@ -2,7 +2,7 @@
 
 Working period: 27 October-3 November 2026. Phase F.
 Milestone: [Sprint 8](https://github.com/Hakuverse/ICT304/milestone/8).
-Prepared: 20 October 2026. Owners are to be agreed by the team.
+Prepared: 20 October 2026. Handover updated: 27 October 2026.
 
 ## Goal
 
@@ -25,15 +25,27 @@ final corrections and the actual submission by 7 November.
 These are planned outputs. A planning PR does not complete the issues or prove
 that the report, rehearsal, package checks or submission have happened.
 
-## Suggested pairs for the team to allocate
+## Proposed shared work
 
-- #93 and #94: final report, contribution statements and required forms.
-- #95 and #96: slides, speaking roles and rehearsal.
-- #97 and #98: package checks, readiness review and final handover.
+Benjamin proposed on 27 October that Benjamin, Anna and Jackie work together on
+all six issues, including the report, slides and review, instead of splitting
+exclusive pairs. This is the proposed working approach, not a recorded agreement
+by all three members. Confirm it during review of #82. Each person still checks
+their own contribution and private declaration details. Record who performed each
+check and ask another teammate to review it, even when the issue is shared.
 
-Benjamin coordinates agreement of Sprint 8 owners under #82 by the 27 October
-review. Individual Sprint 8 assignments remain to be agreed. All three members
-review their contributions, take part in rehearsal and help with peer review.
+| Issues | Shared work | Planning target |
+|---|---|---|
+| #93 / #94 | Report, evidence links, contributions and private forms | Draft checks by 30 October; review by 3 November |
+| #95 | Slides and speaking roles | Draft by 30 October; review by 3 November |
+| #96 | Full-team rehearsal and corrections | By 2 November, before the 3 November review |
+| #97 | Choose final commit, extract and test package | By 3 November |
+| #98 | Readiness review and final submission handover | 3 November; corrections/upload 4–7 November |
+
+These intermediate dates are proposed targets, not confirmed meeting dates.
+Still to agree: shared working arrangement, editing/session schedule, presenters,
+exact LMS cutoff and formats, uploader, backup and any post-project support limits.
+Record decisions in the relevant existing issues rather than creating duplicates.
 Keep legal names, student IDs, signatures and submission receipts private.
 Use Benjamin, Anna and Jackie in public project records.
 

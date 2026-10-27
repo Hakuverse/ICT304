@@ -352,5 +352,6 @@ assumed conversion value, not a real maximum or a proven reliability boundary.
 Values at or below 12 are not guaranteed reliable either. Do not substitute 12
 for a higher value to avoid the warning. Valid rows remain processed.
 Warnings apply to either risk label in both modes, separately from support rules.
-The `input_warning` column stays with each CSV result and export; it is blank
-when no warning applies. See the [finding and critical discussion](study-hours-limitation.md).
+The dashboard shows the full warning once above the CSV table and marks affected
+rows in `study_hours_warning` as "Yes - see warning above". The downloaded CSV
+keeps the full text in `input_warning`; unaffected rows have a blank warning. See the [finding and critical discussion](study-hours-limitation.md).
