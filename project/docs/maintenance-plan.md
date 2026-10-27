@@ -57,7 +57,7 @@ For each version the team accepts for use, keep a record of these items **togeth
 | Verification | Links to `pip check`, automated tests, sample prediction, relevant form/CSV checks and any platform or walkthrough results. |
 | Limitations | Known failures, untested areas and any reason the version should not be used for a particular purpose. |
 
-The deployment guide now identifies warning-ready code `2dfcdf3` from PR #108, subject to team review. The previous handover was `fe9685a`. Keep both version records; going back to the older version removes the study-hours warning. Neither guide review nor automated warning tests establish a recovery drill or a new macOS run.
+The deployment guide identifies Sprint 7 handover commit `914f808` after PR #107. The video at `847d460` shows the same code and models, with 110 tests reported by Anna. Earlier handovers include `fe9685a` without the warning and `2dfcdf3` before the CSV readability change. Keep historical records; returning to an older version can remove fixes. This review does not establish a recovery drill or a new macOS installation run.
 
 The earlier [Sprint 6 functional evidence](sprint6-review.md) records Windows and macOS checks at `9dc7132`. That is a historical tested baseline, but it predates later usability changes. The [response-time evidence](evidence/issue67/2026-10-20-6395d82/results.md) is from `6395d82` on one reference Mac. Keep these original tested commits attached to their evidence; do not relabel the old runs as tests of `fe9685a`.
 
@@ -86,4 +86,4 @@ Temporary downloaded CSV results on a tester’s computer should be removed when
 
 The [system test plan](system-test-plan.md) and [Sprint 6 review](sprint6-review.md) identify what was tested, on which commits, and what remains limited. In particular, the recorded timing is from one reference Mac and is not a performance guarantee on other computers. Software checks do not establish model accuracy for every population, calibrated probabilities, intervention benefit or safe automatic decisions.
 
-The #77 deployment instructions have been reviewed. Recheck this plan after the #80 teammate walkthrough and revise any setup or recovery step that the walkthrough finds unclear. If the team performs a recovery rehearsal, add a separate dated record with its operator, exact commit, environment, steps, observed results and evidence link. Until that record exists, describe recovery as **planned, not tested**.
+The #80 walkthrough and corrections are merged in #108, with later guide and CSV warning updates in #109/#110. The Windows Python fallback is documented in the deployment guide. See the [Sprint 7 review](sprint7-review.md) for the handover and remaining limits. If the team performs a recovery rehearsal, add a separate dated record with its operator, exact commit, environment, steps, observed results and evidence link. Until that record exists, describe recovery as **planned, not tested**.

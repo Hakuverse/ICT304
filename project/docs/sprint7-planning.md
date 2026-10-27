@@ -39,8 +39,7 @@ help with reviews. This allocation was confirmed by Benjamin on 20 October.
 ## Work carried forward
 
 [Sprint 6 evidence](sprint6-review.md) is consolidated under #70. Issues #65–#69
-are closed with merged records. After #70 merges, close milestone 6 and use this
-plan for Phase E.
+are closed with merged records. PR #103 merged the #70 handover; its recorded limitations continue into Phase E.
 
 Anna's #79 guide must explain attendance as an estimate, the prediction steps,
 and probability as a model estimate that can be wrong. S6-21 was not met and
@@ -85,3 +84,16 @@ Record actual recording and peer-review dates. Submit a video file as required
 by the brief; a viewing link is an additional convenience. #82 remains the
 Phase E review after these outputs are accepted. The local application trial is
 not the version to demonstrate.
+
+
+## 27 October handover review
+
+The 24 October update above is historical. PRs #108, #109, #110 and #107 are now
+merged; #77–#81 are closed. The current suite has 110 tests, reported in Anna's
+25 October video record at `847d460`. The handover baseline is `914f808`, which
+adds the video notes without changing code or models. See the [Sprint 7 review](sprint7-review.md).
+
+Issue #82 and milestone 7 remain open while Anna or Jackie reviews the handover PR.
+Benjamin proposes shared Sprint 8 work by Benjamin, Anna and Jackie on the report,
+slides and review rather than exclusive issue pairs. Team confirmation, detailed
+session dates, presenters, uploader and backup remain to be recorded under #93–#98.

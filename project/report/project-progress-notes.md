@@ -1,4 +1,4 @@
-# Project progress notes - updated 20 October 2026
+# Project progress notes - updated 27 October 2026
 
 SARAH currently supports single-student and class CSV predictions using
 Early-Warning, G1-only Confirmatory and G1+G2 Confirmatory models. Invalid CSV
@@ -73,13 +73,13 @@ passes and fast responses do not remove those limits.
 
 | Period | Work and owners | Plan |
 |---|---|---|
-| Sprint 6 closeout | Benjamin: merge the reviewed #70 evidence/handover PR, then close milestone 6 | [Review](../docs/sprint6-review.md) |
+| Sprint 6 closeout | #70 evidence/handover merged in PR #103 | [Review](../docs/sprint6-review.md) |
 | 20–27 October | Jackie #77/#78; Anna #79/#81; Benjamin #80/#82 | [Sprint 7](../docs/sprint7-planning.md) |
 | 27 October–3 November | Report/forms, slides/rehearsal, package/readiness checks #93–#98; Benjamin coordinates owner agreement under #82 | [Sprint 8](../docs/sprint8-planning.md) |
 | 4–7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover under #98 |
 
-Benjamin confirmed the Sprint 7 split on 20 October. Sprint 8 individual owners
-remain to be agreed. These dates describe planned work, not completed guides,
+Benjamin confirmed the Sprint 7 split on 20 October. Sprint 8 shared work is proposed by Benjamin; team confirmation and detailed
+responsibilities remain to be recorded. These dates describe planned work, not completed guides,
 rehearsals or submission.
 
 
@@ -91,8 +91,9 @@ assumed conversion value, not a real maximum or a proven reliability boundary.
 Values at or below 12 are not guaranteed reliable either. Do not substitute 12
 for a higher value to avoid the warning. Valid rows remain processed.
 Warnings apply to either risk label in both modes, separately from support rules.
-The `input_warning` column stays with each CSV result and export; it is blank
-when no warning applies. See the [finding and critical discussion](../docs/study-hours-limitation.md).
+The dashboard shows the full warning once above the CSV table and marks affected
+rows in `study_hours_warning` as "Yes - see warning above". The downloaded CSV
+keeps the full text in `input_warning`; unaffected rows have a blank warning. See the [finding and critical discussion](../docs/study-hours-limitation.md).
 
 
 ## 24 October status clarification
@@ -102,3 +103,29 @@ Deployment, maintenance and user guides are now merged (#104–#106). The #80
 walkthrough and input warning are under review in #108; #81's final recording
 update and #82 handover are still outstanding. Current warning-branch checks
 passed 109 tests; original 106-test evidence keeps its original date and commit.
+
+
+## 27 October Phase E handover
+
+Deployment (#104), maintenance (#105), user guide (#106/#109), walkthrough and
+study-hours warning (#108), CSV warning display (#110) and video notes (#107)
+are merged. Issues #77–#81 are closed. Local Streamlit deployment remains the
+supported scope; the separate Windows application trial is not the release.
+
+The final video was recorded on 25 October at `847d460`, lasts 6:11 and is named
+`SARAH_demonstration_v2.mp4`. Its record reports 110 passing automated tests.
+Benjamin confirmed on 27 October that the complete video plays and matches the
+screen. The video remains in the team workspace for submission as a video file.
+Handover commit `914f808` adds these notes without changing the demonstrated code.
+See the [video notes](../docs/demo-video-notes.md) and [Sprint 7 review](../docs/sprint7-review.md).
+
+The walkthrough identified the Windows Python launcher workaround and the
+study-hours extrapolation issue. The warning informs users; it does not improve
+model accuracy. Recovery remains a written plan, not a completed drill. Earlier
+platform, timing and usability evidence retains its original scope and commits;
+S6-21/S6-22 are not retrospectively changed to passes.
+
+The #82 handover is prepared for Anna or Jackie to review before Sprint 7 closes.
+The proposed Sprint 8 approach is shared work on the report, slides and review.
+The [Sprint 8 plan](../docs/sprint8-planning.md) lists target dates and outstanding
+team decisions; it does not claim that rehearsals, forms or submission are complete.

@@ -46,9 +46,11 @@ fallback actually used. The additional 40-hour example exposed a model limitatio
 see [study-hours finding](study-hours-limitation.md). The 24 October warning change
 has separate automated evidence; the screenshots above predate it.
 
-Before closing #80, Anna or Jackie should review this record and corrected guides,
-and check the new warning in the reviewed PR version. Keep the earlier evidence
-dates and model results. The local Windows application trial is separate and is
-not the deployment tested here.
+Issue #80 is closed following merged PR #108. PR #110 refined the CSV warning
+display, and #109 updated the user guide. Anna recorded the final demonstration
+at `847d460`; Benjamin confirmed on 27 October that it plays completely and matches
+the screen. See the [video record](demo-video-notes.md) and [Sprint 7 review](sprint7-review.md).
+Keep the earlier evidence dates and model results. The local Windows application
+trial is separate and is not the deployment tested here.
 
 [24 October automated warning checks](evidence/issue80/warning-followup/README.md): 109 tests passed.

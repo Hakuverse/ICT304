@@ -1,6 +1,7 @@
 # Current project workflow
 
-Reviewed for issue #70 on 20 October 2026 against `6bc1c18`.
+Originally reviewed for issue #70 on 20 October 2026 against `6bc1c18`.
+Updated for the Sprint 7 handover on 27 October against `914f808`.
 The dashboard, prediction code and recommendation function are connected.
 
 ```mermaid
@@ -16,13 +17,14 @@ flowchart TD
     C -->|Valid| I
     I --> J[Early-Warning, G1-only or G1-plus-G2]
     J --> K[Predict risk label and estimated probability]
-    K --> L{Risk label}
+    K --> W[Attach input warning when study hours exceed 12]
+    W --> L{Risk label}
     L -->|High Risk| M[Apply fixed recommendation rules]
     M --> N[Matched suggestions or general review guidance]
     L -->|Low Risk| O[Routine check-in guidance]
     N --> P[Display result and full support messages]
     O --> P
-    P --> Q[For CSV: download valid results with recommendations]
+    P --> Q[For CSV: download valid results with recommendations and input warning]
 ```
 
 ## Input and output rules
@@ -65,5 +67,6 @@ Phase E work. Current operation is local Streamlit use, not a hosted service.
 Study hours remain valid from 0–40. A value above 12 receives a caution because
 it exceeds the converted training values. This warning applies to both risk
 labels and all model setups, and stays in CSV exports as `input_warning`.
-It does not skip valid rows or change the targeted support rules. See the
+The CSV table uses a short `study_hours_warning` marker; the full warning is
+shown once above it. It does not skip valid rows or change the targeted support rules. See the
 [critical discussion](study-hours-limitation.md).
