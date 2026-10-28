@@ -69,7 +69,8 @@ reported platform, but their security settings and launch result remain separate
 ## First platform check
 
 Anna records results in `project/docs/evidence/app/windows/results.md` and Jackie
-in `project/docs/evidence/app/macos/results.md`. These files start as pending.
+in `project/docs/evidence/app/macos/results.md`. Jackie's 28 October device evidence
+is submitted for review; Anna's Windows record remains pending.
 Record actual results, including failures, rather than replacing every row with Pass.
 
 | Check | What to do | Screenshot when useful |
@@ -77,7 +78,7 @@ Record actual results, including failures, rather than replacing every row with 
 | W01 / M01 | Record OS/build/chip, browser, package name/source commit and whether Python is installed. Extract into a folder with spaces, outside the repo. | `01-package-and-platform.png` (hide personal details) |
 | W02 / M02 | Double-click SARAH.exe or SARAH.app. Record any downloaded-file/security warning exactly. Stop and report a block; do not disable security protections. | `02-first-launch.png` |
 | W03 / M03 | Check Starting then Ready, automatic browser opening and usable form controls. Record actual startup time; repeat according to the application plan. | `03-ready-dashboard.png` |
-| W04 / M04 | Close the browser tab, then use Open dashboard. Double-click the app again and check the already-open message. | `04-open-and-repeat.png` |
+| W04 / M04 | Close the browser tab, then use Open dashboard. Double-click the app again and record what happens. On macOS Finder may bring the existing launcher forward without a separate already-open message; confirm it remains usable. | `04-open-and-repeat.png` |
 | W05 / M05 | Early-Warning: attendance 40, study 4, failures 0. Expect High Risk 85.9% and attendance support. | `05-prediction.png` |
 | W06 / M06 | Confirmatory: attendance 80, study 40, failures 0, G1 12, G2 blank. Expect High Risk 66.1% and the study-hours warning. | `06-study-warning.png` |
 | W07 / M07 | In Confirmatory CSV mode upload sample_roster.csv: two valid, two skipped. Upload study_hours_warning_demo.csv: two valid, one warning. Download results and open the file. | `07-csv-results.png`, `08-downloaded-results.png`; retain fictional exported CSV |

@@ -74,8 +74,9 @@ Windows and Apple Silicon macOS from the PR version. Check the actual run result
 and artifact metadata. A green hosted build is not an M3/Tahoe or recipient
 security test. Later reruns must be identified separately.
 
-[Anna's Windows record](evidence/app/windows/results.md) and
-[Jackie's Mac record](evidence/app/macos/results.md) remain pending until they
-perform the [package checks](app-package-testing.md). No double-click timing,
-offline recipient workflow, Gatekeeper/SmartScreen acceptance, clean-device use
-or tutor-device pass is claimed here. #116/#117 and #97/#98 retain their roles.
+[Anna's Windows record](evidence/app/windows/results.md) remains pending.
+[Jackie's Mac record](evidence/app/macos/results.md), submitted 28 October for
+candidate ab4a604 from run 40556703379, records M01-M09, offline prediction,
+routine startup times and launch after a Gatekeeper exception. Peer review is
+pending. This was a developer computer; clean-device and tutor-device results
+are not established. #116/#117 and #97/#98 retain their roles.

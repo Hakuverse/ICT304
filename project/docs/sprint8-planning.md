@@ -94,7 +94,9 @@ by this plan.
 
 App status on 28 October: #112/#113 are closed following merged PRs #119/#120.
 PR #121 contains packaging, the Windows startup fix and preliminary evidence.
-Both hosted builds passed; Anna's and Jackie's full device checks remain pending.
+Both hosted builds passed. [Jackie's macOS evidence](evidence/app/macos/results.md)
+was submitted on 28 October and awaits peer review; Anna's Windows device checks
+remain pending.
 Use the [current packages and testing workflow](app-package-testing.md). #114/#115
 remain open, followed by #116 workflow checks, #117 another-person walkthrough
 and #118 release. App work is tracked within Sprint 8, not a separate milestone.

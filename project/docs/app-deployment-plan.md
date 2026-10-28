@@ -35,7 +35,8 @@ executable or a traditional installer. If the build needs supporting files, ship
 the complete application folder and tell users to keep it together. A ZIP or disk
 image could serve as the download container; the current #114/#115 candidates
 use ZIP archives. Extract the outer Actions ZIP, then the inner SARAH ZIP.
-macOS archives preserve app links and permissions. Actual device checks remain pending.
+macOS archives preserve app links and permissions. Jackie's [28 October Mac results](evidence/app/macos/results.md)
+are submitted for review; Anna's Windows device checks remain pending.
 
 Build Windows on Windows and macOS on macOS. Record the actual source commit,
 architecture, runtime, dependencies, build tool, artifact name and checksum.
@@ -150,7 +151,7 @@ usability targets into passes.
 ## Outstanding before release
 
 - Complete the agreed platform and startup measurements; planning PR #119 is merged.
-- Jackie verifies the reported macOS version/build and captures actual build details.
+- Review Jackie's recorded M3/Tahoe package checks and unsigned-app first-launch exception.
 - Check the downloaded app on the tutor's computer before claiming that device passed; matching chip and OS do not establish its security settings or launch outcome.
 - Test the chosen ZIP distribution, downloaded first-launch behaviour
   and final artifact on each platform under #114–#117.
