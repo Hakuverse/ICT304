@@ -49,6 +49,11 @@ recorded Unknown publisher and a successful launch after Run anyway. This does
 not establish that Anna's computer will behave the same way. Mac testers must
 record their own Gatekeeper outcome; Windows steps do not apply to macOS.
 
+Jackie's [macOS first-opening guide](evidence/app/macos/results.md#first-opening-on-macos)
+records the Done > Privacy & Security > Open Anyway sequence observed on his Mac.
+His M01-M09 tests used the app's bundled Python 3.12.10, not the Python 3.13.3
+or 3.13.9 installations on his computer.
+
 ## Add evidence and review PR #121
 
 Testing can start before approval or merge. Anna fills the Windows record and

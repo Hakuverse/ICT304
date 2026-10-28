@@ -15,13 +15,39 @@ screenshots and fictional CSV exports. Peer review is pending.
 | Source | `ab4a604a71ecef9f0585a137a014e7dd6fb861e2` |
 | Build | [Actions run 40556703379](https://github.com/Hakuverse/ICT304/actions/runs/40556703379) |
 | Installation location | Desktop folder named SARAH package test, outside the repository, with spaces in the path |
-| Python installed / developer computer | Yes: Python 3.13.3 / yes. Benjamin confirmed the installed version on 28 October 2026 to resolve the conflicting versions in the notes. This is not the bundled runtime version. |
+| Python used for M01-M09 | SARAH's bundled Python 3.12.10, confirmed by Benjamin on 28 October 2026. |
+| Other Python versions installed / developer computer | Python 3.13.3 and 3.13.9 / yes. Neither installed version was used for these packaged-app tests. |
 | Download security | Gatekeeper initially blocked SARAH; Jackie used the app-specific Open Anyway option, then the launcher and browser opened. |
 
 Jackie reported a matching package checksum. The archive and build-info/checksum
 files were not included in this evidence submission, so this record does not
 claim a separate verification of his downloaded archive. Retain those files
 with the original test package.
+
+## First opening on macOS
+
+Jackie observed the following sequence for this downloaded package. Use these
+steps only for the team's expected SARAH package from the linked build, after
+checking its source and checksum.
+
+1. Double-click **SARAH.app** in Finder. The first warning says Apple could not
+   verify SARAH and offers **Move to Trash** and **Done**. Click **Done**.
+2. Open **System Settings > Privacy & Security** and scroll down to **Security**.
+3. Find the message that **SARAH was blocked to protect your Mac**, then click
+   **Open Anyway** beside that message.
+4. A confirmation window offers **Move to Trash**, **Open Anyway** and **Done**.
+   Click **Open Anyway** to allow this SARAH application to open. Authenticate
+   if macOS asks.
+5. Wait for the SARAH launcher to show **Ready** and the browser dashboard to
+   open. If needed, use **Open dashboard** in the launcher.
+
+See the [initial warning](screenshots/M02-gatekeeper-block.png) and
+[confirmation window](screenshots/M02-open-anyway-confirmation.png).
+Jackie's later launches of this same approved app did not require repeating the
+exception. A new download, changed app or different device policy may prompt
+again, so this is not a guarantee that the warning appears only once everywhere.
+If Open Anyway is unavailable, record the block for the team to review. Do not
+disable Gatekeeper or change the general security settings.
 
 ## Results
 
