@@ -1,0 +1,49 @@
+name: Build SARAH test apps
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'project/packaging/**'
+      - 'project/code/**'
+      - 'project/models/**'
+      - '.github/workflows/app-packages.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2025
+            arch: x64
+            artifact: windows-x64
+          - os: macos-15
+            arch: arm64
+            artifact: macos-arm64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          architecture: ${{ matrix.arch }}
+      - name: Install build dependencies
+        run: python -m pip install -r project/code/requirements.txt pyinstaller==6.22.3
+      - name: Check package and launcher code
+        run: python -m unittest discover -s project/packaging -v
+      - name: Check application behaviour
+        run: python -m unittest discover -s project/code -v
+      - name: Build and verify archived app
+        run: python project/packaging/build_package.py --version 0.1.0-preview
+      - name: Upload test package
+        uses: actions/upload-artifact@v6
+        with:
+          name: SARAH-${{ matrix.artifact }}-${{ github.run_number }}
+          path: dist/packages/*
+          if-no-files-found: error
+          retention-days: 14

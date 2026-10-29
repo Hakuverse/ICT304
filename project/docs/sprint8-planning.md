@@ -82,8 +82,8 @@ This plan supports [#70](https://github.com/Hakuverse/ICT304/issues/70) and
 
 Benjamin confirmed the [application deployment plan](app-deployment-plan.md)
 decisions on 27 October. #112–#118 cover the launcher, Windows/macOS packages,
-checks, first-use walkthrough and release. Benjamin handles Windows, Jackie
-macOS, and Anna wording/instructions and review, with shared release decisions.
+checks, first-use walkthrough and release. Benjamin coordinates builds, Anna
+tests Windows and Jackie tests macOS, with shared release decisions.
 Builds are unsigned prototypes; platform security restrictions must be tested.
 The 30-second startup target is separate from earlier prediction timings.
 
@@ -91,3 +91,13 @@ Report/slides preparation continues in parallel. Coordinate #97/#98 with the
 packaged-app evidence before including releases in the submission. The 3 November
 review decides which platforms are ready; no package test or release is claimed
 by this plan.
+
+App status on 29 October: #112/#113 are closed following merged PRs #119/#120.
+PR #121 contains packaging, the Windows startup fix and preliminary evidence.
+Both hosted builds passed. [Jackie's macOS evidence](evidence/app/macos/results.md)
+was submitted on 28 October. [Anna's Windows evidence](evidence/app/windows/results.md)
+was submitted on 29 October. Both await peer review. Windows post-approval reboot timing was confirmed at
+13.20 seconds, completing the routine startup measurements within the target.
+Use the [current packages and testing workflow](app-package-testing.md). #114/#115
+remain open, followed by #116 workflow checks, #117 another-person walkthrough
+and #118 release. App work is tracked within Sprint 8, not a separate milestone.

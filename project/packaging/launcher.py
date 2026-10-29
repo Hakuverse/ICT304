@@ -168,12 +168,19 @@ def watch_launcher(pipe):
 def serve(port, token):
     if not token or any(c not in "0123456789abcdef" for c in token):
         raise ValueError("Invalid session path")
-    # A windowed Windows EXE has no sys.stdin; the redirected OS fd is still present.
-    parent_pipe = os.fdopen(os.dup(0), "rb", buffering=0)
-    threading.Thread(target=watch_launcher, args=(parent_pipe,), daemon=True).start()
     root = bundle_root()
     validate_resources(root)
     sys.path.insert(0, str(root / "project/code"))
+    # Native numerical libraries can deadlock on Windows if first loaded while
+    # another thread reads redirected stdin (numpy/numpy#24290). Load all model
+    # dependencies before the pipe watcher, including those first used by Predict.
+    from predict import load_model
+    load_model("early_warning")
+    load_model("confirmatory", "g1")
+    load_model("confirmatory", "g1_g2")
+    # A windowed Windows EXE has no sys.stdin; the redirected OS fd is still present.
+    parent_pipe = os.fdopen(os.dup(0), "rb", buffering=0)
+    threading.Thread(target=watch_launcher, args=(parent_pipe,), daemon=True).start()
     from streamlit.web import cli
     sys.argv = ["streamlit", "run", str(root / "project/code/dashboard.py"),
                 "--global.developmentMode=false", "--server.address=127.0.0.1",

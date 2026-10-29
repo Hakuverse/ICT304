@@ -18,6 +18,8 @@ message and does not start another service. The service binds to a free loopback
 port with a random session path; the browser opens after its health check passes.
 The child watches a pipe owned by the launcher and exits when it closes, including
 when the launcher crashes. Quit also terminates only the child it started.
+Before starting that watcher, the child loads all three models so native numerical
+libraries are initialised before a background read of stdin on Windows.
 
 The GUI reports a slower start after 30 seconds and stops a failed startup after
 90 seconds. The 90-second timeout does not change the agreed 30-second target.
@@ -47,7 +49,7 @@ py -3.12 -m venv .build-venv
 .build-venv\Scripts\python.exe project/packaging/launcher.py
 ```
 
-macOS Terminal (developer steps; actual Mac build still needs #115 verification):
+macOS Terminal (developer steps; Jackie's M3/Tahoe device checks remain under #115):
 
 ```bash
 python3.12 -m venv .build-venv
@@ -88,17 +90,55 @@ configured. Mac build-tool ad-hoc signing is not verified publisher identity.
 
 The development smoke check verifies all three model setups, the 40-hour warning,
 CSV export, dashboard rendering, served HTML/static assets, normal stop and
-parent-pipe closure. It does not click the native GUI or measure human-visible
+parent-pipe closure. It also opens a live WebSocket session and requires both
+the form and a prediction result, catching faults that a health check misses.
+The developer check needs `websockets>=12,<17` (included by current Streamlit;
+install it separately if using an older environment).
+It does not click the native GUI or measure human-visible
 startup. For source checking, omit `--executable` and keep `--output`.
 
 ## Before distributing
 
-Keep builds and virtual environments out of source commits. This issue provides
-launcher/build sources and a local development check, not a final installer or
-release. #114/#115 must prepare complete packages with licences, version records,
-checksums and download instructions. #116/#117 must check the actual GUI, downloads,
+Keep builds and virtual environments out of source commits. PR #121 provides
+complete test candidates with notices, version records, checksums and download
+instructions, not an accepted release. #114/#115 still require reviewed platform
+evidence. #116/#117 must check the actual GUI, downloads,
 security prompts, clean-device behaviour, startup timing and another-person use.
 Use #118 to publish accepted artifacts and update user-facing instructions.
 
 See the [launcher verification record](../docs/app-launcher-checks.md) for actual
 outcomes and remaining platform limits.
+
+
+## Complete test packages for #114 and #115
+
+After the environment setup above, commit the build sources and ensure the
+checkout is clean. Run on the matching platform:
+
+```text
+python project/packaging/build_package.py --version 0.1.0-preview
+```
+
+Use the selected `.build-venv` Python path in place of `python`. The builder
+checks dependencies/Tk, builds, adds samples/notices/build details, runs the
+runtime smoke check, archives the app and checks an extracted copy. Output is
+under `dist/packages/`, with a source-commit suffix and SHA-256 checksum.
+Existing archives are not overwritten. Use a new version for a new candidate.
+Mac archives use ditto to preserve .app symlinks and permissions.
+
+The Build SARAH test apps workflow performs this on native Windows x64 and
+Apple Silicon macOS runners. After merge, the team can also start it through
+Actions > Build SARAH test apps > Run workflow. It uploads test artifacts only;
+it does not publish a release. Download artifacts within their 14-day retention
+period and retain the chosen tested package for submission separately.
+
+See [Anna and Jackie's testing guide](../docs/app-package-testing.md). Signing,
+GUI startup, clean-device checks and recipient security behaviour remain
+explicit manual follow-ups. The runner OS is recorded in build-info.json and
+must not be described as Jackie's or the tutor's actual computer.
+
+Current candidate links and the evidence-before-approval process are maintained
+in that guide. Anna tests Windows, Jackie tests macOS, and Benjamin coordinates
+builds and evidence. Do not rebuild solely for a documentation-only change;
+retain the tested package's own source identity. Recheck affected behaviour when
+application or packaging code changes.

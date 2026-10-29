@@ -55,13 +55,15 @@ The hidden Tk check programmatically exercised source GUI callbacks with the
 window hidden and browser opening mocked. It was a developer check, not a human
 visual review or a packaged GUI walkthrough.
 
-## Still required
+## Follow-up status (updated 28 October 2026)
 
-- Anna or Jackie reviews the launcher PR before merge.
+- PR #120 is merged and #113 is closed. The results above retain their original scope.
+- PR #121 fixes the later Windows startup fault and adds live-server prediction checks;
+  see [package build checks](app-package-build-checks.md) for current evidence.
 - #114: Windows artifact preparation, visual/double-click checks, licences,
   checksums and actual downloaded first-launch restrictions.
-- #115: actual M3/macOS build, Tk support, Finder launch, quit behaviour and
-  Gatekeeper checks. The shared Mac build recipe is not a tested Mac release.
+- #115: hosted Apple Silicon builds passed; Jackie's actual M3/Tahoe Finder launch,
+  quit behaviour and Gatekeeper checks remain pending. No accepted Mac release yet.
 - #116: full packaged workflow and real GUI startup timing on each target device.
 - #117: another person's download-to-use walkthrough and clean-device evidence.
 - #118: accepted release assets and user-facing guide/report updates.

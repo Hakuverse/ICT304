@@ -1,0 +1,32 @@
+{
+  "early_warning": [
+    "High Risk",
+    0.859
+  ],
+  "g1": [
+    "High Risk",
+    0.818
+  ],
+  "g1_g2": [
+    "High Risk",
+    0.842
+  ],
+  "warning": [
+    "High Risk",
+    0.661
+  ],
+  "dashboard_form_warning_and_csv_export": "passed",
+  "normal_stop": {
+    "health_seconds_not_GUI_startup": 1.453,
+    "static_assets": 69,
+    "live_dashboard": "form_and_prediction_passed",
+    "shutdown": "passed"
+  },
+  "parent_pipe_closed": {
+    "health_seconds_not_GUI_startup": 1.406,
+    "static_assets": 69,
+    "live_dashboard": "form_and_prediction_passed",
+    "shutdown": "passed"
+  },
+  "scope": "Developer smoke check; no clean-device, GUI timing, downloaded trust or macOS claim."
+}

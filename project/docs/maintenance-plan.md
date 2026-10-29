@@ -8,6 +8,13 @@ SARAH currently runs as a **local Streamlit prototype**. This document does not 
 
 **Recovery status:** The steps below are a written plan. No recovery drill is claimed by this document. A drill may be marked successful only after its date, operator, commit, steps and actual results have been recorded separately.
 
+**Packaged-app work:** Follow the [application plan](app-deployment-plan.md) and
+[current package guide](app-package-testing.md) for #112–#118. Keep each complete
+package with its version, build-info and checksum; do not mix an executable or
+_internal folder from different builds. Only return to an accepted tested package,
+not the superseded candidates that had the Windows loading fault. A package
+recovery drill and final release instructions remain follow-up work.
+
 ## Roles and support limits
 
 | Person or role | Responsibility during the project |
