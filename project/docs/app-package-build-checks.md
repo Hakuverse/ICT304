@@ -22,8 +22,8 @@ the study-hours warning and CSV checks. A browser check also displayed the full
 form and returned High Risk, 85.9% for attendance 40, study hours 4, failures 0.
 All 18 launcher/package unit tests passed. See the
 [corrected local runtime record](evidence/app/windows/startup-fix-runtime-check.json).
-This is a local development check; Anna's full Windows checks and Jackie's Mac
-checks still need the rebuilt candidate. Check PR #121 for the replacement build.
+This was a local development check. Anna and Jackie subsequently tested the
+rebuilt ab4a604 candidate; see the device records below for outcomes and gaps.
 
 The replacement [hosted build](https://github.com/Hakuverse/ICT304/actions/runs/40556703379)
 passed on Windows and Apple Silicon macOS for PR head `9cdda7a`. Both platforms
@@ -74,7 +74,10 @@ Windows and Apple Silicon macOS from the PR version. Check the actual run result
 and artifact metadata. A green hosted build is not an M3/Tahoe or recipient
 security test. Later reruns must be identified separately.
 
-[Anna's Windows record](evidence/app/windows/results.md) remains pending.
+[Anna's Windows record](evidence/app/windows/results.md), submitted 29 October,
+records working functional checks and launch after SmartScreen. The first download
+launch took 74.67 seconds including the warning; later starts were 11.15, 6.46
+and 4.35 seconds. A separate routine post-approval reboot measurement is pending.
 [Jackie's Mac record](evidence/app/macos/results.md), submitted 28 October for
 candidate ab4a604 from run 40556703379, records M01-M09, offline prediction,
 routine startup times and launch after a Gatekeeper exception. Peer review is

@@ -92,11 +92,12 @@ packaged-app evidence before including releases in the submission. The 3 Novembe
 review decides which platforms are ready; no package test or release is claimed
 by this plan.
 
-App status on 28 October: #112/#113 are closed following merged PRs #119/#120.
+App status on 29 October: #112/#113 are closed following merged PRs #119/#120.
 PR #121 contains packaging, the Windows startup fix and preliminary evidence.
 Both hosted builds passed. [Jackie's macOS evidence](evidence/app/macos/results.md)
-was submitted on 28 October and awaits peer review; Anna's Windows device checks
-remain pending.
+was submitted on 28 October. [Anna's Windows evidence](evidence/app/windows/results.md)
+was submitted on 29 October. Both await peer review; Windows routine post-approval
+reboot timing remains outstanding.
 Use the [current packages and testing workflow](app-package-testing.md). #114/#115
 remain open, followed by #116 workflow checks, #117 another-person walkthrough
 and #118 release. App work is tracked within Sprint 8, not a separate milestone.

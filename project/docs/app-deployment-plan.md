@@ -36,7 +36,8 @@ the complete application folder and tell users to keep it together. A ZIP or dis
 image could serve as the download container; the current #114/#115 candidates
 use ZIP archives. Extract the outer Actions ZIP, then the inner SARAH ZIP.
 macOS archives preserve app links and permissions. Jackie's [28 October Mac results](evidence/app/macos/results.md)
-are submitted for review; Anna's Windows device checks remain pending.
+are submitted for review. [Anna's Windows evidence](evidence/app/windows/results.md)
+was submitted on 29 October; routine post-approval reboot timing remains outstanding.
 
 Build Windows on Windows and macOS on macOS. Record the actual source commit,
 architecture, runtime, dependencies, build tool, artifact name and checksum.

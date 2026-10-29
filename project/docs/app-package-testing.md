@@ -75,7 +75,8 @@ reported platform, but their security settings and launch result remain separate
 
 Anna records results in `project/docs/evidence/app/windows/results.md` and Jackie
 in `project/docs/evidence/app/macos/results.md`. Jackie's 28 October device evidence
-is submitted for review; Anna's Windows record remains pending.
+is submitted for review. Anna's 29 October Windows evidence is also submitted;
+W03 still needs a routine post-approval reboot timing result.
 Record actual results, including failures, rather than replacing every row with Pass.
 
 | Check | What to do | Screenshot when useful |
