@@ -1,0 +1,4 @@
+student_id,attendance_pct,study_hours,failures,G1,G2
+FNEG,80,4,-1,12,
+FFRACTION,80,4,1.5,12,
+F4,80,4,4,12,
