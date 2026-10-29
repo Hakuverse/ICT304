@@ -15,7 +15,7 @@ It does not fill or replace Anna's results below.
 | Source commit / Actions run | `ab4a604a71ecef9f0585a137a014e7dd6fb861e2` (build-info.json, built 2026-10-27 18:08 UTC, bundled Python 3.12.10) / [run 40556703379](https://github.com/Hakuverse/ICT304/actions/runs/40556703379), artifact `SARAH-windows-x64-4` |
 | Python installed? Developer computer? | Yes, Python 3.14.7 is installed, but the package uses its bundled Python 3.12.10. Yes, developer computer: this laptop is used for the SARAH repository, so this is not a clean-machine check |
 | Download route and security messages | Artifact downloaded from GitHub Actions in Edge; no download warning. Outer download and inner SARAH ZIP extracted to `C:\Users\<user>\SARAH package test` (path with spaces, outside the repository). First launch: Microsoft Defender SmartScreen "Windows protected your PC" (details in W02); Run anyway chosen |
-| Startup times / browser already open? | Timed with a phone stopwatch from double-click until the Attendance field could be used. First downloaded launch after restart: 1 min 14.67 s, including about 15 s on the SmartScreen dialog; Edge not opened before launch. Later launches after Quit SARAH: 11.15 s, 6.46 s, 4.35 s; Edge already open; no SmartScreen |
+| Startup times / browser already open? | Timed with a phone stopwatch from double-click until the Attendance field could be used. First downloaded launch after restart: 1 min 14.67 s, including about 15 s on the SmartScreen dialog; Edge not opened before launch. Later launches after Quit SARAH: 11.15 s, 6.46 s, 4.35 s; Edge already open; no SmartScreen. Follow-up after reboot and prior approval: 13.20 s, Edge initially closed then opened automatically, no SmartScreen |
 
 Use the [package testing guide](../../../app-package-testing.md).
 
@@ -23,7 +23,7 @@ Use the [package testing guide](../../../app-package-testing.md).
 |---|---|---|
 | W01 Platform and extraction | Pass. Details above recorded. Source commit `ab4a604` confirmed in build-info.json; package and SARAH.exe hashes match. Folder contains SARAH.exe, `_internal`, `third-party-notices`, START-HERE.txt, build files and both sample CSVs | [W01-package-and-platform.png](screenshots/W01-package-and-platform.png) (email in About Windows hidden). No help needed |
 | W02 Downloaded first launch | Pass with expected unsigned-app warning. Double-click showed "Windows protected your PC: Microsoft Defender SmartScreen prevented an unrecognized app from starting. Running this app might put your PC at risk." After More info: App: SARAH.exe, Publisher: Unknown publisher. Hashes had been checked, so Run anyway was chosen; SARAH launched. No security settings changed; normal (non-administrator) launch | [W02-smartscreen-first-launch.png](screenshots/W02-smartscreen-first-launch.png). No help needed |
-| W03 Ready and startup timing | Functional launch passed; routine startup target not fully verified. Launcher showed "Ready. Your dashboard is available in the browser." The Starting status was not observed by the tester. Edge opened the dashboard automatically and the form was usable. First launch 1 min 14.67 s (about 15 s on SmartScreen); later launches 11.15 s, 6.46 s, 4.35 s | [W03-ready-dashboard.png](screenshots/W03-ready-dashboard.png) (local address hidden). Observation: Streamlit's "Deploy" button is visible at the top right of the dashboard |
+| W03 Ready and startup timing | Pass. Routine startup target met: post-approval reboot launch 13.20 s, with Edge initially closed and no SmartScreen; Edge opened automatically. Launcher showed "Ready. Your dashboard is available in the browser." The Starting status was not observed by the tester. Edge opened the dashboard automatically and the form was usable. First launch 1 min 14.67 s (about 15 s on SmartScreen); later launches 11.15 s, 6.46 s, 4.35 s | [W03-ready-dashboard.png](screenshots/W03-ready-dashboard.png) (local address hidden). Observation: Streamlit's "Deploy" button is visible at the top right of the dashboard |
 | W04 Reopen browser / repeated launch | Pass. After closing the dashboard tab, Open dashboard brought the dashboard back. Double-clicking SARAH.exe again while it was running showed "SARAH is already open: Use Open dashboard in the existing SARAH window. Quit that window before starting another copy." No SmartScreen on this attempt. After OK, the original launcher remained and worked | [W04-already-open-message.png](screenshots/W04-already-open-message.png). No help needed |
 | W05 Early-Warning prediction | Pass. Attendance 40, study hours 4, failures 0: High Risk, 85.9%, with the attendance support suggestion (attendance estimate 60% or below). Matches expected | [W05-early-warning-result.png](screenshots/W05-early-warning-result.png). No help needed |
 | W06 Study-hours warning | Pass. Confirmatory, attendance 80, study hours 40, failures 0, G1 12, G2 blank: High Risk, 66.1%, model used G1 only, study-hours warning shown, general staff-review suggestion. Matches expected | [W06-study-hours-warning.png](screenshots/W06-study-hours-warning.png). No help needed |
@@ -31,7 +31,7 @@ Use the [package testing guide](../../../app-package-testing.md).
 | W08 Offline prediction | Pass. Wi-Fi turned off from Windows Quick Settings while SARAH was running; Early-Warning 40 / 4 / 0 still gave High Risk 85.9% with attendance support. Wi-Fi turned back on after the result | No screenshot used: the captured image does not show the Wi-Fi status. Method recorded here. No help needed |
 | W09 Quit/restart as normal user | Pass. Quit SARAH closed the launcher. The old dashboard tab showed Streamlit's "Connection error: Streamlit server is not responding. Are you connected to the internet?" After F5, Edge showed "127.0.0.1 refused to connect" (ERR_CONNECTION_REFUSED). SARAH reopened by normal double-click (not Run as administrator), without SmartScreen; three relaunches timed as above | [W09-after-quit-connection-refused.png](screenshots/W09-after-quit-connection-refused.png), [W09-old-tab-connection-error.png](screenshots/W09-old-tab-connection-error.png). Observation: the Streamlit message mentions the internet, although SARAH does not need internet; this could confuse a user after Quit |
 
-Reviewer/date: pending. Functional checks found no blocking problem, but the routine post-reboot startup measurement is still missing.
+Reviewer/date: pending. Functional checks found no blocking problem; the routine startup target is met on this device.
 Observations for team review: the "Deploy" button is visible; after Quit, the old tab's
 Streamlit message refers to the internet; the Starting status was not seen on first launch.
 Limitations: one developer laptop with Python installed (not a clean machine); timings are
@@ -46,14 +46,14 @@ The first downloaded launch took **74.67 seconds**, including approximately
 an estimated prompt time would not produce a valid routine-start measurement.
 The three later starts (11.15, 6.46 and 4.35 seconds) met the 30-second target.
 
-The [agreed method](../../../app-deployment-plan.md#startup-timing-method) also
-requires a routine launch after reboot. Anna's first post-reboot measurement
-was also the initial SmartScreen launch, so a separate post-approval reboot
-check remains outstanding. Restart Windows, keep Edge closed, launch the same
-package, and time from double-click until the Attendance field is usable.
-Record the duration, date and any warning; do not replace the initial result.
-If the routine start exceeds 30 seconds, investigate or disclose the miss for
-the team's release decision.
+The [agreed method](../../../app-deployment-plan.md#startup-timing-method)
+requires a routine launch after reboot as well as three subsequent launches.
+Benjamin supplied Anna's follow-up on 29 October 2026: **13.20 seconds** from
+double-click until Attendance was usable, after reboot and previous SmartScreen
+approval. Edge was closed beforehand and opened automatically. No SmartScreen
+prompt appeared. This is a tester-reported timing; no additional screenshot was
+supplied. All four routine measurements meet the 30-second target on this device.
+The original 74.67-second first-download experience remains recorded separately.
 
 ## Evidence review
 
@@ -74,5 +74,5 @@ Windows and macOS tests both refer to candidate ab4a604 and bundled Python
 The visible Deploy button and the internet wording after Quit are usability
 observations for team review, not evidence that prediction requires internet.
 No new package or repeat of all functional cases is needed for this
-documentation update. Keep #114 open until the timing follow-up and peer review
-are resolved; #116-#118 remain separate.
+documentation update. Keep #114 open until peer review is complete;
+#116-#118 remain separate.

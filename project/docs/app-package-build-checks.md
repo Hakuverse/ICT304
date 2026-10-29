@@ -77,7 +77,7 @@ security test. Later reruns must be identified separately.
 [Anna's Windows record](evidence/app/windows/results.md), submitted 29 October,
 records working functional checks and launch after SmartScreen. The first download
 launch took 74.67 seconds including the warning; later starts were 11.15, 6.46
-and 4.35 seconds. A separate routine post-approval reboot measurement is pending.
+and 4.35 seconds. The separate post-approval reboot launch was reported at 13.20 seconds, with Edge initially closed and no SmartScreen; the routine startup target is met.
 [Jackie's Mac record](evidence/app/macos/results.md), submitted 28 October for
 candidate ab4a604 from run 40556703379, records M01-M09, offline prediction,
 routine startup times and launch after a Gatekeeper exception. Peer review is
