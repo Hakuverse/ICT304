@@ -6,7 +6,9 @@ the results. No programming knowledge is needed after setup.
 
 For the Windows/macOS double-click test packages, use the
 [package opening and testing guide](app-package-testing.md), including extraction,
-unsigned-app warnings and Quit SARAH. These packages are under review in PR #121;
+unsigned-app warnings and Quit SARAH. Package and workflow checks were reviewed
+in merged PRs #121 and #122; the [download-to-use walkthrough](app-walkthrough.md)
+is the next check under #117. These are test packages, not a final public release;
 the source-based setup remains available. The prediction instructions below apply
 to both routes. Final release downloads will be recorded under #118.
 

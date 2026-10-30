@@ -1,9 +1,9 @@
 # Windows and macOS test packages
 
-Prepared for #114 and #115 on 27 October 2026. Anna will test Windows and Jackie
-will test macOS, as confirmed by Benjamin. Packages are test candidates, not an
-approved public release. Do not close either issue until its actual platform
-results have been reviewed.
+Originally prepared for #114/#115 on 27 October 2026. Their device evidence was
+reviewed in merged PR #121; #116 workflow evidence was reviewed in merged PR #122.
+Continue with the [#117 download-to-use walkthrough](app-walkthrough.md).
+The same ab4a604 packages remain test candidates, not a final published release.
 
 ## Get the correct package
 
@@ -54,7 +54,7 @@ records the Done > Privacy & Security > Open Anyway sequence observed on his Mac
 His M01-M09 tests used the app's bundled Python 3.12.10, not the Python 3.13.3
 or 3.13.9 installations on his computer.
 
-## Add evidence and review PR #121
+## Historical #114/#115 evidence procedure (PR #121, now merged)
 
 Testing can start before approval or merge. Anna fills the Windows record and
 Jackie fills the Mac record. Add screenshots and fictional exports in their
