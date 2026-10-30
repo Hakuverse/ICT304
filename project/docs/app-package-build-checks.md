@@ -30,13 +30,13 @@ passed on Windows and Apple Silicon macOS for PR head `9cdda7a`. Both platforms
 passed the live form/prediction checks before archiving and after extraction.
 Benjamin's [preliminary Windows launch record](evidence/app/windows/benjamin-preliminary/README.md)
 identifies downloaded candidate `ab4a604` and its observed SmartScreen warning.
-Full platform acceptance remains pending.
+Anna approved the Windows/macOS evidence in PR #121 on 29 October; it is merged. See the [published release record](app-release-notes.md) for later workflow and walkthrough acceptance.
 
 ## Earlier build records
 
 Recorded 27 October 2026. These are development/build checks, separate from
 Anna and Jackie's manual results. PR #121 implements packaging for #114/#115;
-those issues remain open until their platform evidence is reviewed.
+those issues were closed after the platform evidence was reviewed and PR #121 merged.
 
 ## Local Windows candidate
 
@@ -80,6 +80,5 @@ launch took 74.67 seconds including the warning; later starts were 11.15, 6.46
 and 4.35 seconds. The separate post-approval reboot launch was reported at 13.20 seconds, with Edge initially closed and no SmartScreen; the routine startup target is met.
 [Jackie's Mac record](evidence/app/macos/results.md), submitted 28 October for
 candidate ab4a604 from run 40556703379, records M01-M09, offline prediction,
-routine startup times and launch after a Gatekeeper exception. Peer review is
-pending. This was a developer computer; clean-device and tutor-device results
+routine startup times and launch after a Gatekeeper exception. Anna approved the platform evidence in merged PR #121 on 29 October. This was a developer computer; clean-device and tutor-device results
 are not established. #116/#117 and #97/#98 retain their roles.

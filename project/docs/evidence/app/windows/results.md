@@ -1,6 +1,6 @@
 # Windows package results
 
-Tester: Anna. Status: device checks completed 29 October 2026; awaiting team review.
+Tester: Anna. Status: device checks completed 29 October 2026; reviewed through merged PR #121.
 
 Benjamin's separate [preliminary launch check](benjamin-preliminary/README.md)
 records the SmartScreen warning and successful launch on 28 October 2026.
@@ -31,7 +31,7 @@ Use the [package testing guide](../../../app-package-testing.md).
 | W08 Offline prediction | Pass. Wi-Fi turned off from Windows Quick Settings while SARAH was running; Early-Warning 40 / 4 / 0 still gave High Risk 85.9% with attendance support. Wi-Fi turned back on after the result | No screenshot used: the captured image does not show the Wi-Fi status. Method recorded here. No help needed |
 | W09 Quit/restart as normal user | Pass. Quit SARAH closed the launcher. The old dashboard tab showed Streamlit's "Connection error: Streamlit server is not responding. Are you connected to the internet?" After F5, Edge showed "127.0.0.1 refused to connect" (ERR_CONNECTION_REFUSED). SARAH reopened by normal double-click (not Run as administrator), without SmartScreen; three relaunches timed as above | [W09-after-quit-connection-refused.png](screenshots/W09-after-quit-connection-refused.png), [W09-old-tab-connection-error.png](screenshots/W09-old-tab-connection-error.png). Observation: the Streamlit message mentions the internet, although SARAH does not need internet; this could confuse a user after Quit |
 
-Reviewer/date: pending. Functional checks found no blocking problem; the routine startup target is met on this device.
+Reviewed by Anna on 29 October 2026; approved and merged in PR #121. Functional checks found no blocking problem; the routine startup target is met on this device.
 Observations for team review: the "Deploy" button is visible; after Quit, the old tab's
 Streamlit message refers to the internet; the Starting status was not seen on first launch.
 Limitations: one developer laptop with Python installed (not a clean machine); timings are

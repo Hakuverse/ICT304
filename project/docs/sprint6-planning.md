@@ -87,8 +87,7 @@ historical outcomes.
 - [Sprint 8](sprint8-planning.md): Phase F, 27 October-3 November, issues #93-#98.
 - Final corrections and actual submission: 4-7 November; confirm the LMS cutoff.
 
-As checked on 20 October, #65–#69 are closed and their evidence is merged.
-#70 closes after its consolidation PR is reviewed and merged; milestone 6 can
-then close. The confirmed Sprint 7 split is Jackie #77/#78, Anna #79/#81 and
+Issues #65–#70 are closed and their evidence is merged. PR #103 records the
+reviewed #70 handover; milestone 6 closed on 23 October. The confirmed Sprint 7 split is Jackie #77/#78, Anna #79/#81 and
 Benjamin #80/#82. Remaining usability explanations continue in #79/#80.
 Sprint closure does not mean that every usability target passed.

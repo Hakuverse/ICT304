@@ -3,7 +3,7 @@
 Anna tests Windows; Jackie tests macOS. Benjamin collects the records.
 Current results are in the [evidence summary](evidence/app/issue116/README.md).
 Windows and macOS B01-B09, C01-C08 and D01 are recorded as passed.
-The macOS D01 follow-up was completed on 30 October; team review remains pending.
+The macOS D01 follow-up was completed on 30 October; Anna approved PR #122 on 30 October; it is merged and #116 is closed.
 
 The Windows port helper uses an installed Python 3 via `py`; it does not require
 a separately installed Python 3.12. SARAH itself uses its bundled runtime.
@@ -14,8 +14,8 @@ Use the same ab4a604 package tested in #114/#115, from Actions run 40556703379.
 Keep its ZIP, checksum and build-info.json. Do not download another binary just
 because it is newer. Both applications use bundled Python 3.12.10.
 
-Download this PR's source ZIP through GitHub **Code > Download ZIP** and extract it,
-or update your checkout after PR #122 merges. The new input files are
+The test fixtures were merged in PR #122. Download the repository source ZIP
+through **Code > Download ZIP**, or update your checkout. The input files are
 in `project/data/app116/`. They are uploaded into the existing app; they do not
 replace anything in the app folder. Do not download a GitHub HTML preview as CSV.
 

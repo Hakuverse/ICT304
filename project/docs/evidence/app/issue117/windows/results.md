@@ -66,4 +66,4 @@ Review finding: the participant recognised the need for human review, but interp
 
 [Original warning-demo export](exports/U06-warning-demo-results.csv), supplied as `U08-exported-results.csv`. Contents preserved; this is not the mixed-roster export.
 
-Reviewer/date: pending. Follow-up confirmations are recorded; ready for team review with the timing, checksum and distribution limitations retained.
+Reviewed by Anna on 30 October 2026; approved and merged in PR #123. Follow-up confirmations are recorded; the timing, checksum and distribution limitations remain part of the accepted record.

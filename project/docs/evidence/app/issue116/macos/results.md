@@ -16,7 +16,7 @@ Package source: `ab4a604a71ecef9f0585a137a014e7dd6fb861e2`
 
 SARAH runtime: bundled Python 3.12.10; the Mac's installed Python is not used to run SARAH.
 
-Reviewer/date: pending
+Reviewed by Anna on 30 October 2026; approved and merged in PR #122.
 
 This record summarises Jackie's supplied test document, screenshots and downloaded CSVs against the [run sheet](../../../../app-workflow-testing.md). Pass means Jackie reported the case passed. Screenshots support the states they show; they do not prove every action between captures. A01-A05 reuse the [earlier macOS package record](../../macos/results.md).
 
@@ -103,4 +103,4 @@ This is a follow-up to the same package test record, not a new build or a repeat
 
 ## Completion
 
-B01-C08 and the D01 follow-up are recorded as passed; A01-A05 reuse the earlier record. Ready for team review and approval in PR #122. Close #116 after the reviewed PR is merged.
+B01-C08 and the D01 follow-up are recorded as passed; A01-A05 reuse the earlier record. Anna approved PR #122 on 30 October; it is merged and #116 is closed.

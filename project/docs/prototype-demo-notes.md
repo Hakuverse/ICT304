@@ -5,7 +5,7 @@
 - Date: 13 October 2026.
 - Attendees: Benjamin, Anna, Jackie and Tutor.
 - Record provided by: Benjamin.
-- Status: meeting and team decisions recorded; ready for teammate review in PR #83.
+- Status: meeting and team decisions recorded; reviewed through merged PR #83; #57 is closed.
 - Follow-up decisions confirmed by Benjamin on 19 October 2026.
 - Demonstration basis: Benjamin used the recent issue #56 work. Its tested code
   commit was `2bbb083074e265bb8931b053bd262bbf47d29b19`. The exact checkout

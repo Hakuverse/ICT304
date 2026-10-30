@@ -55,20 +55,15 @@ The hidden Tk check programmatically exercised source GUI callbacks with the
 window hidden and browser opening mocked. It was a developer check, not a human
 visual review or a packaged GUI walkthrough.
 
-## Follow-up status (updated 28 October 2026)
+## Follow-up status — 31 October 2026
 
-- PR #120 is merged and #113 is closed. The results above retain their original scope.
-- PR #121 fixes the later Windows startup fault and adds live-server prediction checks;
-  see [package build checks](app-package-build-checks.md) for current evidence.
-- #114: Windows artifact preparation, visual/double-click checks, licences,
-  checksums and actual downloaded first-launch restrictions.
-- #115: hosted Apple Silicon builds passed; Jackie's actual M3/Tahoe Finder launch,
-  quit behaviour and Gatekeeper checks remain pending. No accepted Mac release yet.
-- #116: full packaged workflow and real GUI startup timing on each target device.
-- #117: another person's download-to-use walkthrough and clean-device evidence.
-- #118: accepted release assets and user-facing guide/report updates.
+PR #120 is merged and #113 is closed. The development results above retain their
+original scope. The later startup fix and Windows/macOS device records were
+reviewed in merged PR #121; #114/#115 are closed. Workflow evidence (#116) was
+reviewed in PR #122 and walkthrough evidence (#117) in PR #123.
 
-No claim is made that the 30-second GUI target passed, that the tutor's computer
-was tested, or that the unsigned package will run on every computer. The existing
-source setup remains available. The [developer guide](../packaging/README.md)
-explains how to build and repeat the smoke checks.
+The [release record](app-release-notes.md) identifies the published ab4a604 ZIPs,
+actual routine-startup results, unsigned-app restrictions and evidence limits.
+These later results do not turn the earlier mocked browser check into a manual
+walkthrough. The tutor's computer remains untested. The
+[developer guide](../packaging/README.md) explains rebuilding and smoke checks.

@@ -62,9 +62,8 @@ No new licence for the team's source code is granted by these release notes.
 | Windows x64 | [Anna's package checks](evidence/app/windows/results.md), [workflow checks](evidence/app/issue116/windows/results.md), [Ka Jun's walkthrough](evidence/app/issue117/windows/results.md) | Windows 11 test devices. Ka Jun used only the packaged app; downloading initially needed sign-in advice. |
 | Apple Silicon Mac | [Jackie's package checks](evidence/app/macos/results.md), [workflow checks](evidence/app/issue116/macos/results.md), [walkthrough](evidence/app/issue117/macos/results.md) | Apple M3, macOS Tahoe 26.6.2. Jackie is an experienced teammate, not an independent newcomer. |
 
-These records were reviewed through merged PRs #121, #122 and #123. A historical
-record saying approval was pending describes its preparation date; the merge
-history records the later review. No new device test is claimed by this handover.
+These records were reviewed through merged PRs #121, #122 and #123. Review status in the evidence indexes reflects those merged PRs;
+original measurements, assistance and limitations retain their original dates. No new device test is claimed by this handover.
 
 Routine startup met the 30-second target on the recorded devices: Windows
 post-approval reboot 13.20 s and later 11.15/6.46/4.35 s; Mac post-reboot 6.72 s

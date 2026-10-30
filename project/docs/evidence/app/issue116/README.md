@@ -1,6 +1,6 @@
 # Issue 116 packaged workflow evidence
 
-Status at 30 October 2026: all listed cases covered; ready for team review and approval.
+Status: all listed cases covered; reviewed by Anna on 30 October 2026 in merged PR #122. Issue #116 is closed.
 
 | Coverage | Windows - Anna | macOS - Jackie |
 |---|---|---|
@@ -8,7 +8,7 @@ Status at 30 October 2026: all listed cases covered; ready for team review and a
 | B01-B09 | Passed, 30 October | Passed as reported, 29 October |
 | C01-C08 | Passed, 30 October | Passed as reported, 29 October |
 | D01 occupied port | Passed; original image reviewed locally | Passed, 30 October follow-up |
-| Team approval | Pending | Pending |
+| Team approval | Anna, 30 October; merged PR #122 | Anna, 30 October; merged PR #122 |
 
 - [Windows results and evidence](windows/results.md)
 - [macOS results and D01 follow-up](macos/results.md)
@@ -24,4 +24,4 @@ The PR includes focused screenshots and all four exports. Additional Mac context
 
 Jackie's D01 follow-up held port 8501 while SARAH worked on 64211 and produced the expected 85.9% result. Two public screenshots support the form and prediction; the terminal/combined originals were reviewed locally and withheld because they contain a personal computer username. Cleanup is supported by the relayed pass confirmation, not screenshots.
 
-Have a teammate review the records in PR #122 before approval and merge, then close #116. The later #117 walkthrough remains separate from these functional tests.
+PR #122 was reviewed and merged; #116 is closed. The later #117 walkthrough remains separate from these functional tests.

@@ -21,7 +21,7 @@ This is local Streamlit deployment; public hosting is not an agreed deliverable.
 | [#81](https://github.com/Hakuverse/ICT304/issues/81) | Record and check the demonstration video | Stable reviewed version and guide | `project/docs/demo-video-notes.md` and video in the agreed location |
 | [#82](https://github.com/Hakuverse/ICT304/issues/82) | Review Phase E and hand over to Phase F | #70 and the Phase E outputs | `project/docs/sprint7-review.md` |
 
-These paths are planned outputs, not claims that the files or work are complete.
+These outputs were completed through the merged PRs listed in the handover below.
 Use the existing [project setup instructions](../README.md) and
 [mode guide](mode-guide.md) so commands and input rules stay consistent.
 
@@ -73,27 +73,15 @@ The final project deadline remains 7 November; confirm the exact LMS cutoff.
 The team makes scope and priority decisions; no extra tutor approval is required.
 
 
-## 24 October update before the final video
+## Completed handover
 
-The #77–#79 guides are merged. Benjamin's #80 walkthrough and the study-hours
-warning are in PR #108, awaiting review/merge. Anna's video notes are in PR #107;
-#81 remains open. Record the final video after #108 is accepted, using the merged
-commit. Keep the original demonstration examples, add the 40-hour warning and
-its CSV export, and show the actual current automated test result (109 expected).
-Record actual recording and peer-review dates. Submit a video file as required
-by the brief; a viewing link is an additional convenience. #82 remains the
-Phase E review after these outputs are accepted. The local application trial is
-not the version to demonstrate.
+The warning and walkthrough (#108), guide update (#109), CSV warning display
+(#110), video (#107) and handover (#111) are reviewed and merged. Issues #77–#82
+are closed. Anna approved #111 on 27 October; milestone 7 closed on 30 October.
 
-
-## 27 October handover review
-
-The 24 October update above is historical. PRs #108, #109, #110 and #107 are now
-merged; #77–#81 are closed. The current suite has 110 tests, reported in Anna's
-25 October video record at `847d460`. The handover baseline is `914f808`, which
-adds the video notes without changing code or models. See the [Sprint 7 review](sprint7-review.md).
-
-Issue #82 and milestone 7 remain open while Anna or Jackie reviews the handover PR.
-Benjamin proposes shared Sprint 8 work by Benjamin, Anna and Jackie on the report,
-slides and review rather than exclusive issue pairs. Team confirmation, detailed
-session dates, presenters, uploader and backup remain to be recorded under #93–#98.
+Anna's final video record identifies 110 passing tests at `847d460`; this is a
+dated result, not a current-suite count. See the [Sprint 7 review](sprint7-review.md).
+Shared Sprint 8 report/slides/review work is the reviewed handover approach.
+Specific sessions, presenters and submission roles still require actual decisions.
+Benjamin paused final-deliverable work on 31 October. The app release is a later,
+separate deployment output, linked from the [user guide](user-guide.md).

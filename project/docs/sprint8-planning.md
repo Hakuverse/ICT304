@@ -2,7 +2,10 @@
 
 Working period: 27 October-3 November 2026. Phase F.
 Milestone: [Sprint 8](https://github.com/Hakuverse/ICT304/milestone/8).
-Prepared: 20 October 2026. Handover updated: 27 October 2026.
+Prepared: 20 October 2026. Status updated: 31 October 2026.
+Final report/declaration, slides/rehearsal, submission-package checks and closeout
+are paused at Benjamin's request. The dates below are original planning targets,
+not completed events or revised commitments.
 
 ## Goal
 
@@ -25,12 +28,12 @@ final corrections and the actual submission by 7 November.
 These are planned outputs. A planning PR does not complete the issues or prove
 that the report, rehearsal, package checks or submission have happened.
 
-## Proposed shared work
+## Reviewed shared-work approach
 
 Benjamin proposed on 27 October that Benjamin, Anna and Jackie work together on
 all six issues, including the report, slides and review, instead of splitting
-exclusive pairs. This is the proposed working approach, not a recorded agreement
-by all three members. Confirm it during review of #82. Each person still checks
+exclusive pairs. This approach was included in the reviewed #82 handover, merged
+in PR #111. It does not establish specific editing sessions or speaking roles. Each person still checks
 their own contribution and private declaration details. Record who performed each
 check and ask another teammate to review it, even when the issue is shared.
 
@@ -43,7 +46,7 @@ check and ask another teammate to review it, even when the issue is shared.
 | #98 | Readiness review and final submission handover | 3 November; corrections/upload 4–7 November |
 
 These intermediate dates are proposed targets, not confirmed meeting dates.
-Still to agree: shared working arrangement, editing/session schedule, presenters,
+Decisions to record when work resumes: editing/session schedule, presenters,
 exact LMS cutoff and formats, uploader, backup and any post-project support limits.
 Record decisions in the relevant existing issues rather than creating duplicates.
 Keep legal names, student IDs, signatures and submission receipts private.
@@ -87,17 +90,16 @@ tests Windows and Jackie tests macOS, with shared release decisions.
 Builds are unsigned prototypes; platform security restrictions must be tested.
 The 30-second startup target is separate from earlier prediction timings.
 
-Report/slides preparation continues in parallel. Coordinate #97/#98 with the
+Report/slides preparation is paused as of 31 October. When resumed, coordinate #97/#98 with the
 packaged-app evidence before including releases in the submission. The 3 November
 review decides which platforms are ready; no package test or release is claimed
 by this plan.
 
-App status on 29 October: #112/#113 are closed following merged PRs #119/#120.
-PR #121 contains packaging, the Windows startup fix and preliminary evidence.
-Both hosted builds passed. [Jackie's macOS evidence](evidence/app/macos/results.md)
-was submitted on 28 October. [Anna's Windows evidence](evidence/app/windows/results.md)
-was submitted on 29 October. Both await peer review. Windows post-approval reboot timing was confirmed at
-13.20 seconds, completing the routine startup measurements within the target.
-Use the [current packages and testing workflow](app-package-testing.md). #114/#115
-remain open, followed by #116 workflow checks, #117 another-person walkthrough
-and #118 release. App work is tracked within Sprint 8, not a separate milestone.
+App status on 31 October: #112–#117 are closed following merged PRs #119–#123.
+PR #124 merged the release/user-guide preparation. The tested `ab4a604` Windows
+and Mac packages are now published as `v0.1.0-preview`; see the
+[release record](app-release-notes.md) for exact files, hashes and limitations.
+Both devices met the recorded routine-startup target. The first security-prompt
+launches retain their separate timings. Benjamin chose to reuse existing device
+evidence without another post-publication run. Issue #118 retains its final
+handover link to paused #97/#98 work. App work is within Sprint 8, not a separate milestone.

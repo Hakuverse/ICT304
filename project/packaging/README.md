@@ -2,7 +2,9 @@
 
 These instructions are for the team building the app. End users will open the
 packaged application, not run these commands. The [application plan](../docs/app-deployment-plan.md)
-defines the targets and the checks still needed before release.
+defines the original targets; the [release record](../docs/app-release-notes.md)
+identifies the published tested packages. Rebuilding creates a new candidate that
+needs its own checks; these commands are not needed to use the released app.
 
 ## Files
 
@@ -127,7 +129,7 @@ Existing archives are not overwritten. Use a new version for a new candidate.
 Mac archives use ditto to preserve .app symlinks and permissions.
 
 The Build SARAH test apps workflow performs this on native Windows x64 and
-Apple Silicon macOS runners. After merge, the team can also start it through
+Apple Silicon macOS runners. The team can also start it through
 Actions > Build SARAH test apps > Run workflow. It uploads test artifacts only;
 it does not publish a release. Download artifacts within their 14-day retention
 period and retain the chosen tested package for submission separately.

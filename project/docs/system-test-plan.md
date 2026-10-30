@@ -120,7 +120,7 @@ to the existing saved models, not arbitrary future models.
 | S6-21 | Find modes and understand inputs | Give a tester the three prediction tasks without coaching. Ask what attendance estimate, G1 and blank/zero G2 mean. | Record independent/helped/not completed for each task and actual explanations. Compare to agreed usability target. | 17 October #68 findings |
 | S6-22 | Understand results and limitations | Ask what the risk label and displayed probability mean and whether the prediction can be used alone to decide. | Record answers before explaining. Intended understanding: model estimate may be wrong; human review needed; recommendations do not prove causes. | 17 October #68 findings |
 | S6-23 | Notice and correct CSV problems | Ask tester to upload sample_roster.csv in Confirmatory, find skipped rows and explain how C/D could be corrected. | Record whether warning/reasons were noticed without help; valid results remain visible. Do not silently treat NA as a blank grade. | 17 October #68 findings |
-| S6-24 | Readability and accepted UI changes | After #69, check mode help, percentage explanation, human-review notice, skipped-count warning, message wrapping and field sizes. Record viewport and zoom; repeat S6-21/22/23. | Full text can be read without clipped content or lost controls; accepted help/notice wording visible. Values and rules unchanged; before/after assistance recorded. | Accepted #68 changes; implementation/retest pending |
+| S6-24 | Readability and accepted UI changes | After #69, check mode help, percentage explanation, human-review notice, skipped-count warning, message wrapping and field sizes. Record viewport and zoom; repeat S6-21/22/23. | Full text can be read without clipped content or lost controls; accepted help/notice wording visible. Values and rules unchanged; before/after assistance recorded. | Accepted #68 changes; implementation/retests reviewed in merged PRs #86–#102 |
 
 Rule-only tests supply a risk label directly. They do not require the classifier
 to become High Risk at a rule threshold. A rule trigger is not a causal explanation.
@@ -272,9 +272,9 @@ not unresolved target approvals.
 | Rules and usability procedure | Reviewed; exact wording checks added | [Anna review](https://github.com/Hakuverse/ICT304/pull/85#pullrequestreview-5567542513) and [conditions](https://github.com/Hakuverse/ICT304/pull/85#issuecomment-6261076489) - 19 October 2026 |
 | Response-time and usability targets | Agreed | Agreed by team - 19 October 2026 |
 
-Close #65 when this reviewed plan is merged. Targets are agreed by the team. The
-actual runs need not be finished to close the planning issue; they belong to
-#66-#69. Benjamin links their outcomes in #70. Leave failed, blocked and unfinished
+The plan was reviewed and merged in PR #85; #65 is closed. The actual #66–#69
+results were consolidated under #70 in merged PR #103. Targets and original
+case outcomes remain recorded separately. Leave failed, blocked and unfinished
 work visible. Preserve assignment files and prompt logs.
 
 

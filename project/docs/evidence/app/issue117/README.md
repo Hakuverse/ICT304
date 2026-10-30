@@ -1,6 +1,6 @@
 # Issue 117 evidence review
 
-Both walkthroughs were performed on 30 October 2026. Follow-up confirmations were supplied by Benjamin on 30 October. Records are ready for review and approval, with limitations retained. This is not an all-independent, all-unassisted acceptance claim.
+Both walkthroughs were performed on 30 October 2026. Follow-up confirmations were supplied by Benjamin on 30 October. Anna approved PR #123 on 30 October; it is merged and #117 is closed, with limitations retained. This is not an all-independent, all-unassisted acceptance claim.
 
 | Area | Windows: Ka Jun | macOS: Jackie |
 |---|---|---|
@@ -36,4 +36,4 @@ The repository contains 26 supplied screenshots and two exports. Original Window
 
 The documentation clarifications are new changes following the walkthrough, not instructions already shown to both testers. No complete re-run of the revised written instructions is claimed; this limitation remains for team review. The warning clarification follow-up is recorded separately. There is no observed need to rebuild the application for these documentation changes.
 
-The requested factual follow-ups are resolved. PR #123 is ready for team review and approval with the stated limitations. Issue #117 remains open until the team reviews the results and remaining distribution limitations. Sprint 6 and #116 historical evidence remains separate.
+The requested factual follow-ups are resolved. PR #123 was reviewed and merged with the stated limitations; issue #117 is closed. Public distribution is recorded separately under #118. Sprint 6 and #116 historical evidence remains separate.

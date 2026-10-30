@@ -1,7 +1,7 @@
 # Sprint 7 review and Phase F handover
 
 Prepared by Benjamin on 27 October 2026 for issue #82.
-Status: ready for Anna or Jackie to review; issue #82 and milestone 7 remain open.
+Status: Anna approved PR #111 on 27 October 2026 and it was merged. Issue #82 is closed; milestone 7 was closed on 30 October.
 This is a repository handover record, not a claim that a team meeting took place.
 
 ## Version and completed outputs
@@ -16,9 +16,9 @@ The final video uses `847d460`; #107 adds notes without changing code or models.
 | #79 | [User guide](user-guide.md) | [#106](https://github.com/Hakuverse/ICT304/pull/106), [#109](https://github.com/Hakuverse/ICT304/pull/109) |
 | #80 | [Teammate walkthrough](guide-walkthrough.md), Python fallback and [study-hours limitation](study-hours-limitation.md) | [#108](https://github.com/Hakuverse/ICT304/pull/108); CSV display follow-up [#110](https://github.com/Hakuverse/ICT304/pull/110) |
 | #81 | [Video notes](demo-video-notes.md) and final video file | [#107](https://github.com/Hakuverse/ICT304/pull/107) |
-| #82 | This review, linked outputs and [Phase F plan](sprint8-planning.md) | Awaiting peer review of the handover PR |
+| #82 | This review, linked outputs and [Phase F plan](sprint8-planning.md) | Reviewed by Anna; merged [#111](https://github.com/Hakuverse/ICT304/pull/111) |
 
-Issues #77–#81 are closed. The project README links these outputs. The guides,
+Issues #77–#82 are closed. The project README links these outputs. The guides,
 [current workflow](system-workflow.md) and warning descriptions have been aligned
 with the reviewed implementation. The submission package will receive its own
 clean-copy check under #97; this review does not claim that check has happened.
@@ -62,18 +62,18 @@ video file as required by the brief; an optional viewing link does not replace i
 
 ## Phase F work and remaining decisions
 
-Benjamin proposes shared work by Benjamin, Anna and Jackie on #93–#98 rather
-than exclusive pairs. Team confirmation is still needed. The [Sprint 8 plan](sprint8-planning.md)
+The reviewed handover records shared work by Benjamin, Anna and Jackie on
+#93–#98 rather than exclusive pairs. The [Sprint 8 plan](sprint8-planning.md)
 sets out proposed intermediate dates, the 3 November readiness review and
-4–7 November correction/submission period. All three members are proposed
+4–7 November correction/submission period. All three members are included as
 contributors; record actual editors, testers, presenters and reviewers as work happens.
 
 | Next action | Responsible people / existing issue | Target |
 |---|---|---|
-| Confirm shared work and practical editing schedule | Benjamin coordinates with Anna and Jackie; #93–#98 | During review of this handover |
-| Review report and private declarations | Team, proposed; #93/#94 | By 3 November |
-| Prepare slides, agree presenters and rehearse | Team, proposed; #95/#96 | Draft by 30 October; rehearsal by 2 November (proposed) |
-| Choose submission commit and check extracted package | Team, proposed; #97 | By 3 November |
+| Agree practical editing/session schedule when work resumes | Benjamin coordinates with Anna and Jackie; #93–#98 | Paused on 31 October |
+| Review report and private declarations | Team; #93/#94 | By 3 November |
+| Prepare slides, agree presenters and rehearse | Team; #95/#96 | Draft by 30 October; rehearsal by 2 November (proposed) |
+| Choose submission commit and check extracted package | Team; #97 | By 3 November |
 | Confirm LMS cutoff/formats, uploader, backup and support limits | Team; #94/#98 | By the 3 November readiness review |
 | Final corrections and actual upload | Uploader and backup to be agreed; #98 | 4–7 November, before confirmed LMS cutoff |
 
@@ -85,8 +85,11 @@ rehearsal, package checks, signatures or submission complete before they happen.
 - [x] Link the merged Phase E outputs and record the current version.
 - [x] Consolidate walkthrough/video findings and preserve historical limits.
 - [x] Prepare the Phase F checklist and proposed shared work.
-- [ ] Anna or Jackie reviews this PR and the shared-work proposal is confirmed.
-- [ ] Merge the accepted handover PR, close #82 and then close milestone 7.
+- [x] Anna reviewed and approved the handover in PR #111 on 27 October.
+- [x] PR #111 merged and #82 closed; milestone 7 closed on 30 October.
 
-Sprint 8 drafting may proceed while this PR is reviewed. Sprint 7 closure is
-pending that review; this document does not declare the milestone closed.
+Shared Sprint 8 work is the reviewed handover approach. Specific session dates,
+presenters and submission roles are separate decisions, not implied by PR approval.
+
+Sprint 7 is closed. Sprint 8 final-deliverable work was paused by Benjamin on
+31 October; the planned meeting/submission actions above are not completed results.
