@@ -190,13 +190,16 @@ successfully on 23 October; see the [walkthrough](docs/guide-walkthrough.md).
 See the [23 October walkthrough](docs/guide-walkthrough.md) and
 [study-hours finding and warning](docs/study-hours-limitation.md).
 
-## Double-click application test packages
+## Double-click application
 
-The [application deployment plan](docs/app-deployment-plan.md) records the Windows
-and Apple Silicon Mac targets, unsigned prototype decision and 30-second startup
-target. Work is tracked in #112–#118 alongside Sprint 8. The plan and launcher
-PRs are merged. PR #121 provides Windows x64 and Apple Silicon Mac test packages
-with passing hosted checks; full device acceptance and release are still pending.
-Use the [package downloads and testing guide](docs/app-package-testing.md).
-Anna tests Windows, Jackie tests macOS, and Benjamin coordinates builds/evidence.
-The source setup above remains available for reproducibility and fallback.
+Use the [app user guide](docs/user-guide.md) for download, Windows/macOS opening,
+form and CSV predictions, export and shutdown. No separate Python installation
+is needed. The [release record](docs/app-release-notes.md) lists the exact tested
+Windows x64 and Apple Silicon Mac packages, checksums and publication status.
+The release is prepared for team review under #118; a draft is not a public download.
+
+PRs #121, #122 and #123 contain the reviewed platform, workflow and walkthrough
+evidence. Anna tested Windows, Jackie tested macOS, and Ka Jun completed the
+Windows newcomer walkthrough with Benjamin observing. See the release record
+for the limits of those checks. Source setup above remains the reproducibility
+and fallback route; [package testing](docs/app-package-testing.md) is for testers.

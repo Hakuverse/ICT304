@@ -20,9 +20,15 @@ The command-line prototype predicts for one student or a class CSV, skips invali
 **Current project work:** use [project/](project/README.md) for setup, tests and new features.
 The assignment commands below remain for reproducing the earlier prototype.
 
-**Application testing:** Windows and Apple Silicon Mac candidates are available
-through the [package testing guide](project/docs/app-package-testing.md).
-These are unsigned review packages; full platform acceptance and release are pending.
+**Use the app:** follow the [SARAH app user guide](project/docs/user-guide.md)
+for Windows or Apple Silicon Mac. It covers downloading, double-click opening,
+first-opening security prompts, predictions, CSV files and quitting. No Python or
+terminal commands are needed for normal app use.
+
+**Release preparation:** `v0.1.0-preview` is prepared for team review under #118.
+[Release status, platform downloads and checksums](project/docs/app-release-notes.md)
+identify the exact tested packages. Draft releases are not public downloads.
+The source instructions remain available for reproduction and fallback.
 
 ## Repository structure
 

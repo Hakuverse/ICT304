@@ -1,8 +1,12 @@
-# Local deployment and handover guide
+# Source deployment and handover guide
 
 ## Scope and version
 
-This guide helps another person start and stop the SARAH prototype on their own Windows or macOS computer. The current deployment is **local Streamlit use only**. Public hosting has not been agreed or tested and is future work.
+This guide is the technical route for running SARAH from source. For the
+Windows/macOS app, use the [app user guide](user-guide.md) directly: no terminal
+commands or separate Python installation are needed. The [release record](app-release-notes.md)
+identifies the tested packages and publication status. Both routes run locally
+in a browser; public hosting is not implemented.
 
 Sprint 7 handover commit: `914f808f5e6cf0df7a17331c088859e3f46607b5` (main after PR #107).
 This includes the study-hours warning from #108 and CSV display changes from #110.
@@ -12,10 +16,9 @@ The [project README](../README.md) is the canonical setup reference.
 
 ## What is needed
 
-The requirements below apply to running from source. For the unsigned double-click
-test packages, follow the [package guide](app-package-testing.md); normal app use
-does not require a separate Python installation. Full platform acceptance and
-release remain pending under #114–#118. The app still runs locally in a browser.
+The requirements below apply only to running from source. Packaged-app platform,
+workflow and walkthrough evidence was reviewed in PRs #121–#123. Release publication
+and final handover are tracked under #118.
 
 - Python 3.11 or newer.
 - The complete repository, including `project/code/`, `project/data/` and `project/models/`.

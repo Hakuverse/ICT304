@@ -60,3 +60,15 @@ unchanged by #110, which only changes how the CSV warning is displayed.
 | Peer check (who, date, plays fully, matches version) | Benjamin and Jackie watched the full video on 25 October 2026 and agreed it matches the demonstrated version |
 
 The video file itself is not stored in Git unless the team decides otherwise.
+
+## App handover follow-up — 30 October 2026
+
+The existing video remains the recorded dashboard demonstration at its original
+commit above. The app packages add double-click startup and first-opening security
+prompts; they do not change the models or the demonstrated prediction workflow.
+Use the [app user guide](user-guide.md) for opening the packaged version.
+
+For #96, the proposed presentation addition is a short live app opening or a
+separately labelled startup clip. The team still needs to choose and rehearse it.
+No replacement recording, new video approval or new recording date is claimed
+by this update. See the [release handover](app-release-notes.md).
