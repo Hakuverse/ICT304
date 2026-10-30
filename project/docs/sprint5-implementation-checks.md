@@ -35,6 +35,6 @@ prediction accuracy or demonstrate the effectiveness of the support suggestions.
   [#57 notes](prototype-demo-notes.md).
 
 The [earlier project-start record](project-start-checks.md) retains its original
-41-test history. Its pending notes describe 6 October, not the current status.
+41-test history. Its follow-up section now links the later reviewed work.
 Issue #51 is now closed and PR #71 is merged. The code copy began at `a97a9b0`;
 the exact uploaded LMS package remains a separately maintained submission record.

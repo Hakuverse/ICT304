@@ -1,4 +1,4 @@
-# Project progress notes - updated 27 October 2026
+# Project progress notes - updated 31 October 2026
 
 SARAH currently supports single-student and class CSV predictions using
 Early-Warning, G1-only Confirmatory and G1+G2 Confirmatory models. Invalid CSV
@@ -49,8 +49,8 @@ subsystem checks, full-system results, review history and handover. The
   received explanations, so improved results may partly reflect familiarity.
 - S6-21 remains not met from the earlier assisted task. S6-22 remains partly
   met: the tester understood human review but did not explain probability as
-  an estimate that can be wrong. Anna carries the explanation work into #79;
-  Benjamin checks the guide in #80. Closing #69 does not mean every target passed.
+  an estimate that can be wrong. Anna completed the explanation work in #79;
+  Benjamin recorded the #80 teammate walkthrough. Closing #69 does not mean every target passed.
 
 ## Model evaluation and limitations
 
@@ -78,9 +78,10 @@ passes and fast responses do not remove those limits.
 | 27 October–3 November | Report/forms, slides/rehearsal, package/readiness checks #93–#98; Benjamin coordinates owner agreement under #82 | [Sprint 8](../docs/sprint8-planning.md) |
 | 4–7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover under #98 |
 
-Benjamin confirmed the Sprint 7 split on 20 October. Sprint 8 shared work is proposed by Benjamin; team confirmation and detailed
-responsibilities remain to be recorded. These dates describe planned work, not completed guides,
-rehearsals or submission.
+Benjamin confirmed the Sprint 7 split on 20 October; its completed handover was
+reviewed in merged PR #111. Sprint 8 uses the reviewed shared-work approach.
+Specific sessions and submission roles are not recorded. Final-deliverable work
+is paused as of 31 October; the dates above remain planning targets.
 
 
 ## Study-hours input warning and limitation
@@ -96,21 +97,12 @@ rows in `study_hours_warning` as "Yes - see warning above". The downloaded CSV
 keeps the full text in `input_warning`; unaffected rows have a blank warning. See the [finding and critical discussion](../docs/study-hours-limitation.md).
 
 
-## 24 October status clarification
-
-The earlier Phase E paragraph describes the plan as recorded on 20 October.
-Deployment, maintenance and user guides are now merged (#104–#106). The #80
-walkthrough and input warning are under review in #108; #81's final recording
-update and #82 handover are still outstanding. Current warning-branch checks
-passed 109 tests; original 106-test evidence keeps its original date and commit.
-
-
 ## 27 October Phase E handover
 
 Deployment (#104), maintenance (#105), user guide (#106/#109), walkthrough and
 study-hours warning (#108), CSV warning display (#110) and video notes (#107)
-are merged. Issues #77–#81 are closed. Local Streamlit deployment remains the
-supported scope; the separate Windows application trial is not the release.
+are merged. Issues #77–#82 are closed. The original Phase E scope was source-based local
+Streamlit use; the subsequent published app packages are recorded below.
 
 The final video was recorded on 25 October at `847d460`, lasts 6:11 and is named
 `SARAH_demonstration_v2.mp4`. Its record reports 110 passing automated tests.
@@ -125,7 +117,25 @@ model accuracy. Recovery remains a written plan, not a completed drill. Earlier
 platform, timing and usability evidence retains its original scope and commits;
 S6-21/S6-22 are not retrospectively changed to passes.
 
-The #82 handover is prepared for Anna or Jackie to review before Sprint 7 closes.
-The proposed Sprint 8 approach is shared work on the report, slides and review.
-The [Sprint 8 plan](../docs/sprint8-planning.md) lists target dates and outstanding
-team decisions; it does not claim that rehearsals, forms or submission are complete.
+The #82 handover was reviewed by Anna and merged in PR #111 on 27 October.
+Milestone 7 closed on 30 October. The [Sprint 8 plan](../docs/sprint8-planning.md)
+retains planned final-deliverable work; it does not claim rehearsals, forms or
+submission are complete.
+
+## Published app — 31 October 2026
+
+SARAH `v0.1.0-preview` provides Windows x64 and Apple Silicon Mac ZIPs using the
+unchanged tested `ab4a604` source and bundled Python 3.12.10. PRs #121–#123 contain
+reviewed platform, workflow and walkthrough evidence; PR #124 contains the app
+guide and release preparation. All 11 public release assets were downloaded
+without GitHub authentication and matched their recorded hashes and sizes.
+Benjamin chose to reuse the existing device tests rather than repeat them.
+
+The [app user guide](../docs/user-guide.md) directly covers downloading, opening,
+predictions, CSV export and quitting. The [release record](../docs/app-release-notes.md)
+links versions, checksums and limitations. The packages remain unsigned and local;
+packaging does not change model accuracy or the study-hours limitation.
+
+Final report/declaration, presentation/rehearsal, submission-package checks and
+closeout are paused at Benjamin's request. Actual publication is complete;
+final project submission and its receipt are not claimed by this progress record.

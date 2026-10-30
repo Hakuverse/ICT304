@@ -30,9 +30,9 @@ Use fictional students only. Keep earlier runs; do not overwrite their evidence.
 
 Add a `results.md` file inside the run folder:
 
-| Case / subcase | Input or fixture | Actual result | Status | Evidence link | Fix / retest link |
-|---|---|---|---|---|---|
-| Fill after testing | | | Not run | | |
+For any future run, record the case/subcase, input or fixture, actual result,
+status, evidence link and any fix/retest link. Existing results are linked above;
+there is no unfinished run table in this index.
 
 Use Pass, Fail, Blocked or Not run for functional checks. Use the team-agreed targets in the system test plan for timing/usability acceptance. Record assistance separately
 for user tasks. One screenshot or log can support several cases: link it from

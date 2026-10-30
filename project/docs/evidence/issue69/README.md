@@ -1,5 +1,9 @@
 # Readability and fix-retest evidence - Issue #69
 
+Current status: reviewed through merged PR #102; the issue is closed.
+[Recorded results](2026-10-20-e246495/results.md) retain the original outcomes and assistance limits.
+The instructions below apply only to future runs.
+
 Owner: Anna. Case: **S6-24**, plus affected S6-01 to S6-23 cases, in the
 [system test plan](../../system-test-plan.md).
 
@@ -23,12 +27,12 @@ Use fictional students only. Keep earlier runs; do not overwrite their evidence.
 
 Add a `results.md` file inside the run folder:
 
-| Case / subcase | Input or fixture | Actual result | Status | Evidence link | Fix / retest link |
-|---|---|---|---|---|---|
-| Fill after testing | | | Not run | | |
+For any future run, record the case/subcase, input or fixture, actual result,
+status, evidence link and any fix/retest link. Existing results are linked above;
+there is no unfinished run table in this index.
 
 Use Pass, Fail, Blocked or Not run for functional checks. Timing/usability
-acceptance stays pending until targets are agreed. Record assistance separately
+results use the targets agreed by the team on 19 October 2026. Record assistance separately
 for user tasks. One screenshot or log can support several cases: link it from
 each applicable row. Do not copy older evidence as a new pass.
 

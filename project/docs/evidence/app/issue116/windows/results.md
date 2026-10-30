@@ -14,7 +14,7 @@ Expected candidate: ab4a604; matches.
 
 Test input files: repository ZIP of branch `issue116-packaged-workflow` (commit 8619bfb), `project/data/app116/`, extracted to the Downloads folder.
 
-Reviewer/date: pending
+Reviewed by Anna on 30 October 2026; approved and merged in PR #122.
 
 Checked against the [run sheet](../../../../app-workflow-testing.md). A01-A05 reuse the [existing platform record](../../windows/results.md); they are not new runs. SARAH uses bundled Python 3.12.10.
 
@@ -86,7 +86,7 @@ Observations for team review (not failures):
 - Streamlit's "Deploy" button remains visible (also noted in #114).
 
 ## Completion
-All B, C and D checks passed on this device; A01-A05 reuse #114 evidence. Pending review.
+All B, C and D checks passed on this device; A01-A05 reuse #114 evidence. Reviewed through merged PR #122.
 Developer laptop with Python installed; no clean-machine or tutor-device claim.
 
 Evidence check, 30 October 2026: both exported CSVs were compared field by field with [source-reference.json](../source-reference.json), including row order, decimal probabilities, recommendations and warnings. Both matched. This comparison does not replace the device test or team approval.

@@ -2,8 +2,8 @@
 
 Issue: [#112](https://github.com/Hakuverse/ICT304/issues/112).
 Decisions confirmed by Benjamin on 27 October 2026; plan merged in PR #119.
-Current status updated 30 October 2026: PRs #121–#123 are merged.
-See [release preparation and handover](app-release-notes.md) for #118.
+Current status updated 31 October 2026: PRs #121–#124 are merged.
+See [published release and handover](app-release-notes.md) for #118.
 The original acceptance checklist below records planned requirements; actual
 outcomes and limitations remain in the linked platform/workflow evidence.
 Starting baseline: `4f4d5ce7bf4912d5825e8bd40a48874d3f985b4a` after PR #111.
@@ -27,8 +27,8 @@ Core predictions must work offline after downloading the complete package.
 
 | Target | Information available | Release scope |
 |---|---|---|
-| Benjamin's Windows computer | Windows 11 Home 25H2 reported by Benjamin; local system check confirms x64, 25H2, build 26200.9711 | Initial Windows x64 target; package testing still required |
-| Jackie's Mac | Apple M3, macOS Tahoe 26.6.2 reported by Benjamin | Initial Apple Silicon target; Jackie must record the exact OS version/build from About This Mac when building/testing |
+| Benjamin's Windows computer | Windows 11 Home 25H2 reported by Benjamin; local system check confirms x64, 25H2, build 26200.9711 | Windows x64 target; Anna's device tests accepted in PR #121 |
+| Jackie's Mac | Apple M3, macOS Tahoe 26.6.2 reported by Benjamin | Apple Silicon target; Jackie's M3/Tahoe device tests accepted in PR #121 |
 | Tutor's Mac | Apple M3, macOS Tahoe 26.6.2; Benjamin confirmed it matches Jackie's Mac on 27 October | Same initial Apple Silicon target; actual package launch on the tutor's computer remains to be checked |
 | Intel Mac / Windows ARM / other OS versions | No agreed test device | Outside the initial verified support claim |
 
@@ -80,25 +80,22 @@ Work may be shared. Record the person who actually performed each check and have
 someone other than the builder review it. This does not assign exclusive ownership
 of the existing report, slides and closeout issues.
 
-## Acceptance checklist
+## Acceptance record
 
-These are requirements to verify under #113–#117, not completed results.
+The plan was implemented and its evidence reviewed in merged PRs #120–#123.
+These are the recorded outcomes, not new tests performed during documentation cleanup.
 
-- [ ] A downloaded package opens by double-click without a developer environment.
-- [ ] The default browser opens only after the local service is ready.
-- [ ] Startup reaches a usable dashboard within 30 seconds on each declared test device.
-- [ ] Open dashboard, Quit, restart and repeated launch work predictably.
-- [ ] Paths with spaces and a launch outside the source repository work.
-- [ ] Core prediction works offline after extraction/installation.
-- [ ] Both modes and all three grade setups match the source version's outputs.
-- [ ] Invalid rows are skipped; valid rows, duplicate IDs and downloaded results stay aligned.
-- [ ] High-Risk targeted support and Low-Risk routine guidance remain unchanged.
-- [ ] Study hours remain 0–40, with the existing warning above 12 and rejection above 40.
-- [ ] Form input/mode changes clear old results; missing/invalid inputs show clear errors.
-- [ ] CSV screen markers and full downloaded input_warning text match the right students.
-- [ ] Startup failures are understandable; diagnostic logs do not contain student records.
-- [ ] Actual first-launch security restrictions are recorded on each platform.
-- [ ] A person other than the builder tries download, opening, prediction, CSV, export and quit.
+| Requirement | Recorded outcome and evidence |
+|---|---|
+| Double-click launch without project setup | Windows newcomer used the packaged executable without Python/source setup; [#117 evidence](evidence/app/issue117/README.md). Mac app used its bundled runtime on Jackie's developer computer. |
+| Default browser, reopen, repeated launch, Quit/restart | Accepted Windows W03/W04/W09 and Mac M03/M04/M09 in [platform records](app-package-testing.md). |
+| Routine startup within 30 seconds | Met on Anna's and Jackie's recorded devices. First security-prompt launches are separate; no tutor-device result is claimed. |
+| Paths with spaces, outside repository, offline prediction | Recorded in [Windows](evidence/app/windows/results.md) and [Mac](evidence/app/macos/results.md) device checks. |
+| All modes/setups, validation, invalid rows, duplicates, recommendations, warning/export alignment and old-result clearance | Recorded B01–C08 and D01 in the [#116 summary](evidence/app/issue116/README.md); approved in PR #122. |
+| Startup/lifecycle errors and diagnostic design | [Launcher checks](app-launcher-checks.md) and [build checks](app-package-build-checks.md), with their stated development-test limits. |
+| First-opening security restrictions | SmartScreen and Gatekeeper recorded; unsigned-app restrictions remain a limitation. |
+| Another-person download-to-use walkthrough | [#117 evidence](evidence/app/issue117/README.md), approved in PR #123. Windows downloading needed sign-in advice; the Mac tester was a teammate. |
+| Public release downloads | [Publication record](evidence/app/issue118/published-release-assets.json): all 11 anonymous downloads matched hashes and sizes. Benjamin chose to reuse existing device results. |
 
 ## Startup timing method
 
@@ -156,7 +153,7 @@ usability targets into passes.
 
 Platform checks (#114/#115), workflow checks (#116) and walkthroughs (#117) were
 reviewed in merged PRs #121, #122 and #123. The accepted candidate is `ab4a604`.
-Issue #118 prepares the same ZIPs for release with a direct app user guide; see
+Issue #118 publishes the same tested ZIPs with a direct app user guide; see
 [release notes](app-release-notes.md) for publication status and checksums.
 
 The tutor's device has not been tested simply because it matches Jackie's chip/OS.
@@ -167,7 +164,7 @@ LMS cutoff, uploader and backup. The release is not proof of LMS submission.
 
 The [launcher checks](app-launcher-checks.md) record issue #113 development results.
 The [developer build guide](../packaging/README.md) covers the shared launcher and
-build recipe. Platform release and user checks remain under #114–#118.
+build recipe. Reviewed platform/user checks are linked from the release record.
 
 
 ## Platform testing allocation update

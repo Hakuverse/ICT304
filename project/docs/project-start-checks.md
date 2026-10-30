@@ -63,9 +63,15 @@ The comparison tests also checked overwrite protection and missing figures.
 The actual assignment files, prompt files and baseline project models were checked
 for changes and remained unchanged. Temporary training outputs were not committed.
 
-## Review still needed
+## Later review and follow-up
 
-- Confirm the version actually submitted to LMS. The prepared code ZIP used a97a9b0.
-- Anna or Jackie should follow the project README and record their test result in
-  the PR before issue #51 is closed. The new project copy has not been run on macOS yet.
-- Dashboard and recommendation tests belong to #56 once those features are connected.
+Issue #51 was reviewed through merged PR #71 and is closed. The 41-test results
+above remain the original project-start checks. Later Windows/macOS functional
+runs and the app checks have their own versions and evidence; see the
+[Sprint 6 review](sprint6-review.md) and [app release record](app-release-notes.md).
+Dashboard/recommendation integration and the tutor demonstration were reviewed
+under #56/#57. They are not unfinished project-start tasks.
+
+The prepared assignment code ZIP used `a97a9b0`. The exact file actually uploaded
+to LMS is not established by this record; it remains a private submission-history
+fact, not something inferred from a merged PR.

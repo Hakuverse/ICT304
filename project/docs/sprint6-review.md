@@ -13,7 +13,7 @@ evidence summary, not a new test run or a claim that every usability target pass
 | [#67](https://github.com/Hakuverse/ICT304/issues/67) | Jackie | Reference-device response times: [#101](https://github.com/Hakuverse/ICT304/pull/101) |
 | [#68](https://github.com/Hakuverse/ICT304/issues/68) | Anna | Initial user feedback and agreed changes: [#84](https://github.com/Hakuverse/ICT304/pull/84) and [feedback record](usability-feedback.md) |
 | [#69](https://github.com/Hakuverse/ICT304/issues/69) | Anna | Fixes #86, #87, #92 and #100; evidence/status updates #89, #91 and [#102](https://github.com/Hakuverse/ICT304/pull/102). Remaining limitations below. |
-| [#70](https://github.com/Hakuverse/ICT304/issues/70) | Benjamin | This summary, updated workflow/report notes and next-stage handover; complete after review and merge. |
+| [#70](https://github.com/Hakuverse/ICT304/issues/70) | Benjamin | Summary and handover reviewed and merged in PR #103; #70 is closed. |
 
 The PRs and their review histories record the team's implementation and review
 work. Target agreement was recorded on 19 October in #85. Benjamin confirmed the
@@ -96,12 +96,13 @@ Benjamin confirmed this Sprint 7 split on 20 October 2026:
 
 See [Sprint 7](sprint7-planning.md) for dependencies. Sprint 8 (27 October–3
 November) covers report/forms, slides/rehearsal and package/readiness checks in
-[#93–#98](sprint8-planning.md). Benjamin coordinates confirmation of Sprint 8 owners
-under #82; those individual assignments are still to be agreed. Keep 4–7 November
+[#93–#98](sprint8-planning.md). The reviewed #82 handover uses shared team work for Sprint 8; practical
+sessions and submission roles are separate decisions. Final-deliverable work
+is paused as of 31 October. Keep 4–7 November
 for final corrections and submission, and confirm the exact LMS cutoff.
 
 ## Closure
 
-Issues #65–#69 are closed with merged evidence. Merge the reviewed #70 PR before
-closing #70, then close milestone 6 once it has no open issues. Closing the sprint
+Issues #65–#70 are closed with merged evidence, including PR #103 for #70.
+Milestone 6 was closed on 23 October. Closing the sprint
 accepts the documented handover; it does not turn S6-21 or S6-22 into passes.

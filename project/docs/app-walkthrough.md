@@ -1,6 +1,6 @@
 # Packaged app walkthrough (#117)
 
-Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Results from 30 October are now recorded in the [evidence review](evidence/app/issue117/README.md); follow-up confirmations are recorded and team approval remains pending. This checks the download-to-use experience. It does not repeat every #116 boundary test.
+Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Results from 30 October are now recorded in the [evidence review](evidence/app/issue117/README.md); follow-up confirmations are recorded and Anna approved PR #123 on 30 October; it is merged and #117 is closed. This checks the download-to-use experience. It does not repeat every #116 boundary test.
 
 ## People and version
 

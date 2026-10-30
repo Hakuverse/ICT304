@@ -190,16 +190,27 @@ successfully on 23 October; see the [walkthrough](docs/guide-walkthrough.md).
 See the [23 October walkthrough](docs/guide-walkthrough.md) and
 [study-hours finding and warning](docs/study-hours-limitation.md).
 
-## Double-click application
+## Download and use SARAH
 
-Use the [app user guide](docs/user-guide.md) for download, Windows/macOS opening,
-form and CSV predictions, export and shutdown. No separate Python installation
-is needed. The [release record](docs/app-release-notes.md) lists the exact tested
-Windows x64 and Apple Silicon Mac packages, checksums and publication status.
-The release is prepared for team review under #118; a draft is not a public download.
+**SARAH 0.1.0-preview** is available for Windows x64 and Apple Silicon Mac.
+No Python installation or terminal commands are needed.
 
-PRs #121, #122 and #123 contain the reviewed platform, workflow and walkthrough
-evidence. Anna tested Windows, Jackie tested macOS, and Ka Jun completed the
-Windows newcomer walkthrough with Benjamin observing. See the release record
-for the limits of those checks. Source setup above remains the reproducibility
-and fallback route; [package testing](docs/app-package-testing.md) is for testers.
+| Your computer | Download | Open after extracting |
+|---|---|---|
+| Windows 11 x64 | [Windows app ZIP](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-windows-x64-ab4a604.zip) | Keep the whole folder together and double-click SARAH.exe. |
+| Apple Silicon Mac (tested on M3 / Tahoe 26.6.2) | [Mac app ZIP](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604.zip) | Extract with Archive Utility and open SARAH.app. |
+
+1. Download your app ZIP above and extract it once. Do not choose GitHub's Source code archive for normal app use.
+2. Open SARAH. This prototype is unsigned: Windows may need **More info → Run anyway**; Mac may need **Done → System Settings → Privacy & Security → Open Anyway**. Allow only the trusted app when your device policy permits; do not disable protections.
+3. Wait for **Ready**. The dashboard opens in your usual browser. Choose a mode and use **One student** or **Class CSV**.
+4. Use **Quit SARAH** in the small launcher when finished. Closing the browser alone does not stop the app.
+
+[Complete app user guide](docs/user-guide.md) · [Download the offline guide](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-User-Guide.html) · [Release and checksums](https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview)
+
+The user guide contains the full opening, prediction, CSV, export and troubleshooting
+instructions in one place. Read the result warnings and use human judgement.
+The [release record](docs/app-release-notes.md) links the existing Windows/macOS evidence.
+Source setup remains available below for reproduction and fallback.
+
+[Project status and remaining information](docs/project-status-review.md) records
+the 31 October consistency review, completed reviews and paused final work.

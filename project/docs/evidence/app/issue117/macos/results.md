@@ -37,7 +37,7 @@ Jackie's Mac was previously used for development and app testing. This is a team
 - Security approval to browser opening: 4.25 seconds, tester-reported. This is not a measurement to usable Attendance and does not assess the routine 30-second target.
 - Subsequent double-click to usable Attendance: approximately 2 seconds, confirmed by Benjamin on 30 October. This reported approximate result is below the 30-second routine target; no stopwatch log or repeated-run series was supplied.
 - Environment, package, GitHub Actions route and no-help completion were confirmed by Benjamin on 30 October. Exact sign-in sequence was not recorded. No fresh checksum verification is claimed.
-- No application problem beyond the expected security exception was reported. Team review is pending.
+- No application problem beyond the expected security exception was reported. Anna approved PR #123 on 30 October; it is merged.
 
 ## Evidence
 
@@ -58,4 +58,4 @@ Jackie's Mac was previously used for development and app testing. This is a team
 
 [Original downloaded results](exports/U06-results.csv). Screenshot contents and export bytes are unchanged. The raw Word document is retained locally; this Markdown record resolves its contradictory status heading and links its supplied evidence.
 
-Reviewer/date: pending. Follow-up confirmations are recorded; ready for team review with the timing, checksum and experienced-teammate limitations retained.
+Reviewed by Anna on 30 October 2026; approved and merged in PR #123. Follow-up confirmations are recorded; the timing, checksum and experienced-teammate limitations remain part of the accepted record.

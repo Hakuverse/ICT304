@@ -1,7 +1,7 @@
 # macOS package results
 
 Tester: Jackie. Test date: 28 October 2026. Recorded from Jackie's supplied notes,
-screenshots and fictional CSV exports. Peer review is pending.
+screenshots and fictional CSV exports. Anna approved PR #121 on 29 October 2026; it is merged.
 
 ## Environment and package
 
@@ -106,8 +106,7 @@ Screenshots and CSV contents were retained unchanged; filenames were clarified.
 The original Word notes and the M04 screenshot remain in Benjamin's local supplied
 folder. See the [evidence index](evidence-index.md).
 
-Reviewer/date: pending. Review the
-unsigned-app exception before closing #115. Anna's Windows results are separate.
+Reviewed by Anna on 29 October 2026; approved and merged in PR #121. The unsigned-app exception is retained as a known limitation; #115 is closed. Anna's Windows results are separate.
 This developer-computer check does not establish use on a clean machine or on the
 tutor's Mac. Full packaged workflow checks (#116), another-person download-to-use
 checks (#117) and release review (#118) remain separate.

@@ -37,7 +37,7 @@ No separate screenshot of the mini launcher was supplied.
 Startup duration, offline operation, repeated launch, quit/restart, detailed
 prediction checks and CSV export were not recorded in this preliminary check.
 No complete W01-W09 pass is claimed. Anna's [Windows results](../results.md)
-remain pending, and issues #114/#115 remain open for platform evidence review.
+were subsequently completed and reviewed in merged PR #121; #114/#115 are closed. This preliminary record remains a separate, limited check.
 
 An unsigned-app warning remains a deployment limitation. This successful launch
 does not establish that a managed university computer will permit the same action.
