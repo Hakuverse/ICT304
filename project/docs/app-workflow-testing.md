@@ -1,7 +1,11 @@
 # Packaged application workflow checks (#116)
 
 Anna tests Windows; Jackie tests macOS. Benjamin collects the records.
-This guide prepares tests; it does not claim that the new device checks passed.
+Current results are in the [evidence summary](evidence/app/issue116/README.md).
+Windows B01-D01 and macOS B01-C08 are recorded; macOS D01 and team review remain pending.
+
+The Windows port helper uses an installed Python 3 via `py`; it does not require
+a separately installed Python 3.12. SARAH itself uses its bundled runtime.
 
 ## 1. Get ready
 
@@ -10,13 +14,13 @@ Keep its ZIP, checksum and build-info.json. Do not download another binary just
 because it is newer. Both applications use bundled Python 3.12.10.
 
 Download this PR's source ZIP through GitHub **Code > Download ZIP** and extract it,
-or update your checkout after this planning PR merges. The new input files are
+or update your checkout after PR #122 merges. The new input files are
 in `project/data/app116/`. They are uploaded into the existing app; they do not
 replace anything in the app folder. Do not download a GitHub HTML preview as CSV.
 
-Open SARAH normally. Copy the results template for your platform from
+Open SARAH normally. Record any follow-up run separately in the platform record at
 `project/docs/evidence/app/issue116/windows/results.md` or `macos/results.md`.
-Fill tester, date, OS/browser and package details. Use only fictional students.
+Retain the existing results; add the actual follow-up date and package details. Use only fictional students.
 
 ## 2. Reuse completed evidence
 
@@ -89,7 +93,7 @@ This is a technical check on each tester's developer computer. Installed Python
 is used only to occupy a port, not to run SARAH.
 
 1. Quit SARAH. Open a terminal in the downloaded repository folder.
-2. Windows: `py -3.12 project/data/app116/hold_port.py`.
+2. Windows: `py project/data/app116/hold_port.py`.
    Mac: `python3 project/data/app116/hold_port.py`.
 3. Keep that terminal open. It reports the occupied localhost port (normally
    8501; if already occupied it reserves another available port).
