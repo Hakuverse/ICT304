@@ -113,6 +113,10 @@ behaviour, offline use on the recipient's machine or the 30-second target.
 
 ## After the checks
 
+PR #121 merged on 29 October; #114/#115 are closed following review. Continue
+with the [#116 packaged workflow run sheet](app-workflow-testing.md), which reuses
+the recorded checks and lists the remaining form, CSV and occupied-port cases.
+
 Add the actual evidence in a PR and identify the tested package. A teammate reviews
 the results. Fix any blocker and repeat affected checks on the rebuilt package.
 Only #118 publishes the accepted release; #97/#98 still cover submission packaging

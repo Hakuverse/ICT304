@@ -1,0 +1,233 @@
+{
+  "note": "Hashes of supplied screenshots and exports copied without content changes. Additional context screenshots remain in the local source folders.",
+  "files": [
+    {
+      "file": "windows/screenshots/B01-g2-14.png",
+      "sha256": "5d4f753cfdc7e955d334ea06ef1ed8b76b564761f6ac55dde6b858910ace5acb"
+    },
+    {
+      "file": "windows/screenshots/B01-g2-blank.png",
+      "sha256": "e91805b8ad5d128b3bee24e817df4057428df94979619c0446f9a408caefc119"
+    },
+    {
+      "file": "windows/screenshots/B01-g2-zero.png",
+      "sha256": "bddedcbca179cfcdf1112838b80c868311a4acfe46d285c95d1b1a44d98dbf90"
+    },
+    {
+      "file": "windows/screenshots/B02-g1-range.png",
+      "sha256": "822b9b0ad3fe3c6744bfb3c7ff6c43bf6a865d5bc68f2d0e085e5e2b050b296b"
+    },
+    {
+      "file": "windows/screenshots/B02-g1-required.png",
+      "sha256": "421dde05fa02b2c180eb4c86220840a9971c08cc27632d487e3c966dddba8a10"
+    },
+    {
+      "file": "windows/screenshots/B03-g2-invalid.png",
+      "sha256": "c3e4d448aee3dd77240ef838a2dee16788cf1bb5e1af576f921d2e5ee52b007e"
+    },
+    {
+      "file": "windows/screenshots/B03-g2-minus1.png",
+      "sha256": "833718667d17b211c866a5c3d195b8eece7a06341343df01fdc79adbf8cc2d3f"
+    },
+    {
+      "file": "windows/screenshots/B04-attendance-101.png",
+      "sha256": "c9125f80c63c93c7e6a7411436d45d1c538409293601189bee8916f6cda4b227"
+    },
+    {
+      "file": "windows/screenshots/B04-attendance-invalid.png",
+      "sha256": "2f7ba1d7222b127dd45b7f7846c519a2e0df3f625e53d6ae97d2f44ffbbe4f17"
+    },
+    {
+      "file": "windows/screenshots/B05-study-invalid.png",
+      "sha256": "b46e911422b037b3bb908e42fd53d5260d7b567d917b5c3ba41eec8dc5ef80ad"
+    },
+    {
+      "file": "windows/screenshots/B06-failures-dropdown.png",
+      "sha256": "f6a35144ac315889f284b8b242f51a11a88e0ccff737b12a54cc70246961d2dd"
+    },
+    {
+      "file": "windows/screenshots/B07-study-12-5.png",
+      "sha256": "14a5fb4999b011d0e10c5df21c41a75f756680f8e0e2a0e3d8e89584a139362e"
+    },
+    {
+      "file": "windows/screenshots/B07-study-12.png",
+      "sha256": "62d67fe8e082b2b385362ba071e08cbfdd2dc62ce625972b55a1cf9568545cfc"
+    },
+    {
+      "file": "windows/screenshots/B08-before.png",
+      "sha256": "82726354809aefab950cdb905a206d5fb6dd6c5eaf68431b37984b32b92ab5e7"
+    },
+    {
+      "file": "windows/screenshots/B08-input-change.png",
+      "sha256": "b94ed7841664b9ad015297f55134c11ba8acb5dab9a21e1c9442fc03a0d2e023"
+    },
+    {
+      "file": "windows/screenshots/B08-mode-change.png",
+      "sha256": "1a7edc2d92076e6f001ad6fee7c2f462cafb9ea0c60ea313fa1ed96e45e79ad5"
+    },
+    {
+      "file": "windows/screenshots/B09-back-to-confirmatory.png",
+      "sha256": "18546205ddbaccb212adcfc2e76ee1b21b3eaccccf36451ebe38e1279b09b1be"
+    },
+    {
+      "file": "windows/screenshots/B09-early-warning-form.png",
+      "sha256": "879846d507fe17955eb0899832970a1e59cbc4ae3f11affb386221be55beecf5"
+    },
+    {
+      "file": "windows/screenshots/C01-all-invalid.png",
+      "sha256": "06631bd469d2dadd2c483b786a3bd94aee46867ef9f9e0ec44e3b826f578bb9b"
+    },
+    {
+      "file": "windows/screenshots/C02-missing-column.png",
+      "sha256": "b70170b0d9f13625ce9f4aec0dc87fc73abcf317774305da4aef1e56d2d614b0"
+    },
+    {
+      "file": "windows/screenshots/C03-empty.png",
+      "sha256": "f42047fc4e0eb03dd89d1961694007da1942c7d7537c8ac155c65c059dab169c"
+    },
+    {
+      "file": "windows/screenshots/C04-header-only.png",
+      "sha256": "9435baf9b45e772e1557f345b78a4d7dc5e8622a829a8127ad008c4f8fed56c7"
+    },
+    {
+      "file": "windows/screenshots/C05-duplicate-ids.png",
+      "sha256": "dece40a9dc9b45f74dc86bb3d18db3a5bef6f6f3b325bfe8856cdcea2a35a303"
+    },
+    {
+      "file": "windows/screenshots/C06-study-boundaries.png",
+      "sha256": "d56de47bf3a0033d6ecfcdbc429306c1278cbce48ef43cf5dc7391bd42a3e912"
+    },
+    {
+      "file": "windows/screenshots/C07-invalid-failures.png",
+      "sha256": "ec8d64c1e7edab1845ccf35aef1c0dbade00b731562a772568042e4e43b07fe0"
+    },
+    {
+      "file": "macos/screenshots/B01-g2-14.png",
+      "sha256": "b307bbf01adcfbf25110467716d014083dc1e08dd8bc092106c2e6d5a4fe572e"
+    },
+    {
+      "file": "macos/screenshots/B01-g2-blank.png",
+      "sha256": "fd54e2901d179a7353cc37c8d5d44d632b2b612bfa6813abb2373e8b84032b32"
+    },
+    {
+      "file": "macos/screenshots/B01-g2-zero.png",
+      "sha256": "36f28e03bacd918695f1543073c32ad3349f98fb1d818c24d62592303b0fa555"
+    },
+    {
+      "file": "macos/screenshots/B02-g1-required.png",
+      "sha256": "1dabd7a9bffe42f0c6c5a733b0c0b29ae5fd246176f3c40a9f34a22cc62d10be"
+    },
+    {
+      "file": "macos/screenshots/B02-g1-minus1.png",
+      "sha256": "b6d42420ba91a31a9d1f21e37528c6fd4df2e669895aed98c55eb9d0fd66273e"
+    },
+    {
+      "file": "macos/screenshots/B02-g1-na.png",
+      "sha256": "d4b2da635223f112a6718a4d04b20c2ae093b304b17e26edfd3bcb4e585a66c9"
+    },
+    {
+      "file": "macos/screenshots/B03-g2-invalid.png",
+      "sha256": "f3c49f739f897f979947a042685dca235f39425b3374664a0642bb6c50fe6206"
+    },
+    {
+      "file": "macos/screenshots/B04-attendance-invalid.png",
+      "sha256": "82c705cd15ed5f4a4e3ef1869668d4094fb2c32c23b915c19e1aed3ab9484bbe"
+    },
+    {
+      "file": "macos/screenshots/B05-study-invalid.png",
+      "sha256": "1c98999d9071d6e58dd66e53be5df94ce5c74bd0157f61f613ddcc365ac4c534"
+    },
+    {
+      "file": "macos/screenshots/B06-failures-dropdown.png",
+      "sha256": "5befcccb822b5ce405143c713b888d190c5bc063d24fa2036c98c98e451d172d"
+    },
+    {
+      "file": "macos/screenshots/B07-study-12.png",
+      "sha256": "6d4a4be894899420c162b70c5d5e3a78c53cb34a4630091186e81b2062b0f6ad"
+    },
+    {
+      "file": "macos/screenshots/B07-study-12-5.png",
+      "sha256": "720942ec6212029c80828a5e7f3f3c30699b6e323a321024cbbb3a1799b302f0"
+    },
+    {
+      "file": "macos/screenshots/B08-before.png",
+      "sha256": "677a3ede2fc18a51e65df2cc6c29efc82e4c7011e173336bba76694b41794d96"
+    },
+    {
+      "file": "macos/screenshots/B08-input-change.png",
+      "sha256": "140380993bde3b55ed757a4ee68555a644faf61e5b1b6cdd68349cef058c6e6c"
+    },
+    {
+      "file": "macos/screenshots/B08-mode-change.png",
+      "sha256": "d1cf4458c3f494683f1dfd6a69d29182ad4dee3e8d67f60183ab30e73ad4fb11"
+    },
+    {
+      "file": "macos/screenshots/B09-early-warning-result.png",
+      "sha256": "4184be82c4767edfa048e343d15daaceffccd84d45c83a632ed37894ab0ee425"
+    },
+    {
+      "file": "macos/screenshots/B09-confirmatory-switch-cleared.png",
+      "sha256": "5e7ea01cf5af674d8a84a105ca209ab5df79a319eed267fa92caf394097cff94"
+    },
+    {
+      "file": "macos/screenshots/C01-all-invalid.png",
+      "sha256": "24e7cdcc78eedae0f9e989fad116017d19610ee44e6b4eb759197e5a48ff85db"
+    },
+    {
+      "file": "macos/screenshots/C02-missing-column.png",
+      "sha256": "beccbbd9a343bdfa733a5deff0d5e37519e37627fe8637a03e926e1d34e28d8a"
+    },
+    {
+      "file": "macos/screenshots/C03-empty.png",
+      "sha256": "cc71bac319dbf7653fb66bac3805ac99538fc6ca0e30569bd38cd2082c876a1b"
+    },
+    {
+      "file": "macos/screenshots/C04-header-only.png",
+      "sha256": "a3241bd9852a8501cd6daa7fff12b7163a59fc8214f97b47a1dabb9709a010fd"
+    },
+    {
+      "file": "macos/screenshots/C05-duplicate-ids-2.png",
+      "sha256": "1f988626a7739023d3757e3614bc7ff9584fd9d53cca3ea4136facc6e1e3695b"
+    },
+    {
+      "file": "macos/screenshots/C06-study-boundaries.png",
+      "sha256": "af48c8d3a3016f25e7e1618677f863be94ecd7d30075479b920e6df211335c91"
+    },
+    {
+      "file": "macos/screenshots/C06-study-boundaries-result.png",
+      "sha256": "1429b7d4eb519ae954eda6b8256a03eb6360f8792593d0e95669757b78d9de1b"
+    },
+    {
+      "file": "macos/screenshots/C07-invalid-failures.png",
+      "sha256": "95b5e63d20a55aabce8c9b9c682182aed354a0b6dd7e95b8f563befb44ef6157"
+    },
+    {
+      "file": "macos/screenshots/C08-stale-results-cleared.png",
+      "sha256": "849281ab22f087bdaaa114551c4b94223dc93defc3c9fdd3f38d083dafa2717a"
+    },
+    {
+      "file": "windows/exports/C05-results.csv",
+      "sha256": "4d00ab5591497e952b8f5eefc39c1c473f8e3cd7dad3849c76ddab776671999b"
+    },
+    {
+      "file": "windows/exports/C06-results.csv",
+      "sha256": "87194d8f56857ec01eb6feb914ddfb6d76128b75b41dd47187c7cfdba2cc361b"
+    },
+    {
+      "file": "macos/exports/C05-results.csv",
+      "sha256": "808c26f1866a8707bda1a4c4fae6825380a5156e021e4d7f2e3e3e6c40afeefc"
+    },
+    {
+      "file": "macos/exports/C06-results.csv",
+      "sha256": "52e4319f2e820891abdba03864f6d939f2bab47e0a570eb25dd5877e068cf9f2"
+    },
+    {
+      "file": "macos/screenshots/D01-occupied-port-form.png",
+      "sha256": "0337506e14a66dddfa9fa4c45571da12f5a6ea9651ac772ca4e3ab383605757e"
+    },
+    {
+      "file": "macos/screenshots/D01-occupied-port-result.png",
+      "sha256": "0e06ef1c392ed8bf3028450de4cabd722a53e9479390dc1244fe555da4b17fc9"
+    }
+  ]
+}
