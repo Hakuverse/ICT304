@@ -1,0 +1,92 @@
+{
+  "date_singapore": "2026-10-31",
+  "release_url": "https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview",
+  "release_id": 429044324,
+  "tag": "v0.1.0-preview",
+  "published_at_utc": "2026-10-30T16:24:17Z",
+  "prerelease": true,
+  "source_commit": "ab4a604a71ecef9f0585a137a014e7dd6fb861e2",
+  "guide_commit": "1d86ced89e8d5959ee9de83724778441b8f08040",
+  "public_page_http_status": 200,
+  "verification": "Unauthenticated HTTP downloads; SHA-256 and byte size checked for every asset. No device execution or new user test performed.",
+  "device_testing_decision": "Benjamin requested reuse of existing #114\u2013#117 evidence on 31 October 2026; no additional published-download device run.",
+  "assets": [
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604-build-info.json",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604-build-info.json",
+      "size": 853,
+      "sha256": "a93479fce40045a500fbdda573258f7ac36a703868e4e19791d3497185bf289c",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604-extracted-check.json",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604-extracted-check.json",
+      "size": 690,
+      "sha256": "9f0a6d170f95c5940d95e9d31d739e232e7f47cebac6f960b239a4a916dfb6b2",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604.sha256",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604.sha256",
+      "size": 110,
+      "sha256": "11ef7bc9d574d5ecb717cec054027f6c15c50a2fb265f936f7c647fc2b6a28b8",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604.zip",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604.zip",
+      "size": 117426712,
+      "sha256": "0996cc189a435d1e1a4509a7fd754cdcf7366a36fed8a5cdb8c173fa4fedf875",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604-build-info.json",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-windows-x64-ab4a604-build-info.json",
+      "size": 873,
+      "sha256": "52da31cc6ec3d807bf0e07d2539b3d11cf00be484053bf7e9a7e22ff08f15272",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604-extracted-check.json",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-windows-x64-ab4a604-extracted-check.json",
+      "size": 720,
+      "sha256": "967877852263858882fe0be728c28d9bba7484e8911153badd652a9512b284db",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604.sha256",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-windows-x64-ab4a604.sha256",
+      "size": 111,
+      "sha256": "2664cbd3809c61131cddb63bf28c02be1ab2d7377ea92c66faa7cc08431c2bc0",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604.zip",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-windows-x64-ab4a604.zip",
+      "size": 136058737,
+      "sha256": "8828121aa9b343c07138657f6d827df168d33211782204fd5b019bf2577f4bc2",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-User-Guide.html",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-User-Guide.html",
+      "size": 776251,
+      "sha256": "3a352048259181e529c5f633c5c62da48130b88726b36b6c819e6fdae8d49a84",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SARAH-User-Guide.md",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-User-Guide.md",
+      "size": 26508,
+      "sha256": "6ba3d382838760b82d334c1c8f721084ceabe17151e741a3f5b03093dd20d248",
+      "anonymous_download": "passed"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SHA256SUMS.txt",
+      "size": 1128,
+      "sha256": "93567aa1a62d30e21d3ed64440a86ccfada4da371a62aabaf1701a2fbb72a2e3",
+      "anonymous_download": "passed"
+    }
+  ]
+}

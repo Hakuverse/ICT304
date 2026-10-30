@@ -9,9 +9,9 @@ for current distribution status. The historical artifact links below may expire.
 available on the [published release](https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview).
 Use those downloads for ordinary use; the Actions steps below describe the original tests.
 
-## Get the correct package
+## Original test-package download procedure
 
-Current candidate, checked 28 October 2026: source `ab4a604`, built from PR #121
+Test candidate checked on 28 October 2026: source `ab4a604`, built from PR #121
 code head `9cdda7a`. Later evidence/documentation commits do not change these files.
 Both platform jobs passed in [run 40556703379](https://github.com/Hakuverse/ICT304/actions/runs/40556703379).
 

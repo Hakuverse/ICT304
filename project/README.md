@@ -211,4 +211,3 @@ The user guide contains the full opening, prediction, CSV, export and troublesho
 instructions in one place. Read the result warnings and use human judgement.
 The [release record](docs/app-release-notes.md) links the existing Windows/macOS evidence.
 Source setup remains available below for reproduction and fallback.
-
