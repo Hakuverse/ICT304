@@ -1,0 +1,2 @@
+# Preserve downloaded CSV bytes for the evidence hashes.
+*.csv -text
