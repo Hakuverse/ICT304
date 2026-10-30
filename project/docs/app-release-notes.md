@@ -3,6 +3,13 @@
 Prepared on 30 October 2026 for issue #118. **Status: draft release for team review;
 not yet a public download or a claim of LMS submission.**
 
+[Review PR #124](https://github.com/Hakuverse/ICT304/pull/124) ·
+[Open the draft release](https://github.com/Hakuverse/ICT304/releases/tag/untagged-0a6faa268471d6db8b8e).
+The draft was created on 30 October with 11 assets. GitHub's SHA-256 digest for
+every uploaded asset matched its local file. See the
+[asset verification record](evidence/app/issue118/draft-release-assets.json).
+This upload verification is separate from a signed-out public download check.
+
 ## Version and downloads
 
 Release version: **v0.1.0-preview**. The application identifies itself as
