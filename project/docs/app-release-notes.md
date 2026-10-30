@@ -1,14 +1,15 @@
 # SARAH app release and handover
 
-Prepared on 30 October 2026 for issue #118. **Status: draft release for team review;
-not yet a public download or a claim of LMS submission.**
+Published on **31 October 2026** for issue #118 as an unsigned university
+prototype pre-release. Documentation preparation was reviewed in merged
+[PR #124](https://github.com/Hakuverse/ICT304/pull/124). Benjamin authorised
+publication on 31 October and chose to reuse the existing Windows/macOS tests
+without another device run. This is not a claim of final LMS submission.
 
-[Review PR #124](https://github.com/Hakuverse/ICT304/pull/124) ·
-[Open the draft release](https://github.com/Hakuverse/ICT304/releases/tag/untagged-0a6faa268471d6db8b8e).
-The draft was created on 30 October with 11 assets. GitHub's SHA-256 digest for
-every uploaded asset matched its local file. See the
-[asset verification record](evidence/app/issue118/draft-release-assets.json).
-This upload verification is separate from a signed-out public download check.
+The original [draft asset record](evidence/app/issue118/draft-release-assets.json)
+remains historical. Current public download checks and asset digests are in the
+[publication record](evidence/app/issue118/published-release-assets.json).
+The app ZIPs are unchanged; the separate user guides were updated for direct downloads.
 
 ## Version and downloads
 
@@ -20,12 +21,9 @@ Release version: **v0.1.0-preview**. The application identifies itself as
 - [Apple Silicon Mac ZIP](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604.zip)
 - [App user guide](user-guide.md) — complete download-to-use instructions.
 
-These public URLs become available only when the draft is published. Drafts are
-visible to repository collaborators through the Releases page. Each release ZIP
-is the actual app package, without the extra Actions ZIP wrapper. Users do not
-need to download the source-code archive. Publication should remove the GitHub
-sign-in obstacle observed during #117; anonymous download verification is still
-required after publication and is not claimed here.
+The public app ZIPs do not need a GitHub account. Each is the app package itself,
+without the older Actions ZIP wrapper. The user guide links directly to both ZIPs
+and contains all normal-use instructions. Users do not need the source-code archive.
 
 ## Exact tested files
 
@@ -93,32 +91,26 @@ have not been verified by these results.
   generalisation. See [evaluation](evaluation_report.md) and
   [study-hours discussion](study-hours-limitation.md).
 
-## Review, publication and final handover
+## Publication and remaining handover
 
-The team reviews the documentation PR and draft release before publication.
-Keep #118 open until the publication and handover checks below are recorded.
+- PR #124 is merged. Benjamin authorised publication on 31 October 2026.
+- Version `v0.1.0-preview` uses the same tested Windows/macOS ZIPs and source.
+- Public downloads are checked without GitHub authentication and their bytes
+  compared with the recorded hashes; see the publication record for actual outcomes.
+- Benjamin chose **not to repeat device testing**. Existing #114–#117 evidence is
+  reused for unchanged packages. No launch from the published download is claimed.
+- Report, declaration, presentation/rehearsal, final submission-package checking
+  and closeout work are **paused at Benjamin's request on 31 October**. This release
+  does not complete those tasks or establish a 3 November meeting decision.
 
-- [x] Confirm PRs #121–#123 merged and preserve the tested app files.
-- [x] Recalculate both ZIP hashes and inspect included metadata/notices.
-- [x] Prepare a direct app user guide, release assets and source fallback links.
-- [ ] Another teammate reviews this PR, the guide and draft release contents.
-- [ ] Publish the draft as a **pre-release**, retaining the version and exact ZIPs.
-- [ ] Open the published page signed out; download both ZIP assets and compare
-      their SHA-256 values with the table. Record actual date and checker.
-- [ ] On each platform, use the published download for a short opening/form/CSV/
-      Quit check. Reuse #116/#117 for unchanged behaviour; report this separately
-      as a release-route check, not a repeated independent usability study.
-- [ ] Record the 3 November readiness decision and final submission selection
-      under #97/#98. Public release alone is not a submission receipt.
-
-| Final work | Handover |
+| Paused work | Handover when resumed |
 |---|---|
-| #93 report | Link this version, user guide and #114–#117 evidence. Explain easier deployment separately from model accuracy and retain timing/usability limits. |
-| #95 slides | Show the app opening route and supported platforms; retain the existing model results and human-review warnings. |
-| #96 rehearsal/video | Keep Anna's existing video and its original commit/date. Proposed addition: a short app-startup clip or live startup demonstration. Team to confirm during rehearsal; no new recording is claimed. |
-| #97 package | Use the exact ZIP names/hashes above alongside the reviewed source package. Record the final extracted-copy checks in submission-package-checks.md. |
-| #98 closeout | Record release URL, chosen platforms, final deliverables, exact LMS cutoff, uploader and backup; keep receipts/private forms private. |
+| #93 report | Link this version, user guide and #114–#117 evidence. Keep deployment improvements separate from accuracy and retain limitations. |
+| #94 declaration | Confirm actual contributions and required disclosures. |
+| #95 slides | Show the app opening route and tested platforms, alongside the existing model results. |
+| #96 rehearsal/video | Retain Anna's original video and metadata. A live startup demonstration or separate short clip remains a team choice; no new recording is claimed. |
+| #97 package | Use the exact app ZIPs/hashes alongside the selected source archive. Final source-package extraction/checking remains outstanding. |
+| #98 closeout | Confirm final deliverables, exact LMS cutoff, uploader and backup; retain receipts privately after submission. |
 
-Publication record: **pending**. Release reviewer: **pending**. Final app selection
-for submission: **pending team readiness review**. These are remaining actions,
-not completed meeting decisions.
+Issue #118's publication work is complete once its documentation update is merged;
+final submission handover remains paused. Keep that distinction in the issue status.

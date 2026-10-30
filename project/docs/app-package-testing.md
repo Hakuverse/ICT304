@@ -5,7 +5,9 @@ reviewed in merged PR #121; #116 workflow evidence was reviewed in merged PR #12
 The #117 walkthrough was reviewed in merged PR #123. This document retains the
 original Actions download/testing procedure. Ordinary users should use the
 [app user guide](user-guide.md), with the [release record](app-release-notes.md)
-for current distribution status. The historical artifact links below may expire.
+for current distribution status. The historical artifact links below may expire. The same tested app ZIPs are now
+available on the [published release](https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview).
+Use those downloads for ordinary use; the Actions steps below describe the original tests.
 
 ## Get the correct package
 
@@ -18,7 +20,8 @@ Both platform jobs passed in [run 40556703379](https://github.com/Hakuverse/ICT3
 
 Earlier candidates are superseded after the Windows loading fault. Use `-4`,
 record its own build-info.json, and retain it locally before the 14-day artifact
-retention expires. These are review candidates, not a published release.
+retention expires. The original review-candidate download route below is retained
+for traceability; current public downloads are on the release page above.
 
 1. Open the packaging PR and its **Checks**, or the repository **Actions** tab.
 2. Choose **Build SARAH test apps** for the exact commit being reviewed. Wait for
@@ -82,7 +85,7 @@ reported platform, but their security settings and launch result remain separate
 Anna records results in `project/docs/evidence/app/windows/results.md` and Jackie
 in `project/docs/evidence/app/macos/results.md`. Jackie's 28 October device evidence
 is submitted for review. Anna's 29 October Windows evidence is also submitted;
-W03 now includes a 13.20-second post-approval reboot launch, meeting the routine startup target. Peer review remains pending.
+W03 now includes a 13.20-second post-approval reboot launch, meeting the routine startup target. Peer review was completed through merged PR #121.
 Record actual results, including failures, rather than replacing every row with Pass.
 
 | Check | What to do | Screenshot when useful |

@@ -41,22 +41,21 @@ unless your institution has approved it.
 
 ### Download the app
 
-Open the [SARAH 0.1.0-preview release](https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview)
-and expand **Assets**. Choose one app ZIP:
+Download the app for your computer directly below. You do not need a GitHub account:
 
 | Your computer | File to download |
 |---|---|
-| Windows 11, x64 | `SARAH-0.1.0-preview-windows-x64-ab4a604.zip` |
-| Apple Silicon Mac (tested on M3, macOS Tahoe 26.6.2) | `SARAH-0.1.0-preview-macos-arm64-ab4a604.zip` |
+| Windows 11, x64 | [Download Windows app ZIP](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-windows-x64-ab4a604.zip) |
+| Apple Silicon Mac (tested on M3, macOS Tahoe 26.6.2) | [Download Apple Silicon Mac app ZIP](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604.zip) |
 
 Do not choose GitHub's **Source code (zip)** or **Source code (tar.gz)** for normal
 app use. Intel Macs and Windows ARM have not been tested. The release ZIP is the
 app package itself: extract it once. The older Actions downloads had an extra ZIP
 wrapper; that is not needed for release downloads. Public release downloads do
-not require a GitHub account. If the release is not yet published, ask the team
-for the reviewed package; a draft release is visible only to repository collaborators.
+not require a GitHub account. The [release page](https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview) also lists both
+packages, version details and checksums.
 
-You can also download **SARAH-User-Guide.html** from Assets and double-click it to
+You can also [download this guide for offline use](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-User-Guide.html) and double-click it to
 read these instructions offline. Keep the package's sample CSVs, `build-info.json`
 and `third-party-notices` folder. The separate checksum and build records identify
 the tested version; you do not open them to start SARAH.

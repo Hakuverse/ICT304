@@ -2,8 +2,8 @@
 
 Issue: [#112](https://github.com/Hakuverse/ICT304/issues/112).
 Decisions confirmed by Benjamin on 27 October 2026; plan merged in PR #119.
-Current status updated 30 October 2026: PRs #121–#123 are merged.
-See [release preparation and handover](app-release-notes.md) for #118.
+Current status updated 31 October 2026: PRs #121–#124 are merged.
+See [published release and handover](app-release-notes.md) for #118.
 The original acceptance checklist below records planned requirements; actual
 outcomes and limitations remain in the linked platform/workflow evidence.
 Starting baseline: `4f4d5ce7bf4912d5825e8bd40a48874d3f985b4a` after PR #111.
@@ -156,7 +156,7 @@ usability targets into passes.
 
 Platform checks (#114/#115), workflow checks (#116) and walkthroughs (#117) were
 reviewed in merged PRs #121, #122 and #123. The accepted candidate is `ab4a604`.
-Issue #118 prepares the same ZIPs for release with a direct app user guide; see
+Issue #118 publishes the same tested ZIPs with a direct app user guide; see
 [release notes](app-release-notes.md) for publication status and checksums.
 
 The tutor's device has not been tested simply because it matches Jackie's chip/OS.
@@ -167,7 +167,7 @@ LMS cutoff, uploader and backup. The release is not proof of LMS submission.
 
 The [launcher checks](app-launcher-checks.md) record issue #113 development results.
 The [developer build guide](../packaging/README.md) covers the shared launcher and
-build recipe. Platform release and user checks remain under #114–#118.
+build recipe. Reviewed platform/user checks are linked from the release record.
 
 
 ## Platform testing allocation update
