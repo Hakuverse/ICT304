@@ -363,3 +363,16 @@ Warnings apply to either risk label in both modes, separately from support rules
 The dashboard shows the full warning once above the CSV table and marks affected
 rows in `study_hours_warning` as "Yes - see warning above". The downloaded CSV
 keeps the full text in `input_warning`; unaffected rows have a blank warning. See the [finding and critical discussion](study-hours-limitation.md).
+
+
+## Packaged app: closing and reopening
+
+Use **Quit SARAH** in the launcher when finished. Closing only a browser tab does
+not stop SARAH. While SARAH is still running, **Open dashboard** opens its page again.
+After quitting, an old tab may show a connection error: the local server has stopped.
+Start SARAH again and use the newly opened dashboard; the old session tab may remain
+disconnected. You can close that old tab.
+
+For the study-hours warning, **may be unreliable** does not mean every prediction
+above 12 is definitely wrong, or that predictions at/below 12 are definitely right.
+Keep the student's actual input, consider other information and use human review.

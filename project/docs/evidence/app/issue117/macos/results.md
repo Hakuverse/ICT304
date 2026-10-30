@@ -1,55 +1,61 @@
-# Issue 117 macos walkthrough
+# Issue 117 macOS walkthrough results
 
-Status: Not tested. This is a record template, not completed evidence.
+Tester: Jackie, experienced SARAH teammate. Date: 30 October 2026. Observer and assistance: not recorded.
 
-Tester public alias: Jackie (teammate; planned)
+Environment listed in the supplied document: Apple M3, macOS Tahoe 26.6.2 (25G83), Chrome 152.0.7977.75 arm64. The document labels these as previously recorded and needing confirmation for this walkthrough.
 
-Observer: not recorded
+Package identified in the document and screenshots: SARAH-macos-arm64-4 containing the ab4a604 Apple Silicon package. Full source listed: `ab4a604a71ecef9f0585a137a014e7dd6fb861e2`. Previously recorded inner ZIP SHA-256: `0996cc189a435d1e1a4509a7fd754cdcf7366a36fed8a5cdb8c173fa4fedf875`. New checksum verification was not recorded. Download route/sign-in outcome and current environment are awaiting confirmation.
 
-Actual date, OS/build, processor, browser/version: not recorded
+Jackie's Mac was previously used for development and app testing. This is a teammate walkthrough, not an independent first-time or clean-machine test.
 
-Package filename, source and checksum: not recorded (planned candidate ab4a604)
+## Actual observations
 
-Download route and sign-in outcome: not recorded
-
-Existing Python, repository/virtual environment, prior SARAH use and security approval: not recorded
-
-Anonymous feedback/screenshot consent: not recorded
-
-Reviewer/date: pending
-
-Follow the [walkthrough](../../../../app-walkthrough.md).
-
-| Task | Outcome | Actual observation, assistance and evidence |
+| Case | Outcome | Evidence and limitations |
 |---|---|---|
-| U01 | Not tested | |
-| U02 | Not tested | |
-| U03 | Not tested | |
-| U04 | Not tested | |
-| U05 | Not tested | |
-| U06 | Not tested | |
-| U07 | Not tested | |
-| U08 | Not tested | |
+| U01 | Completed as reported; route details pending | Download/extraction reported. Inner package image shows SARAH, START-HERE, sample CSVs and build records. Outer-package image reviewed locally, but withheld because the Finder sidebar includes a personal account name. |
+| U02 | Completed after security approval | Gatekeeper blocked opening; Privacy & Security > Open Anyway allowed it. Launcher Ready and browser dashboard are shown. 4.25 seconds was reported from security approval to automatic browser opening, not full startup to usable Attendance. |
+| U03 | Pass | 40 attendance / 4 study / 0 failures; High Risk 85.9% with attendance support. Form and result screenshots supplied. |
+| U04 | Pass | Confirmatory 80/40/0/G1 12/G2 blank; High Risk 66.1%, G1 only, full study warning and general staff-review guidance. |
+| U05 | Pass | Built-in sample workflow reported completed. Screenshots show 4 rows, 2 predicted, 2 skipped: A Low Risk 15.5% g1 and B Low Risk 0.4% g1_g2; C attendance 150 and D G2 NA errors. |
+| U06 | Pass | Supplied U06-results.csv contains A Low Risk 0.155/g1 and B Low Risk 0.004/g1_g2, blank warnings and routine guidance. Spreadsheet screenshot agrees. |
+| U07 | Pass for operation; routine timing missing | Quit image shows the old page on port 56358 no longer responding. Reopened image shows a new dashboard on 58167. Restart duration was not recorded. |
+| U08 | Feedback supplied | The original document's heading says pending, but it contains the responses below. Feedback is recorded; do not treat it as missing. |
 
-## Actual timings
+## Feedback from Jackie's document
 
-- Download/extraction: not recorded.
-- First launch including security prompts: not recorded.
-- Security-only time, if separately measured: not recorded.
-- Subsequent double-click to usable Attendance: not recorded; compare with the 30-second routine target.
+- Modes: "I used Early-Warning without grades and Confirmatory with G1. Leaving G2 blank selected the G1-only model. The page explained that G1 is required and G2 is optional in Confirmatory mode."
+- Probability: "The result displayed a model-estimated High-Risk probability and stated that it may be inaccurate. The page also said the prediction should not be used alone to make decisions about a student."
+- Study warning: "Entering 40 study hours still produced a prediction with a warning. The warning told me to review the result with other information and not change the input to 12."
+- Quitting: "I used Quit SARAH in the launcher window. Closing a browser tab alone did not stop the application."
+- Improvements: "I did not report a problem with the prediction tasks. The macOS security approval added an extra step; showing Privacy & Security > Open Anyway clearly in the launch instructions would help."
+- Instructions: "I completed the download and extraction. On the first launch, macOS blocked SARAH; I used Privacy & Security > Open Anyway, after which SARAH opened and the dashboard appeared automatically in the browser. I did not separately compare every written instruction with each step I took."
 
-## Feedback in the tester's own words
+## Timing and limitations
 
-1. Modes and G1/G2: not recorded.
-2. Percentage and human review: not recorded.
-3. Study-hours warning and whether to change the input: not recorded.
-4. How to quit: not recorded.
-5. Confusing steps and improvements: not recorded.
+- Download/extraction duration: not recorded (the original timing field contains a filename).
+- Full first launch including security: not measured.
+- Security approval to browser opening: 4.25 seconds, tester-reported. This is not a measurement to usable Attendance and does not assess the routine 30-second target.
+- Subsequent double-click to usable Attendance: not recorded.
+- Environment, actual download route/sign-in and help need confirmation. No fresh checksum verification is claimed.
+- No application problem beyond the expected security exception was reported. Team review is pending.
 
-## Findings, help and follow-up
+## Evidence
 
-Not recorded. Retain any original failure or assistance when recording a later fix/recheck. Record the actual test environment limitations; do not assume a clean machine or independent tester.
+- [01-package-inner-files.png](screenshots/01-package-inner-files.png)
+- [02-security-prompt-setting.png](screenshots/02-security-prompt-setting.png)
+- [02-security-prompt.png](screenshots/02-security-prompt.png)
+- [03-dashboard-ready.png](screenshots/03-dashboard-ready.png)
+- [04-early-warning-form.png](screenshots/04-early-warning-form.png)
+- [04-early-warning-result.png](screenshots/04-early-warning-result.png)
+- [05-study-warning-form.png](screenshots/05-study-warning-form.png)
+- [05-study-warning-result.png](screenshots/05-study-warning-result.png)
+- [06-csv-results.png](screenshots/06-csv-results.png)
+- [06b-skipped-row-result.png](screenshots/06b-skipped-row-result.png)
+- [06b-skipped-rows.png](screenshots/06b-skipped-rows.png)
+- [07-downloaded-results.png](screenshots/07-downloaded-results.png)
+- [08-quit.png](screenshots/08-quit.png)
+- [09-reopened.png](screenshots/09-reopened.png)
 
-## Review decision
+[Original downloaded results](exports/U06-results.csv). Screenshot contents and export bytes are unchanged. The raw Word document is retained locally; this Markdown record resolves its contradictory status heading and links its supplied evidence.
 
-Pending actual walkthrough and team review.
+Reviewer/date: pending. Confirm the remaining environment/download details and record routine startup timing or explicitly accept the missing measurement as a limitation before completing #117.

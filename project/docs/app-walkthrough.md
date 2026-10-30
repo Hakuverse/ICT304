@@ -1,6 +1,6 @@
 # Packaged app walkthrough (#117)
 
-Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Status: planned; no #117 results recorded yet. This checks the download-to-use experience. It does not repeat every #116 boundary test.
+Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Results from 30 October are now recorded in the [evidence review](evidence/app/issue117/README.md); follow-up details and team approval remain pending. This checks the download-to-use experience. It does not repeat every #116 boundary test.
 
 ## People and version
 
@@ -18,7 +18,7 @@ Current temporary distribution route: [Actions run 40556703379](https://github.c
 | Windows x64 | [SARAH-windows-x64-4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12757642322) | SARAH-0.1.0-preview-windows-x64-ab4a604.zip |
 | Apple Silicon Mac | [SARAH-macos-arm64-4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12758175843) | SARAH-0.1.0-preview-macos-arm64-ab4a604.zip |
 
-These artifacts were available when checked on 30 October and expire on **10 November 2026**. GitHub may require sign-in. There is no published Release yet; #118 covers final release distribution. Do not use GitHub's source-code ZIP as the application download.
+These artifacts were available when checked on 30 October and expire on **10 November 2026**. GitHub may require sign-in. In the Windows walkthrough, the download showed 404 while signed out; signing in and retrying resolved it with observer advice. There is no published Release yet; #118 covers final release distribution. Do not use GitHub's source-code ZIP as the application download.
 
 1. Give the tester this page and the [user guide](user-guide.md); let them attempt the steps themselves.
 2. Download the matching artifact. Extract the outer ZIP to find the versioned inner ZIP, checksum and JSON build records. Retain all of them.
@@ -59,6 +59,10 @@ Allow the tester to try with the written instructions first. If stuck, help as n
 5. Which step or wording was confusing, and what would you improve?
 
 Record the person's actual response before adding any clarification. Use a public alias, not their legal name. Get their agreement to record anonymous feedback and screenshots.
+
+## Recorded runs
+
+Ka Jun completed the Windows tasks with sign-in help; Jackie supplied the macOS teammate walkthrough. Both show working predictions, exports and quit/reopen. See the [evidence review and outstanding follow-ups](evidence/app/issue117/README.md). The Windows evidence uses older U01-U10 filenames and a warning-demo export; its record maps these differences without pretending the run followed an identical script.
 
 ## Records and completion
 

@@ -22,9 +22,13 @@ retention expires. These are review candidates, not a published release.
 2. Choose **Build SARAH test apps** for the exact commit being reviewed. Wait for
    the platform build to finish successfully; do not use an artifact from a failed run.
 3. Download `SARAH-windows-x64-...` for Anna or `SARAH-macos-arm64-...` for Jackie.
-   GitHub may require you to sign in to download Actions artifacts.
+   GitHub may require you to sign in to download Actions artifacts. If the
+   artifact link shows 404 while signed out, sign in and retry the same link.
+   If it still fails, report the download barrier rather than switching builds.
 4. Extract the outer Actions download. It contains the actual versioned SARAH
    ZIP, its SHA-256 checksum, build details and extracted-package smoke results.
+   The outer ZIP is the delivery wrapper; its versioned inner ZIP is the app
+   package. Opening a ZIP in a file viewer is not the same as extracting it.
 5. Extract the inner SARAH ZIP. On macOS use Archive Utility so the app's links
    and permissions are preserved. Keep the Windows application folder together.
 6. Read START-HERE.txt and record the package filename and source commit from

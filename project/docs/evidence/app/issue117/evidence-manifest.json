@@ -1,0 +1,117 @@
+{
+  "note": "Original evidence contents preserved. Windows original filename IDs are mapped in results.md. Mac outer-package screenshot retained locally because its sidebar shows a personal account name.",
+  "files": [
+    {
+      "file": "windows/screenshots/U01-download-problem.png",
+      "sha256": "70a12d9f53c2012e479172eaadf808909df33319384d3803ed9de39578c92370"
+    },
+    {
+      "file": "windows/screenshots/U02-extracted-package-b.png",
+      "sha256": "897fc4d7ccdf18b2b52df5a7104279da0cea7d93fb379a594843a67d0b9c0dd1"
+    },
+    {
+      "file": "windows/screenshots/U02-extracted-package.png",
+      "sha256": "1c26228e10fb8c40f2dd862b0d8477870aacbe3f00274280e225f73e0dd1331e"
+    },
+    {
+      "file": "windows/screenshots/U03-security-details.png",
+      "sha256": "4a8042ff86a5d54a0943e59dbc25de66e0452539776744ac16b42f68f3cfbf4c"
+    },
+    {
+      "file": "windows/screenshots/U03-security-warning.png",
+      "sha256": "fb6256d4a1c48d73b7165297d98a656fd7911ee2b3953392c18a1ef5cc2b9300"
+    },
+    {
+      "file": "windows/screenshots/U04-ready-dashboard.png",
+      "sha256": "95f3f5197d1118dec0d9d287e51f9482337d272408fa5809cd28c14d08703100"
+    },
+    {
+      "file": "windows/screenshots/U05-early-warning-result.png",
+      "sha256": "e0d991d3019eedcbb9fc20696848ff9e1eb4496976306a9db51259daa29ed6b9"
+    },
+    {
+      "file": "windows/screenshots/U06-confirmatory-warning.png",
+      "sha256": "872e615f54451b3e94c85228f4d507f4955a1a509d605ed5b7dad83337444e4c"
+    },
+    {
+      "file": "windows/screenshots/U07-csv-results-and-skipped.png",
+      "sha256": "6c6a88fdda5bfe256938b117ae8c8847a14dcad63457419079deb4d44f1a586a"
+    },
+    {
+      "file": "windows/screenshots/U08-export-opened.png",
+      "sha256": "a07c8756fc7af34c6a419decd7eaaeccd4064e7b0ac3f72a0ce57c7b07462c43"
+    },
+    {
+      "file": "windows/screenshots/U08-warning-csv-result.png",
+      "sha256": "45737ea5008036df47c5fdf535b2d47ab7f8f99a41aa23d228500ec0e3980eeb"
+    },
+    {
+      "file": "windows/screenshots/U10-after-quit.png",
+      "sha256": "4946369a5e7a0059d0cacfaf9f960d424d63e1cc5b7a8af0bc171c95267d448b"
+    },
+    {
+      "file": "macos/screenshots/01-package-inner-files.png",
+      "sha256": "9982b8350acf77cdf6ffa1a1e35b2f5f686c0f7a8aee997187840baddb65e35f"
+    },
+    {
+      "file": "macos/screenshots/02-security-prompt-setting.png",
+      "sha256": "247e7b5695da8612bd1adffe095d775e30facae4a3a4c63964a3f6ea8dcd7d61"
+    },
+    {
+      "file": "macos/screenshots/02-security-prompt.png",
+      "sha256": "1a8d93db172c964c537d04ba60d7d5212e9a4531396adbc9d1ec9e7ab1f2e681"
+    },
+    {
+      "file": "macos/screenshots/03-dashboard-ready.png",
+      "sha256": "eff7dd7f1a63284a09211abc5cb087d6b14a5c620a02188d1366c99e40c3b8a2"
+    },
+    {
+      "file": "macos/screenshots/04-early-warning-form.png",
+      "sha256": "3ccac5646227baa102f882bde9742b6ab89d3a08e4f317e295975b47cfafe743"
+    },
+    {
+      "file": "macos/screenshots/04-early-warning-result.png",
+      "sha256": "d0fe6e0f21491740e45a1991057a4ce902da38f558575be05b673b5f88a34b44"
+    },
+    {
+      "file": "macos/screenshots/05-study-warning-form.png",
+      "sha256": "04f70bd0744ed13666a8c780deb3bf2820243bdcf8cb657f76a55a14caec71d0"
+    },
+    {
+      "file": "macos/screenshots/05-study-warning-result.png",
+      "sha256": "4cce5766ad5f3b265948f9e9faa70ce2df7fc9cd501ae21c8cfbb239821b8882"
+    },
+    {
+      "file": "macos/screenshots/06-csv-results.png",
+      "sha256": "71be7d9eb45e43f54d074ab2eddde8d095988835db8a2e64341b5d8b7c70dc82"
+    },
+    {
+      "file": "macos/screenshots/06b-skipped-row-result.png",
+      "sha256": "cc6dcd6974e3e592978715bfa53c2dfb73bff90ad523e6370fe6482da28a0d91"
+    },
+    {
+      "file": "macos/screenshots/06b-skipped-rows.png",
+      "sha256": "015f7e9a4b33fbc30e2b8af19c9df3d76a888ae1dc97c65892a39fa38ba4c310"
+    },
+    {
+      "file": "macos/screenshots/07-downloaded-results.png",
+      "sha256": "16b592b4eac3c927ebf750cf0d271ed39a524531b0a9d53a8bc97b20614947f7"
+    },
+    {
+      "file": "macos/screenshots/08-quit.png",
+      "sha256": "8c4094e206a2a5026d3ea21397111370dacd2709367ab5d3678435444656d01f"
+    },
+    {
+      "file": "macos/screenshots/09-reopened.png",
+      "sha256": "7d8ea03c6e64f75030015f8f8645da1a3a609dea5e9ff3c6e5cd1d35033fed21"
+    },
+    {
+      "file": "windows/exports/U06-warning-demo-results.csv",
+      "sha256": "897ec6f46ef2b4db49f11593e86141679673f574b74bc09551afa3c44240d868"
+    },
+    {
+      "file": "macos/exports/U06-results.csv",
+      "sha256": "bdb0ad6a791851b7fdba3b98e86b2253842561818a11d2c6b202fb8e507fa8cd"
+    }
+  ]
+}
