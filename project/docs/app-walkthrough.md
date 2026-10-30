@@ -1,6 +1,6 @@
 # Packaged app walkthrough (#117)
 
-Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Results from 30 October are now recorded in the [evidence review](evidence/app/issue117/README.md); follow-up details and team approval remain pending. This checks the download-to-use experience. It does not repeat every #116 boundary test.
+Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Results from 30 October are now recorded in the [evidence review](evidence/app/issue117/README.md); follow-up confirmations are recorded and team approval remains pending. This checks the download-to-use experience. It does not repeat every #116 boundary test.
 
 ## People and version
 
@@ -62,7 +62,7 @@ Record the person's actual response before adding any clarification. Use a publi
 
 ## Recorded runs
 
-Ka Jun completed the Windows tasks with sign-in help; Jackie supplied the macOS teammate walkthrough. Both show working predictions, exports and quit/reopen. See the [evidence review and outstanding follow-ups](evidence/app/issue117/README.md). The Windows evidence uses older U01-U10 filenames and a warning-demo export; its record maps these differences without pretending the run followed an identical script.
+Ka Jun completed the Windows tasks with sign-in help; Jackie supplied the macOS teammate walkthrough. Both show working predictions, exports and quit/reopen. See the [evidence review and confirmed follow-ups](evidence/app/issue117/README.md). The Windows evidence uses older U01-U10 filenames and a warning-demo export; its record maps these differences without pretending the run followed an identical script.
 
 ## Records and completion
 

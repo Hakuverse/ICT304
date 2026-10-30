@@ -6,7 +6,7 @@ Observer: Benjamin. Date: 30 October 2026.
 
 Environment reported: Windows 11 Home, version 26H2; AMD Ryzen 7 260 with Radeon 780M Graphics; Opera GX, Chromium 154.0.8037.99. OS version is transcribed from the supplied record, not independently verified. OS build was not recorded.
 
-Package reported: SARAH-windows-x64-4 / `SARAH-0.1.0-preview-windows-x64-ab4a604.zip`. Actual ZIP checksum verification was not recorded for this walkthrough. Development tools, Python and virtual-environment status are awaiting confirmation; do not call this a clean-machine test.
+Package reported: SARAH-windows-x64-4 / `SARAH-0.1.0-preview-windows-x64-ab4a604.zip`. Actual ZIP checksum verification was not recorded for this walkthrough. Benjamin confirmed on 30 October that Ka Jun ran only the packaged SARAH.exe, without installing Python, setting up SARAH source code or using a project virtual environment. This supports independence from the SARAH development environment; it is not an inventory of all pre-existing software on the computer.
 
 The participant used the shared walkthrough and user guide. GitHub downloading needed Benjamin's sign-in advice. Subsequent tasks were reported completed independently. This is an independent participant, but not a completely unassisted download-to-use run.
 
@@ -19,11 +19,11 @@ The supplied record uses an older U01-U10 list. Its screenshot filenames are ret
 | U01 | U01, U02 | Completed with help at download. An unauthenticated download showed GitHub 404; Benjamin advised signing in and retrying. Extraction was completed independently, but the ZIP inside a ZIP and additional folders seemed unusual. App folder kept together. | U01-download-problem.png; U02-extracted-package.png; U02-extracted-package-b.png |
 | U02 | U03, U04 | Completed independently. SmartScreen appeared on first opening and not on later openings. Default Opera browser opened automatically. First launch recorded as 23 seconds; whether this included the security decision and ended at usable Attendance is not specified. | U03-security-warning.png; U03-security-details.png; U04-ready-dashboard.png |
 | U03 | U05 | Completed independently. Early-Warning 40/4/0 produced High Risk 85.9% with attendance support. | U05-early-warning-result.png |
-| U04 | U06 | Prediction completed independently: study 40, failures 0, G1 12, G2 blank, High Risk 66.1%, G1 only and warning. Understanding needs clarification: the participant described predictions above 12 hours as inaccurate, rather than potentially unreliable. | U06-confirmatory-warning.png; feedback below |
+| U04 | U06 | Prediction completed independently: study 40, failures 0, G1 12, G2 blank, High Risk 66.1%, G1 only and warning. Initially the participant described predictions above 12 hours as inaccurate, rather than potentially unreliable. Benjamin subsequently confirmed the clarification and the participant's revised understanding; see follow-up below. | U06-confirmatory-warning.png; feedback below |
 | U05 | U07 | Completed independently. Mixed sample: 4 rows, 2 predicted, 2 skipped. A Low Risk 15.5% g1; B Low Risk 0.4% g1_g2. C attendance 150 and D G2 NA rejected with corrective messages. | U07-csv-results-and-skipped.png |
 | U06 | U08 | Completed independently using the warning-demo CSV, not the shared plan's U05 sample export. Two rows retained: A High Risk 0.661/g1 with full warning and general review, B Low Risk 0.004/g1_g2 with blank warning and routine guidance. Participant found the download and noticed the warned student. This is a documented task variation. | U08-warning-csv-result.png; U08-export-opened.png; exported CSV below |
 | U07 | U09, U10 | Completed independently as reported. Closing browser left SARAH running; Open dashboard reopened at default Early-Warning mode. Participant first used the window X out of habit, then reopened and tested Quit SARAH. Old page showed connection error; restarting opened a new browser page while the old tab stayed disconnected. Restart outcome is written evidence, not a separate restart screenshot. | U10-after-quit.png; observer's record |
-| U08 | Feedback section | Responses recorded below. Human review and quitting understood; study-warning wording was overinterpreted. | Written feedback |
+| U08 | Feedback section | Responses recorded below. Human review and quitting understood; initial study-warning overinterpretation and later clarification are recorded below. | Written feedback |
 
 ## Feedback recorded by Benjamin
 
@@ -38,14 +38,14 @@ These are the supplied participant responses; they are not corrected answers.
 - Closing: "closing the browser does not automatically closes sarah while clicking quit sarah closes sarah but the browser just shows connection error."
 - Improvements: "all okay, every step is understandable."
 
-Review finding: the participant recognised the need for human review, but interpreted the warning too strongly. Above 12 hours is outside the converted training values and may be unreliable; it does not prove every such result is wrong. Values at or below 12 are not guaranteed reliable either. Clarification and the participant's subsequent understanding have not yet been recorded. Keep the original response even after follow-up.
+Review finding: the participant recognised the need for human review, but interpreted the warning too strongly. Above 12 hours is outside the converted training values and may be unreliable; it does not prove every such result is wrong. Values at or below 12 are not guaranteed reliable either. Follow-up relayed by Benjamin on 30 October: the distinction was clarified, including that values at/below 12 are not guaranteed reliable. The participant's wording changed from inaccurate to unreliable, requiring human intervention and judgement. This is an observer-reported clarification, not a new independent unassisted response. The original answer above is retained.
 
 ## Timing and limitations
 
 - First launch: 23 seconds as reported, with measurement boundaries unspecified.
 - Download/extraction: not measured in the supplied record.
-- Subsequent launch to usable Attendance: not recorded. The routine 30-second target cannot be assessed from this walkthrough yet.
-- Participant had no project involvement, but installed development tools/source environment are not recorded.
+- Subsequent double-click to usable Attendance: approximately 3 seconds, confirmed by Benjamin on 30 October. This reported approximate result is below the 30-second routine target; no stopwatch log or repeated-run series was supplied.
+- Participant had no project involvement and used only the packaged executable, with no SARAH source/Python/virtual-environment setup required, as confirmed by Benjamin.
 - Checksum verification is not recorded; package identity is supported by the reported name and extraction screenshots.
 - No application failure was reported. Download assistance, folder confusion, habitual window-X use and warning misunderstanding are retained as findings.
 
@@ -66,4 +66,4 @@ Review finding: the participant recognised the need for human review, but interp
 
 [Original warning-demo export](exports/U06-warning-demo-results.csv), supplied as `U08-exported-results.csv`. Contents preserved; this is not the mixed-roster export.
 
-Reviewer/date: pending. Confirm the environment and timing limitations, clarify the study warning and record the follow-up before treating #117 as fully complete.
+Reviewer/date: pending. Follow-up confirmations are recorded; ready for team review with the timing, checksum and distribution limitations retained.
