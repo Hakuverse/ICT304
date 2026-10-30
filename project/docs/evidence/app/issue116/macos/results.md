@@ -2,7 +2,7 @@
 
 Tester: Jackie
 
-Actual test date: 29 October 2026
+Actual test dates: 29 October 2026 (B01-C08); 30 October 2026 (D01 follow-up)
 
 OS/build/processor: macOS Tahoe 26.6.2, build 25G83, Apple M3 (arm64)
 
@@ -44,7 +44,7 @@ This record summarises Jackie's supplied test document, screenshots and download
 | C06 | Pass | 4 rows, 3 predicted, 1 skipped. Export: H12 Low 0.163 without warning; H12_5 Low 0.169 and H40 High 0.661 with full warning text. H41 rejected and absent from export. H40 has general review guidance. |
 | C07 | Pass | 3 rows, 0 predicted, 3 skipped. Failures -1, 1.5 and 4 rejected with whole-number 0-to-3 messages. |
 | C08 | Pass, tester-reported sequence | Jackie reports the replacement-file case passed. Selected image shows missing-G1 error without the previous result table/download; C04 shows the header-only error. The full replacement order is supported by the written case confirmation, not a continuous recording. |
-| D01 | Not tested | Jackie's supplied document explicitly marks the occupied-port check not tested. Required before issue #116 is complete. |
+| D01 | Pass, 30 October follow-up | Helper held localhost port 8501; SARAH opened on port 64211 and predicted Early-Warning 40/4/0 as High Risk 85.9%, with attendance support. Screenshots confirm the ports and prediction; Benjamin relayed Jackie's confirmation that D01 passed. See follow-up below. |
 
 ## Screenshots and exports
 
@@ -83,17 +83,24 @@ Evidence check, 30 October 2026: both exports match [source-reference.json](../s
 
 ## Failures, assistance and retests
 
-Jackie reported no failures for B01-C08 and no fix/retest. Assistance was not recorded in the supplied document. D01 is outstanding, not a failure or a pass. This was a developer computer; no clean-machine or tutor-device claim is made.
+Jackie reported no failures for B01-C08 and no fix/retest. Assistance was not recorded in the supplied document. D01 was not tested in the original 29 October record; the 30 October follow-up below records its completion. This was a developer computer; no clean-machine or tutor-device claim is made.
 
-## Remaining D01 check
+## D01 follow-up - 30 October 2026
 
-1. Quit SARAH. Open Terminal in the extracted repository folder containing `project`.
-2. Run `python3 project/data/app116/hold_port.py`. Record the held port printed by the helper and leave it running. Installed Python runs only this helper.
-3. Double-click the same SARAH.app. Record the dashboard's port and confirm it differs from the held port.
-4. Predict Early-Warning with attendance 40, study hours 4 and failures 0. Expected: High Risk 85.9% with attendance support.
-5. Save `D01-occupied-port.png` showing the held port, app port and usable prediction. Exclude personal paths/usernames and the random session code without hiding either port.
-6. Quit SARAH, then press Enter in the helper to release the port. Record the date, actual ports, prediction and whether both closed correctly.
+Jackie completed the previously outstanding occupied-port check. Benjamin supplied four screenshots and confirmed that Jackie's D01 passed.
+
+- The terminal screenshot shows `python3 project/data/app116/hold_port.py` holding localhost port **8501**.
+- The combined screenshot shows the helper still holding 8501 while SARAH's browser dashboard uses **64211**.
+- Early-Warning inputs were attendance **40**, study hours **4**, failures **0**.
+- The result is **High Risk, 85.9%**, with attendance support, matching the expected output.
+- Completion of the full D01 procedure, including quitting SARAH and releasing the helper port, is recorded from the relayed pass confirmation. These final cleanup actions are not shown in the screenshots.
+
+Public evidence: [form and app port](screenshots/D01-occupied-port-form.png) and [prediction and attendance support](screenshots/D01-occupied-port-result.png).
+
+The original `D01-terminal-port.png` and `D01-occupied-port.png` were reviewed locally. They show the held port and simultaneous operation, but contain a personal computer username and path, so they remain in the supplied local folder rather than the public repository. No screenshot content was changed. The public images show a loopback-only session address from this test, not a hosted service address.
+
+This is a follow-up to the same package test record, not a new build or a repeat of B01-C08. The helper uses installed Python; SARAH uses bundled Python 3.12.10.
 
 ## Completion
 
-B01-C08 reported passed; A01-A05 reuse the earlier record. D01 and team review are pending. Do not close #116 as complete yet.
+B01-C08 and the D01 follow-up are recorded as passed; A01-A05 reuse the earlier record. Ready for team review and approval in PR #122. Close #116 after the reviewed PR is merged.

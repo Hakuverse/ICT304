@@ -220,6 +220,14 @@
     {
       "file": "macos/exports/C06-results.csv",
       "sha256": "52e4319f2e820891abdba03864f6d939f2bab47e0a570eb25dd5877e068cf9f2"
+    },
+    {
+      "file": "macos/screenshots/D01-occupied-port-form.png",
+      "sha256": "0337506e14a66dddfa9fa4c45571da12f5a6ea9651ac772ca4e3ab383605757e"
+    },
+    {
+      "file": "macos/screenshots/D01-occupied-port-result.png",
+      "sha256": "0e06ef1c392ed8bf3028450de4cabd722a53e9479390dc1244fe555da4b17fc9"
     }
   ]
 }

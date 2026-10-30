@@ -2,7 +2,8 @@
 
 Anna tests Windows; Jackie tests macOS. Benjamin collects the records.
 Current results are in the [evidence summary](evidence/app/issue116/README.md).
-Windows B01-D01 and macOS B01-C08 are recorded; macOS D01 and team review remain pending.
+Windows and macOS B01-B09, C01-C08 and D01 are recorded as passed.
+The macOS D01 follow-up was completed on 30 October; team review remains pending.
 
 The Windows port helper uses an installed Python 3 via `py`; it does not require
 a separately installed Python 3.12. SARAH itself uses its bundled runtime.
