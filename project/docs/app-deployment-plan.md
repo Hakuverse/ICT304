@@ -2,7 +2,10 @@
 
 Issue: [#112](https://github.com/Hakuverse/ICT304/issues/112).
 Decisions confirmed by Benjamin on 27 October 2026; plan merged in PR #119.
-Status and testing allocation updated 28 October 2026.
+Current status updated 30 October 2026: PRs #121–#123 are merged.
+See [release preparation and handover](app-release-notes.md) for #118.
+The original acceptance checklist below records planned requirements; actual
+outcomes and limitations remain in the linked platform/workflow evidence.
 Starting baseline: `4f4d5ce7bf4912d5825e8bd40a48874d3f985b4a` after PR #111.
 This is the build plan, not evidence that a packaged app is ready or tested.
 
@@ -36,8 +39,8 @@ the complete application folder and tell users to keep it together. A ZIP or dis
 image could serve as the download container; the current #114/#115 candidates
 use ZIP archives. Extract the outer Actions ZIP, then the inner SARAH ZIP.
 macOS archives preserve app links and permissions. Jackie's [28 October Mac results](evidence/app/macos/results.md)
-are submitted for review. [Anna's Windows evidence](evidence/app/windows/results.md)
-was submitted on 29 October; routine post-approval reboot timing was confirmed at 13.20 seconds. Peer review remains pending.
+were reviewed in merged PR #121. [Anna's Windows evidence](evidence/app/windows/results.md)
+was submitted on 29 October; routine post-approval reboot timing was confirmed at 13.20 seconds. PR #121 is merged.
 
 Build Windows on Windows and macOS on macOS. Record the actual source commit,
 architecture, runtime, dependencies, build tool, artifact name and checksum.
@@ -149,17 +152,16 @@ historical evidence and version labels. Packaging does not retrain the models,
 improve accuracy, remove the study-hours limitation or turn earlier unmet
 usability targets into passes.
 
-## Outstanding before release
+## Release and submission follow-ups
 
-- Complete the agreed platform and startup measurements; planning PR #119 is merged.
-- Review Jackie's recorded M3/Tahoe package checks and unsigned-app first-launch exception.
-- Check the downloaded app on the tutor's computer before claiming that device passed; matching chip and OS do not establish its security settings or launch outcome.
-- Test the chosen ZIP distribution, downloaded first-launch behaviour
-  and final artifact on each platform under #114–#117.
-- Complete #97/#98 submission decisions, including exact cutoff, uploader and backup.
+Platform checks (#114/#115), workflow checks (#116) and walkthroughs (#117) were
+reviewed in merged PRs #121, #122 and #123. The accepted candidate is `ab4a604`.
+Issue #118 prepares the same ZIPs for release with a direct app user guide; see
+[release notes](app-release-notes.md) for publication status and checksums.
 
-These are tracked release follow-ups. Shared launcher PR #120 is merged;
-packaging and its startup fix are under review in PR #121.
+The tutor's device has not been tested simply because it matches Jackie's chip/OS.
+The 3 November review and #97/#98 still cover final submission selection, exact
+LMS cutoff, uploader and backup. The release is not proof of LMS submission.
 
 ## Launcher implementation
 

@@ -8,12 +8,30 @@ SARAH currently runs as a **local Streamlit prototype**. This document does not 
 
 **Recovery status:** The steps below are a written plan. No recovery drill is claimed by this document. A drill may be marked successful only after its date, operator, commit, steps and actual results have been recorded separately.
 
-**Packaged-app work:** Follow the [application plan](app-deployment-plan.md) and
-[current package guide](app-package-testing.md) for #112–#118. Keep each complete
-package with its version, build-info and checksum; do not mix an executable or
-_internal folder from different builds. Only return to an accepted tested package,
-not the superseded candidates that had the Windows loading fault. A package
-recovery drill and final release instructions remain follow-up work.
+## Packaged-app updates and recovery
+
+Use the [app user guide](user-guide.md) for normal opening and shutdown, and the
+[release record](app-release-notes.md) to identify the accepted ZIP and checksum.
+The source recovery procedure later in this document is a separate fallback.
+
+1. Choose **Quit SARAH** before replacing files. Save any needed result CSVs in
+   your own folder; keep private student records out of GitHub.
+2. Keep the previous accepted ZIP and its checksum. Download the new version from
+   the official release page and compare its version with the release notes.
+3. Extract into a new folder. Do not replace only SARAH.exe, copy model files into
+   an older app, or mix `_internal` directories. On Mac, retain the old app separately
+   before replacing the copy in Applications.
+4. Follow the user guide's first-opening steps if security prompts reappear. Try a
+   fictional form prediction, the sample CSV and Quit/reopen before relying on it.
+5. If the update fails, quit it and reopen the complete previous accepted package.
+   Record the failed version, OS, browser, safe error text and reproduction steps
+   in a GitHub issue. Never post real student data or credentials.
+
+SARAH has no automatic updater. A new executable, runtime or model needs affected
+platform/workflow checks before release. A documentation-only update does not
+change existing ZIP checksums. Do not treat rebuilding from the same source with
+new dependencies as an identical tested package. Keep third-party notices with
+each distribution. These recovery steps are a plan, not a recorded recovery drill.
 
 ## Roles and support limits
 

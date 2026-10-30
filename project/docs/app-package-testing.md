@@ -2,8 +2,10 @@
 
 Originally prepared for #114/#115 on 27 October 2026. Their device evidence was
 reviewed in merged PR #121; #116 workflow evidence was reviewed in merged PR #122.
-Continue with the [#117 download-to-use walkthrough](app-walkthrough.md).
-The same ab4a604 packages remain test candidates, not a final published release.
+The #117 walkthrough was reviewed in merged PR #123. This document retains the
+original Actions download/testing procedure. Ordinary users should use the
+[app user guide](user-guide.md), with the [release record](app-release-notes.md)
+for current distribution status. The historical artifact links below may expire.
 
 ## Get the correct package
 

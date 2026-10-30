@@ -1,16 +1,9 @@
 # SARAH user guide
 
-This guide is for a tutor or student tester using the SARAH dashboard for the first time.
-It explains how to make a prediction for one student or a whole class, and how to read
-the results. No programming knowledge is needed after setup.
-
-For the Windows/macOS double-click test packages, use the
-[package opening and testing guide](app-package-testing.md), including extraction,
-unsigned-app warnings and Quit SARAH. Package and workflow checks were reviewed
-in merged PRs #121 and #122; the [download-to-use walkthrough](app-walkthrough.md)
-is the next check under #117. These are test packages, not a final public release;
-the source-based setup remains available. The prediction instructions below apply
-to both routes. Final release downloads will be recorded under #118.
+This guide is for the **SARAH 0.1.0-preview Windows and Apple Silicon Mac app**.
+You do not need to install Python or Git, download the source code, or type commands.
+SARAH opens a small launcher and then the dashboard in your usual web browser.
+The application runs on your own computer, not on a public website.
 
 Screenshots in this guide show the dashboard at commit `fe9685a` (20 October 2026),
 on Windows in Microsoft Edge at 1366 × 768, using fictional students only.
@@ -46,24 +39,75 @@ unless your institution has approved it.
 
 ## 2. Start and stop SARAH
 
-SARAH runs on your own computer and opens in your web browser. It needs to be set up
-once: follow the [local deployment guide](deployment-guide.md) for Windows or macOS.
-It also lists what to do if setup does not work.
+### Download the app
 
-**To start SARAH**, open PowerShell (Windows) or Terminal (macOS) in the repository root
-folder and run:
+Open the [SARAH 0.1.0-preview release](https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview)
+and expand **Assets**. Choose one app ZIP:
 
-```powershell
-.venv\Scripts\python.exe -m streamlit run project/code/dashboard.py
-```
+| Your computer | File to download |
+|---|---|
+| Windows 11, x64 | `SARAH-0.1.0-preview-windows-x64-ab4a604.zip` |
+| Apple Silicon Mac (tested on M3, macOS Tahoe 26.6.2) | `SARAH-0.1.0-preview-macos-arm64-ab4a604.zip` |
 
-On macOS use `.venv/bin/python` instead of `.venv\Scripts\python.exe`.
+Do not choose GitHub's **Source code (zip)** or **Source code (tar.gz)** for normal
+app use. Intel Macs and Windows ARM have not been tested. The release ZIP is the
+app package itself: extract it once. The older Actions downloads had an extra ZIP
+wrapper; that is not needed for release downloads. Public release downloads do
+not require a GitHub account. If the release is not yet published, ask the team
+for the reviewed package; a draft release is visible only to repository collaborators.
 
-SARAH opens in your browser at **http://localhost:8501**. If the browser does not open
-by itself, copy the "Local URL" shown in the terminal into your browser.
+You can also download **SARAH-User-Guide.html** from Assets and double-click it to
+read these instructions offline. Keep the package's sample CSVs, `build-info.json`
+and `third-party-notices` folder. The separate checksum and build records identify
+the tested version; you do not open them to start SARAH.
 
-**Keep the terminal window open** while you use SARAH. **To stop SARAH**, click the
-terminal window and press **Ctrl + C** (**Control + C** on macOS), or close it.
+### Windows: extract and open
+
+1. Find the downloaded ZIP in Downloads. Right-click it and choose **Extract All**.
+2. Open the extracted folder. Keep **SARAH.exe** and **_internal** together;
+   do not copy only the executable or run it inside the ZIP.
+3. Double-click **SARAH.exe**.
+4. This university prototype is unsigned. If Windows shows **Windows protected
+   your PC**, and you trust the package you obtained from this repository, choose
+   **More info**, check that it names **SARAH.exe**, then choose **Run anyway**.
+   An unknown-publisher message is expected; it does not certify the app as safe.
+   If device policy does not allow this, ask your administrator or the team.
+5. Wait for the small launcher to show **Ready**. Your default browser opens the
+   dashboard. No terminal window or separate Python installation is needed.
+
+### macOS: extract and open
+
+1. Open the ZIP with **Archive Utility**, then open the extracted folder in Finder.
+2. Double-click **SARAH.app** (Finder may display it as **SARAH**). You may copy
+   the app to Applications; keep the original package for samples and notices.
+3. Because the app is not Apple-notarized, the first opening may offer only
+   **Move to Trash** and **Done**. Choose **Done** if you intend to allow this
+   trusted package.
+4. Open **System Settings → Privacy & Security**. Scroll to **Security**, find
+   the message that SARAH was blocked, and choose **Open Anyway**.
+5. Confirm with **Open Anyway** or **Open** in the next dialog and authenticate
+   if requested. Exact wording can vary. Do this only for the trusted SARAH app;
+   do not disable Gatekeeper or other system protections.
+6. Wait for **Ready** and the dashboard to open in your default browser.
+   If device policy still blocks opening, contact the administrator or the team.
+
+### Use, close and reopen
+
+- Use **Open dashboard** in the launcher if the browser does not open or you
+  accidentally close its tab. Use the address it opens; the local port and session
+  address can change each time. Do not type a fixed `localhost:8501` address.
+- Leave the launcher running while using the dashboard. Core predictions work
+  without internet after download and extraction.
+- When finished, choose **Quit SARAH** in the small launcher. Closing only the
+  browser does not stop the app.
+- An old browser tab may show a connection error after quitting. That is expected.
+  Double-click SARAH again and use the newly opened tab; close the old tab.
+- The routine startup target is 30 seconds on the tested computers. First-opening
+  security prompts can take longer. If it remains stuck, see section 8 below.
+
+For technical reproduction or a source-based fallback, the separate
+[deployment guide](deployment-guide.md) gives commands. Those steps are not
+needed for the packaged app.
 
 ## 3. The screen at a glance
 
@@ -306,9 +350,11 @@ save it as CSV again and upload it again.
 
 | Problem | What to do |
 |---|---|
-| The browser did not open | Go to the "Local URL" shown in the terminal, usually http://localhost:8501 |
-| The address shows 8502 instead of 8501 | Another copy of SARAH is still running. Close the old terminal window and start again |
-| The page stopped responding | Check the terminal window is still open; if it was closed, start SARAH again |
+| The browser did not open | Wait for Ready, then click Open dashboard in the small launcher. |
+| The browser address has an unfamiliar port or changes after restarting | This is normal. Use Open dashboard; do not reuse an old session address. |
+| The page stopped responding or keeps loading | Check the launcher is running. Choose Quit SARAH, start the app again and use the newly opened tab. If it repeats, record the launcher error and package version for the team. |
+| Missing files or a damaged extraction | Quit SARAH and extract the complete trusted ZIP into a new folder. Do not mix files from different versions. |
+| Opening remains blocked by the computer | Do not disable protection. Contact the administrator or the team for an approved route. |
 | A red "Please fix the input" message | Correct the value shown and click Predict again |
 
 ## 9. Limitations
@@ -327,8 +373,12 @@ save it as CSV again and upload it again.
   (see [section 11](#11-study-hours-input-warning-and-limitation)).
 - **Suggestions are not proven interventions.** They come from simple agreed rules and
   do not explain the cause of a result or guarantee improvement.
-- **Testing so far is small.** Usability was checked with one tester; see the
-  [Sprint 6 review](sprint6-review.md) for the recorded results and limitations.
+- **Testing so far is small.** Earlier usability checks are in the
+  [Sprint 6 review](sprint6-review.md). The packaged-app walkthrough added one
+  Windows newcomer and a Mac teammate; it was not a broad independent study.
+  See the [app walkthrough evidence](evidence/app/issue117/README.md).
+- **Unsigned prototype.** First opening may be blocked by Windows or macOS,
+  particularly on managed computers. Support is limited to the tested platforms.
 
 Always use SARAH alongside human judgement and other information about the student.
 
@@ -363,16 +413,3 @@ Warnings apply to either risk label in both modes, separately from support rules
 The dashboard shows the full warning once above the CSV table and marks affected
 rows in `study_hours_warning` as "Yes - see warning above". The downloaded CSV
 keeps the full text in `input_warning`; unaffected rows have a blank warning. See the [finding and critical discussion](study-hours-limitation.md).
-
-
-## Packaged app: closing and reopening
-
-Use **Quit SARAH** in the launcher when finished. Closing only a browser tab does
-not stop SARAH. While SARAH is still running, **Open dashboard** opens its page again.
-After quitting, an old tab may show a connection error: the local server has stopped.
-Start SARAH again and use the newly opened dashboard; the old session tab may remain
-disconnected. You can close that old tab.
-
-For the study-hours warning, **may be unreliable** does not mean every prediction
-above 12 is definitely wrong, or that predictions at/below 12 are definitely right.
-Keep the student's actual input, consider other information and use human review.

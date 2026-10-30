@@ -1,0 +1,79 @@
+{
+  "id": 429044324,
+  "url": "https://github.com/Hakuverse/ICT304/releases/tag/untagged-0a6faa268471d6db8b8e",
+  "draft": true,
+  "prerelease": true,
+  "tag": "v0.1.0-preview",
+  "source": "ab4a604a71ecef9f0585a137a014e7dd6fb861e2",
+  "documentation_commit": "c4a9b787755212d56c675aa64df1906828d128e8",
+  "assets": [
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604-build-info.json",
+      "size": 853,
+      "digest": "sha256:a93479fce40045a500fbdda573258f7ac36a703868e4e19791d3497185bf289c",
+      "id": 692153806
+    },
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604-extracted-check.json",
+      "size": 690,
+      "digest": "sha256:9f0a6d170f95c5940d95e9d31d739e232e7f47cebac6f960b239a4a916dfb6b2",
+      "id": 692153853
+    },
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604.sha256",
+      "size": 110,
+      "digest": "sha256:11ef7bc9d574d5ecb717cec054027f6c15c50a2fb265f936f7c647fc2b6a28b8",
+      "id": 692153928
+    },
+    {
+      "name": "SARAH-0.1.0-preview-macos-arm64-ab4a604.zip",
+      "size": 117426712,
+      "digest": "sha256:0996cc189a435d1e1a4509a7fd754cdcf7366a36fed8a5cdb8c173fa4fedf875",
+      "id": 692153979
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604-build-info.json",
+      "size": 873,
+      "digest": "sha256:52da31cc6ec3d807bf0e07d2539b3d11cf00be484053bf7e9a7e22ff08f15272",
+      "id": 692154702
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604-extracted-check.json",
+      "size": 720,
+      "digest": "sha256:967877852263858882fe0be728c28d9bba7484e8911153badd652a9512b284db",
+      "id": 692154742
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604.sha256",
+      "size": 111,
+      "digest": "sha256:2664cbd3809c61131cddb63bf28c02be1ab2d7377ea92c66faa7cc08431c2bc0",
+      "id": 692154781
+    },
+    {
+      "name": "SARAH-0.1.0-preview-windows-x64-ab4a604.zip",
+      "size": 136058737,
+      "digest": "sha256:8828121aa9b343c07138657f6d827df168d33211782204fd5b019bf2577f4bc2",
+      "id": 692154846
+    },
+    {
+      "name": "SARAH-User-Guide.html",
+      "size": 776042,
+      "digest": "sha256:a92ba960c623f09becf7f481e94f9f07df22d04a0dbd960252fced2a5f374fa1",
+      "id": 692155759
+    },
+    {
+      "name": "SARAH-User-Guide.md",
+      "size": 26284,
+      "digest": "sha256:9bdc3a1628b8262bb20584381d81cb58f5780e44aa5f71de1a979eaa7b99c37e",
+      "id": 692155797
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "size": 1128,
+      "digest": "sha256:15f3c03fbbe78c739b04018b6169fc53eea1ed3b29c5a166c8b8571c734b8bf9",
+      "id": 692155866
+    }
+  ],
+  "prepared_date": "2026-10-30",
+  "verification": "All 11 uploaded asset SHA-256 digests matched local files. Draft only; public-route checks pending."
+}
