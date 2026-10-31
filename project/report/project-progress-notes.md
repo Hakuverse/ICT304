@@ -79,9 +79,10 @@ passes and fast responses do not remove those limits.
 | 4–7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover under #98 |
 
 Benjamin confirmed the Sprint 7 split on 20 October; its completed handover was
-reviewed in merged PR #111. Sprint 8 uses the reviewed shared-work approach.
-Specific sessions and submission roles are not recorded. Final-deliverable work
-is paused as of 31 October; the dates above remain planning targets.
+reviewed in merged PR #111. On 31 October Benjamin confirmed separate leads:
+Benjamin drafts the report, Anna prepares slides, and the other two review each.
+Benjamin handles final overall checking and submission. Practical session dates
+and the backup uploader remain undecided; the dates above are planning targets.
 
 
 ## Study-hours input warning and limitation
@@ -136,6 +137,7 @@ predictions, CSV export and quitting. The [release record](../docs/app-release-n
 links versions, checksums and limitations. The packages remain unsigned and local;
 packaging does not change model accuracy or the study-hours limitation.
 
-Final report/declaration, presentation/rehearsal, submission-package checks and
-closeout are paused at Benjamin's request. Actual publication is complete;
-final project submission and its receipt are not claimed by this progress record.
+Report drafting and slide preparation are active under the leads above. A new
+local report draft exists, but has not been accepted as the final submission.
+Declarations, rehearsal, final archive verification and closeout are still
+outstanding. Publication is complete; final submission and its receipt are not claimed.

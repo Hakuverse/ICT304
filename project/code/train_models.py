@@ -40,10 +40,10 @@ Outputs:
   project/models/confirmatory_g1_model.joblib
   project/models/confirmatory_g1_g2_model.joblib
   project/models/feature_stats.json             mean/std per feature
-                                                    (development split
-                                                    only, for the
-                                                    recommendation
-                                                    engine's z-scores)
+                                                    (Confirmatory G1+G2
+                                                    development reference;
+                                                    not used by the fixed
+                                                    recommendation rules)
 """
 
 import json
@@ -146,7 +146,7 @@ def main():
     lines.append("# SARAH — Model Evaluation Report\n")
     lines.append(
         "Dataset: UCI Student Performance, **Math course only** (student-mat.csv, n=395). "
-        "See `docs/CLASS_IMBALANCE_NOTE.md` for the class-imbalance and Portuguese-subset "
+        "See the retained [assignment-stage class-imbalance note](../../assignment/docs/CLASS_IMBALANCE_NOTE.md) for the class-imbalance and Portuguese-subset "
         "comparison.\n"
     )
     lines.append(

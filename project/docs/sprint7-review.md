@@ -91,5 +91,6 @@ rehearsal, package checks, signatures or submission complete before they happen.
 Shared Sprint 8 work is the reviewed handover approach. Specific session dates,
 presenters and submission roles are separate decisions, not implied by PR approval.
 
-Sprint 7 is closed. Sprint 8 final-deliverable work was paused by Benjamin on
-31 October; the planned meeting/submission actions above are not completed results.
+Sprint 7 is closed. The later 31 October allocation makes Benjamin the report
+lead and Anna the slide lead, with review by the other two. Benjamin leads final
+checking/submission. See the updated Sprint 8 plan; planned actions above are not completed results.
