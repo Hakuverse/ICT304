@@ -3,9 +3,11 @@
 Working period: 27 October-3 November 2026. Phase F.
 Milestone: [Sprint 8](https://github.com/Hakuverse/ICT304/milestone/8).
 Prepared: 20 October 2026. Status updated: 31 October 2026.
-Final report/declaration, slides/rehearsal, submission-package checks and closeout
-are paused at Benjamin's request. The dates below are original planning targets,
-not completed events or revised commitments.
+Benjamin is drafting the final report; Anna is preparing the slides. Each lead
+receives review from the other two members. Benjamin handles final overall
+checking and submission. Forms, rehearsal and final package/closeout checks are
+still outstanding; owner allocation does not mean they have been performed.
+The dates below remain planning targets, not completed events.
 
 ## Goal
 
@@ -28,29 +30,26 @@ final corrections and the actual submission by 7 November.
 These are planned outputs. A planning PR does not complete the issues or prove
 that the report, rehearsal, package checks or submission have happened.
 
-## Reviewed shared-work approach
+## Agreed leads and review — 31 October
 
-Benjamin proposed on 27 October that Benjamin, Anna and Jackie work together on
-all six issues, including the report, slides and review, instead of splitting
-exclusive pairs. This approach was included in the reviewed #82 handover, merged
-in PR #111. It does not establish specific editing sessions or speaking roles. Each person still checks
-their own contribution and private declaration details. Record who performed each
-check and ask another teammate to review it, even when the issue is shared.
-
-| Issues | Shared work | Planning target |
+| Work | Lead | Review / participation |
 |---|---|---|
-| #93 / #94 | Report, evidence links, contributions and private forms | Draft checks by 30 October; review by 3 November |
-| #95 | Slides and speaking roles | Draft by 30 October; review by 3 November |
-| #96 | Full-team rehearsal and corrections | By 2 November, before the 3 November review |
-| #97 | Choose final commit, extract and test package | By 3 November |
-| #98 | Readiness review and final submission handover | 3 November; corrections/upload 4–7 November |
+| #93 final report | Benjamin | Anna and Jackie review and suggest corrections |
+| #95 presentation slides | Anna | Benjamin and Jackie review and edit |
+| #94 contributions and declaration | Benjamin coordinates final checking | Each member confirms their own contributions and private details |
+| #96 rehearsal and demonstration | All three | Speaking parts, rehearsal date and app-startup format still need decisions |
+| #97 final package checking | Benjamin | Anna or Jackie provides a teammate review; actual check remains outstanding |
+| #98 readiness and submission | Benjamin | Anna and Jackie review beforehand; backup uploader still needs agreement |
 
-These intermediate dates are proposed targets, not confirmed meeting dates.
-Decisions to record when work resumes: editing/session schedule, presenters,
-exact LMS cutoff and formats, uploader, backup and any post-project support limits.
-Record decisions in the relevant existing issues rather than creating duplicates.
-Keep legal names, student IDs, signatures and submission receipts private.
-Use Benjamin, Anna and Jackie in public project records.
+Keep one master report and one master slide deck. Reviewers comment or suggest
+edits; the lead resolves them and maintains the current version. This replaces
+the earlier plan to edit all deliverables together without a designated lead.
+The new local report is a draft, not a reviewed final submission.
+
+Original planning targets were a readiness review by 3 November and corrections/
+submission during 4–7 November. Confirm practical session dates, speaking roles,
+exact LMS cutoff/formats and a backup uploader. Keep names, IDs, signatures and
+receipts private; use Benjamin, Anna and Jackie in public project records.
 
 ## Order for the week
 
@@ -90,7 +89,7 @@ tests Windows and Jackie tests macOS, with shared release decisions.
 Builds are unsigned prototypes; platform security restrictions must be tested.
 The 30-second startup target is separate from earlier prediction timings.
 
-Report/slides preparation is paused as of 31 October. When resumed, coordinate #97/#98 with the
+Report and slides are being prepared under the leads above. Coordinate #97/#98 with the
 packaged-app evidence before including releases in the submission. The 3 November
 review decides which platforms are ready; no package test or release is claimed
 by this plan.
@@ -102,4 +101,4 @@ and Mac packages are now published as `v0.1.0-preview`; see the
 Both devices met the recorded routine-startup target. The first security-prompt
 launches retain their separate timings. Benjamin chose to reuse existing device
 evidence without another post-publication run. Issue #118 retains its final
-handover link to paused #97/#98 work. App work is within Sprint 8, not a separate milestone.
+handover link to outstanding #97/#98 work. App work is within Sprint 8, not a separate milestone.

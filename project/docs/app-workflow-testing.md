@@ -8,6 +8,10 @@ The macOS D01 follow-up was completed on 30 October; Anna approved PR #122 on 30
 The Windows port helper uses an installed Python 3 via `py`; it does not require
 a separately installed Python 3.12. SARAH itself uses its bundled runtime.
 
+This is the retained run sheet for the completed #116 checks. Normal app users
+can follow the [user guide](user-guide.md) directly. The steps below are for
+reproducing a test, not unfinished acceptance work.
+
 ## 1. Get ready
 
 Use the same ab4a604 package tested in #114/#115, from Actions run 40556703379.
@@ -121,5 +125,6 @@ unpictured subcases if it states what was tested and what happened.
 
 Do not tick Pass in advance. Record failures and any assistance honestly.
 Send the folder to Benjamin or add it in a follow-up evidence PR.
-This planning PR does not close #116. Both platform records need review;
-#117's another-person walkthrough and #118's release remain separate.
+Both platform records were reviewed by Anna and merged in PR #122 on 30 October;
+#116 is closed. The later #117 walkthrough was reviewed in PR #123. Publication
+is recorded under #118; none of these updates changes the original test results.

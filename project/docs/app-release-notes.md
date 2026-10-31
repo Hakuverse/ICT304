@@ -98,11 +98,12 @@ have not been verified by these results.
   compared with the recorded hashes; see the publication record for actual outcomes.
 - Benjamin chose **not to repeat device testing**. Existing #114–#117 evidence is
   reused for unchanged packages. No launch from the published download is claimed.
-- Report, declaration, presentation/rehearsal, final submission-package checking
-  and closeout work are **paused at Benjamin's request on 31 October**. This release
-  does not complete those tasks or establish a 3 November meeting decision.
+- Benjamin has resumed the report and Anna is preparing the slides, with the
+  other two members reviewing each draft. Benjamin leads final checking and
+  submission. Declarations, rehearsal and final package/closeout checks remain
+  outstanding; the release does not establish their completion or a meeting decision.
 
-| Paused work | Handover when resumed |
+| Final work | Handover |
 |---|---|
 | #93 report | Link this version, user guide and #114–#117 evidence. Keep deployment improvements separate from accuracy and retain limitations. |
 | #94 declaration | Confirm actual contributions and required disclosures. |
@@ -111,5 +112,5 @@ have not been verified by these results.
 | #97 package | Use the exact app ZIPs/hashes alongside the selected source archive. Final source-package extraction/checking remains outstanding. |
 | #98 closeout | Confirm final deliverables, exact LMS cutoff, uploader and backup; retain receipts privately after submission. |
 
-Issue #118's publication work is complete once its documentation update is merged;
-final submission handover remains paused. Keep that distinction in the issue status.
+Issue #118's publication/documentation work is complete through merged PR #125.
+Final submission handover remains outstanding under Benjamin's lead.

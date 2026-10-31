@@ -83,5 +83,6 @@ Anna's final video record identifies 110 passing tests at `847d460`; this is a
 dated result, not a current-suite count. See the [Sprint 7 review](sprint7-review.md).
 Shared Sprint 8 report/slides/review work is the reviewed handover approach.
 Specific sessions, presenters and submission roles still require actual decisions.
-Benjamin paused final-deliverable work on 31 October. The app release is a later,
+The later 31 October allocation gives Benjamin the report and Anna the slides,
+with review by the other two. See the updated Sprint 8 plan. The app release is a later,
 separate deployment output, linked from the [user guide](user-guide.md).

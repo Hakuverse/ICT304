@@ -1,6 +1,6 @@
 # SARAH — Model Evaluation Report
 
-Dataset: UCI Student Performance, **Math course only** (student-mat.csv, n=395). See `docs/CLASS_IMBALANCE_NOTE.md` for the class-imbalance and Portuguese-subset comparison.
+Dataset: UCI Student Performance, **Math course only** (student-mat.csv, n=395). See the retained [assignment-stage class-imbalance note](../../assignment/docs/CLASS_IMBALANCE_NOTE.md) for the class-imbalance and Portuguese-subset comparison.
 
 **Evaluation procedure:** a stratified 20% test set (79 students) was reserved from the full 395 *before* any model selection, using the same split for all three setups below. Every cross-validation score in this report (depth selection and the 12-combination table) uses only the remaining 316 development students -- the reserved test students are never part of any fold used to pick a technique, a class_weight, or the shared Decision Tree depth. The 'Held-out test results' section at the end is the only place the reserved students are used, and each setup's selected model sees them exactly once, after selection is finalised.
 
