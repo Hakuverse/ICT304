@@ -137,7 +137,20 @@ predictions, CSV export and quitting. The [release record](../docs/app-release-n
 links versions, checksums and limitations. The packages remain unsigned and local;
 packaging does not change model accuracy or the study-hours limitation.
 
-Report drafting and slide preparation are active under the leads above. A new
+Report drafting is active against PR #126; Anna's slides were reviewed in merged PR #127. A new
 local report draft exists, but has not been accepted as the final submission.
-Declarations, rehearsal, final archive verification and closeout are still
+Declaration signing is confirmed; rehearsal, final archive verification and closeout are still
 outstanding. Publication is complete; final submission and its receipt are not claimed.
+
+## Final arrangements — 2 November
+
+The source-submission basis is the eventual approved PR #126 merge commit.
+PR #126 remains open and no final merge SHA or accepted archive is claimed.
+Benjamin uploads one ZIP containing the repository files, both videos, slides,
+report, guide, evidence and signed declaration. Equal one-third contributions
+are agreed; see [contribution checks](../docs/contribution-checks.md).
+
+Anna's public-release download-and-launch clip is recorded in [presentation
+notes](../docs/presentation-notes.md). Rehearsal is scheduled for 3 November and
+has not occurred. Assessment-period support is coordinated by Benjamin, with
+Anna and Jackie assisting; no ongoing service. Package checks remain outstanding.

@@ -44,7 +44,12 @@ each distribution. These recovery steps are a plan, not a recorded recovery dril
 | Anna | Own the #79 user guide and review changes that affect its user-facing instructions or explanations. |
 | Benjamin | Coordinate the #80 teammate walkthrough and #82 Sprint 7 review and handover, including unresolved issues and their next owners. |
 
-These roles reflect the current project allocation. They do not create an indefinite helpdesk commitment. Before final handover, the team must record who accepts any remaining issues, what support they will provide and when that support ends. No 24-hour response time or post-project support period has been agreed.
+On 2 November, the team agreed assessment-period support only. Benjamin
+coordinates unresolved issues, with Anna and Jackie assisting with investigation,
+review and relevant components or documentation. Support ends when the assessment
+period concludes. No ongoing service, indefinite maintenance or guaranteed
+response time is promised. Future improvements remain documented unless separately
+agreed. The exact calendar end date of the assessment period is not recorded.
 
 ## Report, review and release an update
 

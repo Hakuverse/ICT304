@@ -213,4 +213,4 @@ The [release record](docs/app-release-notes.md) links the existing Windows/macOS
 Source setup remains available below for reproduction and fallback.
 
 [Project status and remaining information](docs/project-status-review.md) records
-the 31 October consistency review, completed reviews and paused final work.
+the 31 October review and 2 November updates, completed reviews and outstanding final checks.

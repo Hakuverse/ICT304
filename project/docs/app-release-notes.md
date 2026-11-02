@@ -97,19 +97,19 @@ have not been verified by these results.
 - Public downloads are checked without GitHub authentication and their bytes
   compared with the recorded hashes; see the publication record for actual outcomes.
 - Benjamin chose **not to repeat device testing**. Existing #114–#117 evidence is
-  reused for unchanged packages. No launch from the published download is claimed.
-- Benjamin has resumed the report and Anna is preparing the slides, with the
-  other two members reviewing each draft. Benjamin leads final checking and
-  submission. Declarations, rehearsal and final package/closeout checks remain
+  reused for unchanged packages at publication. Anna's later public-release launch clip is documented in [presentation notes](presentation-notes.md), separately from the full device suite.
+- Benjamin is revising the report against PR #126. Anna's slides were reviewed
+  by all three in merged PR #127 on 2 November. Benjamin leads final checking and
+  submission. Declaration signing is confirmed; rehearsal and final package/closeout checks remain
   outstanding; the release does not establish their completion or a meeting decision.
 
 | Final work | Handover |
 |---|---|
 | #93 report | Link this version, user guide and #114–#117 evidence. Keep deployment improvements separate from accuracy and retain limitations. |
-| #94 declaration | Confirm actual contributions and required disclosures. |
-| #95 slides | Show the app opening route and tested platforms, alongside the existing model results. |
-| #96 rehearsal/video | Retain Anna's original video and metadata. A live startup demonstration or separate short clip remains a team choice; no new recording is claimed. |
-| #97 package | Use the exact app ZIPs/hashes alongside the selected source archive. Final source-package extraction/checking remains outstanding. |
+| #94 declaration | Equal one-third shares agreed; all three signed/confirmed per Benjamin. [Contribution record](contribution-checks.md). |
+| #95 slides | Deck reviewed in merged PR #127; [presentation notes](presentation-notes.md). |
+| #96 rehearsal/video | Both videos retained; rehearsal scheduled for 3 November, not completed. |
+| #97 package | Eventual approved PR #126 merge is the source basis; one submission ZIP. Final extraction/checking outstanding; [checklist](submission-package-checks.md). |
 | #98 closeout | Confirm final deliverables, exact LMS cutoff, uploader and backup; retain receipts privately after submission. |
 
 Issue #118's publication/documentation work is complete through merged PR #125.

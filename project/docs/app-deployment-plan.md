@@ -144,7 +144,7 @@ and actual submission, with 4–7 November reserved for corrections/upload befor
 the confirmed LMS cutoff. A release is not proof of LMS submission.
 
 Update deployment/user/maintenance instructions, README links, report and slides
-when a release is accepted. Consider a short video startup update then; retain
+when a release is accepted. The short startup clip is now recorded in [presentation notes](presentation-notes.md); retain
 historical evidence and version labels. Packaging does not retrain the models,
 improve accuracy, remove the study-hours limitation or turn earlier unmet
 usability targets into passes.

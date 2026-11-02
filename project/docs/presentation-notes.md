@@ -40,3 +40,19 @@ results come from the automated tests and the #114–#117 records. The deck keep
 - [ ] Full timed rehearsal (#96)
 
 Reviewed by: Benjamin, Anna and Jackie, 2 November 2026.
+
+## Public-release clip provenance — 2 November follow-up
+
+Benjamin confirmed that Anna's approximately 27-second SARAH_demo.mp4 uses the
+Windows ZIP downloaded from the public v0.1.0-preview release page. The reported
+sequence is download, extract, open SARAH.exe, select More info and Run anyway,
+then reach the Ready launcher and automatically opened browser dashboard.
+The sharing date is 2 November; the exact recording date is not separately recorded.
+This records Benjamin's confirmation, not new independent playback or device
+testing by the documentation reviewer. It supplements the main 25 October video
+and is not a full acceptance rerun or startup benchmark.
+
+## Rehearsal status — clarified 2 November
+
+The rehearsal is scheduled for 3 November and has not yet occurred.
+No actual duration or outcome is recorded. Record results under #96.

@@ -70,12 +70,12 @@ contributors; record actual editors, testers, presenters and reviewers as work h
 
 | Next action | Responsible people / existing issue | Target |
 |---|---|---|
-| Agree practical editing/session schedule when work resumes | Benjamin coordinates with Anna and Jackie; #93–#98 | Paused on 31 October |
-| Review report and private declarations | Team; #93/#94 | By 3 November |
-| Prepare slides, agree presenters and rehearse | Team; #95/#96 | Draft by 30 October; rehearsal by 2 November (proposed) |
-| Choose submission commit and check extracted package | Team; #97 | By 3 November |
+| Coordinate final report review and remaining checks | Benjamin coordinates with Anna and Jackie; #93–#98 | Active, updated 2 November |
+| Review report and private declarations | Team; #93/#94 | Signing confirmed; report review ongoing |
+| Prepare slides, agree presenters and rehearse | Team; #95/#96 | Deck/presenters reviewed in #127; rehearsal scheduled 3 November |
+| Record source merge SHA and check extracted package | Benjamin; #97 | Eventual approved PR #126 merge selected; final extraction check outstanding |
 | Confirm LMS cutoff/formats, uploader, backup and support limits | Team; #94/#98 | By the 3 November readiness review |
-| Final corrections and actual upload | Uploader and backup to be agreed; #98 | 4–7 November, before confirmed LMS cutoff |
+| Final corrections and actual upload | Benjamin uploads one ZIP; backup unconfirmed; #98 | 4–7 November before LMS cutoff |
 
 Keep personal details, signed forms and upload receipts private. Do not mark
 rehearsal, package checks, signatures or submission complete before they happen.
@@ -94,3 +94,8 @@ presenters and submission roles are separate decisions, not implied by PR approv
 Sprint 7 is closed. The later 31 October allocation makes Benjamin the report
 lead and Anna the slide lead, with review by the other two. Benjamin leads final
 checking/submission. See the updated Sprint 8 plan; planned actions above are not completed results.
+
+Later decisions are recorded in [presentation notes](presentation-notes.md),
+[contribution checks](contribution-checks.md) and [package checks](submission-package-checks.md).
+The assessment-period support agreement is in the [maintenance plan](maintenance-plan.md).
+These updates do not relabel historical test outcomes.
