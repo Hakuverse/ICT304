@@ -98,12 +98,11 @@ have not been verified by these results.
   compared with the recorded hashes; see the publication record for actual outcomes.
 - Benjamin chose **not to repeat device testing**. Existing #114–#117 evidence is
   reused for unchanged packages at publication. Anna's later public-release launch clip is documented in [presentation notes](presentation-notes.md), separately from the full device suite.
-- The final report is supplied; Anna and Jackie still need to review it.
+- Anna and Jackie approved the final report for submission, confirmed by Benjamin on 4 November.
   Slides are reviewed in PR #127; declarations are confirmed and the team
   rehearsal on 3 November is complete.
 
-Publication and app handover under #118 are complete. The final report review,
-merged-source package acceptance and two LMS uploads are tracked under
+Publication and app handover under #118 are complete. Final merged-source package acceptance and two LMS uploads are tracked under
 #93/#97/#98 in [Sprint 8 closeout](sprint8-review.md), without duplicating those
 tasks as unfinished app development. Benjamin is the sole uploader; no backup
 is agreed. The submission date is 7 November; the exact time remains an LMS check.

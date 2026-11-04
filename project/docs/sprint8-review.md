@@ -26,7 +26,7 @@ claim that an additional readiness meeting took place.
 
 | Item | Owner and status |
 |---|---|
-| Final report #93 | Benjamin has supplied the final draft; Anna and Jackie still need to review it |
+| Final report #93 | Anna and Jackie reviewed and approved the final report for submission; Benjamin confirmed on 4 November |
 | Declaration #94 | Equal thirds and all three signatures/confirmations reported; include the private form in the project ZIP |
 | Slides #95 | Reviewed and agreed; merged PR #127 |
 | Rehearsal #96 | Completed 3 November, all three, 30-minute session, all good per Benjamin |
@@ -36,8 +36,8 @@ claim that an additional readiness meeting took place.
 
 ## Actions outside the repository
 
-1. Anna and Jackie review the final report. Benjamin resolves comments, removes
-   its remaining Section 10.1 `[TO DO — #97]` cell and updates source references
+1. Report peer review is complete. Benjamin finalises the Section 10.1 archive
+   cell and updates source references
    from PR #127's main commit to the actual approved PR #126 merge commit.
 2. Benjamin assembles the two ZIPs described in [package checks](submission-package-checks.md),
    records filenames, merge SHA and hashes in a private submission manifest,
@@ -47,7 +47,7 @@ claim that an additional readiness meeting took place.
    correct submission slots before that cutoff; retain receipts privately.
 
 These actions genuinely cannot be marked complete from the current evidence.
-Their outcomes can be recorded on #93/#97/#98 and in the private manifest after
+Their outcomes can be recorded on #97/#98 and in the private manifest after
 merge; they do not require another repository PR unless a real defect is found.
 No final upload or receipt is claimed by this record.
 

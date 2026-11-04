@@ -6,8 +6,8 @@ Prepared 20 October; final status updated 4 November.
 
 The tables below retain the sprint plan. Current outcomes are in the
 [closeout record](sprint8-review.md): implementation/release, slides, declarations
-and rehearsal are complete. Final report peer review and post-merge LMS package
-checks/upload remain separate final handover actions with named owners.
+and rehearsal are complete. Final report approval was confirmed on 4 November.
+Post-merge LMS package checks/upload remain final handover actions with named owners.
 
 ## Goal
 
@@ -44,7 +44,8 @@ that the report, rehearsal, package checks or submission have happened.
 Keep one master report and one master slide deck. Reviewers comment or suggest
 edits; the lead resolves them and maintains the current version. This replaces
 the earlier plan to edit all deliverables together without a designated lead.
-The supplied final report still requires Anna and Jackie's review.
+Benjamin confirmed on 4 November that Anna and Jackie reviewed and approved
+the final report for submission.
 
 Original planning targets were a readiness review by 3 November and corrections/
 submission during 4–7 November. Presenters are recorded in PR #127. Confirm
@@ -89,7 +90,7 @@ tests Windows and Jackie tests macOS, with shared release decisions.
 Builds are unsigned prototypes; platform security restrictions must be tested.
 The 30-second startup target is separate from earlier prediction timings.
 
-The report awaits final peer review and the slides are reviewed. Coordinate #97/#98 with the
+The final report and slides are reviewed and approved. Coordinate #97/#98 with the
 packaged-app evidence before including releases in the submission. Both platforms already have accepted evidence and published packages;
 this planning record does not add new platform tests.
 

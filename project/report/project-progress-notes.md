@@ -139,8 +139,8 @@ packaging does not change model accuracy or the study-hours limitation.
 
 ## Final report and submission handover — 4 November
 
-Benjamin supplied the final report with Appendix D; Anna and Jackie's final
-report review remains required. The 92 supplied entries are copied to the
+Benjamin supplied the final report with Appendix D. On 4 November, Benjamin
+confirmed that Anna and Jackie reviewed and approved it for submission. The 92 supplied entries are copied to the
 [shared log](../../ai-prompt-log/log.md). Anna's slides were reviewed in PR #127.
 The team rehearsal on 3 November lasted 30 minutes and all went well; all three
 agreed to the final presentation version. Declaration signing and equal thirds

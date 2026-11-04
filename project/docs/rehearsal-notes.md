@@ -17,4 +17,5 @@ The main demonstration video and supplementary Windows startup clip remain the
 fallback material. No new startup benchmark or full platform test is claimed.
 
 This completes the team-reported rehearsal record for #96. Anna and Jackie's
-review of the separate final report is still required under #93.
+review and approval of the separate final report were also confirmed by Benjamin
+on 4 November under #93.

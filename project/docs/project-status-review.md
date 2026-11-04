@@ -41,7 +41,8 @@ unchanged; the only training-script change in this PR is documentation/reference
 
 ## Justified remaining actions
 
-Anna and Jackie still need to review the final report. The final source archive
+Anna and Jackie's final report approval was confirmed by Benjamin on 4 November.
+The final source archive
 must use the actual approved PR #126 merge SHA, then Benjamin checks the two
 assembled LMS ZIPs and uploads them by 7 November. No backup uploader is agreed;
 the precise LMS cutoff time is not supplied. See [closeout](sprint8-review.md)

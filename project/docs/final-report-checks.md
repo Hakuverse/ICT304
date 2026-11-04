@@ -1,8 +1,8 @@
 # Final report and repository alignment — 4 November 2026
 
 Benjamin supplied ICT304_Final_Report_Project_SARAH.docx for repository alignment.
-The Word report stays private. Anna and Jackie still need to review the final
-report; that confirmation was supplied by Benjamin on 4 November.
+The Word report stays private. Benjamin confirmed on 4 November that Anna and
+Jackie reviewed and approved the final report for submission.
 
 ## Aligned in PR #126
 
@@ -30,8 +30,8 @@ original tested commits; do not relabel ab4a604 as the final documentation commi
 Section 10.1 still contains `[TO DO — #97] Select and check separately`. Replace
 that drafting cell with the actual archive identity from the private manifest
 after packaging. The candidate f9c9d12 check is not the final assembled ZIP check.
-Anna and Jackie should complete their final report review, and Benjamin should
-refresh the contents/cross-reference fields and inspect the final exported PDF.
+Final report peer review is complete. Benjamin should refresh the contents/
+cross-reference fields after entering the merge SHA and inspect the final exported PDF.
 
 The supplied Appendix D does not retain entry dates or original session sources.
 The repository reproduces it as requested; copying it does not independently

@@ -32,7 +32,7 @@ documentation. See [release notes](app-release-notes.md).
 | Slides | Reviewed by all three; merged PR #127 |
 | Rehearsal | Completed 3 November, all three, 30-minute session, all good per Benjamin |
 | Public app downloads | All 11 assets verified on 31 October; unchanged published ZIPs |
-| Final report | Supplied by Benjamin; Anna and Jackie's final review remains required |
+| Final report | Anna and Jackie approved for submission; confirmed by Benjamin on 4 November |
 | Final merged-source ZIP and two assembled LMS ZIPs | Must be identified, extracted and checked after final merge; results belong in the private manifest and #97 |
 | LMS upload and receipts | Not yet reported; Benjamin records these privately and updates #98 after upload |
 

@@ -70,8 +70,8 @@ contributors; record actual editors, testers, presenters and reviewers as work h
 
 | Next action | Responsible people / existing issue | Target |
 |---|---|---|
-| Coordinate final report review and remaining checks | Benjamin coordinates with Anna and Jackie; #93–#98 | Active, updated 2 November |
-| Review report and private declarations | Team; #93/#94 | Signing confirmed; report review ongoing |
+| Coordinate final report review and remaining checks | Benjamin coordinates with Anna and Jackie; #93–#98 | Report approved; final packaging/upload remain |
+| Review report and private declarations | Team; #93/#94 | Signing and final report approval confirmed |
 | Prepare slides, agree presenters and rehearse | Team; #95/#96 | Deck/presenters reviewed in #127; rehearsal completed 3 November |
 | Record source merge SHA and check extracted package | Benjamin; #97 | Eventual approved PR #126 merge selected; final extraction check outstanding |
 | Confirm LMS cutoff/formats, uploader, backup and support limits | Team; #94/#98 | 7 November submission date confirmed; exact time checked in LMS |
