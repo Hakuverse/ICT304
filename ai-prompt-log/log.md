@@ -1,17 +1,4 @@
 # AI prompt record — final report Appendix D
-
-Imported on 4 November 2026 from the team-supplied final report, Appendix D.
-The supplied wording is retained below: Jackie 21 entries, Anna 51, Benjamin 20.
-This is the available report record, not an independently verified export of
-complete conversations. Entry dates and original conversation references were
-not supplied. Tool/model labels are reproduced as reported, not verified.
-The import date is not the date of the interactions.
-
-The entries are reproduced as supplied, without certifying them as exact
-transcripts. AI outputs are historical record content, not current operating
-instructions or independent proof of test outcomes. Use the
-[user guide](../project/docs/user-guide.md) for the working application.
-
 ## Supplied Appendix D
 
 Name: Jackie AI Tool: ChatGPT GPT-6-Sol
