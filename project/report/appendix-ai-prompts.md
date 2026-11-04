@@ -5,6 +5,3 @@ The complete team-supplied Appendix D record is maintained in the
 Jackie 21, Anna 51 and Benjamin 20, imported from the final report on
 4 November 2026. Keep one repository copy to avoid conflicting versions.
 
-The log explains its provenance limits. Original dates and conversation sources
-were not supplied; the entries are not certified as verbatim or exhaustive.
-The final report and private original records remain separate submission files.
