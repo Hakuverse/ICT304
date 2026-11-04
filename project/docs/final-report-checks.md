@@ -1,54 +1,49 @@
-# Final report checks — 2 November 2026
+# Final report and repository alignment — 4 November 2026
 
-Benjamin leads final report editing; Anna and Jackie review. The local Word report
-remains separate from the public repository. AI prompt content was excluded from
-this review. PR #126 is the selected final-change branch and is not yet merged.
+Benjamin supplied ICT304_Final_Report_Project_SARAH.docx for repository alignment.
+The Word report stays private. Anna and Jackie still need to review the final
+report; that confirmation was supplied by Benjamin on 4 November.
 
-## Second review
+## Aligned in PR #126
 
-Corrected in the revised report: purpose subtitle, most spelling corrections,
-depth-6 recall 0.395, test commit 9dc7132, main-body headings 7.4/11.3, obsolete
-assignment paragraphs removed, Appendix G reference replaced, release screenshot
-added and supporting evidence links expanded.
+- Fixed recommendation thresholds, G1-required/G2-optional routing, skipped-row
+  handling, study-hours warning and retained evaluation results match the report.
+- App source ab4a604, historical tests and video commits remain separate from
+  the final source-submission version selected through this PR.
+- All 92 supplied Appendix D entries are copied unchanged to the
+  [shared prompt log](../../ai-prompt-log/log.md). The project appendix links to
+  that single copy. Source/provenance limits are stated; no dates are invented.
+- The final plan is two LMS ZIPs, as in report Section 12.5, not one combined ZIP.
+- Rehearsal on 3 November is recorded: all three members, 30-minute session,
+  no problems reported, final presentation version agreed.
+- Equal contributions, signed/confirmed declaration and assessment-period
+  support retain their confirmed status.
 
-Remaining report edits:
-- Update the contents again: cached entries still show 7.3/11.2 for renamed
-  subsections. Confirm all headings/bookmarks/page numbers in the final export.
-- Use PR #126's current candidate SHA during review; after merge replace cover,
-  version table, repository reference and evidence links with the actual merge SHA.
-  Keep historical test dates/commits and ab4a604 binary identity unchanged.
-- Section 7.4: replace “the attendance and estimate” with “the attendance estimate,
-  and”; prefer “unresolved” to “unsolved” methodological limitations.
-- Section 8.2: add launcher/packaging verification to the coverage table.
-- Section 10.4: remove repeated public-download/hash sentence and “; At publication”.
-- Section 10.3: identify Anna as Windows acceptance tester and Jackie as Mac tester.
-- Section 11.1: use the agreed assessment-period support statement.
-- Section 12: replace draft/TODO text with operating instructions, reproduction
-  procedure, version distinction and actual manifest/check status.
-- Section 13: equal one-third contribution and confirmed signing; add external-work
-  acknowledgment without changing the unfinished AI prompt record.
-- Appendix A: “TN: LR...” should be “Note: LR...”; TN already means true negative.
-- Appendix B E9: remove editorial advice copied into the cell. E11 must describe
-  merged PR #127 and pin its file link to the selected PR #126 snapshot.
-- Appendix C: add source download/root-folder step and identify training versus
-  comparison-report regeneration. Point app users to the release guide.
-- Recheck large blank areas, small labels and table/heading pagination in Word.
+## Report-side corrections before submission
 
-No final archive test, rehearsal completion, upload or tutor-device/recovery test
-is inferred from editing this report. See [package checks](submission-package-checks.md),
-[contributions](contribution-checks.md), [presentation](presentation-notes.md) and
-[maintenance](maintenance-plan.md) for current evidence and decisions.
+The supplied report still identifies PR #127 main (`9f2f406`) on its cover and
+Section 10.1, while Section 12.5 selects the eventual PR #126 merge. After this
+PR is reviewed and merged, Benjamin must use that actual merge SHA consistently
+for the final source/version references. Keep historical evidence pinned to its
+original tested commits; do not relabel ab4a604 as the final documentation commit.
 
-## Repository validation — 2 November
+Section 10.1 still contains `[TO DO — #97] Select and check separately`. Replace
+that drafting cell with the actual archive identity from the private manifest
+after packaging. The candidate f9c9d12 check is not the final assembled ZIP check.
+Anna and Jackie should complete their final report review, and Benjamin should
+refresh the contents/cross-reference fields and inspect the final exported PDF.
 
-- 110 application tests and 18 packaging tests passed in the existing local
-  Windows Python 3.12 environment under normal permissions. Restricted attempts
-  encountered temporary-folder permission errors/stalling before the successful runs.
-- 945 local Markdown file targets in project/ resolved; git diff --check passed.
-- Compared with main after PR #127, the training-script AST is unchanged after
-  excluding its module documentation and the corrected generated reference text.
-- No datasets, saved models or AI prompt records changed. Published binaries
-  were not rebuilt. These development checks do not substitute for Benjamin's
-  upcoming clean-extracted submission-package verification.
-- The revised report's read-only Word PDF export has 45 pages and no detected
-  bookmark-error text; the contents still needs its renamed subsection labels refreshed.
+The supplied Appendix D does not retain entry dates or original session sources.
+The repository reproduces it as requested; copying it does not independently
+verify transcript accuracy or completeness. This distinction also applies to
+historical AI replies describing then-pending work.
+
+## Repository verification
+
+110 application tests and 18 packaging tests passed on 4 November in the existing
+Windows Python 3.12.10 environment with normal permissions. The initial restricted
+runs encountered temporary-folder errors. All repository local Markdown paths
+and anchors were checked. No fresh predictive evaluation or app rebuild was needed.
+
+See [closeout](sprint8-review.md) for ownership and [package checks](submission-package-checks.md)
+for the post-merge archive/receipt records retained outside GitHub.

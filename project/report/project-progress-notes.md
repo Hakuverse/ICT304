@@ -137,20 +137,18 @@ predictions, CSV export and quitting. The [release record](../docs/app-release-n
 links versions, checksums and limitations. The packages remain unsigned and local;
 packaging does not change model accuracy or the study-hours limitation.
 
-Report drafting is active against PR #126; Anna's slides were reviewed in merged PR #127. A new
-local report draft exists, but has not been accepted as the final submission.
-Declaration signing is confirmed; rehearsal, final archive verification and closeout are still
-outstanding. Publication is complete; final submission and its receipt are not claimed.
+## Final report and submission handover — 4 November
 
-## Final arrangements — 2 November
+Benjamin supplied the final report with Appendix D; Anna and Jackie's final
+report review remains required. The 92 supplied entries are copied to the
+[shared log](../../ai-prompt-log/log.md). Anna's slides were reviewed in PR #127.
+The team rehearsal on 3 November lasted 30 minutes and all went well; all three
+agreed to the final presentation version. Declaration signing and equal thirds
+are confirmed in [contribution checks](../docs/contribution-checks.md).
 
-The source-submission basis is the eventual approved PR #126 merge commit.
-PR #126 remains open and no final merge SHA or accepted archive is claimed.
-Benjamin uploads one ZIP containing the repository files, both videos, slides,
-report, guide, evidence and signed declaration. Equal one-third contributions
-are agreed; see [contribution checks](../docs/contribution-checks.md).
-
-Anna's public-release download-and-launch clip is recorded in [presentation
-notes](../docs/presentation-notes.md). Rehearsal is scheduled for 3 November and
-has not occurred. Assessment-period support is coordinated by Benjamin, with
-Anna and Jackie assisting; no ongoing service. Package checks remain outstanding.
+The final source basis is the approved PR #126 merge commit. Benjamin will
+upload two separate LMS ZIPs by 7 November: final project materials, and the
+presentation with both videos. No backup uploader is agreed; the precise cutoff
+time is not recorded here. Final archive checks and receipts belong in the
+private submission manifest. See [closeout](../docs/sprint8-review.md) for the
+remaining justified actions; no actual upload is claimed.

@@ -15,8 +15,13 @@ Test candidate checked on 28 October 2026: source `ab4a604`, built from PR #121
 code head `9cdda7a`. Later evidence/documentation commits do not change these files.
 Both platform jobs passed in [run 40556703379](https://github.com/Hakuverse/ICT304/actions/runs/40556703379).
 
-- [Anna: Windows package -4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12757642322)
-- [Jackie: Apple Silicon macOS package -4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12758175843)
+- Anna's original Windows artifact: `12757642322` (package -4).
+- Jackie's original Apple Silicon Mac artifact: `12758175843` (package -4).
+
+Those historical Actions artifact URLs are no longer public download routes.
+Use the identical [Windows ZIP](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-windows-x64-ab4a604.zip)
+or [Mac ZIP](https://github.com/Hakuverse/ICT304/releases/download/v0.1.0-preview/SARAH-0.1.0-preview-macos-arm64-ab4a604.zip)
+from the published release. The artifact identifiers are retained for provenance.
 
 Earlier candidates are superseded after the Windows loading fault. Use `-4`,
 record its own build-info.json, and retain it locally before the 14-day artifact

@@ -72,10 +72,10 @@ contributors; record actual editors, testers, presenters and reviewers as work h
 |---|---|---|
 | Coordinate final report review and remaining checks | Benjamin coordinates with Anna and Jackie; #93–#98 | Active, updated 2 November |
 | Review report and private declarations | Team; #93/#94 | Signing confirmed; report review ongoing |
-| Prepare slides, agree presenters and rehearse | Team; #95/#96 | Deck/presenters reviewed in #127; rehearsal scheduled 3 November |
+| Prepare slides, agree presenters and rehearse | Team; #95/#96 | Deck/presenters reviewed in #127; rehearsal completed 3 November |
 | Record source merge SHA and check extracted package | Benjamin; #97 | Eventual approved PR #126 merge selected; final extraction check outstanding |
-| Confirm LMS cutoff/formats, uploader, backup and support limits | Team; #94/#98 | By the 3 November readiness review |
-| Final corrections and actual upload | Benjamin uploads one ZIP; backup unconfirmed; #98 | 4–7 November before LMS cutoff |
+| Confirm LMS cutoff/formats, uploader, backup and support limits | Team; #94/#98 | 7 November submission date confirmed; exact time checked in LMS |
+| Final corrections and actual upload | Benjamin uploads two separate LMS ZIPs; no backup agreed; #98 | 4–7 November before LMS cutoff |
 
 Keep personal details, signed forms and upload receipts private. Do not mark
 rehearsal, package checks, signatures or submission complete before they happen.
@@ -99,3 +99,6 @@ Later decisions are recorded in [presentation notes](presentation-notes.md),
 [contribution checks](contribution-checks.md) and [package checks](submission-package-checks.md).
 The assessment-period support agreement is in the [maintenance plan](maintenance-plan.md).
 These updates do not relabel historical test outcomes.
+
+Final outcomes are recorded in [Sprint 8 closeout](sprint8-review.md); the
+original handover targets above are retained as planning history.

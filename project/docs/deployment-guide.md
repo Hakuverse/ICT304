@@ -30,7 +30,19 @@ and final handover are tracked under #118.
 
 The saved models are ready to use. **Do not retrain them for a normal installation**: training replaces model and evaluation files. Keep the repository structure intact rather than copying only `dashboard.py`.
 
-## Get the handover version
+## Get the final submission source
+
+For final-project reproduction, use the source included in the LMS submission
+or the approved merge commit linked from [PR #126](https://github.com/Hakuverse/ICT304/pull/126)
+after it is merged. Open that merge commit, choose **Browse files → Code → Download ZIP**,
+and extract to a short path. Record the exact SHA in the private manifest.
+Do not use a temporary test-merge commit or assume a later main is identical.
+Continue below at [Find the repository root](#find-the-repository-root).
+
+The following pinned commands reproduce the earlier Sprint 7 handover only;
+its guide/evidence set predates the final report and app release documentation.
+
+## Reproduce the historical Sprint 7 handover
 
 Either download the repository ZIP from the [handover commit page](https://github.com/Hakuverse/ICT304/commit/914f808f5e6cf0df7a17331c088859e3f46607b5) using **Browse files → Code → Download ZIP**, then extract it; or clone the repository and check out the recorded commit:
 

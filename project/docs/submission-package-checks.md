@@ -1,63 +1,70 @@
 # Submission package checks
 
-## Confirmed plan — 2 November 2026
+## Final handover plan — 4 November 2026
 
-Benjamin will upload **one ZIP** containing the repository files, report, full
-guide/evidence, signed group declaration, both video files and presentation deck.
-All three declaration signatures/confirmations and equal contributions are
-reported in [contribution checks](contribution-checks.md).
-Rehearsal is scheduled for 3 November, not completed.
+Benjamin uploads **two ZIPs to separate LMS submissions** by 7 November:
 
-The final source version is the **eventual approved merge commit of PR #126**.
-PR #126 remains open at Benjamin's instruction. Its head can be tested as a
-candidate, but neither that head nor GitHub's temporary test-merge SHA should be
-labelled the final merged submission version. Record the actual merge SHA after
-merge, build the final source archive from it and verify the extracted copy.
+1. Final project: selected repository source, final report, signed declaration,
+   guides, dataset/models/samples, evidence, retrospective meeting log and AI records.
+2. Presentation/product demo: final slide deck and both MP4 demonstration videos.
 
-Published app packages remain v0.1.0-preview, source ab4a604. Documentation
-changes do not rebuild the ZIPs or change model results. Their separate
-identities/hashes are in [release notes](app-release-notes.md).
+Any app ZIPs included in the project submission retain their original release
+filenames and checksums. Include them explicitly in the private manifest.
+Benjamin is the sole uploader; no backup is agreed. The exact cutoff time has
+not been supplied here, so Benjamin must use the time shown in LMS.
 
-## Actual completion status
+The final source version is the actual approved **PR #126 merge commit**.
+Obtain it from the merged PR after review, record it in the private manifest
+and report, and download that commit's source ZIP. A branch head or temporary
+test-merge SHA is not the approved final merge. Recording this after merge does
+not require a new repository PR.
+
+The published app remains v0.1.0-preview / ab4a604, distinct from later source
+documentation. See [release notes](app-release-notes.md).
+
+## Evidence and completion status
 
 | Check | Status |
 |---|---|
-| Final source basis | Eventual approved PR #126 merge selected; merge SHA not yet available |
-| Final archive filename and checksum | Not yet recorded |
-| All three declaration signatures/confirmations | Confirmed by Benjamin; private form not independently inspected |
+| Candidate source f9c9d12 | Checks reported in Section 12.5 of the supplied report and confirmed by Benjamin; detailed original artifacts/date were not provided for this update |
+| Repository verification on 4 November | 110 application and 18 packaging tests passed in the existing Windows Python 3.12.10 environment; not a final archive run |
+| Declaration | Equal thirds and all three signatures/confirmations reported; private form |
 | Slides | Reviewed by all three; merged PR #127 |
-| Rehearsal | Scheduled 3 November; not yet performed |
-| Public app download hashes | All 11 assets verified on 31 October; historical record |
-| Later public-release launch | Anna's short Windows clip, confirmed by Benjamin; not a full suite or timing rerun |
-| Final source archive clean extraction and tests | Not yet performed/reported |
-| Final archive report/media/guide/evidence playback and links | Not yet performed/reported |
-| Uploader | Benjamin |
-| Backup uploader / exact LMS cutoff / upload receipt | Not yet recorded |
+| Rehearsal | Completed 3 November, all three, 30-minute session, all good per Benjamin |
+| Public app downloads | All 11 assets verified on 31 October; unchanged published ZIPs |
+| Final report | Supplied by Benjamin; Anna and Jackie's final review remains required |
+| Final merged-source ZIP and two assembled LMS ZIPs | Must be identified, extracted and checked after final merge; results belong in the private manifest and #97 |
+| LMS upload and receipts | Not yet reported; Benjamin records these privately and updates #98 after upload |
+
+The later candidate-source check does not establish acceptance of the final
+assembled report/media ZIPs. Keep that distinction in the final report.
 
 ## Package checklist
 
-Use a new empty folder, separate from the working repository. The source root
+Use a new empty folder at a short path, such as `D:\sarah`, separate from the
+working repository. If Windows extraction reports a path-length error, resolve
+it and extract a complete copy before testing. The source root
 must contain project/ and assignment/ where the documented relative paths expect
 them. Include tracked repository content; exclude .git, .venv, caches, local
 temporary/build folders, credentials and unrelated personal material. Required
 private declarations belong in the private LMS package, not public GitHub.
 
-- [ ] Record candidate or final status, exact source SHA, ZIP filename, date and tester.
-- [ ] Extract the ZIP using Windows Extract All or the platform's normal tool.
-- [ ] Confirm report, signed declaration, guide, repository evidence, data, three
+- Record candidate or final status, exact source SHA, ZIP filename, date and tester.
+- Extract the ZIP using Windows Extract All or the platform's normal tool.
+- Confirm report, signed declaration, guide, repository evidence, data, three
       models, fictional samples, both MP4 files and presentation deck are present.
-- [ ] If app ZIPs are included, keep their original filenames/bytes and checksums.
-- [ ] Run the source checks below from the extracted repository root.
-- [ ] Start the dashboard; check all three model routes, mixed CSV, export and
+- If app ZIPs are included, keep their original filenames/bytes and checksums.
+- Run the source checks below from the extracted repository root.
+- Start the dashboard; check all three model routes, mixed CSV, export and
       warnings. Use fictional data and record errors without changing results.
-- [ ] Check the packaged app separately if distributing its ZIP: extraction,
+- Check the packaged app separately if distributing its ZIP: extraction,
       allowed security approval, Ready/browser, prediction, CSV, Quit and reopen.
-- [ ] Open the report and guide; check contents links, figures, evidence links and
+- Open the report and guide; check contents links, figures, evidence links and
       final version wording. Do not count a Word bookmark error as acceptable.
-- [ ] Play both videos fully with intended audio; open the slides in presentation mode.
-- [ ] Record exact environment, commands, counts, screenshots/logs and failures.
-- [ ] Obtain teammate review; after merge confirm the final source SHA/ZIP.
-- [ ] Upload the single ZIP to LMS, download the uploaded copy if possible,
+- Play both videos fully with intended audio; open the slides in presentation mode.
+- Record exact environment, commands, counts, screenshots/logs and failures.
+- Obtain teammate review; after merge confirm the final source SHA/ZIP.
+- Upload each ZIP to its correct LMS submission, download each uploaded copy if possible,
       compare SHA-256, check extraction and retain the receipt privately.
 
 ### Windows source checks
@@ -93,15 +100,15 @@ functional checks, not new predictive evaluation.
 Do not retrain models as an ordinary installation check. Deliberate model
 reproduction overwrites generated artifacts and belongs in a separate copy.
 
-## Return this record to the team
+## Private submission manifest fields
 
-- Candidate/final; source SHA; ZIP filename and SHA-256:
-- Tester, date, OS, browser and Python:
-- pip check; application tests; packaging tests; dataset verification:
-- Three routes; mixed CSV/skipped reasons; export; study-hours warning:
-- Source shutdown; packaged launch/Quit/reopen if checked:
-- Report/guide/evidence links; both full video playbacks; slides:
-- Declaration included; teammate reviewer/date:
-- Any failure, assistance or unresolved issue:
+- Candidate/final status, source SHA, each ZIP filename and SHA-256.
+- Tester, date, OS, browser and Python.
+- pip check, application tests, packaging tests and dataset verification outcomes.
+- Three routes, mixed CSV/skipped reasons, export and study-hours warning outcomes.
+- Source shutdown and packaged launch/Quit/reopen if checked.
+- Report/guide/evidence links, both complete video playbacks and slide opening.
+- Declaration included, teammate reviewer and review date.
+- Any failure, assistance or unresolved issue and its resolution.
 
 Do not post personal file paths, signatures or real student data in public evidence.

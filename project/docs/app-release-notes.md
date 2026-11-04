@@ -98,19 +98,12 @@ have not been verified by these results.
   compared with the recorded hashes; see the publication record for actual outcomes.
 - Benjamin chose **not to repeat device testing**. Existing #114–#117 evidence is
   reused for unchanged packages at publication. Anna's later public-release launch clip is documented in [presentation notes](presentation-notes.md), separately from the full device suite.
-- Benjamin is revising the report against PR #126. Anna's slides were reviewed
-  by all three in merged PR #127 on 2 November. Benjamin leads final checking and
-  submission. Declaration signing is confirmed; rehearsal and final package/closeout checks remain
-  outstanding; the release does not establish their completion or a meeting decision.
+- The final report is supplied; Anna and Jackie still need to review it.
+  Slides are reviewed in PR #127; declarations are confirmed and the team
+  rehearsal on 3 November is complete.
 
-| Final work | Handover |
-|---|---|
-| #93 report | Link this version, user guide and #114–#117 evidence. Keep deployment improvements separate from accuracy and retain limitations. |
-| #94 declaration | Equal one-third shares agreed; all three signed/confirmed per Benjamin. [Contribution record](contribution-checks.md). |
-| #95 slides | Deck reviewed in merged PR #127; [presentation notes](presentation-notes.md). |
-| #96 rehearsal/video | Both videos retained; rehearsal scheduled for 3 November, not completed. |
-| #97 package | Eventual approved PR #126 merge is the source basis; one submission ZIP. Final extraction/checking outstanding; [checklist](submission-package-checks.md). |
-| #98 closeout | Confirm final deliverables, exact LMS cutoff, uploader and backup; retain receipts privately after submission. |
-
-Issue #118's publication/documentation work is complete through merged PR #125.
-Final submission handover remains outstanding under Benjamin's lead.
+Publication and app handover under #118 are complete. The final report review,
+merged-source package acceptance and two LMS uploads are tracked under
+#93/#97/#98 in [Sprint 8 closeout](sprint8-review.md), without duplicating those
+tasks as unfinished app development. Benjamin is the sole uploader; no backup
+is agreed. The submission date is 7 November; the exact time remains an LMS check.

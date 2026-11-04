@@ -34,7 +34,7 @@ The section numbers below follow the team's assignment report.
 | 7: Model comparison | [Twelve development comparisons and feature importance](../docs/issue33_report.md) |
 | 8: Initial results and discussion | [Evaluation report](../docs/evaluation_report.md), [figures](../docs/figures/) and [final results CSV](../docs/final_test_results.csv) |
 | 9: System tests and evidence | [Verification summary and T1-T12 mapping](../docs/submission-verification.md) |
-| 10: User guide | [Setup and run commands](../../README.md#setup--how-to-run) and [mode examples](../docs/mode-guide.md) |
+| 10: User guide | [Setup and run commands](../../README.md#assignment-prototype-setup-and-reproduction) and [mode examples](../docs/mode-guide.md) |
 | 11: Development and teamwork | [Sprint 4 record](../docs/sprint4-planning.md) and [project transition](../../project/README.md) |
 | 12: Sources and repository evidence | Source references in the linked analysis documents and [repository history](https://github.com/Hakuverse/ICT304/commits/main/) |
 
@@ -55,10 +55,10 @@ tracks final checking and submission.
 
 The LMS submission comprises the completed report, required declarations and
 appendices, and the files needed to run the prototype. The repository's
-[prompt appendix](appendix-ai-prompts.md) is currently a placeholder, not a
-completed record. The [shared prompt log](../../ai-prompt-log/log.md) is also
-present and currently blank. The required actual prompt record belongs in the submitted
-report; a repository link alone does not replace it.
+[prompt appendix](appendix-ai-prompts.md) distinguishes the historical assignment
+from the later final-project Appendix D, now copied to the
+[shared prompt log](../../ai-prompt-log/log.md). The report record does not establish
+what was included in the earlier assignment submission.
 
 Historical sprint plans and dated test notes remain as development evidence.
 Their task lists describe the position at the time; the current verification

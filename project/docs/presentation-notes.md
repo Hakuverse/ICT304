@@ -37,7 +37,7 @@ results come from the automated tests and the #114–#117 records. The deck keep
 - [x] Numbers checked against the final report draft and repository records
 - [x] Release link on the conclusion slide works
 - [x] Each section has an agreed presenter
-- [ ] Full timed rehearsal (#96)
+- [x] Team rehearsal completed on 3 November (#96); 30-minute session, individual delivery time not recorded
 
 Reviewed by: Benjamin, Anna and Jackie, 2 November 2026.
 
@@ -52,7 +52,8 @@ This records Benjamin's confirmation, not new independent playback or device
 testing by the documentation reviewer. It supplements the main 25 October video
 and is not a full acceptance rerun or startup benchmark.
 
-## Rehearsal status — clarified 2 November
+## Rehearsal completed — confirmed 4 November
 
-The rehearsal is scheduled for 3 November and has not yet occurred.
-No actual duration or outcome is recorded. Record results under #96.
+Benjamin, Anna and Jackie rehearsed on 3 November for 30 minutes. Benjamin
+reported that all went well and the team agreed on the final presentation
+version. See the [rehearsal record](rehearsal-notes.md) for the timing scope.

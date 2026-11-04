@@ -46,7 +46,7 @@ Source setup remains available below for reproduction and fallback.
 
 ```
 ICT304/
-├── ai-prompt-log/         # Shared prompt-log file (currently blank)
+├── ai-prompt-log/         # Final report Appendix D record
 │   └── log.md
 ├── assignment/            # Assignment-stage record; preserve after submission
 │   ├── report/            # File guide and appendix; full report submitted separately
@@ -55,7 +55,7 @@ ICT304/
 │   └── docs/              # EDA findings, figures, feature selection and sprint tasks
 ├── project/               # Current project development, due 7 November
 │   ├── README.md
-│   ├── report/            # Project report files and appendix placeholder
+│   ├── report/            # Project report notes and AI appendix link
 │   ├── code/
 │   ├── data/
 │   ├── docs/
@@ -72,8 +72,8 @@ ICT304/
 - **Before the assignment submission:** put SARAH code, data, report and supporting documents in `assignment/`.
 - **After submitting the assignment on 3 October:** keep the submitted `assignment/` folder unchanged. Copy the code, required data and useful documents into `project/`, then continue development there for the final project due on 7 November.
 - **Tutorials:** keep weekly exercises in `tutorials/`; they are separate from the assessed SARAH system.
-- **Shared prompt log:** [ai-prompt-log/log.md](ai-prompt-log/log.md) is retained as a blank file for the team to maintain.
-- **Submission records:** the report, signed declaration and actual prompt records are maintained for LMS submission. The repository appendix is a placeholder; it does not establish that those records are complete.
+- **Shared prompt log:** [ai-prompt-log/log.md](ai-prompt-log/log.md) contains the supplied final-report Appendix D entries and their provenance limits.
+- **Submission records:** the report, signed declaration and actual prompt records are maintained for LMS submission. The repository links the supplied Appendix D record; original private conversations and declaration signatures are not published.
 
 When starting the project stage, leave out virtual environments, caches and temporary files. Check the copied scripts and instructions before continuing. Work in one assessment folder at a time.
 
@@ -82,7 +82,7 @@ When starting the project stage, leave out virtual environments, caches and temp
 
 | Purpose | Tool |
 |---|---|
-| Project Management | GitHub Issues + [Milestones](https://github.com/Hakuverse/ICT304/milestones) + [SARAH Sprint Board](https://github.com/Hakuverse/ICT304/projects) |
+| Project Management | GitHub Issues + [Milestones](https://github.com/Hakuverse/ICT304/milestones) + [Issue tracker](https://github.com/Hakuverse/ICT304/issues) |
 | Version Control | GitHub |
 | Collaboration (code) | GitHub (branches + Pull Requests) |
 | Communication | Microsoft Teams, WhatsApp (quick/informal) |
@@ -90,7 +90,7 @@ When starting the project stage, leave out virtual environments, caches and temp
 ## Sprint tracking
 
 - Milestones: see the [Milestones tab](https://github.com/Hakuverse/ICT304/milestones)
-- Board: [SARAH Sprint Board](https://github.com/Hakuverse/ICT304/projects)
+- Tasks: [Issue tracker](https://github.com/Hakuverse/ICT304/issues)
 - [Sprint 1: Getting Started](assignment/docs/sprint1-planning.md)
 - [Sprint 2: Requirements and Data Exploration](assignment/docs/sprint2-planning.md)
 - [Sprint 3: System Design](assignment/docs/sprint3-planning.md)
@@ -219,11 +219,12 @@ See the [five-part model test plan](assignment/docs/model-test-plan.md), [curren
 
 ## AI tool usage
 
-The assignment brief requires disclosure of actual AI-tool use and the prompts in
-the submitted report. The [assignment appendix](assignment/report/appendix-ai-prompts.md)
-is a placeholder and has not been completed by this documentation update. The
-[shared prompt log](ai-prompt-log/log.md) is present and currently blank. The team
-maintains the actual records for submission; the blank file is not a completed log.
+The [shared prompt log](ai-prompt-log/log.md) contains the 92 entries supplied
+in the final report's Appendix D. The [project appendix](project/report/appendix-ai-prompts.md)
+links to that single copy. The record states the limits of its provenance and
+does not claim to be a verified, exhaustive chat export. The
+[assignment appendix](assignment/report/appendix-ai-prompts.md) explains the
+distinction from the historical assignment submission.
 
 ## References
 
