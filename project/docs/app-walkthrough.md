@@ -2,6 +2,10 @@
 
 Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Results from 30 October are now recorded in the [evidence review](evidence/app/issue117/README.md); follow-up confirmations are recorded and Anna approved PR #123 on 30 October; it is merged and #117 is closed. This checks the download-to-use experience. It does not repeat every #116 boundary test.
 
+For current downloads and normal app use, go directly to the [app user guide](user-guide.md).
+The procedure below records the **30 October Actions-based walkthrough**; the
+public release uses direct app ZIPs and does not require that older download route.
+
 ## People and version
 
 - Windows: a classmate who has not worked on SARAH. Use a public alias such as Windows tester A. Benjamin or Anna observes and records help actually given.
@@ -11,14 +15,14 @@ Prepared 30 October 2026 after PR #122 merged as `9fd287c`. Results from 30 Octo
 
 ## Download and open
 
-Current temporary distribution route: [Actions run 40556703379](https://github.com/Hakuverse/ICT304/actions/runs/40556703379).
+Historical distribution route used on 30 October: [Actions run 40556703379](https://github.com/Hakuverse/ICT304/actions/runs/40556703379).
 
 | Platform | Download | Inner package |
 |---|---|---|
 | Windows x64 | [SARAH-windows-x64-4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12757642322) | SARAH-0.1.0-preview-windows-x64-ab4a604.zip |
 | Apple Silicon Mac | [SARAH-macos-arm64-4](https://github.com/Hakuverse/ICT304/actions/runs/40556703379/artifacts/12758175843) | SARAH-0.1.0-preview-macos-arm64-ab4a604.zip |
 
-These artifacts were available when checked on 30 October and expire on **10 November 2026**. GitHub may require sign-in. In the Windows walkthrough, the download showed 404 while signed out; signing in and retrying resolved it with observer advice. There is no published Release yet; #118 covers final release distribution. Do not use GitHub's source-code ZIP as the application download.
+These artifacts were available when checked on 30 October and expire on **10 November 2026**. GitHub may require sign-in. In the Windows walkthrough, the download showed 404 while signed out; signing in and retrying resolved it with observer advice. The [public release](https://github.com/Hakuverse/ICT304/releases/tag/v0.1.0-preview) was published on 31 October; these observations describe the earlier Actions route. Do not use GitHub's source-code ZIP as the application download.
 
 1. Give the tester this page and the [user guide](user-guide.md); let them attempt the steps themselves.
 2. Download the matching artifact. Extract the outer ZIP to find the versioned inner ZIP, checksum and JSON build records. Retain all of them.
@@ -27,7 +31,7 @@ These artifacts were available when checked on 30 October and expire on **10 Nov
 5. Open SARAH.exe on Windows or SARAH.app on Mac. Record any security prompt and decision. Follow the [unsigned-app opening guidance](app-package-testing.md#unsigned-app-first-launch) only for the verified team package and where device policy allows it. Do not disable protection. Stop and record a block if no permitted option is available.
 6. Record whether the launcher and browser open automatically and the Attendance field becomes usable.
 
-If a tester cannot access Actions, record the sign-in/download barrier. The team can transfer the unchanged inner ZIP and matching build records, but mark that run as a **team-provided package**: it does not prove independent GitHub downloading. Final public distribution will need checking through #118's route as well.
+If a tester cannot access Actions, record the sign-in/download barrier. The team can transfer the unchanged inner ZIP and matching build records, but mark that run as a **team-provided package**: it does not prove independent GitHub downloading. Public downloads were subsequently integrity-checked under #118; no new device walkthrough was performed after publication.
 
 ## Tasks and evidence
 
@@ -69,4 +73,8 @@ Ka Jun completed the Windows tasks with sign-in help; Jackie supplied the macOS 
 - [Windows record](evidence/app/issue117/windows/results.md)
 - [macOS record](evidence/app/issue117/macos/results.md)
 
-Add actual outcomes and feedback through the #117 PR. Keep #117 open until both platform walkthroughs are reviewed and distribution limitations are stated. If instructions change, repeat the affected walkthrough step. If application behaviour changes, rebuild and repeat affected #116 checks before completing acceptance. Keep historical Sprint 6 and #116 results unchanged.
+Actual outcomes and feedback were reviewed by Anna and merged in PR #123 on
+30 October; #117 is closed. The original assistance and distribution limitations
+remain in the evidence. Benjamin chose to reuse these device results for the
+unchanged published app. Future application changes need affected checks; this
+documentation correction does not claim or require another walkthrough.

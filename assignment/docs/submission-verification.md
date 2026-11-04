@@ -54,7 +54,7 @@ added in PR #63 are runtime inputs, not new model-evaluation data.
 
 ## Repeatable commands
 
-Run from the repository root after the [setup steps](../../README.md#setup--how-to-run).
+Run from the repository root after the [setup steps](../../README.md#assignment-prototype-setup-and-reproduction).
 On macOS:
 
 ```bash

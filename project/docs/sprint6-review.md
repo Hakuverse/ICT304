@@ -96,9 +96,9 @@ Benjamin confirmed this Sprint 7 split on 20 October 2026:
 
 See [Sprint 7](sprint7-planning.md) for dependencies. Sprint 8 (27 October–3
 November) covers report/forms, slides/rehearsal and package/readiness checks in
-[#93–#98](sprint8-planning.md). The reviewed #82 handover uses shared team work for Sprint 8; practical
-sessions and submission roles are separate decisions. Final-deliverable work
-is paused as of 31 October. Keep 4–7 November
+[#93–#98](sprint8-planning.md). The updated Sprint 8 allocation gives Benjamin the report and final checking/
+submission, and Anna the slides, with review by the other two. Practical
+sessions, speaking parts and the backup uploader are separate decisions. Keep 4–7 November
 for final corrections and submission, and confirm the exact LMS cutoff.
 
 ## Closure

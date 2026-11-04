@@ -68,7 +68,9 @@ commit above. The app packages add double-click startup and first-opening securi
 prompts; they do not change the models or the demonstrated prediction workflow.
 Use the [app user guide](user-guide.md) for opening the packaged version.
 
-For #96, the proposed presentation addition is a short live app opening or a
-separately labelled startup clip. The team still needs to choose and rehearse it.
-No replacement recording, new video approval or new recording date is claimed
-by this update. See the [release handover](app-release-notes.md).
+The later addition is Anna's approximately 27-second `SARAH_demo.mp4` public-release
+Windows startup clip, shared on 2 November. It supplements the original video;
+see [presentation notes](presentation-notes.md). The team completed its rehearsal
+on 3 November, with no problems reported and the final presentation version
+agreed; see [rehearsal notes](rehearsal-notes.md). The original video's date and
+source above remain unchanged.

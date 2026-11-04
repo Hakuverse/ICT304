@@ -70,12 +70,12 @@ contributors; record actual editors, testers, presenters and reviewers as work h
 
 | Next action | Responsible people / existing issue | Target |
 |---|---|---|
-| Agree practical editing/session schedule when work resumes | Benjamin coordinates with Anna and Jackie; #93–#98 | Paused on 31 October |
-| Review report and private declarations | Team; #93/#94 | By 3 November |
-| Prepare slides, agree presenters and rehearse | Team; #95/#96 | Draft by 30 October; rehearsal by 2 November (proposed) |
-| Choose submission commit and check extracted package | Team; #97 | By 3 November |
-| Confirm LMS cutoff/formats, uploader, backup and support limits | Team; #94/#98 | By the 3 November readiness review |
-| Final corrections and actual upload | Uploader and backup to be agreed; #98 | 4–7 November, before confirmed LMS cutoff |
+| Coordinate final report review and remaining checks | Benjamin coordinates with Anna and Jackie; #93–#98 | Report approved; final packaging/upload remain |
+| Review report and private declarations | Team; #93/#94 | Signing and final report approval confirmed |
+| Prepare slides, agree presenters and rehearse | Team; #95/#96 | Deck/presenters reviewed in #127; rehearsal completed 3 November |
+| Record source merge SHA and check extracted package | Benjamin; #97 | Eventual approved PR #126 merge selected; final extraction check outstanding |
+| Confirm LMS cutoff/formats, uploader, backup and support limits | Team; #94/#98 | 7 November submission date confirmed; exact time checked in LMS |
+| Final corrections and actual upload | Benjamin uploads two separate LMS ZIPs; no backup agreed; #98 | 4–7 November before LMS cutoff |
 
 Keep personal details, signed forms and upload receipts private. Do not mark
 rehearsal, package checks, signatures or submission complete before they happen.
@@ -91,5 +91,14 @@ rehearsal, package checks, signatures or submission complete before they happen.
 Shared Sprint 8 work is the reviewed handover approach. Specific session dates,
 presenters and submission roles are separate decisions, not implied by PR approval.
 
-Sprint 7 is closed. Sprint 8 final-deliverable work was paused by Benjamin on
-31 October; the planned meeting/submission actions above are not completed results.
+Sprint 7 is closed. The later 31 October allocation makes Benjamin the report
+lead and Anna the slide lead, with review by the other two. Benjamin leads final
+checking/submission. See the updated Sprint 8 plan; planned actions above are not completed results.
+
+Later decisions are recorded in [presentation notes](presentation-notes.md),
+[contribution checks](contribution-checks.md) and [package checks](submission-package-checks.md).
+The assessment-period support agreement is in the [maintenance plan](maintenance-plan.md).
+These updates do not relabel historical test outcomes.
+
+Final outcomes are recorded in [Sprint 8 closeout](sprint8-review.md); the
+original handover targets above are retained as planning history.

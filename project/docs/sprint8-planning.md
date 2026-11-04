@@ -1,11 +1,13 @@
 # Sprint 8: Closeout, Report Polish and Rehearsal
 
-Working period: 27 October-3 November 2026. Phase F.
+Original working period: 27 October–3 November 2026, Phase F.
 Milestone: [Sprint 8](https://github.com/Hakuverse/ICT304/milestone/8).
-Prepared: 20 October 2026. Status updated: 31 October 2026.
-Final report/declaration, slides/rehearsal, submission-package checks and closeout
-are paused at Benjamin's request. The dates below are original planning targets,
-not completed events or revised commitments.
+Prepared 20 October; final status updated 4 November.
+
+The tables below retain the sprint plan. Current outcomes are in the
+[closeout record](sprint8-review.md): implementation/release, slides, declarations
+and rehearsal are complete. Final report approval was confirmed on 4 November.
+Post-merge LMS package checks/upload remain final handover actions with named owners.
 
 ## Goal
 
@@ -28,29 +30,27 @@ final corrections and the actual submission by 7 November.
 These are planned outputs. A planning PR does not complete the issues or prove
 that the report, rehearsal, package checks or submission have happened.
 
-## Reviewed shared-work approach
+## Agreed leads and review — 31 October
 
-Benjamin proposed on 27 October that Benjamin, Anna and Jackie work together on
-all six issues, including the report, slides and review, instead of splitting
-exclusive pairs. This approach was included in the reviewed #82 handover, merged
-in PR #111. It does not establish specific editing sessions or speaking roles. Each person still checks
-their own contribution and private declaration details. Record who performed each
-check and ask another teammate to review it, even when the issue is shared.
-
-| Issues | Shared work | Planning target |
+| Work | Lead | Review / participation |
 |---|---|---|
-| #93 / #94 | Report, evidence links, contributions and private forms | Draft checks by 30 October; review by 3 November |
-| #95 | Slides and speaking roles | Draft by 30 October; review by 3 November |
-| #96 | Full-team rehearsal and corrections | By 2 November, before the 3 November review |
-| #97 | Choose final commit, extract and test package | By 3 November |
-| #98 | Readiness review and final submission handover | 3 November; corrections/upload 4–7 November |
+| #93 final report | Benjamin | Anna and Jackie review and suggest corrections |
+| #95 presentation slides | Anna | Benjamin and Jackie review and edit |
+| #94 contributions and declaration | Benjamin coordinates final checking | Each member confirms their own contributions and private details |
+| #96 rehearsal and demonstration | All three | Presenters/clip recorded in PR #127; rehearsal completed 3 November, all three, 30-minute session |
+| #97 final package checking | Benjamin | Anna or Jackie provides a teammate review; final merged-source archive check follows merge |
+| #98 readiness and submission | Benjamin | Anna and Jackie review beforehand; Benjamin is the sole uploader; no backup agreed |
 
-These intermediate dates are proposed targets, not confirmed meeting dates.
-Decisions to record when work resumes: editing/session schedule, presenters,
-exact LMS cutoff and formats, uploader, backup and any post-project support limits.
-Record decisions in the relevant existing issues rather than creating duplicates.
-Keep legal names, student IDs, signatures and submission receipts private.
-Use Benjamin, Anna and Jackie in public project records.
+Keep one master report and one master slide deck. Reviewers comment or suggest
+edits; the lead resolves them and maintains the current version. This replaces
+the earlier plan to edit all deliverables together without a designated lead.
+Benjamin confirmed on 4 November that Anna and Jackie reviewed and approved
+the final report for submission.
+
+Original planning targets were a readiness review by 3 November and corrections/
+submission during 4–7 November. Presenters are recorded in PR #127. Confirm
+the LMS cutoff time; 7 November and two separate ZIP submissions are confirmed. No backup uploader is agreed. Keep names, IDs, signatures and
+receipts private; use Benjamin, Anna and Jackie in public project records.
 
 ## Order for the week
 
@@ -65,7 +65,7 @@ Use Benjamin, Anna and Jackie in public project records.
 ## Submission handover: 4-7 November
 
 - Confirm the exact LMS cutoff, required formats and upload location from the current brief/LMS.
-- Confirm the uploader and backup person. Do not assume the assignment-stage allocation still applies.
+- Benjamin is the confirmed uploader; no backup uploader is agreed.
 - Check the final report, required forms, code package and any separately submitted video or slides.
 - Keep one agreed final version and check that links work for the intended reviewer.
 - Make the actual upload before the confirmed cutoff and retain its receipt privately.
@@ -90,10 +90,9 @@ tests Windows and Jackie tests macOS, with shared release decisions.
 Builds are unsigned prototypes; platform security restrictions must be tested.
 The 30-second startup target is separate from earlier prediction timings.
 
-Report/slides preparation is paused as of 31 October. When resumed, coordinate #97/#98 with the
-packaged-app evidence before including releases in the submission. The 3 November
-review decides which platforms are ready; no package test or release is claimed
-by this plan.
+The final report and slides are reviewed and approved. Coordinate #97/#98 with the
+packaged-app evidence before including releases in the submission. Both platforms already have accepted evidence and published packages;
+this planning record does not add new platform tests.
 
 App status on 31 October: #112–#117 are closed following merged PRs #119–#123.
 PR #124 merged the release/user-guide preparation. The tested `ab4a604` Windows
@@ -101,5 +100,24 @@ and Mac packages are now published as `v0.1.0-preview`; see the
 [release record](app-release-notes.md) for exact files, hashes and limitations.
 Both devices met the recorded routine-startup target. The first security-prompt
 launches retain their separate timings. Benjamin chose to reuse existing device
-evidence without another post-publication run. Issue #118 retains its final
-handover link to paused #97/#98 work. App work is within Sprint 8, not a separate milestone.
+evidence at publication; Anna's later launch clip is in [presentation notes](presentation-notes.md). Issue #118 records completed publication and app handover; final LMS
+packaging and submission are tracked under #97/#98. App work is within Sprint 8, not a separate milestone.
+
+## Final arrangements — updated 4 November
+
+Use the eventual approved PR #126 merge commit for final source submission; obtain
+team approval before merging. Capture the real merge SHA after merge and verify the final
+extracted ZIP. Historical test/build commits do not change.
+
+Equal one-third contributions (33.3% each rounded) and all three declaration
+signatures/confirmations were reported by Benjamin; see [contribution checks](contribution-checks.md).
+Benjamin uploads two separate ZIPs: the final-project source/report/guide/evidence/
+declaration package, and the presentation deck with both videos. No backup uploader is agreed. Final archive
+names and hashes belong in the private submission manifest after assembly. Assessment-period support is coordinated by Benjamin,
+with Anna and Jackie assisting; no ongoing service.
+
+## Final status — 4 November
+
+The 3 November rehearsal is complete. See [rehearsal notes](rehearsal-notes.md).
+The [closeout record](sprint8-review.md) supersedes the original targets above
+and identifies the remaining private report/package/upload actions.

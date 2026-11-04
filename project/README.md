@@ -163,7 +163,7 @@ the original scores for a different experiment.
 - [Assignment system design](../assignment/docs/SYSTEM_DESIGN.md) and
   [model test plan](../assignment/docs/model-test-plan.md), retained as background.
 - [Project prompt appendix](report/appendix-ai-prompts.md) and
-  [shared prompt log](../ai-prompt-log/log.md), unchanged.
+  [shared prompt log](../ai-prompt-log/log.md), containing the supplied Appendix D record.
 
 New system results, feedback and project diagrams belong in `project/docs/`.
 Keep personal identifiers and signed declarations out of the public repository.
@@ -213,4 +213,5 @@ The [release record](docs/app-release-notes.md) links the existing Windows/macOS
 Source setup remains available below for reproduction and fallback.
 
 [Project status and remaining information](docs/project-status-review.md) records
-the 31 October consistency review, completed reviews and paused final work.
+the completed implementation/release reviews and the final submission handover.
+See [Sprint 8 closeout](docs/sprint8-review.md) for justified remaining actions.

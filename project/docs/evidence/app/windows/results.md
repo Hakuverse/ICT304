@@ -74,5 +74,5 @@ Windows and macOS tests both refer to candidate ab4a604 and bundled Python
 The visible Deploy button and the internet wording after Quit are usability
 observations for team review, not evidence that prediction requires internet.
 No new package or repeat of all functional cases is needed for this
-documentation update. Keep #114 open until peer review is complete;
-#116-#118 remain separate.
+documentation update. Anna approved PR #121 on 29 October and it was merged;
+#114 is closed. Later workflow, walkthrough and release records remain separate.

@@ -97,19 +97,12 @@ have not been verified by these results.
 - Public downloads are checked without GitHub authentication and their bytes
   compared with the recorded hashes; see the publication record for actual outcomes.
 - Benjamin chose **not to repeat device testing**. Existing #114–#117 evidence is
-  reused for unchanged packages. No launch from the published download is claimed.
-- Report, declaration, presentation/rehearsal, final submission-package checking
-  and closeout work are **paused at Benjamin's request on 31 October**. This release
-  does not complete those tasks or establish a 3 November meeting decision.
+  reused for unchanged packages at publication. Anna's later public-release launch clip is documented in [presentation notes](presentation-notes.md), separately from the full device suite.
+- Anna and Jackie approved the final report for submission, confirmed by Benjamin on 4 November.
+  Slides are reviewed in PR #127; declarations are confirmed and the team
+  rehearsal on 3 November is complete.
 
-| Paused work | Handover when resumed |
-|---|---|
-| #93 report | Link this version, user guide and #114–#117 evidence. Keep deployment improvements separate from accuracy and retain limitations. |
-| #94 declaration | Confirm actual contributions and required disclosures. |
-| #95 slides | Show the app opening route and tested platforms, alongside the existing model results. |
-| #96 rehearsal/video | Retain Anna's original video and metadata. A live startup demonstration or separate short clip remains a team choice; no new recording is claimed. |
-| #97 package | Use the exact app ZIPs/hashes alongside the selected source archive. Final source-package extraction/checking remains outstanding. |
-| #98 closeout | Confirm final deliverables, exact LMS cutoff, uploader and backup; retain receipts privately after submission. |
-
-Issue #118's publication work is complete once its documentation update is merged;
-final submission handover remains paused. Keep that distinction in the issue status.
+Publication and app handover under #118 are complete. Final merged-source package acceptance and two LMS uploads are tracked under
+#93/#97/#98 in [Sprint 8 closeout](sprint8-review.md), without duplicating those
+tasks as unfinished app development. Benjamin is the sole uploader; no backup
+is agreed. The submission date is 7 November; the exact time remains an LMS check.

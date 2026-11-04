@@ -79,9 +79,10 @@ passes and fast responses do not remove those limits.
 | 4–7 November | Final corrections and actual submission before the confirmed LMS cutoff | Handover under #98 |
 
 Benjamin confirmed the Sprint 7 split on 20 October; its completed handover was
-reviewed in merged PR #111. Sprint 8 uses the reviewed shared-work approach.
-Specific sessions and submission roles are not recorded. Final-deliverable work
-is paused as of 31 October; the dates above remain planning targets.
+reviewed in merged PR #111. On 31 October Benjamin confirmed separate leads:
+Benjamin drafts the report, Anna prepares slides, and the other two review each.
+Benjamin handles final overall checking and submission. Practical session dates
+and the backup uploader remain undecided; the dates above are planning targets.
 
 
 ## Study-hours input warning and limitation
@@ -136,6 +137,18 @@ predictions, CSV export and quitting. The [release record](../docs/app-release-n
 links versions, checksums and limitations. The packages remain unsigned and local;
 packaging does not change model accuracy or the study-hours limitation.
 
-Final report/declaration, presentation/rehearsal, submission-package checks and
-closeout are paused at Benjamin's request. Actual publication is complete;
-final project submission and its receipt are not claimed by this progress record.
+## Final report and submission handover — 4 November
+
+Benjamin supplied the final report with Appendix D. On 4 November, Benjamin
+confirmed that Anna and Jackie reviewed and approved it for submission. The 92 supplied entries are copied to the
+[shared log](../../ai-prompt-log/log.md). Anna's slides were reviewed in PR #127.
+The team rehearsal on 3 November lasted 30 minutes and all went well; all three
+agreed to the final presentation version. Declaration signing and equal thirds
+are confirmed in [contribution checks](../docs/contribution-checks.md).
+
+The final source basis is the approved PR #126 merge commit. Benjamin will
+upload two separate LMS ZIPs by 7 November: final project materials, and the
+presentation with both videos. No backup uploader is agreed; the precise cutoff
+time is not recorded here. Final archive checks and receipts belong in the
+private submission manifest. See [closeout](../docs/sprint8-review.md) for the
+remaining justified actions; no actual upload is claimed.

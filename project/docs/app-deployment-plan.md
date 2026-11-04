@@ -36,8 +36,10 @@ The agreed preference is an application: SARAH.exe on Windows and SARAH.app on
 macOS, not a terminal script. This does not require a single standalone Windows
 executable or a traditional installer. If the build needs supporting files, ship
 the complete application folder and tell users to keep it together. A ZIP or disk
-image could serve as the download container; the current #114/#115 candidates
-use ZIP archives. Extract the outer Actions ZIP, then the inner SARAH ZIP.
+image could serve as the download container; #114/#115 used ZIP archives.
+The historical Actions test downloads had an outer wrapper and inner SARAH ZIP.
+The published release downloads need only one extraction; follow the
+[app user guide](user-guide.md) for normal use.
 macOS archives preserve app links and permissions. Jackie's [28 October Mac results](evidence/app/macos/results.md)
 were reviewed in merged PR #121. [Anna's Windows evidence](evidence/app/windows/results.md)
 was submitted on 29 October; routine post-approval reboot timing was confirmed at 13.20 seconds. PR #121 is merged.
@@ -144,7 +146,7 @@ and actual submission, with 4–7 November reserved for corrections/upload befor
 the confirmed LMS cutoff. A release is not proof of LMS submission.
 
 Update deployment/user/maintenance instructions, README links, report and slides
-when a release is accepted. Consider a short video startup update then; retain
+when a release is accepted. The short startup clip is now recorded in [presentation notes](presentation-notes.md); retain
 historical evidence and version labels. Packaging does not retrain the models,
 improve accuracy, remove the study-hours limitation or turn earlier unmet
 usability targets into passes.
